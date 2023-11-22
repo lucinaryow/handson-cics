@@ -225,3 +225,7 @@
             MOVE WS-STF01TCKIDR TO TIXNUMO
             ADD 1 TO WS-ENTRCTR
            END-IF.
+       
+       400-READ-STF1.
+
+           DISPLAY 'HELLO'.
