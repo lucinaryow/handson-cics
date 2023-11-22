@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     22NOV23 13:37:32 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     23NOV23 03:45:23 PAGE  1
 
     1    PRINT NOGEN
     2 SM002    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -10,7 +10,7 @@ W **** TERM is ignored by CA-Realia CICS
     7                INITIAL='SM002'
     8          DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              C
     9                INITIAL='SERVICE MANAGEMENT'
-   10          DFHMDF POS=(02,35),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+   10 HEADER   DFHMDF POS=(02,35),LENGTH=13,ATTRB=(ASKIP,NORM),              C
    11                INITIAL='ADD TICKET'
    12          DFHMDF POS=(03,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
    13                INITIAL=''
@@ -57,7 +57,7 @@ W **** TERM is ignored by CA-Realia CICS
    54                INITIAL='PF3 - EXIT'
    55          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              C
    56                INITIAL='PF5 - ABORT'
-   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     22NOV23 13:37:32 PAGE  2
+   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     23NOV23 03:45:23 PAGE  2
 
    58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
    59 TIXNUM   DFHMDF POS=(05,24),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
@@ -73,16 +73,16 @@ W **** Label should be less than 8 characters long
    67 TIME1    DFHMDF POS=(12,36),LENGTH=10,ATTRB=(UNPROT,DRK,FSET)
    68 UPDBY2   DFHMDF POS=(13,24),LENGTH=7,ATTRB=(UNPROT,DRK,FSET)
    69          DFHMSD TYPE=FINAL
-      sm002 loaded with 1 MAPS, 38 FIELDS and 211 Bytes of Literals
+      sm002 loaded with 1 MAPS, 38 FIELDS and 214 Bytes of Literals
 
    70          END
    71
 W **** Blank records not supported by Mainframe.
    72
 W **** Blank records not supported by Mainframe.
-There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     22NOV23 13:37:32 PAGE  3
+There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     23NOV23 03:45:23 PAGE  3
 
       COBOL COPY file generated
 
-      Mapset generated. Object size is 1,276.
+      Mapset generated. Object size is 1,279.
 

@@ -1,0 +1,69 @@
+CA-Realia CICS Ver:6.0.27  sm004s.bms                                                                    23NOV23 03:45:26 PAGE  1
+
+    1          PRINT NOGEN
+    2 SM004   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,       C
+    3                CTRL=(FREEKB,FRSET),TIOAPFX=YES,EXTATT=NO,              C
+    4                MAPATTS=(COLOR,HILIGHT)
+    5 MAP04   DFHMDI SIZE=(24,80)
+    6          DFHMDF POS=(01,01),LENGTH=06,ATTRB=(ASKIP,NORM),              C
+    7                INITIAL='SM004'
+    8          DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              C
+    9                INITIAL='SERVICE MANAGEMENT'
+   10          DFHMDF POS=(02,33),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+   11                INITIAL='CLOSE TICKET'
+   12          DFHMDF POS=(03,01),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+   13                INITIAL=' '
+   14          DFHMDF POS=(04,01),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+   15                INITIAL=' '
+   16          DFHMDF POS=(05,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   17                INITIAL='TICKET NUMBER      : '
+   18          DFHMDF POS=(06,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   19                INITIAL='REQUESTED BY       : '
+   20          DFHMDF POS=(07,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   21                INITIAL='TICKET TITLE       : '
+   22          DFHMDF POS=(08,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   23                INITIAL='TICKET DESCRIPTION : '
+   24          DFHMDF POS=(09,01),LENGTH=21,ATTRB=(ASKIP,NORM),              *
+   25                INITIAL=' '
+   26          DFHMDF POS=(10,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   27                INITIAL='STATUS             : '
+   28          DFHMDF POS=(11,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   29                INITIAL='UPDATE BY          : '
+   30          DFHMDF POS=(12,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   31                INITIAL='UPDATE REMARKS     : '
+   32          DFHMDF POS=(13,01),LENGTH=21,ATTRB=(ASKIP,NORM),              *
+   33                INITIAL=' '
+   34          DFHMDF POS=(14,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   35                INITIAL='UPDATE DATE/TIME   : '
+   36          DFHMDF POS=(24,01),LENGTH=11,ATTRB=(ASKIP,NORM),              C
+   37                INITIAL='PF2 - CLOSE'
+   38          DFHMDF POS=(24,18),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+   39                INITIAL='PF3 - EXIT'
+   40          DFHMDF POS=(24,35),LENGTH=11,ATTRB=(ASKIP,NORM),              C
+   41                INITIAL='PF5 - ABORT'
+   42          DFHMDF POS=(24,50),LENGTH=11,ATTRB=(ASKIP,NORM),              C
+   43                INITIAL='PF11 - LOGS'
+   44 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   45 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   46 TNUM     DFHMDF POS=(05,23),LENGTH=08,ATTRB=(UNPROT,NUM,NORM,FSET)
+   47 REQBY    DFHMDF POS=(06,23),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   48 TITLE    DFHMDF POS=(07,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   49 DESCL1   DFHMDF POS=(08,23),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
+   50 DESCL2   DFHMDF POS=(09,23),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
+   51 STATS    DFHMDF POS=(10,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   52 UPDBY    DFHMDF POS=(11,23),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   53 UPDREM1  DFHMDF POS=(12,23),LENGTH=25,ATTRB=(UNPROT,NORM,FSET)
+   54 UPDREM2  DFHMDF POS=(13,23),LENGTH=25,ATTRB=(UNPROT,NORM,FSET)
+   55 DATE1    DFHMDF POS=(14,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   56 TIME1    DFHMDF POS=(14,34),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   57 ERRMSG   DFHMDF POS=(23,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
+   58          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm004s.bms                                                                    23NOV23 03:45:26 PAGE  2
+
+      sm004s loaded with 1 MAPS, 33 FIELDS and 313 Bytes of Literals
+
+   59          ENDCA-Realia CICS Ver:6.0.27  sm004s.bms                                                                    23NOV23 03:45:26 PAGE  3
+
+      COBOL COPY file generated
+
+      Mapset generated. Object size is 1,248.
+

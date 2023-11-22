@@ -914,7 +914,7 @@
   1661		  MOVE SPACE TO REM2O
   1662		  MOVE SPACE TO UPDBYO.
   1663	      900-EXIT.
-  1664		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\CAWB30\sm006p.cic		       PAGE   17
+  1664		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm006p.cic     PAGE   17
 
 
 
@@ -944,8 +944,8 @@ DEBUGXREF	  DIALECT-VS2
 			Error level limit: W
 
 			Source lines compiled:	    1675
-			Compilation time (mm:ss.ss):  0:00.43
-			Compilation speed (lines/minute): 33720
+			Compilation time (mm:ss.ss):  0:00.38
+			Compilation speed (lines/minute): 64473
 
-			Compilation date (yy/mm/dd): 23/11/22
-			     Time of day (hh:mm:ss): 13:37:35
+			Compilation date (yy/mm/dd): 23/11/23
+			     Time of day (hh:mm:ss): 03:45:30

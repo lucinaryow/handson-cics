@@ -1,46 +1,90 @@
-CA-Realia CACXPREP C:\CAWB30\sm003.COB
+CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     23NOV23 03:45:24 PAGE  1
 
+    1    PRINT NOGEN
+    2 SM003    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      *
+    3                CTRL=(FREEKB,FRSET),TERM=3270,TIOAPFX=YES,EXTATT=NO,    *
+    4                MAPATTS=(COLOR,HILIGHT)
+W **** TERM is ignored by CA-Realia CICS
+    5 SM003M   DFHMDI SIZE=(24,80)
+    6          DFHMDF POS=(01,01),LENGTH=06,ATTRB=(ASKIP,NORM),              *
+    7                INITIAL='SM003'
+    8          DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              *
+    9                INITIAL='SERVICE MANAGEMENT'
+   10          DFHMDF POS=(02,35),LENGTH=13,ATTRB=(ASKIP,NORM),              *
+   11                INITIAL='UPDATE TICKET'
+   12          DFHMDF POS=(05,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   13                INITIAL='TICKET NUMBER      : '
+W **** LITERAL exceeds LENGTH - truncation likely
+   14          DFHMDF POS=(06,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   15                INITIAL='REQUESTED BY       :'
+   16          DFHMDF POS=(07,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   17                INITIAL='TICKET TITLE       :'
+   18          DFHMDF POS=(08,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   19                INITIAL='TICKET DESCRIPTION :'
+   20          DFHMDF POS=(09,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   21                INITIAL=''
+   22          DFHMDF POS=(10,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   23                INITIAL='STATUS             :'
+   24          DFHMDF POS=(11,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   25                INITIAL='UPDATE BY          :'
+   26          DFHMDF POS=(12,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   27                INITIAL='UPDATE REMARKS     :'
+   28          DFHMDF POS=(13,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   29                INITIAL=''
+   30          DFHMDF POS=(14,02),LENGTH=20,ATTRB=(ASKIP,NORM),              *
+   31                INITIAL='UPDATE DATE/TIME   :'
+   32          DFHMDF POS=(15,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   33                INITIAL=''
+   34          DFHMDF POS=(16,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   35                INITIAL=''
+   36          DFHMDF POS=(17,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   37                INITIAL=''
+   38          DFHMDF POS=(18,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   39                INITIAL=''
+   40          DFHMDF POS=(19,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   41                INITIAL=''
+   42          DFHMDF POS=(20,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   43                INITIAL=''
+   44          DFHMDF POS=(21,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   45                INITIAL=''
+   46          DFHMDF POS=(22,02),LENGTH=64,ATTRB=(ASKIP,NORM),              *
+   47                INITIAL=''
+   48 ERRMSG   DFHMDF POS=(23,02),LENGTH=58,ATTRB=(ASKIP,NORM,FSET)
+   49          DFHMDF POS=(24,03),LENGTH=09,ATTRB=(ASKIP,NORM),              *
+   50                INITIAL='PF2 - ADD'
+   51          DFHMDF POS=(24,15),LENGTH=10,ATTRB=(ASKIP,NORM),              *
+   52                INITIAL='PF3 - EXIT'
+   53          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              *
+   54                INITIAL='PF5 - ABORT'
+   55          DFHMDF POS=(24,55),LENGTH=11,ATTRB=(ASKIP,NORM),              *
+   56                INITIAL='PF11 - LOGS'CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     23NOV23 03:45:24 PAGE  2
 
-     1	     IDENTIFICATION DIVISION.
-     2	     PROGRAM-ID. SM003.
-     3
-     4	     ENVIRONMENT DIVISION.
-     5	     CONFIGURATION SECTION.
-     6	     SOURCE-COMPUTER.	 IBM-PC.
-     7	     OBJECT-COMPUTER.	 IBM-PC.
-     8	     DATA DIVISION.
-     9	     WORKING-STORAGE SECTION.
-    10	     01  WS-COMMAREA.
-    11		 05 WS-PROG-STATE		     PIC X(20).
-    12	     LINKAGE SECTION.
-    13	     01  DFHCOMMAREA			     PIC X(20).
-    14	    *
-    15	     PROCEDURE DIVISION 					      REALCICS
-    16	     100-PROC.
-    17           MOVE 'SM003 IS IN CONTROL' TO WS-PROG-STATE
-    18		 EXEC CICS XCTL
-    19               PROGRAM('SM000')
-    20		     COMMAREA(WS-COMMAREA)
-    21		 END-EXEC.
-    22	     100-EXIT.
-    23		 EXIT.
-CA-Realia CACXPREP C:\CAWB30\sm003.COB
+   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   59 TIXNUM   DFHMDF POS=(05,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
+   60 REQBY    DFHMDF POS=(06,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
+   61 TIXTTL   DFHMDF POS=(07,23),LENGTH=25,ATTRB=(UNPROT,NORM,FSET)
+   62 TIXDESC1 DFHMDF POS=(08,23),LENGTH=40,ATTRB=(UNPROT,NORM,FSET)
+W **** Label should be less than 8 characters long
+   63 TIXDESC2 DFHMDF POS=(09,23),LENGTH=40,ATTRB=(UNPROT,NORM,FSET)
+W **** Label should be less than 8 characters long
+   64 STAT     DFHMDF POS=(10,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
+   65 UPDBY    DFHMDF POS=(11,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
+   66 UPDRMK   DFHMDF POS=(12,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   67 UPDRMK1  DFHMDF POS=(13,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   68 DATE1    DFHMDF POS=(14,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   69 TIME1    DFHMDF POS=(14,34),LENGTH=8,ATTRB=(ASKIP,NORM,FSET)
+   70
+W **** Blank records not supported by Mainframe.
+   71          DFHMSD TYPE=FINAL
+      sm003 loaded with 1 MAPS, 39 FIELDS and 238 Bytes of Literals
 
+   72          END
+   73
+W **** Blank records not supported by Mainframe.
+There were     6 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     23NOV23 03:45:24 PAGE  3
 
-		Options Summary
+      COBOL COPY file generated
 
-		      CICS 4.1
-		      LANGLVL(2)
-		      SPACE(1)
-		      FLAG(I)
-		      SOURCE
-		    NOVBREF
-		      OPTIONS
-		      EBCDIC
-		    DIALECT-OSVS
-		      PPCODE
-		      DCHK
-
-		Source Lines Translated:      27
-		Translation Time:	     .00 sec
-		Translation Speed:		 lines per min
+      Mapset generated. Object size is 1,329.
+

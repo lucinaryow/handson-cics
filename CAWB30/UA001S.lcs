@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    22NOV23 13:37:33 PAGE  1
+CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    23NOV23 03:45:27 PAGE  1
 
     1          PRINT NOGEN
     2 UA001S  DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,       C
@@ -57,7 +57,7 @@
    55 REQ2     DFHMDF POS=(11,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)
    56 REQ3     DFHMDF POS=(12,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)
    57 REQ4     DFHMDF POS=(13,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)
-   58 REQ5     DFHMDF POS=(14,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    22NOV23 13:37:33 PAGE  2
+   58 REQ5     DFHMDF POS=(14,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    23NOV23 03:45:27 PAGE  2
 
    59 REQ6     DFHMDF POS=(15,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)
    60 REQ7     DFHMDF POS=(16,28),LENGTH=01,ATTRB=(UNPROT,NORM,FSET)
@@ -102,7 +102,7 @@
    99          DFHMSD TYPE=FINAL
       ua001s loaded with 1 MAPS, 82 FIELDS and 188 Bytes of Literals
 
-  100          ENDCA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    22NOV23 13:37:33 PAGE  3
+  100          ENDCA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    23NOV23 03:45:27 PAGE  3
 
       COBOL COPY file generated
 

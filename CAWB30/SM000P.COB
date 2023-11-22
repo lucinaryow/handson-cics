@@ -199,8 +199,10 @@
                    IF WS-CHC2 = '- ADD TICKET'
                        PERFORM 700-TRANSFER-PROG
                        IF EIBCALEN = +0
+                           
                            EXEC CICS XCTL 
                                PROGRAM('SM02P')
+                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
@@ -213,11 +215,11 @@
                        PERFORM 700-TRANSFER-PROG
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
                                COMMAREA(WS-COMMAREA)
                            END-EXEC
                        END-IF
@@ -270,11 +272,12 @@
                        PERFORM 700-TRANSFER-PROG
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
+                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
                                COMMAREA(WS-COMMAREA)
                            END-EXEC
                        END-IF
@@ -299,9 +302,11 @@
                    END-IF  
                    IF WS-CHC4 = '- CLOSE TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM004')
+                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
@@ -411,6 +416,9 @@
                    ERASE 
                END-EXEC
                EXEC CICS RETURN END-EXEC
+           ELSE
+            MOVE WS-USERID TO WS-USERID1
+            MOVE 1 TO WS-PROG-STATE
            END-IF
            IF REQUESTOR = 'Y' 
                MOVE '- SEARCH TICKET' TO WS-CHOICE
@@ -528,6 +536,7 @@
                END-EXEC
            ELSE 
                MOVE 1 TO WS-PROG-STATE
+               MOVE '0' TO WS-TICKET-NUM
            END-IF.
        600-EXIT.
            EXIT.
@@ -535,6 +544,7 @@
        700-TRANSFER-PROG.
            IF TIXNOI = SPACES OR TIXNOL = ZERO 
                MOVE +0 TO EIBCALEN
+               MOVE '0' TO WS-TICKET-NUM
            ELSE 
                MOVE 'N' TO WS-INIT
                MOVE TIXNOI TO WS-TICKET-NUM

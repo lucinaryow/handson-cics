@@ -1,4 +1,4 @@
-CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
      1	     CBL XOPTS(COBOL2)
@@ -58,7 +58,7 @@
     55			 15  WS-CA-REQ	     PIC X.
     56			 15  WS-CA-ADMN      PIC X.
     57			 15  WS-CA-APP	     PIC X.
-    58			 15  WS-CA-SP	     PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+    58			 15  WS-CA-SP	     PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
     59		     10  WS-CA-UPBY	     PIC X(8).
@@ -77,7 +77,7 @@
     72		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
     73	    *
     74	    PCOPY UA001S.
-    74	    *$PP-START-COPY C:\CAWB30\UA001S.COB
+    74	    *$PP-START-COPY C:\handson-cics\CAWB30\UA001S.COB
      1	    * SYMBOLIC MAP of ua001s Created by CACXBMS Version 6.0.27
      2	     01  UA001MI.
      3		 02  FILLER				    PIC X(12).
@@ -118,7 +118,7 @@
     38		 02  OPTN3I				    PIC X(001).
     39		 02  OPTN4L				    PIC S9(4) COMP.
     40		 02  OPTN4F				    PIC X.
-    41		 02  FILLER REDEFINES OPTN4F.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+    41		 02  FILLER REDEFINES OPTN4F.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
     42		     03  OPTN4A 			    PIC X.
@@ -178,7 +178,7 @@
     96		 02  FILLER REDEFINES USER4F.
     97		     03  USER4A 			    PIC X.
     98		 02  USER4I				    PIC X(006).
-    99		 02  USER5L				    PIC S9(4) COMP.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+    99		 02  USER5L				    PIC S9(4) COMP.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    100		 02  USER5F				    PIC X.
@@ -238,7 +238,7 @@
    154		 02  REQ5L				    PIC S9(4) COMP.
    155		 02  REQ5F				    PIC X.
    156		 02  FILLER REDEFINES REQ5F.
-   157		     03  REQ5A				    PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   157		     03  REQ5A				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    158		 02  REQ5I				    PIC X(001).
@@ -298,7 +298,7 @@
    212		     03  ADMIN5A			    PIC X.
    213		 02  ADMIN5I				    PIC X(001).
    214		 02  ADMIN6L				    PIC S9(4) COMP.
-   215		 02  ADMIN6F				    PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   215		 02  ADMIN6F				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    216		 02  FILLER REDEFINES ADMIN6F.
@@ -358,7 +358,7 @@
    270		 02  APROV6F				    PIC X.
    271		 02  FILLER REDEFINES APROV6F.
    272		     03  APROV6A			    PIC X.
-   273		 02  APROV6I				    PIC X(001).CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   273		 02  APROV6I				    PIC X(001).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    274		 02  APROV7L				    PIC S9(4) COMP.
@@ -418,7 +418,7 @@
    328		 02  SERV6I				    PIC X(001).
    329		 02  SERV7L				    PIC S9(4) COMP.
    330		 02  SERV7F				    PIC X.
-   331		 02  FILLER REDEFINES SERV7F.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   331		 02  FILLER REDEFINES SERV7F.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    332		     03  SERV7A 			    PIC X.
@@ -478,7 +478,7 @@
    386		 02  FILLER				    PIC X.
    387		 02  OPTN5O				    PIC X(001).
    388		 02  FILLER				    PIC XX.
-   389		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   389		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    390		 02  OPTN6O				    PIC X(001).
@@ -538,7 +538,7 @@
    444		 02  REQ2O				    PIC X(001).
    445		 02  FILLER				    PIC XX.
    446		 02  FILLER				    PIC X.
-   447		 02  REQ3O				    PIC X(001).CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   447		 02  REQ3O				    PIC X(001).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    448		 02  FILLER				    PIC XX.
@@ -598,7 +598,7 @@
    502		 02  FILLER				    PIC XX.
    503		 02  FILLER				    PIC X.
    504		 02  ADMIN11O				    PIC X(001).
-   505		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   505		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    506		 02  FILLER				    PIC X.
@@ -658,7 +658,7 @@
    560		 02  FILLER				    PIC X.
    561		 02  SERV8O				    PIC X(001).
    562		 02  FILLER				    PIC XX.
-   563		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   563		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    564		 02  SERV9O				    PIC X(001).
@@ -716,9 +716,9 @@
    116
    117	    *
    118	    PCOPY DFHAID.
-   118	    *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHAID.COB
+   118	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
      1	     01  DFHAID.
-     2	    *CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+     2	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -778,7 +778,7 @@
    118	    *$PP-END-COPY
    119	    *
    120	    P  COPY DFHBMSCA.
-   120	    *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHBMSCA.COBCA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   120	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COBCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
      1	     01  DFHBMSCA.
@@ -838,7 +838,7 @@
     55           05  DFHUNNUM                          PIC X VALUE 'J'.
     56	    *
     57	    *	 partially supported
-    58	    *CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+    58	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
     59           05  DFHUNNOD                          PIC X VALUE '('.
@@ -898,7 +898,7 @@
    113	    *	 Extended COLOR Attributes
    114	    *
    115           05  DFHDFCOL                          PIC X VALUE '0'.
-   116           05  DFHBLUE                           PIC X VALUE '1'.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   116           05  DFHBLUE                           PIC X VALUE '1'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    117           05  DFHRED                            PIC X VALUE '2'.
@@ -958,7 +958,7 @@
    171		     88 DFHSFE-VAL-EBCDIC	       VALUE 41.
    172		     88 DFHSFE-VAL-ASCII	       VALUE 31.
    173		 05  FILLER REDEFINES DFHSFE-VAL.
-   174		     10  FILLER 		       PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   174		     10  FILLER 		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    175		     10  DFHSFE 		       PIC X.
@@ -1018,7 +1018,7 @@
    229		 05  DFHBMPFF-VAL VALUE 012	       PIC S9(4) COMP-4.
    230		 05  FILLER REDEFINES DFHBMPFF-VAL.
    231		     10  FILLER 		       PIC X.
-   232		     10  DFHBMPFF		       PIC X.CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   232		     10  DFHBMPFF		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    233      *                                              X'0C'.
@@ -1078,7 +1078,7 @@
    287      *                                              EBCDIC X'1E'.
    288		 05  DFHEO VALUE HIGH-VALUE	       PIC X.
    120	    *$PP-END-COPY
-   121CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   121CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    122	     LINKAGE SECTION.
@@ -1138,7 +1138,7 @@
    176					       WHEN DFHPF2
    177						  PERFORM 210-WHENF2
    178			   WHEN DFHPF3
-   179			      EXEC CICSCA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   179			      EXEC CICSCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    180				  SEND CONTROL
@@ -1198,7 +1198,7 @@
    234	     210-WHENF2 SECTION.
    235		     EXEC CICS ASSIGN
    236		     USERID(WS-USERID)
-   237		 END-EXECCA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   237		 END-EXECCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    238               MOVE 'INITIAL' TO DF-UA02-STATE
@@ -1258,7 +1258,7 @@
    292			 MOVE WS-ADMN TO ADMNI(WS-INDX)
    293			 MOVE WS-APP TO APPI(WS-INDX)
    294			 MOVE WS-SP TO SPI(WS-INDX)
-   295			 ADD 1 TO WS-INDXCA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   295			 ADD 1 TO WS-INDXCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    296			 ADD 1 TO WS-QITEM
@@ -1318,7 +1318,7 @@
    350		     IF EIBRESP = DFHRESP(NORMAL)
    351			EXEC CICS WRITEQ TS
    352			     QUEUE(WS-QNAME)
-   353			     FROM (WS-REC)CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+   353			     FROM (WS-REC)CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
    354			     LENGTH (WS-RECB-LENGTH)
@@ -1338,7 +1338,7 @@
    368
    369
    370
-CA-Realia CACXPREP C:\CAWB30\ua001p.COB
+CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
 		Options Summary
@@ -1356,5 +1356,5 @@
 		      DCHK
 
 		Source Lines Translated:    1297
-		Translation Time:	     .02 sec
-		Translation Speed:	  323333 lines per min
+		Translation Time:	     .03 sec
+		Translation Speed:	  594000 lines per min
