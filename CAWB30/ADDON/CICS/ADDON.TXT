@@ -1,0 +1,13 @@
+ADDON\CICS files
+
+This directory contains special add on files for CA-Realia CICS 6.0
+
+The programs supplied in this directory are not part of the product
+but are supplied by Computer Associates to help users overcome
+specific problems.
+
+Although Computer Associates will endevor to maintain these programs
+in future releases it reserves the right to change the
+characteristics of any program or to remove any program from the
+product.
+

@@ -1,0 +1,6 @@
+Record Type: Text, 23/11/20, 08:22:49:89
+Abend Detected in Program:UA001P module:UA001P Line:113
+ABCODE:AEIQ EIBRESP:17 EIBRESP2:120
+
+Record Type: Text, 23/11/20, 08:22:52:02
+CACX0001E: 08:22:49 Transaction UA01 program UA001P abend AEIQ

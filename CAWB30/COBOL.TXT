@@ -1,0 +1,53 @@
+
+CA-Realia II Workbench Release 3.0
+COBOL Component "ReadMe"
+20 June 1997
+
+
+This file supplements the documentation provided with this release.
+
+
+Corrections
+===========
+
+1)  The printed documentation for the ORAPI Run-Unit Management
+    function RealiaCobolUserExitProc is somewhat mangled.  Please
+    refer to the online book for the correct documentation.
+
+2)  The documentation lists both MSVCRT.DLL and MSVCRT40.DLL as
+    required executables for the proper execution of a COBOL
+    application.  However, in the final product, MSVCRT40.DLL is
+    no longer required.
+
+3)  This product includes an emulation of the Date and Time Callable
+    Services as documented by IBM in the "Language Env V1R5 Programming
+    Reference" (document number: SC26-3312-02).  The implementation is
+    complete with the exception of national language support for month
+    and day of week names.  These routines are run-mode EBCDIC programs
+    linked as CEE3CTY.DLL.  To use these routines simply link with the
+    standard Realia COBOL run-time import library, CARCLW60.LIB.
+
+
+Issues
+======
+
+1)  The COBOL file system recognizes old 16-bit indexed files and
+    automatically installs the compatibility module.  Therefore,
+    when opening an existing 16-bit index file, it is not necessary
+    to specify the [z:exit(carfsw16)] file type to read old 16-bit
+    indexed files.  Note that opening an existing 16-bit indexed
+    file for output will result in a new 32-bit (c-tree) indexed
+    file.  When the NOFCREATE directive is in effect, the file
+    attributes (keys and record lengths) will be preserved.
+
+    To create an indexed file in the old 16-bit format the
+    [z:exit(carfsw16)] file type must be specified.
+
+2)  To ensure the best possible results under the debugger, programs
+    compiled with beta versions of the COBOL compiler should be
+    recompiled.  Programs that are not recompiled may not appear
+    correctly under the debugger.
+
+
+Thank you,
+The CA-Realia COBOL Development Team

@@ -1,0 +1,3601 @@
+
+
+ABEND EIBFN=X'0E0C'
+     ABCODE Value PIC X(4)
+     CANCEL
+     NODUMP Level:3.3 Ignored
+
+ACQUIRE EIBFN=X'8602' Not Supported
+
+ADDRESS EIBFN=X'0202'
+     COMMAREA ptr-ref Level:3.3
+     ACEE ptr-ref Level:3.3 Not Supported
+     CWA ptr-ref
+     EIB ptr-ref
+     TCTUA ptr-ref
+     TWA ptr-ref
+     CSA ptr-ref Not Supported
+
+ADDRESS SET EIBFN=X'0210' Level:3.3
+     SET ptr-ref
+     USING Data-area
+
+ALLOCATE EIBFN=X'0420' Not Supported
+     SYSID name PIC X(4)
+     SESSION name PIC X(4)
+     PARTNER name PIC X(8) Level:4.1
+     PROFILE name PIC X(8)
+     NOQUEUE
+     NOSUSPEND Level:2.1
+     STATE Data-area PIC S9(4) COMP Level:3.3
+
+ASKTIME EIBFN=X'1002'
+
+ASKTIME ABSTIME EIBFN=X'4A02' Level:2.1
+     ABSTIME Data-area PIC S9(15) COMP-3
+
+ASSIGN EIBFN=X'0208'
+     ABCODE Data-area PIC X(4)
+     ABDUMP Data-area PIC X Level:3.3
+     ABPROGRAM Data-area PIC X(8) Level:3.3
+     ALTSCRNHT Data-area PIC S9(4) COMP Level:3.3
+     ALTSCRNWD Data-area PIC S9(4) COMP Level:3.3
+     APLKYBD Data-area PIC X Level:3.3
+     APLTEXT Data-area PIC X Level:3.3
+     APPLID Data-area PIC X(8)
+     ASRAINTRPT Data-area PIC X(8) Level:3.3
+     ASRAPSW Data-area PIC X(8) Level:3.3 Ignored
+     ASRAREGS Data-area Level:3.3 Ignored
+     BTRANS Data-area PIC X Level:2.1
+     CMDSEC Data-area PIC X Level:3.3
+     COLOR Data-area PIC X
+     CWALENG Data-area PIC S9(4) COMP
+     DEFSCRNHT Data-area PIC S9(4) COMP Level:3.3
+     DEFSCRNWD Data-area PIC S9(4) COMP Level:3.3
+     DELIMITER Data-area PIC X
+     DESTCOUNT Data-area PIC S9(4) COMP
+     DESTID Data-area PIC X(8)
+     DESTIDLENG Data-area PIC S9(4) COMP
+     DSSCS Data-area PIC X Level:3.3
+     DS3270 Data-area PIC X Level:3.3
+     EXTDS Data-area PIC X
+     EWASUPP Data-area PIC X Level:3.3
+     FACILITY Data-area PIC X(4)
+     FCI Data-area PIC X
+     GCHARS Data-area PIC S9(4) COMP Level:2.1
+     GCODES Data-area PIC S9(4) COMP Level:2.1
+     GMMI Data-area PIC X Level:3.3
+     HILIGHT Data-area PIC X
+     INITPARM Data-area Level:3.3
+     INITPARMLEN Data-area PIC S9(4) COMP Level:3.3
+     INPARTN Data-area PIC X(2)
+     KATAKANA Data-area PIC X Level:2.1
+     LDCMNEM Data-area PIC X
+     LDCNUM Data-area PIC X
+     MAPCOLUMN Data-area PIC S9(4) COMP
+     MAPHEIGHT Data-area PIC S9(4) COMP
+     MAPLINE Data-area PIC S9(4) COMP
+     MAPWIDTH Data-area PIC S9(4) COMP
+     MSRCONTROL Data-area PIC X
+     NATLANGINUSE Data-area PIC X Level:3.3
+     NETNAME Data-area PIC X(8) Level:2.1
+     NEXTTRANSID Data-area PIC X(4) Level:3.3
+     NUMTAB Data-area PIC X
+     OPCLASS Data-area PIC X(3)
+     OPERKEYS Data-area PIC X(8)
+     OPID Data-area PIC X(3)
+     OPSECURITY Data-area PIC X(3)
+     ORGABCODE Data-area PIC X(4) Level:3.3
+     OUTLINE Data-area PIC X Level:2.1
+     PAGENUM Data-area PIC X(2)
+     PARTNPAGE Data-area PIC X(2)
+     PARTNS Data-area PIC X
+     PARTNSET Data-area PIC X(6)
+     PRINSYSID Data-area PIC X(4)
+     PROGRAM Data-area PIC X(8) Level:3.3
+     PS Data-area PIC X
+     QNAME Data-area PIC X(4) Level:2.1
+     RESSEC Data-area PIC X Level:3.3
+     RESTART Data-area PIC X
+     SCRNHT Data-area PIC S9(4) COMP
+     SCRNWD Data-area PIC S9(4) COMP
+     SIGDATA Data-area PIC S9(4) COMP
+     SOSI Data-area PIC X Level:2.1
+     STARTCODE Data-area PIC X(2)
+     STATIONID Data-area PIC X
+     SYSID Data-area PIC X(4)
+     TASKPRIORITY Data-area PIC S9(4) COMP Level:3.3
+     TCTUALENG Data-area PIC S9(4) COMP
+     TELLERID Data-area PIC X
+     TERMCODE Data-area PIC X(2)
+     TERMPRIORITY Data-area PIC S9(4) COMP Level:3.3
+     TEXTKYBD Data-area PIC X Level:3.3
+     TEXTPRINT Data-area PIC X Level:3.3
+     TRANPRIORITY Data-area PIC S9(4) COMP Level:3.3
+     TWALENG Data-area PIC S9(4) COMP
+     UNATTEND Data-area PIC X
+     USERID Data-area PIC X(8) Level:2.1
+     USERNAME Data-area Level:3.3
+     USERPRIORITY Data-area PIC S9(4) COMP Level:3.3
+     VALIDATION Data-area PIC X
+     ASRAKEY Data-area PIC S9(4) COMP Level:4.1 Ignored
+     ASRASPC Data-area PIC S9(4) COMP Level:4.1 Ignored
+     ASRASTG Data-area PIC S9(4) COMP Level:4.1 Ignored
+     INVOKINGPROG Data-area PIC X(8) Level:4.1
+     RETURNPROG Data-area PIC X(8) Level:4.1
+     GMTEXT Data-area Level:CA
+     COMPANY Data-area Level:CA
+     VERSION Data-area PIC X(10) Level:CA
+     SITEID Data-area PIC X(6) Level:CA
+     SECURITY Data-area PIC X Level:CA
+
+BIF DEEDIT EIBFN=X'2002'
+     FIELD Data-area
+     LENGTH Value PIC S9(4) COMP
+
+BUILD ATTACH EIBFN=X'0426' Not Supported
+     ATTACHID name PIC X(8)
+     PROCESS name PIC X(8)
+     RESOURCE name PIC X(8)
+     RPROCESS name PIC X(8)
+     RRESOURCE name PIC X(8)
+     QUEUE name PIC X(8)
+     IUTYPE Value PIC S9(4) COMP
+     DATASTR Value PIC S9(4) COMP
+     RECFM Value PIC S9(4) COMP
+
+CANCEL EIBFN=X'100C' Supported (no VR)
+     REQID name PIC X(8)
+     TRANSID Value PIC X(4)
+     SYSID Value PIC X(4)
+
+CHANGE PASSWORD EIBFN=X'7408' Level:4.1 Not Supported
+     PASSWORD Value PIC X(8)
+     NEWPASSWORD Value PIC X(8)
+     USERID Value PIC X(8)
+     ESMREASON Data-area PIC S9(8) COMP
+     ESMRESP Data-area PIC S9(8) COMP
+
+CHANGE TASK EIBFN=X'5E06' Level:3.3 Not Supported
+     PRIORITY Value PIC S9(8) COMP
+
+CICSMESSAGE EIBFN=X'6C12' Not Supported
+
+COLLECT STATISTICS EIBFN=X'7008' Level:SP Not Supported
+     SET ptr-ref
+     LASTRESET Data-area PIC S9(6) COMP-3
+     LASTRESETHRS Data-area PIC S9(8) COMP
+     LASTRESETMIN Data-area PIC S9(8) COMP
+     LASTRESERSEC Data-area PIC S9(8) COMP
+     AUTOINSTALL
+     CONNECTION Value PIC X(4)
+     DISPATCHER
+     DTB
+     FILE Value PIC X(8)
+     IRCBATCH
+     JOURNALNUM Value PIC S9(4) COMP
+     LSRPOOL Value PIC S9(8) COMP
+     MONITOR Value PIC S9(6) COMP-3
+     PROGRAM Value PIC X(8)
+     STORAGE
+     SYSDUMPCODE Value PIC X(8)
+     TABLEMGR
+     TASKCONTROL
+     TCLASS Value PIC S9(8) COMP
+     TDQUEUE Value PIC X(4)
+     TERMINAL Value PIC X(4)
+     TRANDUMPCODE Value PIC X(4)
+     TRANSACTION Value PIC X(4)
+     TSQUEUE
+     VTAM
+
+CONNECT PROCESS EIBFN=X'0432' Not Supported
+     CONVID name PIC X(4)
+     SESSION name PIC X(4) Level:3.3
+     PROCNAME Data-area
+     PARTNER name PIC X(8) Level:4.1
+     PROCLENGTH Value PIC S9(4) COMP
+     PIPLIST Data-area Level:2.1
+     PIPLENGTH Value PIC S9(4) COMP Level:2.1
+     SYNCLEVEL Value PIC S9(4) COMP
+     STATE Data-area PIC S9(4) COMP Level:3.3
+
+CONVERSE EIBFN=X'0406' Supported (no VR)
+     FROM Data-area
+     FROMLENGTH Value PIC S9(4) COMP
+     FROMFLENGTH Value PIC S9(8) COMP Level:2.1
+     INTO Data-area
+     SET ptr-ref
+     TOLENGTH Data-area PIC S9(4) COMP
+     TOFLENGTH Data-area PIC S9(8) COMP Level:2.1
+     MAXLENGTH Value PIC S9(4) COMP
+     MAXFLENGTH Value PIC S9(8) COMP Level:2.1
+     NOTRUNCATE Not Supported
+     STRFIELD
+     ERASE
+     DEFAULT Level:4.1
+     ALTERNATE Level:4.1
+     CTLCHAR Value PIC X
+     DEST name PIC X(4)
+     ASIS Level:3.3
+     FMH Not Supported
+     LDC Value PIC X(2) Not Supported
+
+DELAY EIBFN=X'1004' Not Supported
+     INTERVAL Value PIC S9(6) COMP-3
+     TIME Value PIC S9(6) COMP-3
+     FOR Level:3.3
+     UNTIL Level:3.3
+     HOURS Value PIC S9(8) COMP Level:3.3
+     MINUTES Value PIC S9(8) COMP Level:3.3
+     SECONDS Value PIC S9(8) COMP Level:3.3
+     REQID name PIC X(8)
+
+DELETE EIBFN=X'0608'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     GENERIC
+     NUMREC Data-area PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     RBA
+     RRN
+     DEBKEY Level:3.3 Not Supported
+     DEBREC Level:3.3 Not Supported
+     TOKEN Value PIC S9(8) COMP Level:4.1
+
+DELETEQ TS EIBFN=X'0A06'
+     QUEUE name PIC X(8)
+     SYSID Value PIC X(4)
+
+DELETEQ TD EIBFN=X'0806'
+     QUEUE name PIC X(4)
+     SYSID Value PIC X(4)
+
+DEQ EIBFN=X'1206'
+     RESOURCE Data-area
+     LENGTH Value PIC S9(4) COMP
+     MAXLIFETIME Value PIC S9(4) COMP Level:3.3
+     LUW Level:3.3
+     TASK Level:3.3
+     NOSUSPEND Level:3.3 Ignored
+
+DISABLE PROGRAM EIBFN=X'2204' Level:SP Not Supported
+     PROGRAM Value PIC X(8)
+     ENTRYNAME Value PIC X(8)
+     EXIT Value PIC X(8)
+     EXITALL
+     FORMATEDF
+     SHUTDOWN
+     STOP
+     TASKSTART
+
+DISCARD AUTINSTMODEL EIBFN=X'4210' Level:SP Not Supported
+     AUTINSTMODEL Value PIC X(8)
+
+DISCARD FILE EIBFN=X'4C10' Level:SP Not Supported
+     FILE Value PIC X(8)
+
+DISCARD PARTNER EIBFN=X'4410' Level:SP Not Supported
+     PARTNER Value PIC X(8)
+
+DISCARD PROFILE EIBFN=X'4610' Level:SP Not Supported
+     PROFILE Value PIC X(8)
+
+DISCARD PROGRAM EIBFN=X'4E10' Level:SP Not Supported
+     PROGRAM Value PIC X(8)
+
+DISCARD TRANCLASS EIBFN=X'5E18' Not Supported
+
+DISCARD TRANSACTION EIBFN=X'5010' Level:SP Not Supported
+     TRANSACTION Value PIC X(4)
+
+DUMP EIBFN=X'1C02' Not Supported
+     DUMPCODE name PIC X(4)
+     FROM Data-area Level:3.3
+     LENGTH Value PIC S9(4) COMP Level:3.3
+     FLENGTH Value PIC S9(8) COMP Level:3.3
+     COMPLETE
+     TASK
+     STORAGE
+     PROGRAM
+     TERMINAL
+     TABLES
+     DCT
+     FCT
+     PCT
+     PPT
+     SIT
+     TCT
+
+DUMP TRANSACTION EIBFN=X'7E02' Level:3.3 Not Supported
+     DUMPCODE name PIC X(4)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     FLENGTH Value PIC S9(8) COMP
+     COMPLETE
+     SEGMENTLIST Data-area
+     LENGTHLIST Data-area
+     NUMSEGMENTS Data-area PIC S9(8) COMP
+     TASK
+     STORAGE
+     PROGRAM
+     TERMINAL
+     TABLES
+     DCT
+     FCT
+     PCT
+     PPT
+     SIT
+     TCT
+     DUMPID Data-area
+
+ENABLE PROGRAM EIBFN=X'2202' Level:SP Not Supported
+     PROGRAM Value PIC X(8)
+     ENTRY Value PIC S9(8) COMP
+     ENTRYNAME Value PIC X(8)
+     EXIT Value PIC X(8)
+     FORMATEDF
+     GALENGTH Value PIC S9(4) COMP
+     GAENTRYNAME Value PIC X(8)
+     LINKEDITMODE
+     SHUTDOWN
+     START
+     TALENGTH Value PIC S9(4) COMP
+     TASKSTART
+
+ENDBR EIBFN=X'0612'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     REQID Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+
+ENQ EIBFN=X'1204'
+     RESOURCE Data-area
+     LENGTH Value PIC S9(4) COMP
+     MAXLIFETIME Value PIC S9(4) COMP Level:3.3
+     LUW Level:3.3
+     TASK Level:3.3
+     NOSUSPEND Level:3.3
+
+ENTER TRACEID EIBFN=X'1A04' Not Supported
+     TRACEID Value PIC S9(4) COMP
+     FROM Data-area PIC X(8)
+     RESOURCE name PIC X(8)
+     ENTRYNAME name PIC X(8)
+     ACCOUNT
+     MONITOR
+     PERFORM
+
+ENTER TRACENUM EIBFN=X'4802' Level:3.3 Not Supported
+     TRACENUM Value PIC S9(4) COMP
+     FROM Data-area
+     FROMLENGTH Data-area PIC S9(4) COMP
+     RESOURCE name PIC X(8)
+     EXCEPTION
+
+EXTRACT ATTACH EIBFN=X'0428' Level:2.1 Not Supported
+     ATTACHID name PIC X(8)
+     SESSION name PIC X(4)
+     CONVID name PIC X(4)
+     PROCESS Data-area PIC X(8)
+     RESOURCE Data-area PIC X(8)
+     RPROCESS Data-area PIC X(8)
+     RRESOURCE Data-area PIC X(8)
+     QUEUE Data-area PIC X(8)
+     IUTYPE Data-area PIC S9(4) COMP
+     DATASTR Data-area PIC S9(4) COMP
+     RECFORM Data-area PIC S9(4) COMP
+
+EXTRACT ATTRIBUTES EIBFN=X'043E' Level:4.1 Not Supported
+
+EXTRACT EXIT EIBFN=X'2206' Level:SP Not Supported
+     PROGRAM Value PIC X(8)
+     ENTRYNAME Value PIC X(8)
+     GALENGTH Data-area PIC S9(4) COMP
+     GASET ptr-ref
+
+EXTRACT LOGONMSG EIBFN=X'043C' Level:4.1 Not Supported
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+
+EXTRACT PROCESS EIBFN=X'042E' Level:4.1 Not Supported
+
+EXTRACT TCT EIBFN=X'042A' Level:2.1 Not Supported
+     NETNAME name PIC X(8)
+     SYSID name PIC X(4)
+     TERMID Data-area PIC X(4)
+
+FORMATTIME EIBFN=X'4A04' Level:2.1
+     ABSTIME Data-area PIC S9(15) COMP-3
+     YYDDD Data-area PIC X(6)
+     YYMMDD Data-area PIC X(8)
+     YYDDMM Data-area PIC X(8)
+     DDMMYY Data-area PIC X(8)
+     MMDDYY Data-area PIC X(8)
+     DATE Data-area PIC X(8)
+     DATEFORM Data-area PIC X(6)
+     DATESEP Value PIC X
+     DAYCOUNT Data-area PIC S9(8) COMP
+     DAYOFWEEK Data-area PIC S9(8) COMP
+     DAYOFMONTH Data-area PIC S9(8) COMP
+     MONTHOFYEAR Data-area PIC S9(8) COMP
+     YEAR Data-area PIC S9(8) COMP
+     TIME Data-area PIC X(8)
+     TIMESEP Value PIC X
+     YYYYDDD Data-area PIC X(7) Level:4.1
+     YYYYMMDD Data-area PIC X(10) Level:4.1
+     YYYYDDMM Data-area PIC X(10) Level:4.1
+     DDMMYYYY Data-area PIC X(10) Level:4.1
+     MMDDYYYY Data-area PIC X(10) Level:4.1
+
+FREE EIBFN=X'0422' Not Supported
+     CONVID name PIC X(4)
+     SESSION name PIC X(4)
+     STATE Data-area PIC S9(4) COMP Level:3.3
+
+FREEMAIN EIBFN=X'0C04'
+     DATA Data-area
+     DATAPOINTER ptr-ref Level:3.3
+
+GETMAIN EIBFN=X'0C02'
+     SET ptr-ref
+     LENGTH Value PIC S9(4) COMP
+     FLENGTH Value PIC S9(8) COMP
+     BELOW Ignored
+     ANY Ignored
+     INITIMG Value PIC X
+     SHARED Level:3.3
+     NOSUSPEND Level:2.1 Ignored
+     USERDATAKEY Level:3.3 Ignored
+     CICSDATAKEY Level:3.3 Ignored
+
+HANDLE ABEND EIBFN=X'0E0E'
+     PROGRAM name PIC X(8) Supported (no VR)
+     LABEL label
+     CANCEL
+     RESET
+
+HANDLE AID EIBFN=X'0206' Supported (no VR)
+     ENTER label
+     CLEAR label
+     PA1 label
+     PA2 label
+     PA3 label
+     PF1 label
+     PF2 label
+     PF3 label
+     PF4 label
+     PF5 label
+     PF6 label
+     PF7 label
+     PF8 label
+     PF9 label
+     PF10 label
+     PF11 label
+     PF12 label
+     PF13 label
+     PF14 label
+     PF15 label
+     PF16 label
+     PF17 label
+     PF18 label
+     PF19 label
+     PF20 label
+     PF21 label
+     PF22 label
+     PF23 label
+     PF24 label
+     OPERID label
+     TRIGGER label
+     LIGHTPEN label
+     CLRPARTN label
+     QUITKEY label Level:CA
+     ANYKEY label
+
+HANDLE CONDITION EIBFN=X'0204'
+     ALLOCERR label Level:3.3
+     CBIDERR label
+     DISABLED label Level:2.1
+     DSNNOTFOUND label Level:3.3
+     DSSTAT label
+     DUPKEY label
+     DUPREC label
+     END label Level:3.3
+     ENDDATA label
+     ENDFILE label
+     ENDINPT label
+     ENQBUSY label
+     ENVDEFERR label
+     EOC label
+     EODS label
+     EOF label
+     ERROR label
+     EXPIRED label
+     FILENOTFOUND label Level:2.1
+     DSIDERR label
+     FUNCERR label
+     IGREQCD label
+     IGREQID label
+     ILLOGIC label
+     INBFMH label
+     INVERRTERM label
+     INVEXITREQ label Level:3.3
+     INVLDC label
+     INVMPSZ label
+     INVPARTN label
+     INVPARTNSET label
+     INVREQ label
+     INVTSREQ label
+     IOERR label
+     ISCINVREQ label
+     ITEMERR label
+     JIDERR label
+     LENGERR label
+     LOADING label Level:3.3
+     MAPFAIL label
+     MODELIDERR label Level:3.3
+     NODEIDERR label Level:4.1
+     NOJBUFSP label
+     NONVAL label
+     NOPASSBKRD label
+     NOPASSBKWR label
+     NOSPACE label
+     NOSPOOL label Level:2.1
+     NOSTART label
+     NOSTG label
+     NOTALLOC label
+     NOTAUTH label
+     NOTFND label
+     NOTOPEN label
+     OPENERR label Level:3.3
+     OUTDESCRERR label Level:4.1
+     OVERFLOW label
+     PARTNERIDERR label Level:4.1
+     PARTNFAIL label
+     PGMIDERR label
+     PROFILEIDERR label
+     QBUSY label
+     QIDERR label
+     QZERO label
+     RDATT label
+     RESIDERR label Level:3.3
+     RETPAGE label
+     ROLLEDBACK label Level:2.1
+     RTEFAIL label
+     RTESOME label
+     SEGIDERR label
+     SELNERR label
+     SESSBUSY label
+     SESSIONERR label
+     SIGNAL label
+     SPOLBUSY label Level:3.3
+     SPOLERR label Level:3.3
+     STRELERR label Level:3.3
+     SUPPRESSED label Level:3.3
+     SYSBUSY label
+     SYSIDERR label
+     TASKIDERR label Level:3.3
+     TCIDERR label Level:3.3
+     TERMERR label Level:2.1
+     TERMIDERR label
+     TRANSIDERR label
+     TSIOERR label
+     UNEXPIN label
+     USERIDERR label Level:3.3
+     VOLIDERR label Level:3.3
+     WRBRK label
+
+IGNORE CONDITION EIBFN=X'020A'
+     ALLOCERR Level:3.3
+     CBIDERR
+     DISABLED Level:2.1
+     DSNNOTFOUND Level:3.3
+     DSSTAT
+     DUPKEY
+     DUPREC
+     END Level:3.3
+     ENDDATA
+     ENDFILE
+     ENDINPT
+     ENQBUSY
+     ENVDEFERR
+     EOC
+     EODS
+     EOF
+     ERROR
+     EXPIRED
+     FILENOTFOUND Level:2.1
+     DSIDERR
+     FUNCERR
+     IGREQCD
+     IGREQID
+     ILLOGIC
+     INBFMH
+     INVERRTERM
+     INVEXITREQ Level:3.3
+     INVLDC
+     INVMPSZ
+     INVPARTN
+     INVPARTNSET
+     INVREQ
+     INVTSREQ
+     IOERR
+     ISCINVREQ
+     ITEMERR
+     JIDERR
+     LENGERR
+     LOADING Level:3.3
+     MAPFAIL
+     MODELIDERR Level:3.3
+     NODEIDERR Level:4.1
+     NOJBUFSP
+     NONVAL
+     NOPASSBKRD
+     NOPASSBKWR
+     NOSPACE
+     NOSPOOL Level:2.1
+     NOSTART
+     NOSTG
+     NOTALLOC
+     NOTAUTH Level:2.1
+     NOTFND
+     NOTOPEN
+     OPENERR Level:3.3
+     OUTDESCRERR Level:4.1
+     OVERFLOW
+     PARTNERIDERR Level:4.1
+     PARTNFAIL
+     PGMIDERR
+     PROFILEIDERR Level:3.3
+     QBUSY
+     QIDERR
+     QZERO
+     RDATT
+     RESIDERR Level:3.3
+     RETPAGE
+     ROLLEDBACK Level:2.1
+     RTEFAIL
+     RTESOME
+     SEGIDERR
+     SELNERR
+     SESSBUSY
+     SESSIONERR
+     SIGNAL
+     SPOLBUSY Level:3.3
+     SPOLERR Level:3.3
+     STRELERR Level:3.3
+     SUPPRESSED Level:3.3
+     SYSBUSY
+     SYSIDERR
+     TASKIDERR Level:3.3
+     TCIDERR Level:3.3
+     TERMERR Level:2.1
+     TERMIDERR
+     TRANSIDERR
+     TSIOERR
+     UNEXPIN
+     USERIDERR Level:3.3
+     VOLIDERR Level:3.3
+     WRBRK
+
+INQUIRE AUTINSTMODEL EIBFN=X'4202' Level:SP Not Supported
+     AUTINSTMODEL Value PIC X(8)
+
+INQUIRE AUTINSTMODEL END EIBFN=X'4202' Level:SP Not Supported
+     END
+
+INQUIRE AUTINSTMODEL NEXT EIBFN=X'4202' Level:SP Not Supported
+     AUTINSTMODEL Value PIC X(8)
+     NEXT
+
+INQUIRE AUTINSTMODEL START EIBFN=X'4202' Level:SP Not Supported
+     START
+
+INQUIRE AUTOINSTALL EIBFN=X'6812' Level:SP Not Supported
+     CURREQS Data-area PIC S9(8) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     MAXREQS Data-area PIC S9(8) COMP
+     PROGRAM Data-area PIC X(8)
+
+INQUIRE AUTOINSTALL END EIBFN=X'6812' Level:SP Not Supported
+     END
+
+INQUIRE AUTOINSTALL NEXT EIBFN=X'6812' Level:SP Not Supported
+     NEXT
+     CURREQS Data-area PIC S9(8) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     MAXREQS Data-area PIC S9(8) COMP
+     PROGRAM Data-area PIC X(8)
+
+INQUIRE AUTOINSTALL START EIBFN=X'6812' Level:SP Not Supported
+     START
+
+INQUIRE CONNECTION EIBFN=X'5802' Level:SP Not Supported
+     CONNECTION Value PIC X(4)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ACQSTATUS Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     CONNSTATUS Data-area PIC S9(4) COMP
+     EXITTRACING Data-area PIC S9(4) COMP
+     NETNAME Data-area PIC X(8)
+     PENDSTATUS Data-area PIC S9(4) COMP
+     PROTOCOL Data-area PIC S9(4) COMP
+     SERVSTATUS Data-area PIC S9(4) COMP
+     XLNSTATUS Data-area PIC S9(4) COMP
+     ZCPTRACING Data-area PIC S9(4) COMP
+
+INQUIRE CONNECTION END EIBFN=X'5802' Level:SP Not Supported
+     END
+
+INQUIRE CONNECTION NEXT EIBFN=X'5802' Level:SP Not Supported
+     CONNECTION Data-area PIC X(4)
+     NEXT
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ACQSTATUS Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     CONNSTATUS Data-area PIC S9(4) COMP
+     EXITTRACING Data-area PIC S9(4) COMP
+     NETNAME Data-area PIC X(8)
+     PENDSTATUS Data-area PIC S9(4) COMP
+     PROTOCOL Data-area PIC S9(4) COMP
+     SERVSTATUS Data-area PIC S9(4) COMP
+     XLNSTATUS Data-area PIC S9(4) COMP
+     ZCPTRACING Data-area PIC S9(4) COMP
+
+INQUIRE CONNECTION START EIBFN=X'5802' Level:SP Not Supported
+     START
+
+INQUIRE DATASET EIBFN=X'4C02' Level:SP
+     DATASET Value PIC X(8)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ADD Data-area PIC S9(4) COMP
+     BASEDSNAME Data-area
+     BASENAME Data-area
+     BLOCKFORMAT Data-area PIC S9(4) COMP
+     BLOCKKEYLEN Data-area PIC S9(8) COMP
+     BLOCKSIZE Data-area PIC S9(8) COMP
+     BROWSE Data-area PIC S9(4) COMP
+     DELETE Data-area PIC S9(4) COMP
+     DISPOSITION Data-area PIC S9(4) COMP
+     DSNAME Data-area
+     OBJECTNAME Data-area
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     EXCLUSIVE Data-area PIC S9(4) COMP
+     FWDRECSTATUS Data-area PIC S9(4) COMP
+     JOURNALNUM Data-area PIC S9(4) COMP
+     KEYLENGTH Data-area PIC S9(8) COMP
+     KEYPOSITION Data-area PIC S9(8) COMP
+     LSRPOOLID Data-area PIC S9(8) COMP
+     MAXNUMRECS Data-area PIC S9(8) COMP
+     OBJECT Data-area PIC S9(4) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     READ Data-area PIC S9(4) COMP
+     RECORDFORMAT Data-area PIC S9(4) COMP
+     RECORDSIZE Data-area PIC S9(8) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     RELTYPE Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     STRINGS Data-area PIC S9(8) COMP
+     TABLE Data-area PIC S9(4) COMP
+     TYPE Data-area PIC S9(4) COMP
+     UPDATE Data-area PIC S9(4) COMP
+
+INQUIRE DATASET END EIBFN=X'4C02' Level:SP Not Supported
+     END
+
+INQUIRE DATASET NEXT EIBFN=X'4C02' Level:SP Not Supported
+     DATASET Data-area PIC X(8)
+     NEXT
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ADD Data-area PIC S9(4) COMP
+     BASENAME Data-area
+     BLOCKFORMAT Data-area PIC S9(4) COMP
+     BLOCKKEYLEN Data-area PIC S9(8) COMP
+     BLOCKSIZE Data-area PIC S9(8) COMP
+     BROWSE Data-area PIC S9(4) COMP
+     DELETE Data-area PIC S9(4) COMP
+     DISPOSITION Data-area PIC S9(4) COMP
+     OBJECTNAME Data-area
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     EXCLUSIVE Data-area PIC S9(4) COMP
+     FWDRECSTATUS Data-area PIC S9(4) COMP
+     JOURNALNUM Data-area PIC S9(4) COMP
+     KEYLENGTH Data-area PIC S9(8) COMP
+     KEYPOSITION Data-area PIC S9(8) COMP
+     LSRPOOLID Data-area PIC S9(8) COMP
+     MAXNUMRECS Data-area PIC S9(8) COMP
+     OBJECT Data-area PIC S9(4) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     READ Data-area PIC S9(4) COMP
+     RECORDFORMAT Data-area PIC S9(4) COMP
+     RECORDSIZE Data-area PIC S9(8) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     RELTYPE Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     STRINGS Data-area PIC S9(8) COMP
+     TABLE Data-area PIC S9(4) COMP
+     TYPE Data-area PIC S9(4) COMP
+     UPDATE Data-area PIC S9(4) COMP
+
+INQUIRE DATASET START EIBFN=X'4C02' Level:SP Not Supported
+     START
+
+INQUIRE DSNAME EIBFN=X'7A02' Level:SP Not Supported
+     DSNAME Data-area
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     BACKUPTYPE Data-area PIC S9(4) COMP
+     BASENAME Data-area
+     BKOUTSTATUS Data-area PIC S9(4) COMP
+     FILECOUNT Data-area PIC S9(8) COMP
+     FWDRECOVLOG Data-area PIC S9(4) COMP
+     OBJECT Data-area PIC S9(4) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     VALIDITY Data-area PIC S9(4) COMP
+
+INQUIRE DSNAME END EIBFN=X'7A02' Level:SP Not Supported
+     END
+
+INQUIRE DSNAME NEXT EIBFN=X'7A02' Level:SP Not Supported
+     DSNAME Data-area
+     NEXT
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     BACKUPTYPE Data-area PIC S9(4) COMP
+     BASEDSNAME Data-area
+     BKOUTSTATUS Data-area PIC S9(4) COMP
+     FILECOUNT Data-area PIC S9(8) COMP
+     FWDRECOVLOG Data-area PIC S9(4) COMP
+     OBJECT Data-area PIC S9(4) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     VALIDITY Data-area PIC S9(4) COMP
+
+INQUIRE DSNAME START EIBFN=X'7A02' Level:SP Not Supported
+     START
+
+INQUIRE DUMPDS EIBFN=X'6602' Level:SP Not Supported
+     CURRENTDDS Data-area PIC X
+     INITIALDDS Data-area PIC X
+     OPENSTATUS Data-area PIC S9(4) COMP
+     SWITCHSTATUS Data-area PIC S9(4) COMP
+
+INQUIRE EXITPROGRAM EIBFN=X'8802' Not Supported
+
+INQUIRE FILE EIBFN=X'4C02' Level:SP
+     FILE Value PIC X(8)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ADD Data-area PIC S9(4) COMP
+     BASEDSNAME Data-area
+     BASENAME Data-area
+     BLOCKFORMAT Data-area PIC S9(4) COMP
+     BLOCKKEYLEN Data-area PIC S9(8) COMP
+     BLOCKSIZE Data-area PIC S9(8) COMP
+     BROWSE Data-area PIC S9(4) COMP
+     DELETE Data-area PIC S9(4) COMP
+     DISPOSITION Data-area PIC S9(4) COMP
+     DSNAME Data-area
+     OBJECTNAME Data-area
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     EXCLUSIVE Data-area PIC S9(4) COMP
+     FWDRECSTATUS Data-area PIC S9(4) COMP
+     JOURNALNUM Data-area PIC S9(4) COMP
+     KEYLENGTH Data-area PIC S9(8) COMP
+     KEYPOSITION Data-area PIC S9(8) COMP
+     LSRPOOLID Data-area PIC S9(8) COMP
+     MAXNUMRECS Data-area PIC S9(8) COMP
+     OBJECT Data-area PIC S9(4) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     READ Data-area PIC S9(4) COMP
+     RECORDFORMAT Data-area PIC S9(4) COMP
+     RECORDSIZE Data-area PIC S9(8) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     RELTYPE Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     STRINGS Data-area PIC S9(8) COMP
+     TABLE Data-area PIC S9(4) COMP
+     TYPE Data-area PIC S9(4) COMP
+     UPDATE Data-area PIC S9(4) COMP
+
+INQUIRE FILE END EIBFN=X'4C02' Level:SP Not Supported
+     END
+
+INQUIRE FILE NEXT EIBFN=X'4C02' Level:SP Not Supported
+     FILE Data-area PIC X(8)
+     NEXT
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ADD Data-area PIC S9(4) COMP
+     BASENAME Data-area
+     BASEDSNAME Data-area
+     BLOCKFORMAT Data-area PIC S9(4) COMP
+     BLOCKKEYLEN Data-area PIC S9(8) COMP
+     BLOCKSIZE Data-area PIC S9(8) COMP
+     BROWSE Data-area PIC S9(4) COMP
+     DELETE Data-area PIC S9(4) COMP
+     DISPOSITION Data-area PIC S9(4) COMP
+     DSNAME Data-area
+     OBJECTNAME Data-area
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     EXCLUSIVE Data-area PIC S9(4) COMP
+     FWDRECSTATUS Data-area PIC S9(4) COMP
+     JOURNALNUM Data-area PIC S9(4) COMP
+     KEYLENGTH Data-area PIC S9(8) COMP
+     KEYPOSITION Data-area PIC S9(8) COMP
+     LSRPOOLID Data-area PIC S9(8) COMP
+     MAXNUMRECS Data-area PIC S9(8) COMP
+     OBJECT Data-area PIC S9(4) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     READ Data-area PIC S9(4) COMP
+     RECORDFORMAT Data-area PIC S9(4) COMP
+     RECORDSIZE Data-area PIC S9(8) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     RELTYPE Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     STRINGS Data-area PIC S9(8) COMP
+     TABLE Data-area PIC S9(4) COMP
+     TYPE Data-area PIC S9(4) COMP
+     UPDATE Data-area PIC S9(4) COMP
+
+INQUIRE FILE START EIBFN=X'4C02' Level:SP Not Supported
+     START
+
+INQUIRE IRC EIBFN=X'6E02' Level:SP Not Supported
+     OPENSTATUS Data-area PIC S9(4) COMP
+
+INQUIRE JOURNALNUM EIBFN=X'6002' Level:SP Not Supported
+     JOURNALNUM Value PIC S9(4) COMP
+     ARCHSTATUS Data-area PIC X(6)
+     CURRENTVOL Data-area PIC S9(4) COMP
+     DISKASTATUS Data-area PIC S9(4) COMP
+     DISKBSTATUS Data-area PIC S9(4) COMP
+     DISKXSTATUS Data-area PIC S9(4) COMP
+     JTYPE Data-area PIC S9(4) COMP
+     OLDESTPART Data-area PIC S9(8) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+
+INQUIRE JOURNALNUM END EIBFN=X'6002' Level:SP Not Supported
+     END
+
+INQUIRE JOURNALNUM NEXT EIBFN=X'6002' Level:SP Not Supported
+     JOURNALNUM Data-area PIC S9(4) COMP
+     NEXT
+     ARCHSTATUS Data-area PIC X(6)
+     CURRENTVOL Data-area PIC S9(4) COMP
+     DISKASTATUS Data-area PIC S9(4) COMP
+     DISKBSTATUS Data-area PIC S9(4) COMP
+     DISKXSTATUS Data-area PIC S9(4) COMP
+     JTYPE Data-area PIC S9(4) COMP
+     OLDESTPART Data-area PIC S9(8) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+
+INQUIRE JOURNALNUM START EIBFN=X'6002' Level:SP Not Supported
+     START
+
+INQUIRE MODENAME EIBFN=X'5A02' Level:SP Not Supported
+     MODENAME Value PIC X(8)
+     CONNECTION Value PIC X(4)
+     ACTIVE Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     AVAILABLE Data-area PIC S9(4) COMP
+     MAXIMUM Data-area PIC S9(4) COMP
+     MAXWINNERS Data-area PIC S9(4) COMP
+
+INQUIRE MODENAME END EIBFN=X'5A02' Level:SP Not Supported
+     END
+
+INQUIRE MODENAME NEXT EIBFN=X'5A02' Level:SP Not Supported
+     MODENAME Data-area PIC X(8)
+     NEXT
+     CONNECTION Value PIC X(4)
+     ACTIVE Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     AVAILABLE Data-area PIC S9(4) COMP
+     MAXIMUM Data-area PIC S9(4) COMP
+     MAXWINNERS Data-area PIC S9(4) COMP
+
+INQUIRE MODENAME START EIBFN=X'5A02' Level:SP Not Supported
+     START
+
+INQUIRE MONITOR EIBFN=X'7012' Level:SP Not Supported
+     EVENTCLASS Data-area PIC S9(4) COMP
+     EXCEPTCLASS Data-area PIC S9(4) COMP
+     PERFCLASS Data-area PIC S9(4) COMP
+     STATUS Data-area PIC S9(4) COMP
+
+INQUIRE NETNAME EIBFN=X'5206' Level:SP
+     NETNAME Value PIC X(8)
+     TERMINAL Data-area PIC X(8)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ACQSTATUS Data-area PIC S9(4) COMP
+     ALTPAGEHT Data-area PIC S9(4) COMP
+     ALTPAGEWD Data-area PIC S9(4) COMP
+     ALTPRINTER Data-area
+     ALTPRTCOPYST Data-area PIC S9(4) COMP
+     ALTSCRNHT Data-area PIC S9(4) COMP
+     ALTSCRNWD Data-area PIC S9(4) COMP
+     ALTSUFFIX Data-area PIC X
+     APLKYBSDT Data-area PIC S9(4) COMP
+     APLTEXTST Data-area PIC S9(4) COMP
+     ASCII Data-area PIC S9(4) COMP
+     ATISTATUS Data-area PIC S9(4) COMP
+     AUDALARMST Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     BACKTRANSST Data-area PIC S9(4) COMP
+     COLORST Data-area PIC S9(4) COMP
+     COPYST Data-area PIC S9(4) COMP
+     CREATESESS Data-area PIC S9(4) COMP
+     DATASTREAM Data-area PIC S9(4) COMP
+     DEFPAGEHT Data-area PIC S9(4) COMP
+     DEFPAGEWD Data-area PIC S9(4) COMP
+     DEFSCRNHT Data-area PIC S9(4) COMP
+     DEFSCRNWD Data-area PIC S9(4) COMP
+     DEVICE Data-area PIC S9(4) COMP
+     DISCREQST Data-area PIC S9(4) COMP
+     DUALCASET Data-area PIC S9(4) COMP
+     EXITTRACING Data-area PIC S9(4) COMP
+     EXTENDEDDSST Data-area PIC S9(4) COMP
+     FMHPARMST Data-area PIC S9(4) COMP
+     FORMFEEDST Data-area PIC S9(4) COMP
+     GCHARS Data-area PIC S9(4) COMP
+     GCODES Data-area PIC S9(4) COMP
+     HFORMST Data-area PIC S9(4) COMP
+     HILIGHTST Data-area PIC S9(4) COMP
+     KATAKANAST Data-area PIC S9(4) COMP
+     LIGHTPENST Data-area PIC S9(4) COMP
+     MODENAME Data-area PIC S9(4) COMP
+     MSRCONTROLST Data-area PIC S9(4) COMP
+     NATLANG Data-area PIC X
+     NATURE Data-area PIC S9(4) COMP
+     NETNAME Data-area PIC X(8)
+     NEXTTRANSID Data-area PIC X(4)
+     OBFORMATST Data-area PIC S9(4) COMP
+     OBOPERIDST Data-area PIC S9(4) COMP
+     OPERID Data-area PIC X(3)
+     OUTLINEST Data-area PIC S9(4) COMP
+     PAGEHT Data-area PIC S9(4) COMP
+     PAGESTATUS Data-area PIC S9(4) COMP
+     PAGEWD Data-area PIC S9(4) COMP
+     PARTITIONST Data-area PIC S9(4) COMP
+     PRINTADAPTST Data-area PIC S9(4) COMP
+     PRINTER Data-area PIC X(4)
+     PROGSYMBOLST Data-area PIC S9(4) COMP
+     PRTCOPYST Data-area PIC S9(4) COMP
+     QUERYST Data-area PIC S9(4) COMP
+     RELREQST Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(4)
+     REMOTESYSTEM Data-area PIC X(4)
+     SCREENHEIGHT Data-area PIC S9(4) COMP
+     SCREENWIDTH Data-area PIC S9(4) COMP
+     SCRNHT Data-area PIC S9(4) COMP
+     SCRNWD Data-area PIC S9(4) COMP
+     SECURITY Data-area PIC S9(4) COMP
+     SERVSTATUS Data-area PIC S9(4) COMP
+     SESSIONTYPE Data-area PIC S9(4) COMP
+     SIGNONSTATUS Data-area PIC S9(4) COMP
+     SOSIST Data-area PIC S9(4) COMP
+     TASKID Data-area PIC S9(8) COMP
+     TCAMCONTROL Data-area PIC X
+     TERMMODEL Data-area PIC S9(4) COMP
+     TERMPRIORITY Data-area PIC S9(8) COMP
+     TEXTKYBDST Data-area PIC S9(4) COMP
+     TEXTPRINTST Data-area PIC S9(4) COMP
+     TRACING Data-area PIC S9(4) COMP
+     TRANSACTION Data-area PIC X(4)
+     TTISTATUS Data-area PIC S9(4) COMP
+     UCTRANST Data-area PIC S9(4) COMP
+     USERAREA ptr-ref
+     USERAREALEN Data-area PIC S9(4) COMP
+     USERID Data-area PIC X(8)
+     USERNAME Data-area
+     VALIDATIONST Data-area PIC S9(4) COMP
+     VFORMST Data-area PIC S9(4) COMP
+     ZCPTRACING Data-area PIC S9(4) COMP
+
+INQUIRE NETNAME END EIBFN=X'5206' Level:SP Not Supported
+     END
+
+INQUIRE NETNAME NEXT EIBFN=X'5206' Level:SP Not Supported
+     NETNAME Data-area PIC X(4)
+     NEXT
+     TERMINAL Data-area PIC X(8)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ACQSTATUS Data-area PIC S9(4) COMP
+     ALTPAGEHT Data-area PIC S9(4) COMP
+     ALTPAGEWD Data-area PIC S9(4) COMP
+     ALTPRINTER Data-area
+     ALTPRTCOPYST Data-area PIC S9(4) COMP
+     ALTSCRNHT Data-area PIC S9(4) COMP
+     ALTSCRNWD Data-area PIC S9(4) COMP
+     ALTSUFFIX Data-area PIC X
+     APLKYBSDT Data-area PIC S9(4) COMP
+     APLTEXTST Data-area PIC S9(4) COMP
+     ASCII Data-area PIC S9(4) COMP
+     ATISTATUS Data-area PIC S9(4) COMP
+     AUDALARMST Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     BACKTRANSST Data-area PIC S9(4) COMP
+     COLORST Data-area PIC S9(4) COMP
+     COPYST Data-area PIC S9(4) COMP
+     CREATESESS Data-area PIC S9(4) COMP
+     DEFPAGEHT Data-area PIC S9(4) COMP
+     DEFPAGEWD Data-area PIC S9(4) COMP
+     DEFSCRNHT Data-area PIC S9(4) COMP
+     DEFSCRNWD Data-area PIC S9(4) COMP
+     DEVICE Data-area PIC S9(4) COMP
+     DISCREQST Data-area PIC S9(4) COMP
+     DUALCASET Data-area PIC S9(4) COMP
+     EXITTRACING Data-area PIC S9(4) COMP
+     EXTENDEDDSST Data-area PIC S9(4) COMP
+     FMHPARMST Data-area PIC S9(4) COMP
+     FORMFEEDST Data-area PIC S9(4) COMP
+     GCHARS Data-area PIC S9(4) COMP
+     GCODES Data-area PIC S9(4) COMP
+     HFORMST Data-area PIC S9(4) COMP
+     HILIGHTST Data-area PIC S9(4) COMP
+     KATAKANAST Data-area PIC S9(4) COMP
+     LIGHTPENST Data-area PIC S9(4) COMP
+     MODENAME Data-area PIC S9(4) COMP
+     MSRCONTROLST Data-area PIC S9(4) COMP
+     NATLANG Data-area PIC X
+     NATURE Data-area PIC S9(4) COMP
+     NEXTTRANSID Data-area PIC X(4)
+     OBFORMATST Data-area PIC S9(4) COMP
+     OBOPERIDST Data-area PIC S9(4) COMP
+     OPERID Data-area PIC X(3)
+     OUTLINEST Data-area PIC S9(4) COMP
+     PAGEHT Data-area PIC S9(4) COMP
+     PAGESTATUS Data-area PIC S9(4) COMP
+     PAGEWD Data-area PIC S9(4) COMP
+     PARTITIONST Data-area PIC S9(4) COMP
+     PRINTADAPTST Data-area PIC S9(4) COMP
+     PRINTER Data-area PIC X(4)
+     PROGSYMBOLST Data-area PIC S9(4) COMP
+     PRTCOPYST Data-area PIC S9(4) COMP
+     QUERYST Data-area PIC S9(4) COMP
+     RELREQST Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(4)
+     REMOTESYSTEM Data-area PIC X(4)
+     SCREENHEIGHT Data-area PIC S9(4) COMP
+     SCREENWIDTH Data-area PIC S9(4) COMP
+     SCRNHT Data-area PIC S9(4) COMP
+     SCRNWD Data-area PIC S9(4) COMP
+     SECURITY Data-area PIC S9(4) COMP
+     SERVSTATUS Data-area PIC S9(4) COMP
+     SESSIONTYPE Data-area PIC S9(4) COMP
+     SIGNONSTATUS Data-area PIC S9(4) COMP
+     SOSIST Data-area PIC S9(4) COMP
+     TASKID Data-area PIC S9(8) COMP
+     TCAMCONTROL Data-area PIC X
+     TERMMODEL Data-area PIC S9(4) COMP
+     TERMPRIORITY Data-area PIC S9(8) COMP
+     TEXTKYBDST Data-area PIC S9(4) COMP
+     TEXTPRINTST Data-area PIC S9(4) COMP
+     TRACING Data-area PIC S9(4) COMP
+     TRANSACTION Data-area PIC X(4)
+     TTISTATUS Data-area PIC S9(4) COMP
+     UCTRANST Data-area PIC S9(4) COMP
+     USERAREA ptr-ref
+     USERAREALEN Data-area PIC S9(4) COMP
+     USERID Data-area PIC X(8)
+     USERNAME Data-area
+     VALIDATIONST Data-area PIC S9(4) COMP
+     VFORMST Data-area PIC S9(4) COMP
+     ZCPTRACING Data-area PIC S9(4) COMP
+
+INQUIRE NETNAME START EIBFN=X'5202' Level:SP Not Supported
+     START
+
+INQUIRE PARTNER EIBFN=X'4402' Level:SP Not Supported
+     PARTNER Value PIC X(8)
+     NETNAME Data-area PIC X(8)
+     NETWORK Data-area PIC X(8)
+     PROFILE Data-area PIC X(8)
+     TPNAME Data-area
+     TPNAMELEN Data-area PIC S9(4) COMP
+
+INQUIRE PARTNER END EIBFN=X'4402' Level:SP Not Supported
+     END
+
+INQUIRE PARTNER NEXT EIBFN=X'4402' Level:SP Not Supported
+     PARTNER Data-area PIC X(8)
+     NEXT
+     NETNAME Data-area PIC X(8)
+     NETWORK Data-area PIC X(8)
+     PROFILE Data-area PIC X(8)
+     TPNAME Data-area
+     TPNAMELEN Data-area PIC S9(4) COMP
+
+INQUIRE PARTNER START EIBFN=X'4402' Level:SP Not Supported
+     START
+
+INQUIRE PROFILE EIBFN=X'4602' Level:SP Not Supported
+     PROFILE Value PIC X(8)
+
+INQUIRE PROFILE END EIBFN=X'4602' Level:SP Not Supported
+     END
+
+INQUIRE PROFILE NEXT EIBFN=X'4602' Level:SP Not Supported
+     PROFILE Data-area PIC X(8)
+     NEXT
+
+INQUIRE PROFILE START EIBFN=X'4602' Level:SP Not Supported
+     START
+
+INQUIRE PROGRAM EIBFN=X'4E02' Level:SP
+     PROGRAM Value PIC X(8)
+     CEDFSTATUS Data-area PIC S9(4) COMP
+     COBOLTYPE Data-area PIC S9(4) COMP
+     COPY Data-area PIC S9(4) COMP
+     DATALOCATION Data-area PIC S9(4) COMP
+     ENTRYPOINT ptr-ref
+     EXECKEY Data-area PIC S9(4) COMP
+     EXECUTIONSET Data-area PIC S9(4) COMP
+     HOLDSTATUS Data-area PIC S9(4) COMP
+     LANGUAGE Data-area PIC S9(4) COMP
+     LENGTH Data-area PIC S9(8) COMP
+     LOADPOINT ptr-ref
+     LPASTATUS Data-area PIC S9(4) COMP
+     PROGTYPE Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     RESCOUNT Data-area PIC S9(8) COMP
+     SHARESTATUS Data-area PIC S9(4) COMP
+     STATUS Data-area PIC S9(4) COMP
+     TRANSID Data-area PIC X(4)
+     USECOUNT Data-area PIC S9(8) COMP
+
+INQUIRE PROGRAM END EIBFN=X'4E02' Level:SP Not Supported
+     END
+
+INQUIRE PROGRAM NEXT EIBFN=X'4E02' Level:SP Not Supported
+     PROGRAM Data-area PIC X(8)
+     NEXT
+     CEDFSTATUS Data-area PIC S9(4) COMP
+     COBOLTYPE Data-area PIC S9(4) COMP
+     DATALOCATION Data-area PIC S9(4) COMP
+     ENTRYPOINT ptr-ref
+     EXECKEY Data-area PIC S9(4) COMP
+     EXECUTIONSET Data-area PIC S9(4) COMP
+     HOLDSTATUS Data-area PIC S9(4) COMP
+     LANGUAGE Data-area PIC S9(4) COMP
+     LENGTH Data-area PIC S9(8) COMP
+     LOADPOINT ptr-ref
+     LPASTATUS Data-area PIC S9(4) COMP
+     PROGTYPE Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     RESCOUNT Data-area PIC S9(8) COMP
+     SHARESTATUS Data-area PIC S9(4) COMP
+     STATUS Data-area PIC S9(4) COMP
+     TRANSID Data-area PIC X(4)
+     USECOUNT Data-area PIC S9(8) COMP
+
+INQUIRE PROGRAM START EIBFN=X'4E02' Level:SP Not Supported
+     START
+
+INQUIRE REQID EIBFN=X'8A02' Not Supported
+
+INQUIRE STATISTICS EIBFN=X'7002' Level:SP Not Supported
+     ENDOFDAY Value PIC S9(6) COMP-3
+     ENDOFDAYHRS Data-area PIC S9(8) COMP
+     ENDOFDAYMINS Data-area PIC S9(8) COMP
+     ENDOFDAYSECS Data-area PIC S9(8) COMP
+     INTERVAL Value PIC S9(6) COMP-3
+     INTERVALHRS Data-area PIC S9(8) COMP
+     INTERVALMINS Data-area PIC S9(8) COMP
+     INTERVALSECS Data-area PIC S9(8) COMP
+     NEXTTIME Value PIC S9(6) COMP-3
+     NEXTTIMEHRS Data-area PIC S9(8) COMP
+     NEXTTIMEMINS Data-area PIC S9(8) COMP
+     NEXTTIMESECS Data-area PIC S9(8) COMP
+     RECORDING Data-area PIC S9(4) COMP
+
+INQUIRE STORAGE EIBFN=X'5E08' Not Supported
+
+INQUIRE SYSDUMPCODE EIBFN=X'6622' Level:SP Not Supported
+     SYSDUMPCODE Value PIC X(8)
+     CURRENT Data-area PIC S9(8) COMP
+     MAXIMUM Data-area PIC S9(8) COMP
+     SHUTOPTION Data-area PIC S9(4) COMP
+     SYSDUMPING Data-area PIC S9(4) COMP
+
+INQUIRE SYSDUMPCODE END EIBFN=X'6622' Level:SP Not Supported
+     END
+
+INQUIRE SYSDUMPCODE NEXT EIBFN=X'6622' Level:SP Not Supported
+     SYSDUMPCODE Data-area PIC X(8)
+     NEXT
+     CURRENT Data-area PIC S9(8) COMP
+     MAXIMUM Data-area PIC S9(8) COMP
+     SHUTOPTION Data-area PIC S9(4) COMP
+     SYSDUMPING Data-area PIC S9(4) COMP
+
+INQUIRE SYSDUMPCODE START EIBFN=X'6622' Level:SP Not Supported
+     START
+
+INQUIRE SYSTEM EIBFN=X'5402' Level:SP Not Supported
+     AKP Data-area PIC S9(8) COMP
+     AMAXTASKS Data-area PIC S9(8) COMP
+     CDSASIZE Data-area PIC S9(8) COMP
+     CICSSTATUS Data-area PIC S9(4) COMP
+     CICSSYS Data-area PIC X
+     CSCS Data-area PIC S9(8) COMP
+     DTRPROGRAM Data-area PIC X(8)
+     DUMPING Data-area PIC S9(4) COMP
+     ECDSASIZE Data-area PIC S9(8) COMP
+     ECSCS Data-area PIC S9(8) COMP
+     ERDSASIZE Data-area PIC S9(8) COMP
+     ERSCS Data-area PIC S9(8) COMP
+     EUDSASIZE Data-area PIC S9(8) COMP
+     EUSCS Data-area PIC S9(8) COMP
+     GMMTRANID Data-area PIC X(4)
+     JOBNAME Data-area PIC X(8)
+     MAXTASKS Data-area PIC S9(8) COMP
+     MROBATCH Data-area PIC S9(8) COMP
+     OPREL Data-area PIC S9(4) COMP
+     OPSYS Data-area PIC X
+     PRTYAGING Data-area PIC S9(8) COMP
+     RELEASE Data-area PIC X(4)
+     RUNAWAY Data-area PIC S9(8) COMP
+     SCANDELAY Data-area PIC S9(8) COMP
+     SECURITYMGR Data-area PIC S9(4) COMP
+     STARTUP Data-area PIC S9(4) COMP
+     STOREPROTECT Data-area PIC S9(4) COMP
+     TIME Data-area PIC S9(8) COMP
+     UDSASIZE Data-area PIC S9(8) COMP
+     USCS Data-area PIC S9(8) COMP
+     XRFSTATUS Data-area PIC S9(4) COMP
+
+INQUIRE TASK EIBFN=X'5E02' Level:SP Not Supported
+     TASK Value PIC S9(6) COMP-3
+     FACILITY Data-area PIC X(4)
+     FACILITYTYPE Data-area PIC S9(4) COMP
+     PRIORITY Data-area PIC S9(8) COMP
+     RECUNITID Data-area PIC X(8)
+     RUNSTATUS Data-area PIC S9(4) COMP
+     STARTCODE Data-area PIC X(2)
+     SUSPENDTIME Data-area PIC S9(8) COMP
+     SUSPENDTYPE Data-area PIC X(8)
+     SUSPENDVALUE Data-area PIC X(8)
+     TCLASS Data-area PIC S9(8) COMP
+     TRANSACTION Data-area PIC X(4)
+     USERID Data-area PIC X(8)
+
+INQUIRE TASK LIST EIBFN=X'5E02' Level:SP Not Supported
+     LIST
+     LISTSIZE Data-area PIC S9(8) COMP
+     DISPATCHABLE
+     RUNNING
+     SET ptr-ref
+     SETTRANSID ptr-ref
+     SUSPEND
+
+INQUIRE TCLASS EIBFN=X'5E12' Level:SP Not Supported
+     TCLASS Value PIC S9(8) COMP
+     CURRENT Data-area PIC S9(8) COMP
+     MAXIMUM Data-area PIC S9(8) COMP
+
+INQUIRE TDQUEUE EIBFN=X'5C02' Level:SP Not Supported
+     TDQUEUE Value PIC X(4)
+     ATIFACILITY Data-area PIC S9(4) COMP
+     ATITERMID Data-area PIC X(4)
+     ATITRANID Data-area PIC X(4)
+     BLOCKFORMAT Data-area PIC S9(4) COMP
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     INDIRECTNAME Data-area PIC X(4)
+     IOTYPE Data-area PIC S9(4) COMP
+     NUMITEMS Data-area PIC S9(8) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     PRINTCONTROL Data-area PIC S9(4) COMP
+     RECORDFORMAT Data-area PIC S9(4) COMP
+     RECORDLENGTH Data-area PIC S9(8) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(4)
+     REMOTESYSTEM Data-area PIC X(4)
+     TRIGGERLEVEL Data-area PIC S9(8) COMP
+     TYPE Data-area PIC S9(4) COMP
+
+INQUIRE TDQUEUE END EIBFN=X'5C02' Level:SP Not Supported
+     END
+
+INQUIRE TDQUEUE NEXT EIBFN=X'5C02' Level:SP Not Supported
+     TDQUEUE Data-area PIC X(4)
+     NEXT
+     ATIFACILITY Data-area PIC S9(4) COMP
+     ATITERMID Data-area PIC X(4)
+     ATITRANID Data-area PIC X(4)
+     BLOCKFORMAT Data-area PIC S9(4) COMP
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     ENABLESTATUS Data-area PIC S9(4) COMP
+     INDIRECTNAME Data-area PIC X(4)
+     IOTYPE Data-area PIC S9(4) COMP
+     NUMITEMS Data-area PIC S9(8) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     PRINTCONTROL Data-area PIC S9(4) COMP
+     RECORDFORMAT Data-area PIC S9(4) COMP
+     RECORDLENGTH Data-area PIC S9(8) COMP
+     RECOVSTATUS Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(4)
+     REMOTESYSTEM Data-area PIC X(4)
+     TRIGGERLEVEL Data-area PIC S9(8) COMP
+     TYPE Data-area PIC S9(4) COMP
+
+INQUIRE TDQUEUE START EIBFN=X'5C02' Level:SP Not Supported
+     START
+
+INQUIRE TERMINAL EIBFN=X'5202' Level:SP Not Supported
+     TERMINAL Value PIC X(4)
+     NETNAME Data-area PIC X(8)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ACQSTATUS Data-area PIC S9(4) COMP
+     ALTPAGEHT Data-area PIC S9(4) COMP
+     ALTPAGEWD Data-area PIC S9(4) COMP
+     ALTPRINTER Data-area
+     ALTPRTCOPYST Data-area PIC S9(4) COMP
+     ALTSCRNHT Data-area PIC S9(4) COMP
+     ALTSCRNWD Data-area PIC S9(4) COMP
+     ALTSUFFIX Data-area PIC X
+     APLKYBSDT Data-area PIC S9(4) COMP
+     APLTEXTST Data-area PIC S9(4) COMP
+     ASCII Data-area PIC S9(4) COMP
+     ATISTATUS Data-area PIC S9(4) COMP
+     AUDALARMST Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     BACKTRANSST Data-area PIC S9(4) COMP
+     COLORST Data-area PIC S9(4) COMP
+     COPYST Data-area PIC S9(4) COMP
+     CREATESESS Data-area PIC S9(4) COMP
+     DATASTREAM Data-area PIC S9(4) COMP
+     DEFPAGEHT Data-area PIC S9(4) COMP
+     DEFPAGEWD Data-area PIC S9(4) COMP
+     DEFSCRNHT Data-area PIC S9(4) COMP
+     DEFSCRNWD Data-area PIC S9(4) COMP
+     DEVICE Data-area PIC S9(4) COMP
+     DISCREQST Data-area PIC S9(4) COMP
+     DUALCASET Data-area PIC S9(4) COMP
+     EXITTRACING Data-area PIC S9(4) COMP
+     EXTENDEDDSST Data-area PIC S9(4) COMP
+     FMHPARMST Data-area PIC S9(4) COMP
+     FORMFEEDST Data-area PIC S9(4) COMP
+     GCHARS Data-area PIC S9(4) COMP
+     GCODES Data-area PIC S9(4) COMP
+     HFORMST Data-area PIC S9(4) COMP
+     HILIGHTST Data-area PIC S9(4) COMP
+     KATAKANAST Data-area PIC S9(4) COMP
+     LIGHTPENST Data-area PIC S9(4) COMP
+     MODENAME Data-area PIC S9(4) COMP
+     MSRCONTROLST Data-area PIC S9(4) COMP
+     NATLANG Data-area PIC X
+     NATURE Data-area PIC S9(4) COMP
+     NEXTTRANSID Data-area PIC X(4)
+     OBFORMATST Data-area PIC S9(4) COMP
+     OBOPERIDST Data-area PIC S9(4) COMP
+     OPERID Data-area PIC X(3)
+     OUTLINEST Data-area PIC S9(4) COMP
+     PAGEHT Data-area PIC S9(4) COMP
+     PAGESTATUS Data-area PIC S9(4) COMP
+     PAGEWD Data-area PIC S9(4) COMP
+     PARTITIONST Data-area PIC S9(4) COMP
+     PRINTADAPTST Data-area PIC S9(4) COMP
+     PRINTER Data-area PIC X(4)
+     PROGSYMBOLST Data-area PIC S9(4) COMP
+     PRTCOPYST Data-area PIC S9(4) COMP
+     QUERYST Data-area PIC S9(4) COMP
+     RELREQST Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(4)
+     REMOTESYSTEM Data-area PIC X(4)
+     SCREENHEIGHT Data-area PIC S9(4) COMP
+     SCREENWIDTH Data-area PIC S9(4) COMP
+     SCRNHT Data-area PIC S9(4) COMP
+     SCRNWD Data-area PIC S9(4) COMP
+     SECURITY Data-area PIC S9(4) COMP
+     SERVSTATUS Data-area PIC S9(4) COMP
+     SESSIONTYPE Data-area PIC S9(4) COMP
+     SIGNONSTATUS Data-area PIC S9(4) COMP
+     SOSIST Data-area PIC S9(4) COMP
+     TASKID Data-area PIC S9(8) COMP
+     TCAMCONTROL Data-area PIC X
+     TERMMODEL Data-area PIC S9(4) COMP
+     TERMPRIORITY Data-area PIC S9(8) COMP
+     TERMSTATUS Data-area PIC S9(8) COMP
+     TEXTKYBDST Data-area PIC S9(4) COMP
+     TEXTPRINTST Data-area PIC S9(4) COMP
+     TRACING Data-area PIC S9(4) COMP
+     TRANSACTION Data-area PIC X(4)
+     TTISTATUS Data-area PIC S9(4) COMP
+     UCTRANST Data-area PIC S9(4) COMP
+     USERAREA ptr-ref
+     USERAREALEN Data-area PIC S9(4) COMP
+     USERID Data-area PIC X(8)
+     USERNAME Data-area
+     VALIDATIONST Data-area PIC S9(4) COMP
+     VFORMST Data-area PIC S9(4) COMP
+     ZCPTRACING Data-area PIC S9(4) COMP
+
+INQUIRE TERMINAL END EIBFN=X'5202' Level:SP Not Supported
+     END
+
+INQUIRE TERMINAL NEXT EIBFN=X'5202' Level:SP Not Supported
+     TERMINAL Data-area PIC X(4)
+     NEXT
+     NETNAME Data-area PIC X(8)
+     ACCESSMETHOD Data-area PIC S9(4) COMP
+     ACQSTATUS Data-area PIC S9(4) COMP
+     ALTPAGEHT Data-area PIC S9(4) COMP
+     ALTPAGEWD Data-area PIC S9(4) COMP
+     ALTPRINTER Data-area
+     ALTPRTCOPYST Data-area PIC S9(4) COMP
+     ALTSCRNHT Data-area PIC S9(4) COMP
+     ALTSCRNWD Data-area PIC S9(4) COMP
+     ALTSUFFIX Data-area PIC X
+     APLKYBSDT Data-area PIC S9(4) COMP
+     APLTEXTST Data-area PIC S9(4) COMP
+     ASCII Data-area PIC S9(4) COMP
+     ATISTATUS Data-area PIC S9(4) COMP
+     AUDALARMST Data-area PIC S9(4) COMP
+     AUTOCONNECT Data-area PIC S9(4) COMP
+     BACKTRANSST Data-area PIC S9(4) COMP
+     COLORST Data-area PIC S9(4) COMP
+     COPYST Data-area PIC S9(4) COMP
+     CREATESESS Data-area PIC S9(4) COMP
+     DEFPAGEHT Data-area PIC S9(4) COMP
+     DEFPAGEWD Data-area PIC S9(4) COMP
+     DEFSCRNHT Data-area PIC S9(4) COMP
+     DEFSCRNWD Data-area PIC S9(4) COMP
+     DEVICE Data-area PIC S9(4) COMP
+     DISCREQST Data-area PIC S9(4) COMP
+     DUALCASET Data-area PIC S9(4) COMP
+     EXITTRACING Data-area PIC S9(4) COMP
+     EXTENDEDDSST Data-area PIC S9(4) COMP
+     FMHPARMST Data-area PIC S9(4) COMP
+     FORMFEEDST Data-area PIC S9(4) COMP
+     GCHARS Data-area PIC S9(4) COMP
+     GCODES Data-area PIC S9(4) COMP
+     HFORMST Data-area PIC S9(4) COMP
+     HILIGHTST Data-area PIC S9(4) COMP
+     KATAKANAST Data-area PIC S9(4) COMP
+     LIGHTPENST Data-area PIC S9(4) COMP
+     MODENAME Data-area PIC S9(4) COMP
+     MSRCONTROLST Data-area PIC S9(4) COMP
+     NATLANG Data-area PIC X
+     NATURE Data-area PIC S9(4) COMP
+     NEXTTRANSID Data-area PIC X(4)
+     OBFORMATST Data-area PIC S9(4) COMP
+     OBOPERIDST Data-area PIC S9(4) COMP
+     OPERID Data-area PIC X(3)
+     OUTLINEST Data-area PIC S9(4) COMP
+     PAGEHT Data-area PIC S9(4) COMP
+     PAGESTATUS Data-area PIC S9(4) COMP
+     PAGEWD Data-area PIC S9(4) COMP
+     PARTITIONST Data-area PIC S9(4) COMP
+     PRINTADAPTST Data-area PIC S9(4) COMP
+     PRINTER Data-area PIC X(4)
+     PROGSYMBOLST Data-area PIC S9(4) COMP
+     PRTCOPYST Data-area PIC S9(4) COMP
+     QUERYST Data-area PIC S9(4) COMP
+     RELREQST Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(4)
+     REMOTESYSTEM Data-area PIC X(4)
+     SCREENHEIGHT Data-area PIC S9(4) COMP
+     SCREENWIDTH Data-area PIC S9(4) COMP
+     SCRNHT Data-area PIC S9(4) COMP
+     SCRNWD Data-area PIC S9(4) COMP
+     SECURITY Data-area PIC S9(4) COMP
+     SERVSTATUS Data-area PIC S9(4) COMP
+     SESSIONTYPE Data-area PIC S9(4) COMP
+     SIGNONSTATUS Data-area PIC S9(4) COMP
+     SOSIST Data-area PIC S9(4) COMP
+     TASKID Data-area PIC S9(8) COMP
+     TCAMCONTROL Data-area PIC X
+     TERMMODEL Data-area PIC S9(4) COMP
+     TERMPRIORITY Data-area PIC S9(8) COMP
+     TEXTKYBDST Data-area PIC S9(4) COMP
+     TEXTPRINTST Data-area PIC S9(4) COMP
+     TRACING Data-area PIC S9(4) COMP
+     TRANSACTION Data-area PIC X(4)
+     TTISTATUS Data-area PIC S9(4) COMP
+     UCTRANST Data-area PIC S9(4) COMP
+     USERAREA ptr-ref
+     USERAREALEN Data-area PIC S9(4) COMP
+     USERID Data-area PIC X(8)
+     USERNAME Data-area
+     VALIDATIONST Data-area PIC S9(4) COMP
+     VFORMST Data-area PIC S9(4) COMP
+     ZCPTRACING Data-area PIC S9(4) COMP
+
+INQUIRE TERMINAL START EIBFN=X'5202' Level:SP Not Supported
+     START
+
+INQUIRE TRACEDEST EIBFN=X'7802' Level:SP Not Supported
+     AUXSTATUS Data-area PIC S9(4) COMP
+     CURAUXDS Data-area PIC X
+     GTFSTATUS Data-area PIC S9(4) COMP
+     INTSTATUS Data-area PIC S9(4) COMP
+     SWITCHSTATUS Data-area PIC S9(4) COMP
+     TABLESIZE Data-area PIC S9(8) COMP
+
+INQUIRE TRACEFLAG EIBFN=X'7812' Level:SP Not Supported
+     SINGLESTATUS Data-area PIC S9(4) COMP
+     SYSTEMSTATUS Data-area PIC S9(4) COMP
+     TCEXITSTATUS Data-area PIC S9(4) COMP
+     USERSTATUS Data-area PIC S9(4) COMP
+
+INQUIRE TRACETYPE EIBFN=X'7822' Level:SP Not Supported
+     STANDARD
+     SPECIAL
+     XX Value PIC X(4)
+
+INQUIRE TRANCLASS EIBFN=X'5E1A' Not Supported
+
+INQUIRE TRANDUMPCODE EIBFN=X'6612' Level:SP Not Supported
+     TRANDUMPCODE Value PIC X(4)
+     CURRENT Data-area PIC S9(8) COMP
+     MAXIMUM Data-area PIC S9(8) COMP
+     SHUTOPTION Data-area PIC S9(4) COMP
+     SYSDUMPING Data-area PIC S9(4) COMP
+     TRANDUMPING Data-area PIC S9(4) COMP
+
+INQUIRE TRANDUMPCODE END EIBFN=X'6612' Level:SP Not Supported
+     END
+
+INQUIRE TRANDUMPCODE NEXT EIBFN=X'6612' Level:SP Not Supported
+     TRANDUMPCODE Value PIC X(4)
+     NEXT
+     CURRENT Data-area PIC S9(8) COMP
+     MAXIMUM Data-area PIC S9(8) COMP
+     SHUTOPTION Data-area PIC S9(4) COMP
+     SYSDUMPING Data-area PIC S9(4) COMP
+     TRANDUMPING Data-area PIC S9(4) COMP
+
+INQUIRE TRANDUMPCODE START EIBFN=X'6612' Level:SP Not Supported
+     START
+
+INQUIRE TRANSACTION EIBFN=X'5002' Level:SP Not Supported
+     TRANSACTION Value PIC X(4)
+     CMDSEC Data-area PIC S9(4) COMP
+     DTB Data-area PIC S9(4) COMP
+     DTIMEOUT Data-area PIC X(4)
+     DUMPING Data-area PIC S9(4) COMP
+     PRIORITY Data-area PIC S9(8) COMP
+     PROFILE Data-area PIC X(8)
+     PROGRAM Data-area PIC X(8)
+     PURGEABILITY Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     ROUTING Data-area PIC S9(4) COMP
+     RESSEC Data-area PIC S9(4) COMP
+     RTIMEOUT Data-area PIC S9(8) COMP
+     SCRNSIZE Data-area PIC S9(4) COMP
+     STATUS Data-area PIC S9(4) COMP
+     TASKDATAKEY Data-area PIC S9(4) COMP
+     TASKDATALOC Data-area PIC S9(4) COMP
+     TCLASS Data-area PIC S9(8) COMP
+     TRACING Data-area PIC S9(4) COMP
+     TRPROF Data-area PIC X(8)
+     TWASIZE Data-area PIC S9(8) COMP
+
+INQUIRE TRANSACTION END EIBFN=X'5002' Level:SP Not Supported
+     END
+
+INQUIRE TRANSACTION NEXT EIBFN=X'5002' Level:SP Not Supported
+     TRANSACTION Data-area PIC X(4)
+     NEXT
+     CMDSEC Data-area PIC S9(4) COMP
+     DTB Data-area PIC S9(4) COMP
+     DTIMEOUT Data-area PIC X(4)
+     DUMPING Data-area PIC S9(4) COMP
+     PRIORITY Data-area PIC S9(8) COMP
+     PROFILE Data-area PIC X(8)
+     PROGRAM Data-area PIC X(8)
+     PURGEABILITY Data-area PIC S9(4) COMP
+     REMOTENAME Data-area PIC X(8)
+     REMOTESYSTEM Data-area PIC X(4)
+     ROUTING Data-area PIC S9(4) COMP
+     RESSEC Data-area PIC S9(4) COMP
+     RTIMEOUT Data-area PIC S9(8) COMP
+     SCRNSIZE Data-area PIC S9(4) COMP
+     STATUS Data-area PIC S9(4) COMP
+     TASKDATAKEY Data-area PIC S9(4) COMP
+     TASKDATALOC Data-area PIC S9(4) COMP
+     TCLASS Data-area PIC S9(8) COMP
+     TRACING Data-area PIC S9(4) COMP
+     TRPROF Data-area PIC X(8)
+     TWASIZE Data-area PIC S9(8) COMP
+
+INQUIRE TRANSACTION START EIBFN=X'5002' Level:SP Not Supported
+     START
+
+INQUIRE TSQUEUE EIBFN=X'8002' Level:SP Not Supported
+     TSQUEUE Value PIC X(8)
+     LOCATION Data-area PIC S9(4) COMP
+     NUMITEMS Data-area PIC S9(4) COMP
+     FLENGTH Data-area PIC S9(8) COMP
+     MAXITEMLEN Data-area PIC S9(4) COMP
+     MINITEMLEN Data-area PIC S9(4) COMP
+
+INQUIRE TSQUEUE END EIBFN=X'8002' Level:SP Not Supported
+     END
+
+INQUIRE TSQUEUE NEXT EIBFN=X'8002' Level:SP Not Supported
+     TSQUEUE Data-area PIC X(8)
+     NEXT
+     LOCATION Data-area PIC S9(4) COMP
+     NUMITEMS Data-area PIC S9(4) COMP
+     FLENGTH Data-area PIC S9(8) COMP
+     MAXITEMLEN Data-area PIC S9(4) COMP
+     MINITEMLEN Data-area PIC S9(4) COMP
+
+INQUIRE TSQUEUE START EIBFN=X'8002' Level:SP Not Supported
+     START
+
+INQUIRE VOLUME EIBFN=X'6202' Level:SP Not Supported
+     VOLUME Value PIC X(6)
+     AVAILSTATUS Data-area PIC S9(4) COMP
+     DATA Data-area PIC X(5)
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     JOURNALNUM Data-area PIC S9(4) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     PART Data-area PIC S9(8) COMP
+     TIME Data-area PIC X(6)
+
+INQUIRE VOLUME END EIBFN=X'6202' Level:SP Not Supported
+     END
+
+INQUIRE VOLUME NEXT EIBFN=X'6202' Level:SP Not Supported
+     VOLUME Data-area PIC X(6)
+     NEXT
+     AVAILSTATUS Data-area PIC S9(4) COMP
+     DATA Data-area PIC X(5)
+     EMPTYSTATUS Data-area PIC S9(4) COMP
+     JOURNALNUM Data-area PIC S9(4) COMP
+     OPENSTATUS Data-area PIC S9(4) COMP
+     PART Data-area PIC S9(8) COMP
+     TIME Data-area PIC X(6)
+
+INQUIRE VOLUME START EIBFN=X'6202' Level:SP Not Supported
+     START
+
+INQUIRE VTAM EIBFN=X'6802' Level:SP Not Supported
+     OPENSTATUS Data-area PIC S9(4) COMP
+
+ISSUE ABEND EIBFN=X'0430' Not Supported
+     CONVID name PIC X(4)
+     STATE Data-area PIC S9(4) COMP Level:3.3
+
+ISSUE ABORT EIBFN=X'1E08' Not Supported
+     DESTID Data-area PIC X(8)
+     DESTIDLENG Value PIC S9(4) COMP
+     SUBADDR Value PIC S9(4) COMP
+     CONSOLE
+     PRINT
+     CARD
+     WPMEDIA1
+     WPMEDIA2
+     WPMEDIA3
+     WPMEDIA4
+     VOLUME Value PIC X(6)
+     VOLUMELEN Value PIC S9(4) COMP
+
+ISSUE ADD EIBFN=X'1E02' Not Supported
+
+ISSUE CONFIRMATION EIBFN=X'0434' Level:4.1 Not Supported
+
+ISSUE COPY EIBFN=X'040A' Level:4.1 Not Supported
+
+ISSUE DISCONNECT EIBFN=X'0414' Level:4.1 Not Supported
+
+ISSUE END EIBFN=X'1E0C' Level:4.1 Not Supported
+
+ISSUE ENDFILE EIBFN=X'041A' Level:4.1 Not Supported
+
+ISSUE ENDOUTPUT EIBFN=X'0416' Level:4.1 Not Supported
+
+ISSUE EODS EIBFN=X'0408' Level:4.1 Not Supported
+
+ISSUE ERASE EIBFN=X'1E04' Level:4.1 Not Supported
+
+ISSUE ERASEAUP EIBFN=X'0418' Supported (no VR)
+     WAIT Ignored
+
+ISSUE ERROR EIBFN=X'0436' Level:4.1 Not Supported
+
+ISSUE LOAD EIBFN=X'040E' Level:4.1 Not Supported
+
+ISSUE NOTE EIBFN=X'1E10' Level:4.1 Not Supported
+
+ISSUE PASS EIBFN=X'043A' Level:4.1 Not Supported
+
+ISSUE PREPARE EIBFN=X'0438' Level:4.1 Not Supported
+
+ISSUE PRINT EIBFN=X'041C' Supported (no VR)
+
+ISSUE QUERY EIBFN=X'1E0A' Level:4.1 Not Supported
+
+ISSUE RECEIVE EIBFN=X'1E0E' Level:4.1 Not Supported
+
+ISSUE REPLACE EIBFN=X'1E06' Level:4.1 Not Supported
+
+ISSUE RESET EIBFN=X'0412' Level:4.1 Not Supported
+
+ISSUE SEND EIBFN=X'1E12' Level:4.1 Not Supported
+
+ISSUE SIGNAL EIBFN=X'041E' Level:4.1 Not Supported
+
+ISSUE WAIT EIBFN=X'1E12' Level:4.1 Not Supported
+
+JOURNAL EIBFN=X'1402' Not Supported
+     JFILEID Value PIC S9(4) COMP
+     JTYPEID Value PIC X(2)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     REQID Data-area PIC S9(8) COMP
+     PREFIX Data-area
+     PFXLENG Value PIC S9(4) COMP
+     STARTIO
+     WAIT
+     NOSUSPEND Level:2.1
+
+LINK EIBFN=X'0E02'
+     PROGRAM name PIC X(8)
+     COMMAREA Data-area
+     LENGTH Value PIC S9(4) COMP
+     DATALENGTH Value PIC S9(4) COMP Level:3.3
+     INPUTMSG Data-area Level:3.3 Supported (no VR)
+     INPUTMSGLEN Value PIC S9(4) COMP Level:3.3 Supported (no VR)
+     SYSID Value PIC X(4) Level:3.3
+     SYNCONRETURN Level:3.3
+     TRANSID Value PIC X(4) Level:3.3
+
+LOAD EIBFN=X'0E06'
+     PROGRAM name PIC X(8)
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     FLENGTH Data-area PIC S9(8) COMP
+     ENTRY ptr-ref Not Supported
+     HOLD
+
+MONITOR EIBFN=X'4804' Level:3.3 Not Supported
+     POINT Value PIC S9(4) COMP
+     DATA1 Data-area PIC S9(8) COMP
+     DATA2 Data-area PIC S9(8) COMP
+     ENTRYNAME Data-area
+
+PERFORM DUMP EIBFN=X'7E04' Level:SP Not Supported
+     DUMPCODE name PIC X(5)
+     TITLE Data-area PIC X(8)
+     TITLELENGTH Value PIC S9(4) COMP
+     CALLER Value PIC X(8)
+     CALLERLENGTH Value PIC S9(4) COMP
+     DUMPID Data-area PIC X(9)
+
+PERFORM RESETTIME EIBFN=X'7202' Level:SP Not Supported
+
+PERFORM SECURITY REBUILD EIBFN=X'6402' Level:SP Not Supported
+     ESMRESP Data-area PIC S9(8) COMP
+
+PERFORM SHUTDOWN EIBFN=X'7602' Level:SP Not Supported
+     DUMP
+     IMMEDIATE
+     XLT Value PIC X(2)
+     PLT Value PIC X(2)
+     TAKEOVER
+
+PERFORM STATISTICS RECORD EIBFN=X'7006' Level:SP Not Supported
+     ALL
+     RESETNOW
+     AUTOINSTALL
+     CONNECTION
+     DISPATCHER
+     DTB
+     FILE
+     IRCBATCH
+     JOURNALNUM
+     LSRPOOL
+     MONITOR
+     PROGRAM
+     STATS
+     STORAGE
+     SYSDUMP
+     TABLEMGR
+     TASKCONTROL
+     TCLASS
+     TDQUEUE
+     TERMINAL
+     TRANDUMP
+     TRANSACTION
+     TSQUEUE
+     VTAM
+
+POINT EIBFN=X'0424' Not Supported
+     CONVID name PIC X(4) Level:3.3
+     SESSION name PIC X(4)
+
+POP HANDLE EIBFN=X'020E'
+
+POST EIBFN=X'1006' Not Supported
+     INTERVAL Value PIC S9(6) COMP-3
+     TIME Value PIC S9(6) COMP-3
+     AFTER Level:3.3
+     AT Level:3.3
+     HOURS Value PIC S9(8) COMP Level:3.3
+     MINUTES Value PIC S9(8) COMP Level:3.3
+     SECONDS Value PIC S9(8) COMP Level:3.3
+     SET ptr-ref
+     REQID name PIC X(8)
+
+PURGE MESSAGE EIBFN=X'180A' Supported (no VR)
+
+PUSH HANDLE EIBFN=X'020C'
+
+QUERY SECURITY EIBFN=X'6A02' Level:3.3
+     RESTYPE Value PIC X
+     RESCLASS Value PIC X(8)
+     RESIDLENGTH Value PIC S9(8) COMP
+     RESID Value PIC X
+     LOGMESSAGE Value PIC S9(4) COMP
+     ALTER Data-area PIC S9(4) COMP
+     CONTROL Data-area PIC S9(4) COMP
+     READ Data-area PIC S9(4) COMP
+     UPDATE Data-area PIC S9(4) COMP
+
+READ EIBFN=X'0602'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     UPDATE
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     GENERIC
+     SYSID Value PIC X(4)
+     RBA
+     RRN
+     DEBKEY Not Supported
+     DEBREC Not Supported
+     GTEQ
+     EQUAL
+     SEGSET Not Supported
+     SEGSETALL Not Supported
+     TOKEN Value PIC S9(8) COMP Level:4.1
+
+READNEXT EIBFN=X'060E'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     REQID Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     RBA
+     RRN
+     DEBKEY Level:3.3 Not Supported
+     DEBREC Level:3.3 Not Supported
+     SEGSET Not Supported
+     SEGSETALL Not Supported
+
+READPREV EIBFN=X'0610'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     REQID Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     RBA
+     RRN
+     DEBKEY Level:3.3 Not Supported
+     DEBREC Level:3.3 Not Supported
+     SEGSET Not Supported
+     SEGSETALL Not Supported
+
+READQ TS EIBFN=X'0A04'
+     QUEUE name PIC X(8)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     NUMITEMS Data-area PIC S9(4) COMP
+     NEXT
+     ITEM Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+
+READQ TD EIBFN=X'0804'
+     QUEUE name PIC X(4)
+     SYSID Value PIC X(4)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     NOSUSPEND Level:2.1
+
+RECEIVE EIBFN=X'0402' Supported (no VR)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     FLENGTH Data-area PIC S9(8) COMP Level:2.1
+     MAXLENGTH Value PIC S9(4) COMP
+     MAXFLENGTH Value PIC S9(8) COMP Level:2.1
+     NOTRUNCATE Not Supported
+     ASIS
+     BUFFER
+     CONVID name PIC X(4) Not Supported
+
+RECEIVE MAP EIBFN=X'1802' Supported (no VR)
+     MAP Value PIC X(7)
+     MAPSET Value PIC X(7)
+     INTO Data-area
+     SET ptr-ref
+     FROM Data-area PIC S9(4) COMP
+     TERMINAL
+     LENGTH Value PIC S9(4) COMP
+     ASIS
+     INPARTN name PIC X(2) Not Supported
+
+RECEIVE PARTN EIBFN=X'180E' Not Supported
+     PARTN Data-area PIC X(2)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     ASIS
+
+RELEASE EIBFN=X'0E0A'
+     PROGRAM name PIC X(8)
+
+RESETBR EIBFN=X'0614'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     GENERIC
+     REQID Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     GTEQ
+     EQUAL
+     RBA
+     RRN
+     DEBKEY Level:3.3 Not Supported
+     DEBREC Level:3.3 Not Supported
+
+RESYNC ENTRYNAME EIBFN=X'1604' Level:SP Not Supported
+     ENTRYNAME Value PIC X(8)
+     IDLIST Value PIC S9(8) COMP
+     IDLISTLENGTH Data-area PIC S9(4) COMP
+     QUALIFIER Value PIC X(8)
+
+RETRIEVE EIBFN=X'100A' Supported (no VR)
+     INTO Data-area
+     SET ptr-ref
+     LENGTH Data-area PIC S9(4) COMP
+     RTRANSID Data-area PIC X(4)
+     RTERMID Data-area PIC X(4)
+     QUEUE Data-area PIC X(8)
+     WAIT Ignored
+
+RETURN EIBFN=X'0E08'
+     TRANSID Value PIC X(4) Supported (no VR)
+     COMMAREA Data-area Supported (no VR)
+     LENGTH Value PIC S9(4) COMP Supported (no VR)
+     IMMEDIATE Level:3.3 Supported (no VR)
+     INPUTMSG Data-area Level:3.3 Supported (no VR)
+     INPUTMSGLEN Value PIC S9(4) COMP Level:3.3 Supported (no VR)
+
+REWRITE EIBFN=X'0606'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     SEGSETALL Not Supported
+     TOKEN Value PIC S9(8) COMP Level:4.1
+
+ROUTE EIBFN=X'180C' Not Supported
+     INTERVAL Value PIC S9(6) COMP-3
+     TIME Value PIC S9(6) COMP-3
+     AFTER Level:3.3
+     AT Level:3.3
+     HOURS Value PIC S9(8) COMP Level:3.3
+     MINUTES Value PIC S9(8) COMP Level:3.3
+     SECONDS Value PIC S9(8) COMP Level:3.3
+     ERRTERM name PIC X(8)
+     TITLE Data-area
+     LIST Data-area
+     OPCLASS Data-area
+     REQID name PIC X(2)
+     LDC name PIC X(2)
+     NLEOM
+
+SEND EIBFN=X'0404' Supported (no VR)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     FLENGTH Value PIC S9(8) COMP
+     DEST name PIC X(4) Not Supported
+     WAIT Ignored
+     STRFIELD Not Supported
+     ERASE
+     DEFAULT Level:4.1
+     ALTERNATE Level:4.1
+     CTLCHAR Value PIC X
+     CONVID name PIC X(4) Not Supported
+     INVITE
+     LAST
+
+SEND CONTROL EIBFN=X'1812' Supported (no VR)
+     CURSOR Value PIC S9(4) COMP
+     FORMFEED
+     ERASE
+     ERASEAUP
+     DEFAULT Level:4.1
+     ALTERNATE Level:4.1
+     PRINT
+     FREEKB
+     ALARM
+     FRSET
+     MSR Value PIC X(4) Not Supported
+     LDC name PIC X(2) Not Supported
+     OUTPARTN name PIC X(2) Ignored
+     ACTPARTN name PIC X(2) Ignored
+     ACCUM
+     SET ptr-ref
+     PAGING
+     TERMINAL
+     WAIT Ignored
+     LAST
+     REQID name PIC X(2) Level:3.3
+     L40
+     L64
+     L80
+     HONEOM
+
+SEND MAP EIBFN=X'1804' Supported (no VR)
+     MAP Value PIC X(7)
+     MAPSET Value PIC X(7)
+     FROM Data-area
+     MAPONLY
+     DATAONLY
+     LENGTH Value PIC S9(4) COMP
+     FLENGTH Value PIC S9(8) COMP
+     CURSOR Value PIC S9(4) COMP
+     FORMFEED
+     ERASE
+     ERASEAUP
+     DEFAULT Level:4.1
+     ALTERNATE
+     PRINT
+     FREEKB
+     ALARM
+     FRSET
+     NLEOM
+     MSR Value PIC X(4) Not Supported
+     FMHPARM Value PIC X(8) Not Supported
+     LDC name PIC X(2) Not Supported
+     OUTPARTN name PIC X(2) Ignored
+     ACTPARTN name PIC X(2) Ignored
+     ACCUM
+     SET ptr-ref Not Supported
+     PAGING
+     TERMINAL
+     WAIT Ignored
+     LAST Ignored
+     REQID name PIC X(2)
+     NOFLUSH Level:3.3
+     L40
+     L64
+     L80
+     HONEOM
+
+SEND PAGE EIBFN=X'1808' Supported (no VR)
+     RELEASE
+     RETAIN
+     TRANSID name PIC X(4)
+     SET ptr-ref Not Supported
+     AUTOPAGE
+     NOAUTOPAGE
+     CURRENT
+     ALL
+     OPERPURGE
+     FMHPARM Value PIC X(8) Level:2.1 Not Supported
+     LAST Level:2.1 Not Supported
+     TRAILER Data-area
+
+SEND PARTNSET EIBFN=X'1810' Not Supported
+     PARTNSET name PIC X(8)
+
+SEND TEXT EIBFN=X'1806' Supported (no VR)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     FLENGTH Value PIC S9(8) COMP Level:3.3
+     CURSOR Value PIC S9(4) COMP
+     FORMFEED
+     ERASE
+     PRINT
+     FREEKB
+     ALARM
+     NLEOM
+     LDC name PIC X(2) Not Supported
+     OUTPARTN name PIC X(2) Ignored
+     ACTPARTN name PIC X(2) Ignored
+     SET ptr-ref Not Supported
+     PAGING
+     TERMINAL
+     REQID name PIC X(2)
+     HEADER Data-area Not Supported
+     TRAILER Data-area Not Supported
+     JUSTIFY Value PIC S9(4) COMP
+     JUSFIRST
+     JUSLAST
+     ACCUM
+     L40
+     L64
+     L80
+     HONEOM
+     MSR Value PIC X(4) Not Supported
+     WAIT Ignored
+     LAST
+     DEFAULT Level:4.1
+     ALTERNATE Level:4.1 Ignored
+     FMHPARM name PIC X(8) Level:4.1 Not Supported
+
+SEND TEXT MAPPED EIBFN=X'1806' Not Supported
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     MAPPED
+     REQID name PIC X(2)
+     PAGING
+     TERMINAL
+     WAIT
+     LAST
+
+SEND TEXT NOEDIT EIBFN=X'1806' Supported (no VR)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     FLENGTH Value PIC S9(8) COMP Level:3.3
+     NOEDIT
+     PRINT
+     FREEKB
+     ALARM
+     OUTPARTN name PIC X(2) Ignored
+     PAGING
+     TERMINAL
+     REQID name PIC X(2)
+     L40
+     L64
+     L80
+     HONEOM
+     WAIT Ignored
+     LAST
+     ERASE
+     FRSET
+     DEFAULT Level:4.1
+     ALTERNATE Level:4.1 Ignored
+
+SET AUTOINSTALL EIBFN=X'6814' Level:SP Not Supported
+     MAXREQS Value PIC S9(8) COMP
+     PROGRAM Value PIC X(8)
+
+SET CONNECTION EIBFN=X'5804' Level:SP Not Supported
+     CONNECTION Value PIC X(4)
+     ACQSTATUS Value PIC S9(4) COMP
+     ACQUIRED
+     RELEASED
+     CONNSTATUS Value PIC S9(4) COMP
+     ACQUIRED
+     RELEASED
+     EXITTRACING Value PIC S9(4) COMP
+     EXITTRACE
+     NOEXITTRACE
+     PENDSTATUS Value PIC S9(4) COMP
+     NOPENDING
+     PENDING
+     PURGETYPE Value PIC S9(4) COMP
+     PURGE
+     FORCEPURGE
+     SERVSTATUS Value PIC S9(4) COMP
+     INSERVICE
+     OUTSERVICE
+     ZCPTRACING Value PIC S9(4) COMP
+     ZCPTRACE
+     NOZCPTRACE
+
+SET DATASET EIBFN=X'4C04' Level:SP Not Supported
+     DATASET Value PIC X(8)
+     ADD Value PIC S9(4) COMP
+     ADDABLE
+     NOTADDABLE
+     BROWSE Value PIC S9(4) COMP
+     BROWSABLE
+     NOTBROWSABLE
+     BUSY Value PIC S9(4) COMP
+     WAIT
+     NOWAIT
+     FORCE
+     DELETE Value PIC S9(4) COMP
+     DELETABLE
+     NOTDELETABLE
+     DISPOSITION Value PIC S9(4) COMP
+     OLD
+     SHARE
+     OBJECTNAME Data-area
+     EMPTYSTATUS Value PIC S9(4) COMP
+     EMPTYREQ
+     NOEMPTYREQ
+     ENABLESTATUS Value PIC S9(4) COMP
+     ENABLED
+     DISABLED
+     EXCLUSIVE Value PIC S9(4) COMP
+     EXCTL
+     NOEXCTL
+     LSRPOOLID Value PIC S9(8) COMP
+     MAXNUMRECS Value PIC S9(8) COMP
+     OPENSTATUS Value PIC S9(4) COMP
+     OPEN
+     CLOSED
+     READ Value PIC S9(4) COMP
+     READABLE
+     NOTREADABLE
+     STRINGS Value PIC S9(8) COMP
+     TABLE Value PIC S9(4) COMP
+     NOTTABLE
+     CICSTABLE
+     USERTABLE
+     UPDATE Value PIC S9(4) COMP
+     UPDATABLE
+     NOTUPDATABLE
+
+SET DSNAME EIBFN=X'7A04' Level:SP Not Supported
+     DSNAME Data-area
+     ACTION Value PIC S9(4) COMP
+     REMOVE
+     RECOVERED
+     BKOUTSTATUS Value PIC S9(4) COMP
+     NORMALBKOUT
+     FAILEDBKOUT
+
+SET DUMPDS EIBFN=X'6604' Level:SP Not Supported
+     INITIALDDS Value PIC X
+     OPENSTATUS Value PIC S9(4) COMP
+     OPEN
+     CLOSED
+     SWITCH
+     SWITCHSTATUS Value PIC S9(4) COMP
+     NOSWITCH
+     SWITCHNEXT
+
+SET FILE EIBFN=X'4C04' Level:SP Not Supported
+     FILE Value PIC X(8)
+     ADD Value PIC S9(4) COMP
+     ADDABLE
+     NOTADDABLE
+     BROWSE Value PIC S9(4) COMP
+     BROWSABLE
+     NOTBROWSABLE
+     BUSY Value PIC S9(4) COMP
+     WAIT
+     NOWAIT
+     FORCE
+     DELETE Value PIC S9(4) COMP
+     DELETABLE
+     NOTDELETABLE
+     DISPOSITION Value PIC S9(4) COMP
+     OLD
+     SHARE
+     DSNAME Data-area
+     OBJECTNAME Data-area
+     EMPTYSTATUS Value PIC S9(4) COMP
+     EMPTYREQ
+     NOEMPTYREQ
+     ENABLESTATUS Value PIC S9(4) COMP
+     ENABLED
+     DISABLED
+     EXCLUSIVE Value PIC S9(4) COMP
+     EXCTL
+     NOEXCTL
+     LSRPOOLID Value PIC S9(8) COMP
+     MAXNUMRECS Value PIC S9(8) COMP
+     OPENSTATUS Value PIC S9(4) COMP
+     OPEN
+     CLOSED
+     READ Value PIC S9(4) COMP
+     READABLE
+     NOTREADABLE
+     STRINGS Value PIC S9(8) COMP
+     TABLE Value PIC S9(4) COMP
+     NOTTABLE
+     CICSTABLE
+     USERTABLE
+     UPDATE Value PIC S9(4) COMP
+     UPDATABLE
+     NOTUPDATABLE
+
+SET IRC EIBFN=X'6E04' Level:SP Not Supported
+     OPENSTATUS Value PIC S9(4) COMP
+     OPEN
+     CLOSED
+     IMMCLOSE
+
+SET JOURNALNUM EIBFN=X'6004' Level:SP Not Supported
+     JOURNALNUM Value PIC S9(4) COMP
+     OPENSTATUS Value PIC S9(4) COMP
+     ADVANCE
+     OPENOUTPUT
+     CLOSED
+     CLOSELEAVE
+
+SET MODENAME EIBFN=X'5A04' Level:SP Not Supported
+     MODENAME Value PIC X(8)
+     CONNECTION Value PIC X(4)
+     ACQSTATUS Value PIC S9(4) COMP
+     ACQUIRED
+     CLOSED
+     AVAILABLE Value PIC S9(4) COMP
+
+SET MONITOR EIBFN=X'7014' Level:SP Not Supported
+     EVENTCLASS Value PIC S9(4) COMP
+     EVENT
+     NOEVENT
+     EXCEPTCLASS Value PIC S9(4) COMP
+     EXCEPT
+     NOEXCEPT
+     PERFCLASS Value PIC S9(4) COMP
+     PERF
+     NOPERF
+     STATUS Value PIC S9(4) COMP
+     ON
+     OFF
+
+SET NETNAME EIBFN=X'5208' Level:SP Not Supported
+     NETNAME Value PIC X(8)
+     EXITTRACING Value PIC S9(4) COMP
+     EXITTRACE
+     NOEXITTRACE
+
+SET PROGRAM EIBFN=X'4E04' Level:SP Not Supported
+     PROGRAM Value PIC X(8)
+     CEDFSTATUS Value PIC S9(4) COMP
+     CEDF
+     NOCEDF
+     COPY Value PIC S9(4) COMP
+     NEWCOPY
+     PHASEIN
+     EXECUTIONSET Value PIC S9(4) COMP
+     DPLSUBSET
+     FULLAPI
+     SHARESTATUS Value PIC S9(4) COMP
+     SHARED
+     PRIVATE
+     STATUS Value PIC S9(4) COMP
+     ENABLED
+     DISABLED
+     VERSION
+
+SET STATISTICS EIBFN=X'7004' Level:SP Not Supported
+     ENDOFDAY Value PIC S9(6) COMP-3
+     ENDOFDAYHRS Value PIC S9(8) COMP
+     ENDOFDAYMINS Value PIC S9(8) COMP
+     ENDOFDAYSECS Value PIC S9(8) COMP
+     INTERVAL Value PIC S9(6) COMP-3
+     INTERVALHRS Value PIC S9(8) COMP
+     INTERVALMINS Value PIC S9(8) COMP
+     INTERVALSECS Value PIC S9(8) COMP
+     RECORDING Value PIC S9(4) COMP
+     ON
+     OFF
+     RESETNOW
+     RECORDNOW
+
+SET SYSDUMPCODE EIBFN=X'6624' Level:SP Not Supported
+     SYSDUMPCODE Value PIC X(8)
+     ACTION Value PIC S9(4) COMP
+     RESET
+     ADD
+     REMOVE
+     MAXIMUM Value PIC S9(8) COMP
+     SHUTOPTION Value PIC S9(4) COMP
+     SHUTDOWN
+     NOSHUTDOWN
+     SYSDUMPING Value PIC S9(4) COMP
+     SYSDUMP
+     NOSYSDUMP
+
+SET SYSTEM EIBFN=X'5404' Level:SP Not Supported
+     AKP Value PIC S9(8) COMP
+     AMAXTASKS Value PIC S9(8) COMP
+     CSCS Value PIC S9(8) COMP
+     CUSHION Value PIC S9(8) COMP
+     DTRPROGRAM Value PIC X(8)
+     DUMPING Value PIC S9(4) COMP
+     SYSDUMP
+     NOSYSDUMP
+     ECSCS Value PIC S9(8) COMP
+     ERSCS Value PIC S9(8) COMP
+     EUSCS Value PIC S9(8) COMP
+     ECUSHION Value PIC S9(8) COMP
+     MAXTASKS Value PIC S9(8) COMP
+     MROBATCH Value PIC S9(8) COMP
+     NEWMAXTASKS Value PIC S9(8) COMP
+     PRTYAGING Value PIC S9(8) COMP
+     RUNAWAY Value PIC S9(8) COMP
+     SCANDELEY Value PIC S9(8) COMP
+     TIME Value PIC S9(8) COMP
+     USCS Value PIC S9(8) COMP
+
+SET TASK EIBFN=X'5E04' Level:SP Not Supported
+     TASK Value PIC S9(6) COMP-3
+     PRIORITY Value PIC S9(8) COMP
+     PURGETYPE Value PIC S9(4) COMP
+     PURGE
+     FORCEPURGE
+
+SET TCLASS EIBFN=X'5E14' Level:SP Not Supported
+     TCLASS Value PIC S9(8) COMP
+     MAXIMUM Value PIC S9(8) COMP
+
+SET TDQUEUE EIBFN=X'5C04' Level:SP Not Supported
+     TDQUEUE Value PIC X(4)
+     ATIFACILITY Value PIC S9(4) COMP
+     TERMINAL
+     NOTERMINAL
+     ATITERMID Value PIC X(4)
+     ATITRANID Value PIC X(4)
+     ENABLESTATUS Value PIC S9(4) COMP
+     ENABLED
+     DISABLED
+     OPENSTATUS Value PIC S9(4) COMP
+     OPEN
+     CLOSED
+     TRIGGERLEVEL Value PIC S9(8) COMP
+
+SET TERMINAL EIBFN=X'5204' Level:SP Not Supported
+     TERMINAL Value PIC X(4)
+     ACQSTATUS Value PIC S9(4) COMP
+     ACQUIRED
+     RELEASED
+     COLDACQ
+     ALTPRINTER Data-area PIC X(4)
+     ALTPRTCOPYST Value PIC S9(4) COMP
+     ALTPRTCOPY
+     NOALTPRTCOPY
+     ATISTATUS Value PIC S9(4) COMP
+     ATI
+     NOATI
+     CREATESESS Value PIC S9(4) COMP
+     CREATE
+     NOCREATE
+     DISCREQST Value PIC S9(4) COMP
+     DISCREQ
+     NODISCREQ
+     EXITTRACING Value PIC S9(4) COMP
+     EXITTRACE
+     NOEXITTRACE
+     NEXTTRANSID Data-area PIC X(4)
+     OBFORMATST Value PIC S9(4) COMP
+     OBFORMAT
+     NOOBFORMAT
+     PAGESTATUS Value PIC S9(4) COMP
+     PAGEABLE
+     AUTOPAGEABLE
+     PRINTER Data-area PIC X(4)
+     PRTCOPYST Value PIC S9(4) COMP
+     PRTCOPY
+     NOPRTCOPY
+     PURGETYPE Value PIC S9(4) COMP
+     PURGE
+     FORCEPURGE
+     RELREQST Value PIC S9(4) COMP
+     RELREQ
+     NORELREQ
+     SERVSTATUS Value PIC S9(4) COMP
+     INSERVICE
+     OUTSERVICE
+     TCAMCONTROL Data-area PIC X
+     TERMPRIORITY Value PIC S9(8) COMP
+     TRACING Value PIC S9(4) COMP
+     STANTRACE
+     SPECTRACE
+     TTISTATUS Value PIC S9(4) COMP
+     TTI
+     NOTTI
+     UCTRANST Value PIC S9(4) COMP
+     UCTRAN
+     NOUCTRAN
+     TRANIDONLY
+     ZCPTRACING Value PIC S9(4) COMP
+     ZCPTRACE
+     NOZCPTRACE
+
+SET TRACEDEST EIBFN=X'7804' Level:SP Not Supported
+     AUXSTATUS Value PIC S9(4) COMP
+     AUXSTART
+     AUXSTOP
+     AUXPAUSE
+     GTFSTATUS Value PIC S9(4) COMP
+     GTFSTART
+     GTFSTOP
+     INTSTATUS Value PIC S9(4) COMP
+     INTSTART
+     INTSTOP
+     SWITCHACTION
+     SWITCH
+     SWITCHSTATUS Value PIC S9(4) COMP
+     NOSWITCH
+     SWITCHNEXT
+     SWITCHALL
+     TABLESIZE Value PIC S9(8) COMP
+
+SET TRACEFLAG EIBFN=X'7814' Level:SP Not Supported
+     SINGLESTATUS Value PIC S9(4) COMP
+     SINGLEON
+     SINGLEOFF
+     SYSTEMSTATUS Value PIC S9(4) COMP
+     SYSTEMON
+     SYSTEMOFF
+     TCEXITSTATUS Value PIC S9(4) COMP
+     TCEXITALL
+     TCEXITSYSTEM
+     TCEXITALLOFF
+     TCEXITNONE
+     USERSTATUS Value PIC S9(4) COMP
+     USERON
+     USEROFF
+
+SET TRACETYPE EIBFN=X'7824' Level:SP Not Supported
+     STANDARD
+     SPECIAL
+     XX Value PIC X(4)
+
+SET TRANCLASS EIBFN=X'5E1C' Not Supported
+
+SET TRANDUMPCODE EIBFN=X'6614' Level:SP Not Supported
+     TRANDUMPCODE Value PIC X(4)
+     ACTION Value PIC S9(4) COMP
+     RESET
+     ADD
+     REMOVE
+     MAXIMUM Value PIC S9(8) COMP
+     SHUTOPTION Value PIC S9(4) COMP
+     SHUTDOWN
+     NOSHUTDOWN
+     SYSDUMPING Value PIC S9(4) COMP
+     SYSDUMP
+     NOSYSDUMP
+     TRANDUMPING Value PIC S9(4) COMP
+     TRANDUMP
+     NOTRANDUMP
+
+SET TRANSACTION EIBFN=X'5004' Level:SP Not Supported
+     TRANSACTION Value PIC X(4)
+     DUMPING Value PIC S9(4) COMP
+     TRANDUMP
+     NOTRANDUMP
+     PRIORITY Value PIC S9(8) COMP
+     PURGEABILITY Value PIC S9(4) COMP
+     PURGEABLE
+     NOTPURGEABLE
+     STATUS Value PIC S9(4) COMP
+     ENABLED
+     DISABLED
+     TCLASS Value PIC S9(8) COMP
+     TRACING Value PIC S9(4) COMP
+     SPRSTRACE
+     STANTRACE
+     SPECTRACE
+
+SET VOLUME EIBFN=X'6204' Level:SP Not Supported
+     VOLUME Value PIC X(6)
+     ACTION Value PIC S9(4) COMP
+     ADD
+     REMOVE
+     AVAILSTATUS Value PIC S9(4) COMP
+     OK
+     NOWRITE
+     JOURNALNUM Value PIC S9(4) COMP
+
+SET VTAM EIBFN=X'6804' Level:SP Not Supported
+     OPENSTATUS Value PIC S9(4) COMP
+     OPEN
+     CLOSED
+     IMMCLOSE
+     FORCECLOSE
+
+SIGNOFF EIBFN=X'7404' Level:3.3 Supported (no VR)
+
+SIGNON EIBFN=X'7402' Level:3.3 Supported (no VR)
+     USERID Value PIC X(8)
+     ESMREASON Data-area PIC S9(8) COMP Level:4.1 Not Supported
+     ESMRESP Data-area PIC S9(8) COMP Not Supported
+     GROUPID Value PIC X(8) Level:4.1 Not Supported
+     LANGUAGECODE Value PIC X(3) Level:4.1
+     NATLANG Value PIC X
+     LANGINUSE Data-area PIC X(3) Level:4.1
+     NATLANGINUSE Data-area PIC X
+     PASSWORD Value PIC X(8)
+     NEWPASSWORD Value PIC X(8) Not Supported
+     OIDCARD Data-area Not Supported
+
+SPOOLCLOSE EIBFN=X'5610' Level:2.1 Not Supported
+     TOKEN Data-area PIC X(8)
+     KEEP
+     DELETE
+
+SPOOLOPEN INPUT EIBFN=X'5602' Level:2.1 Not Supported
+     INPUT
+     CLASS Value PIC X
+     TOKEN Data-area PIC X(8)
+     USERID Value PIC X(8)
+
+SPOOLOPEN OUTPUT EIBFN=X'5602' Level:2.1 Not Supported
+     OUTPUT
+     NODE Value PIC X(8)
+     TOKEN Data-area PIC X(8)
+     USERID Value PIC X(8)
+     CLASS Value PIC X
+     NOCC
+     ASA
+     MCC
+     PRINT
+     PUNCH
+     RECORDLENGTH Value PIC S9(4) COMP
+     OUTDESCR ptr-ref
+
+SPOOLREAD EIBFN=X'5604' Level:2.1 Not Supported
+     TOKEN Data-area PIC X(8)
+     INTO Data-area
+     MAXFLENGTH Data-area PIC S9(8) COMP
+     TOFLENGTH Data-area PIC S9(8) COMP
+
+SPOOLWRITE EIBFN=X'5606' Level:2.1 Not Supported
+     TOKEN Data-area PIC X(8)
+     FROM Data-area
+     FLENGTH Value PIC X(8)
+     LINE
+     PAGE
+
+START EIBFN=X'1008'
+     INTERVAL Value PIC S9(6) COMP-3
+     TIME Value PIC S9(6) COMP-3
+     AFTER Level:3.3
+     AT Level:3.3
+     HOURS Value PIC S9(8) COMP Level:3.3
+     MINUTES Value PIC S9(8) COMP Level:3.3
+     SECONDS Value PIC S9(8) COMP Level:3.3
+     TRANSID Value PIC X(4)
+     REQID Value PIC X(8)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     FMH
+     TERMID Value PIC X(4)
+     USERID Value PIC X(4) Level:4.1
+     SYSID Value PIC X(4)
+     RTRANSID Value PIC X(4)
+     RTERMID Value PIC X(4)
+     QUEUE Value PIC X(8)
+     NOCHECK
+     PROTECT
+
+STARTBR EIBFN=X'060C'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     GENERIC
+     REQID Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     RBA
+     RRN
+     DEBKEY Not Supported
+     DEBREC Not Supported
+     GTEQ
+     EQUAL
+
+SUSPEND EIBFN=X'1208' Not Supported
+
+SYNCPOINT EIBFN=X'1602'
+     ROLLBACK
+
+TRACE EIBFN=X'1A02' Not Supported
+
+UNLOCK EIBFN=X'060A'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     SYSID Value PIC X(4)
+     TOKEN Value PIC S9(8) COMP Level:4.1
+
+VERIFY PASSWORD EIBFN=X'7406' Level:4.1 Not Supported
+     PASSWORD Value PIC X(8)
+     USERID Value PIC X(8)
+     CHANGETIME Data-area PIC S9(15) COMP-3
+     DAYSLEFT Data-area PIC S9(4) COMP
+     ESMREASON Data-area PIC S9(8) COMP
+     ESMRESP Data-area PIC S9(8) COMP
+     EXPIRYTIME Data-area PIC S9(15) COMP-3
+     INVALIDCOUNT Data-area
+     LASTUSETIME Data-area PIC S9(15) COMP-3
+
+WAIT TERMINAL EIBFN=X'040C' Not Supported
+     CONVID name PIC X(4) Level:3.3
+     SESSION name PIC X(4)
+
+WAIT CONVID EIBFN=X'042C' Not Supported
+     CONVID name PIC X(4)
+     STATE Data-area PIC S9(4) COMP Level:3.3
+
+WAIT EVENT EIBFN=X'1202' Not Supported
+     ECADDR ptr-value
+     NAME name PIC X(8) Level:4.1
+
+WAIT EXTERNAL EIBFN=X'5E22' Level:3.3 Not Supported
+     ECBLIST ptr-ref
+     NUMEVENTS Value PIC S9(8) COMP
+     PURGEABILITY Value PIC S9(4) COMP
+     PURGEABLE
+     NOTPURGEABLE
+     NAME name PIC X(8) Level:4.1
+
+WAIT JOURNAL EIBFN=X'1404' Not Supported
+     JOURNAL Value PIC S9(4) COMP
+     REQID Value PIC S9(8) COMP
+     STARTIO
+     JFILEID Value PIC S9(4) COMP
+
+WAIT JOURNALNUM EIBFN=X'1404' Not Supported
+     JOURNALNUM Value PIC S9(4) COMP Level:3.3
+     REQID Value PIC S9(8) COMP Level:3.3
+     STARTIO Level:3.3
+     JFILEID Value PIC S9(4) COMP
+
+WAIT SIGNAL EIBFN=X'0410' Not Supported
+
+WAITCICS EIBFN=X'5E32' Level:3.3 Not Supported
+     ECBLIST ptr-ref
+     NUMEVENTS Value PIC S9(8) COMP
+     PURGEABILITY Value PIC S9(4) COMP
+     PURGEABLE
+     NOTPURGEABLE
+     NAME name PIC X(8) Level:4.1
+
+WRITE EIBFN=X'0604'
+     FILE Value PIC X(8) Level:2.1
+     DATASET Value PIC X(8)
+     MASSINSERT Not Supported
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     RIDFLD Data-area
+     KEYLENGTH Value PIC S9(4) COMP
+     SYSID Value PIC X(4)
+     RBA
+     RRN
+     DEBKEY Level:3.3 Not Supported
+     DEBREC Level:3.3 Not Supported
+     SEGSETALL Not Supported
+
+WRITE JOURNALNUM EIBFN=X'1402' Level:3.3 Not Supported
+     JOURNALNUM Value PIC S9(4) COMP
+     JTYPEID Value PIC X(2)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     REQID Data-area PIC S9(8) COMP
+     PREFIX Data-area
+     PFXLENG Value PIC S9(4) COMP
+     STARTIO
+     WAIT
+     NOSUSPEND
+
+WRITE MESSAGE EIBFN=X'8C02' Not Supported
+
+WRITE OPERATOR EIBFN=X'6C02' Level:3.3 Not Supported
+     TEXT Data-area
+     TEXTLENGTH Value PIC S9(8) COMP
+     ROUTECODES Data-area
+     NUMROUTES Value PIC S9(8) COMP
+     ACTION Value PIC S9(8) COMP
+     EVENTUAL
+     IMMEDIATE
+     CRITICAL
+     REPLY Data-area PIC S9(8) COMP
+     MAXLENGTH Value PIC S9(8) COMP
+     REPLYLENGTH Data-area PIC S9(4) COMP
+     TIMEOUT Value PIC S9(8) COMP
+
+WRITEQ TS EIBFN=X'0A02'
+     QUEUE name PIC X(8)
+     FROM Data-area
+     LENGTH Value PIC S9(4) COMP
+     NUMITEMS Data-area PIC S9(4) COMP Level:3.3
+     ITEM Data-area PIC S9(4) COMP
+     REWRITE
+     SYSID Value PIC X(4)
+     MAIN
+     AUXILIARY
+     NOSUSPEND Level:2.1
+
+WRITEQ TD EIBFN=X'0802'
+     QUEUE name PIC X(4)
+     SYSID Value PIC X(4)
+     LENGTH Value PIC S9(4) COMP
+     FROM Data-area
+
+XCTL EIBFN=X'0E04'
+     PROGRAM name PIC X(8)
+     COMMAREA Data-area
+     LENGTH Value PIC S9(4) COMP
+     INPUTMSG Data-area Level:3.3 Supported (no VR)
+     INPUTMSGLEN Value PIC S9(4) COMP Level:3.3 Supported (no VR)
+
+DFHRESP values
+     ALLOCERR 85
+     CBIDERR 62
+     DISABLED 84
+     DSIDERR 12
+     DSNNOTFOUND 93
+     DSSTAT 46
+     DUPKEY 15
+     DUPREC 14
+     END 83
+     ENDDATA 29
+     ENDFILE 20
+     ENDINPT 08
+     ENQBUSY 55
+     ENVDEFERR 56
+     EOC 06
+     EODS 05
+     EOF 04
+     ERROR 01
+     EXPIRED 31
+     FILENOTFOUND 12
+     FUNCERR 48
+     IGREQCD 57
+     IGREQID 39
+     ILLOGIC 21
+     INBFMH 07
+     INVERRTERM 37
+     INVEXITREQ 63
+     INVLDC 41
+     INVMPSZ 38
+     INVPARTN 65
+     INVPARTNSET 64
+     INVREQ 16
+     INVTSREQ 30
+     IOERR 17
+     ISCINVREQ 54
+     ITEMERR 26
+     JIDERR 43
+     LENGERR 22
+     LOADING 94
+     MAPFAIL 36
+     MODELIDERR 95
+     NODEIDERR 90
+     NOJBUFSP 45
+     NONVAL 09
+     NOPASSBKRD 50
+     NOPASSBKWR 51
+     NORMAL 00
+     NOSPACE 18
+     NOSPOOL 80
+     NOSTART 10
+     NOSTG 42
+     NOTALLOC 61
+     NOTAUTH 70
+     NOTFND 13
+     NOTOPEN 19
+     OPENERR 87
+     OUTDESCRERR 96
+     OVERFLOW 40
+     PARTNERIDERR 97
+     PARTNFAIL 66
+     PGMIDERR 27
+     PROFILEIDERR 98
+     QBUSY 25
+     QIDERR 44
+     QZERO 23
+     RDATT 02
+     RESIDERR 75
+     RETPAGE 32
+     ROLLEDBACK 82
+     RTEFAIL 33
+     RTESOME 34
+     SEGIDERR 52
+     SELNERR 47
+     SESSBUSY 60
+     SESSIONERR 58
+     SIGNAL 24
+     SPOLBUSY 88
+     SPOLERR 89
+     STRELERR 86
+     SUPPRESSED 72
+     SYSBUSY 59
+     SYSIDERR 53
+     TASKIDERR 91
+     TCIDERR 92
+     TERMERR 81
+     TERMIDERR 11
+     TRANSIDERR 28
+     TSIOERR 35
+     UNEXPIN 49
+     USERIDERR 69
+     VOLIDERR 71
+     WRBRK 03
+     QUITKEY 99
+
+DFHVALUE values
+     AAUXDS 315
+     ACQFAIL 515
+     ACQUIRED 69
+     ACQUIRING 71
+     ACTIVE 181
+     ADD 291
+     ADDABLE 41
+     ADDFAIL 519
+     ADVANCE 265
+     ALARM 501
+     ALLCONN 169
+     ALLOCATED 81
+     ALLQUERY 431
+     ALTERABLE 52
+     ALTERNATE 197
+     ALTPRTCOPY 446
+     ANY 158
+     APLKYBD 391
+     APLTEXT 393
+     APPC 124
+     APPCPARALLEL 374
+     APPCSINGLE 373
+     APPLICATION 559
+     ASACTL 224
+     ASCII7 616
+     ASCII8 617
+     ASSEMBLER 150
+     ATI 75
+     ATTENTION 524
+     AUDALARM 395
+     AUTOACTIVE 630
+     AUTOARCH 262
+     AUTOCONN 170
+     AUTOINACTIVE 631
+     AUTOPAGEABLE 80
+     AUTOSTART 618
+     AUXILIARY 247
+     AUXPAUSE 313
+     AUXSTART 312
+     AUXSTOP 314
+     AVAILABLE 95
+     BACKOUT 192
+     BACKTRANS 397
+     BASE 10
+     BASESPACE 664
+     BATCHLU 191
+     BAUXDS 316
+     BDAM 02
+     BEGINSESSION 510
+     BELOW 159
+     BGAM 63
+     BIPROG 160
+     BISYNCH 128
+     BLK 47
+     BLOCKED 16
+     BROWSABLE 39
+     BSAM 61
+     BTAM 62
+     BUSY 612
+     C 149
+     CANCEL 526
+     CANCELLED 624
+     CD 491
+     CDRDLPRT 24
+     CEDF 370
+     CICS 660
+     CICSDATAKEY 379
+     CICSEXECKEY 381
+     CICSSECURITY 195
+     CICSTABLE 101
+     CLEAR 640
+     CLOSED 19
+     CLOSEFAILED 349
+     CLOSELEAVE 261
+     CLOSEREQUEST 22
+     CLOSING 21
+     CMDSECEXT 207
+     CMDSECNO 205
+     CMDSECYES 207
+     COBOL 151
+     COBOLII 375
+     COLDACQ 72
+     COLDQUERY 433
+     COLDSTART 266
+     COLOR 399
+     COMMIT 208
+     CONFFREE 82
+     CONFRECEIVE 83
+     CONFSEND 84
+     CONNECTED 690
+     CONSOLE 66
+     CONTNLU 189
+     CONTROLSHUT 623
+     CONVERSE 600
+     CONVIDLE 518
+     COPY 401
+     CREATE 67
+     CTLGALL 632
+     CTLGMODIFY 633
+     CTLGNONE 634
+     CTRLABLE 56
+     CURRENT 260
+     DAE 684
+     DATA 508
+     DATASTREAM 543
+     DEC 46
+     DEFAULT 198
+     DEFRESP1 497
+     DEFRESP1OR2 528
+     DEFRESP2 498
+     DEFRESP3 499
+     DELAY 637
+     DELETABLE 43
+     DELETEFAIL 520
+     DEREGERROR 679
+     DEREGISTERED 678
+     DEST 235
+     DISABLED 24
+     DISABLING 25
+     DISCARDFAIL 513
+     DISCREQ 444
+     DISK1 252
+     DISK2 253
+     DISK2PAUSE 254
+     DISPATCHABLE 228
+     DPLSUBSET 383
+     DS3270 615
+     DUALCASE 403
+     DYNAMIC 178
+     EB 490
+     EMERGENCY 268
+     EMPTY 210
+     EMPTYREQ 31
+     ENABLED 23
+     ESDS 05
+     EVENT 334
+     EXCEPT 332
+     EXCEPTRESP 523
+     EXCI 650
+     EXCTL 48
+     EXITTRACE 362
+     EXTENDEDDS 405
+     EXTRA 221
+     EXTSECURITY 194
+     FAILEDBKOUT 357
+     FAILINGBKOUT 358
+     FCLOSE 273
+     FILE 238
+     FINALQUIESCE 183
+     FINPUT 270
+     FIRSTINIT 625
+     FIRSTQUIESCE 182
+     FIXED 12
+     FMH 502
+     FMHPARM 385
+     FOPEN 272
+     FORCE 342
+     FORCECLOSE 351
+     FORCECLOSING 353
+     FORCEPURGE 237
+     FORMATEDF 606
+     FORMATTED 542
+     FORMFEED 407
+     FOUTPUT 271
+     FREE 85
+     FREEING 94
+     FULL 212
+     FULLAPI 384
+     FWDRECOVABLE 354
+     GENERIC 651
+     GMT 604
+     GOINGOUT 172
+     GTFSTART 317
+     GTFSTOP 318
+     HARDCOPY 32
+     HEX 45
+     HFORM 409
+     HILIGHT 413
+     HOLD 163
+     IGNORE 01
+     IMMCLOSE 350
+     IMMCLOSING 352
+     INACTIVE 378
+     INBOUND 547
+     INDIRECT 122
+     INITCOMPLETE 628
+     INOUT 532
+     INPUT 226
+     INSERVICE 73
+     INSTALLED 550
+     INSTALLFAIL 512
+     INTACTLU 190
+     INTRA 222
+     INTSTART 310
+     INTSTOP 311
+     INVALID 359
+     IRC 121
+     ISCMMCONV 209
+     ISOLATE 658
+     KATAKANA 415
+     KEYED 08
+     KSDS 06
+     LE370 377
+     LIC 493
+     LIGHTPEN 417
+     LOCAL 605
+     LOG 54
+     LOGICAL 216
+     LOGTERM 269
+     LOSE 544
+     LPA 165
+     LU61 125
+     LUCMODGRP 210
+     LUCSESS 211
+     LUP 541
+     LUSTAT 525
+     LUTYPE4 193
+     LUTYPE6 192
+     LUW 246
+     MAGTAPE 20
+     MAIN 248
+     MAP 155
+     MAPSET 155
+     MCHCTL 241
+     MDT 506
+     MODE24 190
+     MODE31 191
+     MODEANY 189
+     MODEL 370
+     MORE 492
+     MSRCONTROL 419
+     NEGATIVE 530
+     NEW 28
+     NEWCOPY 167
+     NEWSESSION 485
+     NOALARM 500
+     NOALTPRTCOPY 447
+     NOAPLKYBD 392
+     NOAPLTEXT 394
+     NOATI 76
+     NOAUDALARM 396
+     NOAUTOARCH 263
+     NOBACKOUT 193
+     NOBACKTRANS 398
+     NOCEDF 371
+     NOCLEAR 641
+     NOCOLOR 400
+     NOCONV 556
+     NOCONVERSE 601
+     NOCOPY 402
+     NOCREATE 68
+     NOCTL 223
+     NODAE 685
+     NODISCREQ 445
+     NODUALCASE 404
+     NOEMPTYREQ 32
+     NOEVENT 335
+     NOEXCEPT 333
+     NOEXCTL 49
+     NOEXITTRACE 363
+     NOEXTENDEDDS 406
+     NOFMH 503
+     NOFMHPARM 386
+     NOFORMATEDF 607
+     NOFORMFEED 408
+     NOHFORM 410
+     NOHILIGHT 414
+     NOHOLD 164
+     NOISOLATE 657
+     NOKATAKANA 416
+     NOLIGHTPEN 418
+     NOLOG 55
+     NOMDT 507
+     NOMSGJRNL 531
+     NOMSRCONTROL 420
+     NONAUTOCONN 171
+     NONCICS 661
+     NONE 496
+     NOOBFORMAT 422
+     NOOBOPERID 388
+     NOOUTLINE 424
+     NOPARTITIONS 426
+     NOPERF 331
+     NOPRESETSEC 243
+     NOPRINTADAPT 428
+     NOPROGSYMBOL 430
+     NOPRTCOPY 449
+     NOQUERY 432
+     NORELREQ 443
+     NORMALBKOUT 356
+     NORMALRESP 522
+     NOSECURITY 196
+     NOSHUTDOWN 289
+     NOSOSI 435
+     NOSTSN 487
+     NOSWITCH 285
+     NOSYNCPOINT 603
+     NOSYSCONNECT 654
+     NOSYSDUMP 185
+     NOTADDABLE 42
+     NOTALTERABLE 53
+     NOTAPPLIC 01
+     NOTASKSTART 608
+     NOTBROWSABLE 40
+     NOTBUSY 613
+     NOTCDEB 495
+     NOTCONNECTED 691
+     NOTCTRLABLE 57
+     NOTDEFINED 659
+     NOTDELETABLE 44
+     NOTEMPTY 211
+     NOTERMINAL 214
+     NOTEXTKYBD 437
+     NOTEXTPRINT 439
+     NOTFWDRCVBLE 361
+     NOTINBOUND 546
+     NOTINIT 376
+     NOTINSTALLED 551
+     NOTKEYED 09
+     NOTLPA 166
+     NOTPENDING 127
+     NOTPURGEABLE 161
+     NOTRANDUMP 187
+     NOTREADABLE 36
+     NOTREADY 259
+     NOTRECOVABLE 30
+     NOTREQUIRED 667
+     NOTSOS 669
+     NOTTABLE 100
+     NOTTI 78
+     NOTUPDATABLE 38
+     NOUCTRAN 451
+     NOVALIDATION 441
+     NOVFORM 412
+     NOWAIT 341
+     NOWRITE 275
+     NOZCPTRACE 365
+     OBFORMAT 421
+     OBOPERID 387
+     OBTAINING 96
+     OFF 200
+     OK 274
+     OLD 26
+     OLDCOPY 162
+     OLDSESSION 486
+     ON 201
+     OPEN 18
+     OPENING 20
+     OPENINPUT 256
+     OPENOUTPUT 257
+     OUTLINE 423
+     OUTPUT 227
+     OUTSERVICE 74
+     PAGEABLE 79
+     PARTITIONS 425
+     PARTITIONSET 156
+     PATH 11
+     PENDBEGIN 558
+     PENDDATA 560
+     PENDFREE 86
+     PENDING 126
+     PENDPASS 565
+     PENDRECEIVE 87
+     PENDRELEASE 562
+     PENDSTART 561
+     PENDSTSN 557
+     PENDUNSOL 564
+     PERF 330
+     PHASEIN 168
+     PHYSICAL 215
+     PL1 152
+     PLI 152
+     POSITIVE 529
+     POST 636
+     PRESETSEC 242
+     PRIMARY 110
+     PRINTADAPT 427
+     PRIVATE 174
+     PROFILE 157
+     PROGRAM 154
+     PROGSYMBOL 429
+     PROTECTED 504
+     PRTCOPY 448
+     PURGE 236
+     PURGEABLE 160
+     READABLE 35
+     READBACK 209
+     READONLY 275
+     READY 258
+     RECEIVE 88
+     RECOVERABLE 29
+     RECOVERED 277
+     REGERROR 677
+     REGISTERED 670
+     RELATED 675
+     RELEASE 563
+     RELEASED 70
+     RELEASING 549
+     RELREQ 442
+     REMOTE 04
+     REMOVE 276
+     REQUIRED 666
+     RESET 290
+     RESSECEXT 204
+     RESSECNO 202
+     RESSECYES 204
+     RESSYS 208
+     REVERTED 264
+     ROLLBACK 89
+     ROUTE 638
+     RPG 153
+     RRDS 07
+     RTR 527
+     RU 494
+     RUNNING 229
+     SCS 614
+     SDLC 176
+     SECONDINIT 626
+     SEND 90
+     SEQDISK 18
+     SESSION 372
+     SESSIONFAIL 517
+     SESSIONLOST 516
+     SETFAIL 514
+     SHARE 27
+     SHARED 173
+     SHUTDISABLED 645
+     SHUTDOWN 288
+     SHUTENABLED 644
+     SIGNEDOFF 245
+     SIGNEDON 244
+     SINGLEOFF 324
+     SINGLEON 323
+     SMF 255
+     SOS 668
+     SOSI 434
+     SPECIFIC 652
+     SPECTRACE 177
+     SPRSTRACE 175
+     STANDBY 629
+     STANTRACE 176
+     START 635
+     STARTED 609
+     STARTUP 180
+     STATIC 179
+     STOPPED 610
+     STSN 509
+     STSNSET 488
+     STSNTEST 489
+     SUBSPACE 663
+     SURROGATE 371
+     SUSPENDED 231
+     SWITCH 188
+     SWITCHALL 287
+     SWITCHING 225
+     SWITCHNEXT 286
+     SYNCFREE 91
+     SYNCPOINT 602
+     SYNCRECEIVE 92
+     SYNCSEND 93
+     SYS370 164
+     SYS7BSCA 166
+     SYSCONNECT 653
+     SYSDUMP 184
+     SYSTEM3 161
+     SYSTEM7 02
+     SYSTEM 643
+     SYSTEMOFF 320
+     SYSTEMON 319
+     T1050 36
+     T1053 74
+     T2260L 65
+     T2260R 72
+     T2265 76
+     T2740 40
+     T2741BCD 43
+     T2741COR 42
+     T2770 130
+     T2780 132
+     T2980 134
+     T3275R 146
+     T3277L 153
+     T3277R 145
+     T3278M2 533
+     T3278M3 534
+     T3278M4 535
+     T3278M5 536
+     T3279M2 537
+     T3279M3 538
+     T3279M4 539
+     T3279M5 540
+     T3284L 155
+     T3284R 147
+     T3286L 156
+     T3286R 148
+     T3600BI 138
+     T3601 177
+     T3614 178
+     T3650ATT 186
+     T3650PIPE 184
+     T3650USER 187
+     T3653HOST 185
+     T3735 136
+     T3740 137
+     T3780 133
+     T3790 180
+     T3790SCSP 182
+     T3790UP 181
+     TAKEOVER 111
+     TAPE1 250
+     TAPE2 251
+     TASK 233
+     TASKSTART 611
+     TCAM 64
+     TCAMSNA 65
+     TCEXITALL 366
+     TCEXITALLOFF 369
+     TCEXITNONE 368
+     TCEXITSYSTEM 367
+     TCLASS 239
+     TCONSOLE 08
+     TELETYPE 34
+     TERM 234
+     TERMINAL 213
+     TEXTKYBD 436
+     TEXTPRINT 438
+     THIRDINIT 627
+     TIME 240
+     TIMEOUT 511
+     TPS55M2 552
+     TPS55M3 553
+     TPS55M4 554
+     TPS55M5 555
+     TRANDUMP 186
+     TRANIDONLY 452
+     TTCAM 80
+     TTI 77
+     TWX3335 33
+     UCTRAN 450
+     UNAVAILABLE 672
+     UNBLOCKED 17
+     UNDEFINED 14
+     UNDETERMINED 355
+     UNENABLED 33
+     UNENABLING 34
+     UNPROTECTED 505
+     UNREGISTERED 671
+     UNSOLDATA 521
+     UPDATABLE 37
+     USER 642
+     USERDATAKEY 380
+     USEREXECKEY 382
+     USEROFF 322
+     USERON 321
+     USERTABLE 102
+     VALID 360
+     VALIDATION 440
+     VARIABLE 13
+     VFORM 411
+     VIDEOTERM 64
+     VSAM 03
+     VTAM 60
+     WAIT 340
+     WARMSTART 267
+     WIN 545
+     XCF 665
+     XM 123
+     XNOTDONE 144
+     XOK 143
+     ZCPTRACE 364
+     T7770 01

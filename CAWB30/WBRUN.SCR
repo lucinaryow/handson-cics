@@ -1,0 +1,88 @@
+' ***************************************************************************
+' * Build/Compile/Link Script Return Codes:
+' * ****************************************
+' * All WB*.SCR script files process return codes using
+' * the following convention.  The return code is a variable length string
+' * between 9 and N bytes in length.  Where:
+' *
+' * 1. Error Code - Positions 1 thru 4 - Normalized return code that is
+' *     may be displayed in the WB Status bar.  Values are:
+' *       0000 - Success No Errors
+' *       0010 - Precompile Error
+' *       0010 - Also used to indicate error in utility being processed
+' *              Eg. Error in BMS map generation
+' *       0020 - Compile error detected
+' *       0030 - Link Error detected
+' *       0999 - Job Step Error  (Build Scripts Only)
+' *
+' * 2. View Code - Positions 5 and 6 - This code is used to request that
+' *                the WB bring up a dialog to query the user if they
+' *                would like an error file to be viewed.  The error file
+' *                name is returned starting in position 10.
+' *       00     - No View Dialog necessary.
+' *                This code is used when no dialog is necessary.  Normally
+' *                no file will be edited. Note: This value should be returned
+' *                for all Build scripts regardless of the success or failure
+' *                of the script.
+' *       VL     - Compile Related Errors
+' *                The text displayed is
+' *                "Precomp, Bind or BuildRCL Errors Detected.\n Would you like
+' *                  to View Errors? "
+' *       VK     - Conditionally View Link Errors
+' *                The text displayed is
+' *                "I - Link Errors Detected.\n Would you like to View Errors?"
+' *       VO     - General Build Errors -
+' *                Use this code for asking users if they would like
+' *                to view error for BMS map Generation, ACB Generation errors
+' *                utility errors etc..
+' *                The text displayed is
+' *                 "Build Errors were detected.\n Would you like to View
+' *                  the Errors?"
+' * 3. NA - Position 7 - Future use Ignored! (Normally F)
+' * 4. Reload Cvx - Position 8 - This return code instructs the WB to ask the
+' *                 user if they would like to reload the cvx file.  This return
+' *                 code should only be used for Compile and Compile and link
+' *                 scripts - where a new cvx file has been created!
+' * 5. Status Bar Message - position 9 - This code is used to request that
+' *                 the status code in position 1..4 be placed in the WB
+' *                 status bar.  This code should be turned off for build
+' *                 scripts.  The user may use the Edit.. Display application
+' *                 log for the purpose.
+' * 6. Error File Name - Position 10 on.  If you request via the View Code
+' *                 positions 5 & 6 that a file be conditionally edited then
+' *                 the file name should be specified here.
+' * Examples #1 Successful compile
+' *  "000000FNN"  Where position
+' *   1234      => Return Code 0000 - Task successful
+' *       56    => View Code 00 No View Dialog necessary
+' *         7   => Future Use
+' *          8  => N - Do not reload cvx
+' *           9 => N - Do not update status bar.
+' * Example #2 Link Error
+' *  "0030VKFNY"
+' *   1234      => Return Code 0030 - Link Error
+' *       56    => View Code VK - Display Link Error Dialog
+' *         7   => Future Use
+' *          8  => N - Do not reload cvx
+' *           9 => Y - Do update status bar.
+' *
+' *******************************************************************************
+
+ShowWindow(_SW_NORMAL)
+
+if  RUNDIR <>  " " Then
+      if  RUNDIR <>  "" Then
+       SetDir(RUNDIR)
+      End If
+End If
+
+if  RUNPARMS <>  " " Then
+   if  RUNPARMS <>  "" Then
+      RUNEXE = RUNEXE + " " + RUNPARMS
+   End If
+End If
+
+shell "wbrun.bat"
+
+Shell "cawbecho 0"
+

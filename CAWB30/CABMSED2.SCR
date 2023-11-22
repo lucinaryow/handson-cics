@@ -1,0 +1,23 @@
+' ***************************************************
+' CA-Realia II Workbench Start DOS BMS Editor Script
+' ***************************************************
+ShowWindow(_SW_MAXIMIZE)
+
+REALCICS = CA_REAL2DIR
+CICSLINK = CA_REAL2DIR + "\LIB"
+REALCOB  = CA_REAL2DIR
+COBLINK  = CA_REAL2DIR + "\LIB"
+
+if  CA_DOC_FN_PATH <> " " Then
+  if  CA_DOC_FN_PATH <> "" Then
+     SetDir(CA_DOC_FN_PATH)
+  End If
+End If
+
+shell CA_REAL2DIR + "\cacxmap.Exe" + " " + CA_DOC_FN_FULL
+
+MY_RC = _RC
+Shell "cawbecho 0"
+
+Return MY_RC
+

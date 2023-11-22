@@ -1,0 +1,5 @@
+Record Type: Message, 23/11/07, 11:19:42:55
+CACX0026E: Load of Program SM000 failed. ResultCode:66
+
+Record Type: Text, 23/11/07, 11:19:42:76
+CACX0004E: 11:19:42 Transaction SM00 failed. ProgID SM000 did not load.

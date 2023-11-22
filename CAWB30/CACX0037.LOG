@@ -1,0 +1,67 @@
+Record Type: Text, 23/11/07, 09:03:41:78
+Abend Detected in Program:SM000 module:SM000 Line:97
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 09:03:41:78
+CACX0001E: 09:03:41 Transaction SM00 program SM000 abend AEI9
+
+Record Type: Text, 23/11/07, 09:04:50:22
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:07:26:50
+Abend Detected in Program:SM000 module:SM000 Line:97
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 09:07:26:50
+CACX0001E: 09:07:26 Transaction SM00 program SM000 abend AEI9
+
+Record Type: Text, 23/11/07, 09:07:28:34
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:07:49:89
+Abend Detected in Program:SM000 module:SM000 Line:97
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 09:07:49:89
+CACX0001E: 09:07:49 Transaction SM00 program SM000 abend AEI9
+
+Record Type: Text, 23/11/07, 09:07:51:44
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:08:34:22
+Abend Detected in Program:SM000 module:SM000 Line:97
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 09:08:34:22
+CACX0001E: 09:08:34 Transaction SM00 program SM000 abend AEI9
+
+Record Type: Text, 23/11/07, 09:10:38:60
+Abend Detected in Program:SM000 module:SM000 Line:97
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 09:10:38:60
+CACX0001E: 09:10:38 Transaction SM00 program SM000 abend AEI9
+
+Record Type: Text, 23/11/07, 09:10:40:47
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:10:40:91
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:10:41:16
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:11:10:01
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:11:10:99
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:11:11:30
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:11:11:46
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:11:13:81
+CACX0009E: Transaction ID is required.

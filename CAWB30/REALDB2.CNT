@@ -1,0 +1,17 @@
+:Base realdb2.hlp
+:Title CA-Realia II Workbench DB2/2 Preprocessor Help
+1 CA-Realia II Workbench DB2/2 Help
+3 Using the CA-Realia II Workbench 3.0 DB2/2 Toolkit=REALDB20000000
+3 Overview=REALDB20000005
+3 Specifying DB2 Preprocessor Options=REALDB20000010
+3 DB2/2 Preprocessor Options=ID_DB2_OPTIONS
+3 Compiling Programs=REALDB20000020
+3 Linking Programs=REALDB20000025
+3 Package and Bind File Considerations=REALDB20000030
+3 Advantages of Deferred Binding=REALDB20000035
+3 Executing programs including DB/2 access=REALDB20000040
+3 Using DB2/2 with CA-Realia CICS=REALDB20000045
+3 Using REALDB2 from the Command Prompt=REALDB20000050
+3 Notes=REALDB20000055
+3 Messages=REALDB20000060
+3 Using the REALDCL Utility=REALDB20000065

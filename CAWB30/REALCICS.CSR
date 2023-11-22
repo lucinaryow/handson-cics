@@ -1,0 +1,136 @@
+; Revision Information
+; ^{File:realcics.csr}
+; ^{Timestamp:Mon Feb 17 07:20:12 1997}
+; ^{Revision:3.0}
+;
+[CICS Region]
+;
+FLUSHKBD=Yes
+; FLUSHKBD=Yes|No sets whether to flush "LOCKED" Keyboard
+; FLUSHKBD=Yes forces of flushing keyboard when it is LOCKED.
+; FLUSHKBD=No  will not flush keyboard buffer
+; The default is FLUSHKBD=Yes
+;
+; Printer Information
+;
+; Print Screen AID Key
+;
+PRINTKEY=pa1
+;
+; printnull=Yes forces low-values to be converted to spaces and printed
+;
+PRINTNULL=
+;
+APPLID=realcics
+SYSID=cacx
+NETNAME=realcics
+FLDSEP=
+FLDSTRT=
+;
+DATFORM=yymmdd
+;
+; CWA-SIZE is used to define CWA area size
+;
+CWA-SIZE=512
+;
+GROUP=realcics,casample
+;
+; Database processors
+; ,[no]warn disables/enables initialization warning message if service
+; does not start up
+; DB2 and ODBC are shipped with Workbench
+;
+DATACOM=No
+IDMS=No
+; revise dbname to specify dbname,user and password
+;ODBC=No|Yes[,[no]Warn[,dbname[,username,password]]]
+ODBC=Yes,NoWarn
+XDB=No
+IMS=No
+; revise dbname to specify dbname,user and password
+;DB2=No|Yes[,[no]Warn[,dbname[,username,password]]]
+DB2=Yes,NoWarn
+;
+;     PAGE browsing keys
+; refer to RDT manual (SIT) and CICS-Supplied Transactions Manual)
+;
+PGCHAIN=c/
+PGCOPY=d/
+PGPURGE=t/
+PGRET=p/
+;
+; Scroll Keys for CSPG transaction
+; refer to RDT manual (SIT) and CICS-Supplied Transactions Manual)
+;
+; This example use PF8 for next
+;     PF7 for previous
+;     PF11 for last
+;     PF10 for first
+;
+; SKRPF1 thru SKRPF24
+; SKRPA1 thru SKRPA3
+;
+SKRPA1=
+SKRPA2=
+SKRPA3=
+SKRPF1=
+SKRPF2=
+SKRPF3=
+SKRPF4=
+SKRPF5=
+SKRPF6=
+SKRPF7=p
+SKRPF8=n
+SKRPF9=
+SKRPF10=1
+SKRPF11=l
+SKRPF12=
+SKRPF13=
+SKRPF14=
+SKRPF15=
+SKRPF16=
+SKRPF17=
+SKRPF18=
+SKRPF19=
+SKRPF20=
+SKRPF21=
+SKRPF22=
+SKRPF23=
+SKRPF24=
+;
+COLDSTART=No
+DYNAMICOPEN=No
+NOABEND=No
+SHARE=No
+TSSIZE=00256
+TDSIZE=00256
+EXIT_001=
+EXIT_ERROR=
+RECOVER=No
+GMTEXT=Welcome to CA-Realia CICS
+ERASE=NO
+MEMBLOCKSIZE=04096
+MAXWSSIZE=00000
+SESSIONFLUSH=00060
+WAIT=YES
+
+;
+; common values with [CICS Session]
+;
+START=
+TRACE=
+;
+; TIMEOUT sets delay before Terminal Control checks for
+; other activity (START or START for Printer Terminal)
+;
+TIMEOUT=5
+
+[CICS Region InitParm]
+
+[CICS Region files]
+; Filename overides
+;
+; SHARE=Yes|NO
+; CREATE=Yes|NO
+; CLOSE=ENDTASK|NO
+;

@@ -1,0 +1,29 @@
+:Base CACXCSDW.HLP
+:Title CA-Realia II Workbench CICS Help
+:Index CA-Realia II Workbench CICS System Dictionary Help
+1 CA-Realia II Workbench CICS Help
+2 CICS System Dictionary
+4 Using the CICS System Dictionary=Using
+4 Starting the CICS System Dictionary=Starting
+4 Editing Resources=Editing
+4 Navigating in the Containers=Navigating
+3 Menu Commands
+4 File menu
+5 File Menu Commands=FileMenu
+4 Edit menu
+5 Edit Menu Commands=EditMenu
+4 View menu
+5 View Menu Commands=ViewMenu
+4 Resource menu
+5 Resource Menu Commands=ResourceMenu
+4 Options menu
+5 Options Menu Commands=OptionsMenu
+4 Window menu
+5 Window Menu Commands=WindowMenu
+4 Help menu
+5 Help Menu Commands=CSD_HelpMenu
+2 Error Messages
+3 Error Messages=Errors
+2 Condition Codes
+3 Condition Codes Supported=ConditionCodesSupported
+3 Condition Codes Not Supported=ConditionCodesNot

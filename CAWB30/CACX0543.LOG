@@ -1,0 +1,17 @@
+Record Type: Message, 23/11/22, 11:55:10:50
+CICS Application program has encountered a Numeric Data error.
+
+Record Type: Message, 23/11/22, 11:55:10:50
+CICS Application program runtime error: RCL0050E: Invalid decimal data.
+
+Record Type: TCB, 23/11/22, 11:55:10:50
+000000 14 00 07 03 14 00 74 00 14 00 E7 02 14 00 FF 02 ......t.........
+000016 3C 1A 73 00 B4 72 00 03 00 00 00 00 54 44 00 00 <.s..r......TD..
+000032 00 00 00 01 41 30 35 30 00 00 00 00 00 00 00 32 ....A050.......2
+000048 00 00 00 00 00 00 55 41 30 30 31 50 20 20 01    ......UA001P  .
+
+Record Type: Text, 23/11/22, 11:55:16:81
+CACX0001E: 11:55:10 Transaction UA01 program UA001P abend A050
+
+Record Type: Text, 23/11/22, 11:55:24:76
+CACX0009E: Transaction ID is required.

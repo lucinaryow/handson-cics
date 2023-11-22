@@ -1,0 +1,1970 @@
+      *$PP-NOLIST
+      *$PP-DEF CARCPP HA COPY SUPPRESS
+      *$PP
+      *$PP-LIST
+      *CBL XOPTS(COBOL2)
+      *$PP-NOLIST							REALCICS
+      *$PP-DEF CICS HA CICS Internal Data				REALCICS
+      *$PP-DEF CICS HI CICS Internal Code				REALCICS
+      *$PP-DEF CICS NA CICS Generated					REALCICS
+      *  EXEC commands are standard PP-NOLIST				REALCICS
+      *$PP-LIST 							REALCICS
+      *$PP-NOLIST CICS HI						REALCICS
+      *$NOMOVELINK,COMP-4,NOCALL					REALCICS
+      *$DIALECT-VS2							REALCICS
+      *$NOBLL4K 							REALCICS
+      *$EBCDIC								REALCICS
+      *$DCHK								REALCICS
+      *$NOTRUNC 							REALCICS
+      *$PP-LIST CICS HI 						REALCICS
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. UA001P.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER.    IBM-PC.
+       OBJECT-COMPUTER.    IBM-PC.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+      *$PP-NOLIST CICS HA						REALCICS
+       01  DFH-RETURN-STATUS PIC S9(4) COMP-5.				REALCICS
+       01  CICSICB.							REALCICS
+	   05 DFH-ICB-SIZE PIC S9(9) BINARY VALUE 0.			REALCICS
+	   05 DFH-MODULE-INFO.						REALCICS
+	      10 DFH-VERSION PIC S9(4) COMP-4 VALUE 6001.		REALCICS
+              10 DFH-MODULE-ID PIC X(8) VALUE 'UA001P'.                 REALCICS
+              10 DFH-VAR-CODESET PIC X VALUE 'A'.                       REALCICS
+              10 DFH-CODE-TYPE PIC X VALUE '2'.                         REALCICS
+	      10 DFH-CICSTYPE PIC S9(4) COMP-4 VALUE 1. 		REALCICS
+	      10 DFH-LEVEL PIC S9(4) COMP-4 VALUE 05.			REALCICS
+	   05 DFH-COMMAND PIC XX.					REALCICS
+	   05 DFH-DEBUG-DATA.						REALCICS
+	      10 DFH-SOURCE-NAME PIC X(8).				REALCICS
+	      10 DFH-SOURCE-LINE-NUM PIC 9(6) COMP-4.			REALCICS
+	   05 DFH-RESULT-STATUS PIC S9(4) COMP-4.			REALCICS
+	   05 DFH-RESERVED PIC X(512) VALUE LOW-VALUE.			REALCICS
+	   05 DFH-RESULT REDEFINES DFH-RESERVED.			REALCICS
+	      10 DFH-RESP PIC S9(8) COMP-4.				REALCICS
+	      10 DFH-RESP2 PIC S9(8) COMP-4.				REALCICS
+	      10 DFH-WORK-01 PIC S9(9) COMP-5.				REALCICS
+	      10 DFH-WORK-01U REDEFINES DFH-WORK-01 PIC 9(9) COMP-5.	REALCICS
+	   05 DFH-VARS-COUNT PIC S9(4) COMP-4.				REALCICS
+	   05 DFH-VARS-MAX VALUE 24 PIC S9(4) COMP-4.			REALCICS
+	   05 DFH-VARS OCCURS 24.					REALCICS
+	      10 DFH-FLAG PIC S9(4) COMP-4.				REALCICS
+	      10 DFH-DATA-TYPE PIC X.					REALCICS
+	      10 DFH-DATA-CLASS PIC X.					REALCICS
+	      10 DFH-DEBUG POINTER.					REALCICS
+	      10 DFH-ADDR POINTER.					REALCICS
+	      10 DFH-SIZE PIC S9(9) COMP-4.				REALCICS
+	      10 DFH-DATA PIC X(8).					REALCICS
+	      10 DFH-DATA1 REDEFINES DFH-DATA PIC X(1). 		REALCICS
+	      10 DFH-DATA2 REDEFINES DFH-DATA PIC X(2). 		REALCICS
+	      10 DFH-DATA4 REDEFINES DFH-DATA PIC X(4). 		REALCICS
+	      10 DFH-DATA7 REDEFINES DFH-DATA PIC X(7). 		REALCICS
+	      10 DFH-DATA8 REDEFINES DFH-DATA PIC X(8). 		REALCICS
+	      10 DFH-DATAF REDEFINES DFH-DATA PIC S9(9) COMP-4. 	REALCICS
+	      10 DFH-DATAH REDEFINES DFH-DATA PIC S9(4) COMP-4. 	REALCICS
+	      10 DFH-LABEL REDEFINES DFH-DATA PIC S9(4) COMP-4. 	REALCICS
+	      10 DFH-DATAT REDEFINES DFH-DATA PIC S9(15) COMP-3.	REALCICS
+	      10 FILLER REDEFINES DFH-DATA.				REALCICS
+		  15 DFH-DATAP PIC S9(6) COMP-3.			REALCICS
+		  15 FILLER PIC X(4).					REALCICS
+      *$PP-LIST CICS HA 						REALCICS
+       01  WS-CURRENT-MAP              PIC X(7)  VALUE 'UA001M'.
+       01  WS-TIME		       PIC 9(15) COMP-3.
+       01  WS-USERID		       PIC X(8).
+       01  WS-PRGNAME		       PIC X(6).
+       01  WS-LENGTH		       PIC S9(4) COMP.
+       01  WS-QNAME		       PIC X(8).
+       01  WS-RECB-LENGTH	       PIC S9(4) COMP VALUE +20.
+       01  WS-KEYB-LENGTH	       PIC S9(4) COMP VALUE +8.
+       01  WS-KEYB.
+	   05 WS-KEYB7			 PIC X(07) VALUE LOW-VALUES.
+	   05 FILLER REDEFINES WS-KEYB7.
+	      10 FILLER 		 PIC X(04).
+	      10 WS-KEYB3		 PIC 9(03).
+	   05 WS-KEYB1			 PIC X(01) VALUE HIGH-VALUES.
+       01  WS-RECKEY                   VALUE 'ISCB101 '.
+	   05 WS-USR2		       PIC X(04).
+	   05 WS-KEY-NUM	       PIC 9(03).
+	   05 FILLER		       PIC X.
+       01  WS-SEARCH.
+           05  WS-ISCB                 PIC X(4)  VALUE 'ISCB'.
+	   05  WS-KEY2		       PIC 999.
+	   05  FILLER		       PIC X	 VALUE SPACES.
+       01  WS-INDX		       PIC 9(2)  VALUE 1.
+       01  WS-REC.
+	   05  WS-UID.
+	       10 FILLER	       PIC X(04).
+	       10 WS-UID2	       PIC 9(03).
+	       10 FILLER	       PIC X.
+	   05  WS-UID-REDEF REDEFINES WS-UID.
+	       10  WS-USERID7	   PIC X(7).
+	       10  FILLER	   PIC X(1).
+	   05  WS-REQ		       PIC X.
+	   05  WS-ADMN		       PIC X.
+	   05  WS-APP		       PIC X.
+	   05  WS-SP		       PIC X.
+	   05  WS-UPBY		       PIC X(08).
+       01  WS-LASTPAGE		       PIC X(1).
+       01  WS-FIRSTPAGE 	       PIC X(1).
+       01  WS-PAGE-CTR		       PIC 9(02).
+       01  WS-COMMAREA.
+	   05  WS-COMMAREA-REC.
+	       10  WS-CA-UID	       PIC X(8).
+	       10  WS-CA-REC.
+		   15  WS-CA-REQ       PIC X.
+		   15  WS-CA-ADMN      PIC X.
+		   15  WS-CA-APP       PIC X.
+		   15  WS-CA-SP        PIC X.
+	       10  WS-CA-UPBY	       PIC X(8).
+	   05  WS-CA-PRGNAME	       PIC X(06).
+	   05  FILLER		       PIC X(19).
+	   05  WS-DFHSTATE	       PIC X(15).
+	   05  WS-TRANS 	       PIC X(04).
+	   05  WS-LUSER 	       PIC 9(03).
+	   05  WS-FUSER 	       PIC 9(03).
+	   05  WS-PAGE		       PIC 9(02).
+	   05  WS-PAGE-END	       PIC 9(01).
+	   05  WS-SWITCH	       PIC X.
+	   05  WS-QITEM 	       PIC S9(4) COMP.
+	   05  WS-QITEM-START	       PIC S9(4) COMP.
+	   05  WS-QITEM-END	       PIC S9(4) COMP.
+	   05  WS-QITEM-PAGE	       PIC S9(4) COMP.
+      *
+      PCOPY UA001S.
+      *$PP-START-COPY C:\CAWB30\UA001S.COB
+      * SYMBOLIC MAP of ua001s Created by CACXBMS Version 6.0.27
+       01  UA001MI.
+	   02  FILLER				      PIC X(12).
+	   02  DATEL				      PIC S9(4) COMP.
+	   02  DATEF				      PIC X.
+	   02  FILLER REDEFINES DATEF.
+	       03  DATEA			      PIC X.
+	   02  DATEI				      PIC X(010).
+	   02  PAGEL				      PIC S9(4) COMP.
+	   02  PAGEF				      PIC X.
+	   02  FILLER REDEFINES PAGEF.
+	       03  PAGEA			      PIC X.
+	   02  PAGEI				      PIC X(002).
+	   02  TIMEL				      PIC S9(4) COMP.
+	   02  TIMEF				      PIC X.
+	   02  FILLER REDEFINES TIMEF.
+	       03  TIMEA			      PIC X.
+	   02  TIMEI				      PIC X(008).
+	   02  USERL				      PIC S9(4) COMP.
+	   02  USERF				      PIC X.
+	   02  FILLER REDEFINES USERF.
+	       03  USERA			      PIC X.
+	   02  USERI				      PIC X(006).
+	   02  OPTN1L				      PIC S9(4) COMP.
+	   02  OPTN1F				      PIC X.
+	   02  FILLER REDEFINES OPTN1F.
+	       03  OPTN1A			      PIC X.
+	   02  OPTN1I				      PIC X(001).
+	   02  OPTN2L				      PIC S9(4) COMP.
+	   02  OPTN2F				      PIC X.
+	   02  FILLER REDEFINES OPTN2F.
+	       03  OPTN2A			      PIC X.
+	   02  OPTN2I				      PIC X(001).
+	   02  OPTN3L				      PIC S9(4) COMP.
+	   02  OPTN3F				      PIC X.
+	   02  FILLER REDEFINES OPTN3F.
+	       03  OPTN3A			      PIC X.
+	   02  OPTN3I				      PIC X(001).
+	   02  OPTN4L				      PIC S9(4) COMP.
+	   02  OPTN4F				      PIC X.
+	   02  FILLER REDEFINES OPTN4F.
+	       03  OPTN4A			      PIC X.
+	   02  OPTN4I				      PIC X(001).
+	   02  OPTN5L				      PIC S9(4) COMP.
+	   02  OPTN5F				      PIC X.
+	   02  FILLER REDEFINES OPTN5F.
+	       03  OPTN5A			      PIC X.
+	   02  OPTN5I				      PIC X(001).
+	   02  OPTN6L				      PIC S9(4) COMP.
+	   02  OPTN6F				      PIC X.
+	   02  FILLER REDEFINES OPTN6F.
+	       03  OPTN6A			      PIC X.
+	   02  OPTN6I				      PIC X(001).
+	   02  OPTN7L				      PIC S9(4) COMP.
+	   02  OPTN7F				      PIC X.
+	   02  FILLER REDEFINES OPTN7F.
+	       03  OPTN7A			      PIC X.
+	   02  OPTN7I				      PIC X(001).
+	   02  OPTN8L				      PIC S9(4) COMP.
+	   02  OPTN8F				      PIC X.
+	   02  FILLER REDEFINES OPTN8F.
+	       03  OPTN8A			      PIC X.
+	   02  OPTN8I				      PIC X(001).
+	   02  OPTN9L				      PIC S9(4) COMP.
+	   02  OPTN9F				      PIC X.
+	   02  FILLER REDEFINES OPTN9F.
+	       03  OPTN9A			      PIC X.
+	   02  OPTN9I				      PIC X(001).
+	   02  OPTN10L				      PIC S9(4) COMP.
+	   02  OPTN10F				      PIC X.
+	   02  FILLER REDEFINES OPTN10F.
+	       03  OPTN10A			      PIC X.
+	   02  OPTN10I				      PIC X(001).
+	   02  OPTN11L				      PIC S9(4) COMP.
+	   02  OPTN11F				      PIC X.
+	   02  FILLER REDEFINES OPTN11F.
+	       03  OPTN11A			      PIC X.
+	   02  OPTN11I				      PIC X(001).
+	   02  USER1L				      PIC S9(4) COMP.
+	   02  USER1F				      PIC X.
+	   02  FILLER REDEFINES USER1F.
+	       03  USER1A			      PIC X.
+	   02  USER1I				      PIC X(006).
+	   02  USER2L				      PIC S9(4) COMP.
+	   02  USER2F				      PIC X.
+	   02  FILLER REDEFINES USER2F.
+	       03  USER2A			      PIC X.
+	   02  USER2I				      PIC X(006).
+	   02  USER3L				      PIC S9(4) COMP.
+	   02  USER3F				      PIC X.
+	   02  FILLER REDEFINES USER3F.
+	       03  USER3A			      PIC X.
+	   02  USER3I				      PIC X(006).
+	   02  USER4L				      PIC S9(4) COMP.
+	   02  USER4F				      PIC X.
+	   02  FILLER REDEFINES USER4F.
+	       03  USER4A			      PIC X.
+	   02  USER4I				      PIC X(006).
+	   02  USER5L				      PIC S9(4) COMP.
+	   02  USER5F				      PIC X.
+	   02  FILLER REDEFINES USER5F.
+	       03  USER5A			      PIC X.
+	   02  USER5I				      PIC X(006).
+	   02  USER6L				      PIC S9(4) COMP.
+	   02  USER6F				      PIC X.
+	   02  FILLER REDEFINES USER6F.
+	       03  USER6A			      PIC X.
+	   02  USER6I				      PIC X(006).
+	   02  USER7L				      PIC S9(4) COMP.
+	   02  USER7F				      PIC X.
+	   02  FILLER REDEFINES USER7F.
+	       03  USER7A			      PIC X.
+	   02  USER7I				      PIC X(006).
+	   02  USER8L				      PIC S9(4) COMP.
+	   02  USER8F				      PIC X.
+	   02  FILLER REDEFINES USER8F.
+	       03  USER8A			      PIC X.
+	   02  USER8I				      PIC X(006).
+	   02  USER9L				      PIC S9(4) COMP.
+	   02  USER9F				      PIC X.
+	   02  FILLER REDEFINES USER9F.
+	       03  USER9A			      PIC X.
+	   02  USER9I				      PIC X(006).
+	   02  USER10L				      PIC S9(4) COMP.
+	   02  USER10F				      PIC X.
+	   02  FILLER REDEFINES USER10F.
+	       03  USER10A			      PIC X.
+	   02  USER10I				      PIC X(006).
+	   02  USER11L				      PIC S9(4) COMP.
+	   02  USER11F				      PIC X.
+	   02  FILLER REDEFINES USER11F.
+	       03  USER11A			      PIC X.
+	   02  USER11I				      PIC X(006).
+	   02  REQ1L				      PIC S9(4) COMP.
+	   02  REQ1F				      PIC X.
+	   02  FILLER REDEFINES REQ1F.
+	       03  REQ1A			      PIC X.
+	   02  REQ1I				      PIC X(001).
+	   02  REQ2L				      PIC S9(4) COMP.
+	   02  REQ2F				      PIC X.
+	   02  FILLER REDEFINES REQ2F.
+	       03  REQ2A			      PIC X.
+	   02  REQ2I				      PIC X(001).
+	   02  REQ3L				      PIC S9(4) COMP.
+	   02  REQ3F				      PIC X.
+	   02  FILLER REDEFINES REQ3F.
+	       03  REQ3A			      PIC X.
+	   02  REQ3I				      PIC X(001).
+	   02  REQ4L				      PIC S9(4) COMP.
+	   02  REQ4F				      PIC X.
+	   02  FILLER REDEFINES REQ4F.
+	       03  REQ4A			      PIC X.
+	   02  REQ4I				      PIC X(001).
+	   02  REQ5L				      PIC S9(4) COMP.
+	   02  REQ5F				      PIC X.
+	   02  FILLER REDEFINES REQ5F.
+	       03  REQ5A			      PIC X.
+	   02  REQ5I				      PIC X(001).
+	   02  REQ6L				      PIC S9(4) COMP.
+	   02  REQ6F				      PIC X.
+	   02  FILLER REDEFINES REQ6F.
+	       03  REQ6A			      PIC X.
+	   02  REQ6I				      PIC X(001).
+	   02  REQ7L				      PIC S9(4) COMP.
+	   02  REQ7F				      PIC X.
+	   02  FILLER REDEFINES REQ7F.
+	       03  REQ7A			      PIC X.
+	   02  REQ7I				      PIC X(001).
+	   02  REQ8L				      PIC S9(4) COMP.
+	   02  REQ8F				      PIC X.
+	   02  FILLER REDEFINES REQ8F.
+	       03  REQ8A			      PIC X.
+	   02  REQ8I				      PIC X(001).
+	   02  REQ9L				      PIC S9(4) COMP.
+	   02  REQ9F				      PIC X.
+	   02  FILLER REDEFINES REQ9F.
+	       03  REQ9A			      PIC X.
+	   02  REQ9I				      PIC X(001).
+	   02  REQ10L				      PIC S9(4) COMP.
+	   02  REQ10F				      PIC X.
+	   02  FILLER REDEFINES REQ10F.
+	       03  REQ10A			      PIC X.
+	   02  REQ10I				      PIC X(001).
+	   02  REQ11L				      PIC S9(4) COMP.
+	   02  REQ11F				      PIC X.
+	   02  FILLER REDEFINES REQ11F.
+	       03  REQ11A			      PIC X.
+	   02  REQ11I				      PIC X(001).
+	   02  ADMIN1L				      PIC S9(4) COMP.
+	   02  ADMIN1F				      PIC X.
+	   02  FILLER REDEFINES ADMIN1F.
+	       03  ADMIN1A			      PIC X.
+	   02  ADMIN1I				      PIC X(001).
+	   02  ADMIN2L				      PIC S9(4) COMP.
+	   02  ADMIN2F				      PIC X.
+	   02  FILLER REDEFINES ADMIN2F.
+	       03  ADMIN2A			      PIC X.
+	   02  ADMIN2I				      PIC X(001).
+	   02  ADMIN3L				      PIC S9(4) COMP.
+	   02  ADMIN3F				      PIC X.
+	   02  FILLER REDEFINES ADMIN3F.
+	       03  ADMIN3A			      PIC X.
+	   02  ADMIN3I				      PIC X(001).
+	   02  ADMIN4L				      PIC S9(4) COMP.
+	   02  ADMIN4F				      PIC X.
+	   02  FILLER REDEFINES ADMIN4F.
+	       03  ADMIN4A			      PIC X.
+	   02  ADMIN4I				      PIC X(001).
+	   02  ADMIN5L				      PIC S9(4) COMP.
+	   02  ADMIN5F				      PIC X.
+	   02  FILLER REDEFINES ADMIN5F.
+	       03  ADMIN5A			      PIC X.
+	   02  ADMIN5I				      PIC X(001).
+	   02  ADMIN6L				      PIC S9(4) COMP.
+	   02  ADMIN6F				      PIC X.
+	   02  FILLER REDEFINES ADMIN6F.
+	       03  ADMIN6A			      PIC X.
+	   02  ADMIN6I				      PIC X(001).
+	   02  ADMIN7L				      PIC S9(4) COMP.
+	   02  ADMIN7F				      PIC X.
+	   02  FILLER REDEFINES ADMIN7F.
+	       03  ADMIN7A			      PIC X.
+	   02  ADMIN7I				      PIC X(001).
+	   02  ADMIN8L				      PIC S9(4) COMP.
+	   02  ADMIN8F				      PIC X.
+	   02  FILLER REDEFINES ADMIN8F.
+	       03  ADMIN8A			      PIC X.
+	   02  ADMIN8I				      PIC X(001).
+	   02  ADMIN9L				      PIC S9(4) COMP.
+	   02  ADMIN9F				      PIC X.
+	   02  FILLER REDEFINES ADMIN9F.
+	       03  ADMIN9A			      PIC X.
+	   02  ADMIN9I				      PIC X(001).
+	   02  ADMIN10L 			      PIC S9(4) COMP.
+	   02  ADMIN10F 			      PIC X.
+	   02  FILLER REDEFINES ADMIN10F.
+	       03  ADMIN10A			      PIC X.
+	   02  ADMIN10I 			      PIC X(001).
+	   02  ADMIN11L 			      PIC S9(4) COMP.
+	   02  ADMIN11F 			      PIC X.
+	   02  FILLER REDEFINES ADMIN11F.
+	       03  ADMIN11A			      PIC X.
+	   02  ADMIN11I 			      PIC X(001).
+	   02  APROV1L				      PIC S9(4) COMP.
+	   02  APROV1F				      PIC X.
+	   02  FILLER REDEFINES APROV1F.
+	       03  APROV1A			      PIC X.
+	   02  APROV1I				      PIC X(001).
+	   02  APROV2L				      PIC S9(4) COMP.
+	   02  APROV2F				      PIC X.
+	   02  FILLER REDEFINES APROV2F.
+	       03  APROV2A			      PIC X.
+	   02  APROV2I				      PIC X(001).
+	   02  APROV3L				      PIC S9(4) COMP.
+	   02  APROV3F				      PIC X.
+	   02  FILLER REDEFINES APROV3F.
+	       03  APROV3A			      PIC X.
+	   02  APROV3I				      PIC X(001).
+	   02  APROV4L				      PIC S9(4) COMP.
+	   02  APROV4F				      PIC X.
+	   02  FILLER REDEFINES APROV4F.
+	       03  APROV4A			      PIC X.
+	   02  APROV4I				      PIC X(001).
+	   02  APROV5L				      PIC S9(4) COMP.
+	   02  APROV5F				      PIC X.
+	   02  FILLER REDEFINES APROV5F.
+	       03  APROV5A			      PIC X.
+	   02  APROV5I				      PIC X(001).
+	   02  APROV6L				      PIC S9(4) COMP.
+	   02  APROV6F				      PIC X.
+	   02  FILLER REDEFINES APROV6F.
+	       03  APROV6A			      PIC X.
+	   02  APROV6I				      PIC X(001).
+	   02  APROV7L				      PIC S9(4) COMP.
+	   02  APROV7F				      PIC X.
+	   02  FILLER REDEFINES APROV7F.
+	       03  APROV7A			      PIC X.
+	   02  APROV7I				      PIC X(001).
+	   02  APROV8L				      PIC S9(4) COMP.
+	   02  APROV8F				      PIC X.
+	   02  FILLER REDEFINES APROV8F.
+	       03  APROV8A			      PIC X.
+	   02  APROV8I				      PIC X(001).
+	   02  APROV9L				      PIC S9(4) COMP.
+	   02  APROV9F				      PIC X.
+	   02  FILLER REDEFINES APROV9F.
+	       03  APROV9A			      PIC X.
+	   02  APROV9I				      PIC X(001).
+	   02  APROV10L 			      PIC S9(4) COMP.
+	   02  APROV10F 			      PIC X.
+	   02  FILLER REDEFINES APROV10F.
+	       03  APROV10A			      PIC X.
+	   02  APROV10I 			      PIC X(001).
+	   02  APROV11L 			      PIC S9(4) COMP.
+	   02  APROV11F 			      PIC X.
+	   02  FILLER REDEFINES APROV11F.
+	       03  APROV11A			      PIC X.
+	   02  APROV11I 			      PIC X(001).
+	   02  SERV1L				      PIC S9(4) COMP.
+	   02  SERV1F				      PIC X.
+	   02  FILLER REDEFINES SERV1F.
+	       03  SERV1A			      PIC X.
+	   02  SERV1I				      PIC X(001).
+	   02  SERV2L				      PIC S9(4) COMP.
+	   02  SERV2F				      PIC X.
+	   02  FILLER REDEFINES SERV2F.
+	       03  SERV2A			      PIC X.
+	   02  SERV2I				      PIC X(001).
+	   02  SERV3L				      PIC S9(4) COMP.
+	   02  SERV3F				      PIC X.
+	   02  FILLER REDEFINES SERV3F.
+	       03  SERV3A			      PIC X.
+	   02  SERV3I				      PIC X(001).
+	   02  SERV4L				      PIC S9(4) COMP.
+	   02  SERV4F				      PIC X.
+	   02  FILLER REDEFINES SERV4F.
+	       03  SERV4A			      PIC X.
+	   02  SERV4I				      PIC X(001).
+	   02  SERV5L				      PIC S9(4) COMP.
+	   02  SERV5F				      PIC X.
+	   02  FILLER REDEFINES SERV5F.
+	       03  SERV5A			      PIC X.
+	   02  SERV5I				      PIC X(001).
+	   02  SERV6L				      PIC S9(4) COMP.
+	   02  SERV6F				      PIC X.
+	   02  FILLER REDEFINES SERV6F.
+	       03  SERV6A			      PIC X.
+	   02  SERV6I				      PIC X(001).
+	   02  SERV7L				      PIC S9(4) COMP.
+	   02  SERV7F				      PIC X.
+	   02  FILLER REDEFINES SERV7F.
+	       03  SERV7A			      PIC X.
+	   02  SERV7I				      PIC X(001).
+	   02  SERV8L				      PIC S9(4) COMP.
+	   02  SERV8F				      PIC X.
+	   02  FILLER REDEFINES SERV8F.
+	       03  SERV8A			      PIC X.
+	   02  SERV8I				      PIC X(001).
+	   02  SERV9L				      PIC S9(4) COMP.
+	   02  SERV9F				      PIC X.
+	   02  FILLER REDEFINES SERV9F.
+	       03  SERV9A			      PIC X.
+	   02  SERV9I				      PIC X(001).
+	   02  SERV10L				      PIC S9(4) COMP.
+	   02  SERV10F				      PIC X.
+	   02  FILLER REDEFINES SERV10F.
+	       03  SERV10A			      PIC X.
+	   02  SERV10I				      PIC X(001).
+	   02  SERV11L				      PIC S9(4) COMP.
+	   02  SERV11F				      PIC X.
+	   02  FILLER REDEFINES SERV11F.
+	       03  SERV11A			      PIC X.
+	   02  SERV11I				      PIC X(001).
+	   02  ERRMSGL				      PIC S9(4) COMP.
+	   02  ERRMSGF				      PIC X.
+	   02  FILLER REDEFINES ERRMSGF.
+	       03  ERRMSGA			      PIC X.
+	   02  ERRMSGI				      PIC X(071).
+       01  UA001MO REDEFINES UA001MI.
+	   02  FILLER				      PIC X(12).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  DATEO				      PIC X(010).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  PAGEO				      PIC X(002).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  TIMEO				      PIC X(008).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USERO				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN1O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN2O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN3O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN4O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN5O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN6O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN7O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN8O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN9O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN10O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  OPTN11O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER1O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER2O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER3O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER4O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER5O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER6O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER7O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER8O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER9O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER10O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  USER11O				      PIC X(006).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ1O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ2O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ3O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ4O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ5O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ6O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ7O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ8O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ9O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ10O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  REQ11O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN1O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN2O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN3O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN4O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN5O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN6O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN7O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN8O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN9O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN10O 			      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADMIN11O 			      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV1O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV2O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV3O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV4O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV5O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV6O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV7O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV8O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV9O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV10O 			      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  APROV11O 			      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV1O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV2O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV3O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV4O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV5O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV6O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV7O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV8O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV9O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV10O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  SERV11O				      PIC X(001).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ERRMSGO				      PIC X(071).
+      *$PP-END-COPY
+       01  WS-UA001 REDEFINES UA001MI.
+	   05  FILLER		       PIC X(52).
+	   05  UD  OCCURS 11.
+	       10  UDL		       PIC S9(4) COMP.
+	       10  UDF		       PIC X.
+	       10  FILLER REDEFINES UDF.
+		   15  UDA	       PIC X.
+	       10  UDI		       PIC X(001).
+	   05  UID     OCCURS 11.
+	       10  UIDL 	       PIC S9(4) COMP.
+	       10  UIDF 	       PIC X.
+	       10  FILLER REDEFINES UIDF.
+		   15  UIDA	       PIC X.
+	       10  UIDI.
+		   15 FILLER	       PIC X(04).
+		   15 WS-USERNUM       PIC 9(03).
+		   15 FILLER	       PIC X.
+	   05  REQ     OCCURS 11.
+	       10  REQL 	       PIC S9(4) COMP.
+	       10  REQF 	       PIC X.
+	       10  FILLER REDEFINES REQF.
+		   15 REQA	       PIC X.
+	       10  REQI 	       PIC X(001).
+	   05  ADMN	 OCCURS 11.
+	       10  ADMNL	       PIC S9(4) COMP.
+	       10  ADMNF	       PIC X.
+	       10  FILLER REDEFINES ADMNF.
+		   15  ADMNA	       PIC X.
+	       10  ADMNI	       PIC X(001).
+	   05  APP     OCCURS 11.
+	       10  APPL 	       PIC S9(4) COMP.
+	       10  APPF 	       PIC X.
+	       10  FILLER REDEFINES APPF.
+		   15  APPA	       PIC X.
+	       10  APPI 	       PIC X(001).
+	   05  SP	   OCCURS 11.
+	       10  SPL		       PIC S9(4) COMP.
+	       10  SPF		       PIC X.
+	       10  FILLER REDEFINES SPF.
+		   15  SPA	       PIC X.
+	       10  SPI		       PIC X(001).
+
+      *
+      PCOPY DFHAID.
+      *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHAID.COB
+       01  DFHAID.
+      *
+      * CA-Realia CICS 6.0 Computer Associates International, Inc.
+      *
+      * Revision Information
+      * ^{File:dfhaid.cob  }
+      * ^{Timestamp:Thu May 15 14:02:52 1997}
+      * ^{Revision:2.0}
+      *
+      *This is the AID constants copy file
+      *
+           05  DFHENTER                  PIC X VALUE ''''.
+      * 				 value APOST
+           05  DFHCLEAR                  PIC X VALUE '_'.
+           05  DFHPA1                    PIC X VALUE '%'.
+           05  DFHPA2                    PIC X VALUE '>'.
+           05  DFHPA3                    PIC X VALUE ','.
+           05  DFHPF1                    PIC X VALUE '1'.
+           05  DFHPF2                    PIC X VALUE '2'.
+           05  DFHPF3                    PIC X VALUE '3'.
+           05  DFHPF4                    PIC X VALUE '4'.
+           05  DFHPF5                    PIC X VALUE '5'.
+           05  DFHPF6                    PIC X VALUE '6'.
+           05  DFHPF7                    PIC X VALUE '7'.
+           05  DFHPF8                    PIC X VALUE '8'.
+           05  DFHPF9                    PIC X VALUE '9'.
+           05  DFHPF10                   PIC X VALUE ':'.
+           05  DFHPF11                   PIC X VALUE '#'.
+           05  DFHPF12                   PIC X VALUE '@'.
+           05  DFHPF13                   PIC X VALUE 'A'.
+           05  DFHPF14                   PIC X VALUE 'B'.
+           05  DFHPF15                   PIC X VALUE 'C'.
+           05  DFHPF16                   PIC X VALUE 'D'.
+           05  DFHPF17                   PIC X VALUE 'E'.
+           05  DFHPF18                   PIC X VALUE 'F'.
+           05  DFHPF19                   PIC X VALUE 'G'.
+           05  DFHPF20                   PIC X VALUE 'H'.
+           05  DFHPF21                   PIC X VALUE 'I'.
+           05  DFHPF22                   PIC X VALUE '›'.
+      *                                  EBCDIC Cent sign x'4A'
+      *                                  ASCII  Cent sign x'9B'
+           05  DFHPF23                   PIC X VALUE '.'.
+           05  DFHPF24                   PIC X VALUE '<'.
+           05  DFHOPID                   PIC X VALUE 'W'.
+           05  DFHMSRE                   PIC X VALUE 'X'.
+           05  DFHTRIG                   PIC X VALUE '"'.
+      *                                        value QUOTE  "
+           05  DFHPEN                    PIC X VALUE '='.
+           05  DFHCLRP                   PIC X VALUE 'Ý'.
+      *                                  EBCDIC x'6A'
+      *                                  ASCII  x'DD'
+           05  DFHSTRF                   PIC X VALUE 'h'.
+      *    DFHQUIT is a CA-Realia CICS Extension
+      *    It is set by using <Ctrl>+C or <Ctrl>+<Break> Keys
+           05  DFHQUIT                   PIC X VALUE '!'.
+	   05  DFHNULL			 PIC X VALUE LOW-VALUE.
+      *$PP-END-COPY
+      *
+      P  COPY DFHBMSCA.
+      *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHBMSCA.COB
+       01  DFHBMSCA.
+      *
+      * CA-Realia CICS 6.0 Computer Associates International, Inc.
+      *
+      * Revision Information
+      * ^{File:dfhbmsca.cob}
+      * ^{Timestamp:Tue Oct 08 15:34:54 1996}
+      * ^{Revision:2.0}
+      *
+      *  Note:This FILE is provided with most values as quoted literals
+      *       so that the file can be used for both ASCII and EBCDIC
+      *       programs
+      *
+      *       The only exceptions are some 3270 Data Stream Orders
+      *       They use different Hexadecimal values for ASCII and
+      *       EBCDIC and they cannot be expressed as quoted literals
+      *       as the values are <Line Feed>, <Tab>, <End of File> etc.
+      *       characters in ASCII
+      *
+      *       They have their values set up to default to the EBCDIC
+      *       values.
+      *
+      *       3270 orders are only needed for EXEC CICS SEND and RECEIVE
+      *       and SEND TEXT with imbedded format orders.
+      *       If you use these values in ASCII programs the values
+      *       must be changed.
+      *
+      *       An alternative is to use REPLACING to change the values.
+      *
+      *    i.e. COPY DFHBMSCA replacing
+      * 		     ==005== BY ==009==  *> DFHPT
+      * 		     ==021== BY ==010==  *> DFHNL
+      * 		     ==040== BY ==021==  *> DFHSA
+      * 		     ==041== BY ==031==  *> DFHSFE
+      * 		     ==044== BY ==023==  *> DFHMF
+      * 		     ==060== BY ==020==  *> DFHRA
+      * 		     ==063== BY ==026==. *> DFHSUB
+      *
+      ******************************************************************
+      *BMS and Terminal Control - Order & Attributes constants	       *
+      ******************************************************************
+      *
+      *    Field Attributes
+      *
+           05  DFHBMASB                          PIC X VALUE '8'.
+           05  DFHBMASF                          PIC X VALUE '1'.
+           05  DFHBMASK                          PIC X VALUE '0'.
+           05  DFHBMBRY                          PIC X VALUE 'H'.
+           05  DFHBMDAR                          PIC X VALUE '<'.
+           05  DFHBMFSE                          PIC X VALUE 'A'.
+           05  DFHBMPRF                          PIC X VALUE '/'.
+           05  DFHBMPRO                          PIC X VALUE '-'.
+           05  DFHBMUNN                          PIC X VALUE '&'.
+           05  DFHBMUNP                          PIC X VALUE ' '.
+           05  DFHUNNUM                          PIC X VALUE 'J'.
+      *
+      *    partially supported
+      *
+           05  DFHUNNOD                          PIC X VALUE '('.
+           05  DFHUNIMD                          PIC X VALUE 'I'.
+           05  DFHUNINT                          PIC X VALUE 'R'.
+           05  DFHUNNON                          PIC X VALUE '('.
+           05  DFHPROTI                          PIC X VALUE 'Y'.
+           05  DFHPROTN                          PIC X VALUE '%'.
+      *
+      *    These values are additions to mainframe constants
+      *
+           05  DFHBMS-ASK-DARK                   PIC X VALUE '@'.
+           05  DFHBMS-ASK-BRY-FSET               PIC X VALUE '9'.
+           05  DFHBMS-ASK-DAR-FSET               PIC X VALUE ''''.
+      * 					       VALUE APOST
+           05  DFHBMS-PRO-BRY-FSET               PIC X VALUE 'Z'.
+           05  DFHBMS-PRO-DAR-FSET               PIC X VALUE '_'.
+           05  DFHBMS-NUM-BRY                    PIC X VALUE 'Q'.
+           05  DFHBMS-NUM-DAR                    PIC X VALUE '*'.
+           05  DFHBMS-NUM-DAR-FSET               PIC X VALUE ')'.
+      *
+      *    Field Flag values
+	   05  DFHBMEOF-VAL VALUE 128		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMEOF-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMEOF			 PIC X.
+      *                                          x'80'.
+	   05  DFHBMCUR-VAL VALUE 002		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMCUR-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMCUR			 PIC X.
+      *                                          x'02'.
+	   05  DFHBMMEC-VAL VALUE 130		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMMEC-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMMEC			 PIC X.
+      *                                          x'82'.
+      *                                          x'02'.
+	   05  DFHBMFLG-VAL  VALUE 0		 PIC S9(4) COMP-4.
+	       88  DFHERASE			 VALUES 128 130.
+      *                                          x'80' X'82'
+	       88  DFHCURSR			 VALUES 002 130.
+      *                                          x'02' X'82'
+	   05  FILLER REDEFINES DFHBMFLG-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMFLG			 PIC X.
+
+	   05  DFHBMDUP-VAL VALUE 028		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMDUP-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMDUP			 PIC X.
+      *                                              x'1C'
+      *
+      ******************************************************************
+      *    supported 327X Extended Attributes
+      *
+      *    Extended COLOR Attributes
+      *
+           05  DFHDFCOL                          PIC X VALUE '0'.
+           05  DFHBLUE                           PIC X VALUE '1'.
+           05  DFHRED                            PIC X VALUE '2'.
+           05  DFHPINK                           PIC X VALUE '3'.
+           05  DFHGREEN                          PIC X VALUE '4'.
+           05  DFHTURQ                           PIC X VALUE '5'.
+           05  DFHYELLO                          PIC X VALUE '6'.
+           05  DFHNEUTR                          PIC X VALUE '7'.
+      *
+      *    Extended HILIGHT Attributes
+      *
+           05  DFHDFHI                           PIC X VALUE '0'.
+           05  DFHBLINK                          PIC X VALUE '1'.
+           05  DFHREVRS                          PIC X VALUE '2'.
+           05  DFHUNDLN                          PIC X VALUE '4'.
+      *
+      ******************************************************************
+      *    supported 327X Data Stream Orders
+      *
+	   05  DFHSBA-VAL VALUE 017		  PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHSBA-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHSBA			 PIC X.
+      *                                              x'11'
+	   05  DFHEUA-VAL VALUE 018		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHEUA-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHEUA			 PIC X.
+      *                                              x'12'
+	   05  DFHIC-VAL VALUE 019		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHIC-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHIC			 PIC X.
+      *                                              X'13'.
+	   05  DFHSF-VAL VALUE 029		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHSF-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHSF			 PIC X.
+      *                                              X'1D'.
+	   05  DFHPT-VAL VALUE 005		 PIC S9(4) COMP-4.
+	       88 DFHPT-VAL-EBCDIC		 VALUE 5.
+	       88 DFHPT-VAL-ASCII		 VALUE 9.
+	   05  FILLER REDEFINES DFHPT-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHPT			 PIC X.
+      *                                              EBCDIC X'05'.
+      *                                              ASCII  X'09'.
+	   05  DFHRA-VAL VALUE 060		 PIC S9(4) COMP-4.
+	       88 DFHRA-VAL-EBCDIC		 VALUE 60.
+	       88 DFHRA-VAL-ASCII		 VALUE 20.
+	   05  FILLER REDEFINES DFHRA-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHRA			 PIC X.
+      *                                              EBCDIC x'3C'
+      *                                              ASCII  x'14'
+	   05  DFHSFE-VAL VALUE 041		 PIC S9(4) COMP-4.
+	       88 DFHSFE-VAL-EBCDIC		 VALUE 41.
+	       88 DFHSFE-VAL-ASCII		 VALUE 31.
+	   05  FILLER REDEFINES DFHSFE-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHSFE			 PIC X.
+      *                                              EBCDIC x'29'
+      *                                              ASCII  x'1F'
+	   05  DFHMF-VAL VALUE 044		 PIC S9(4) COMP-4.
+	       88 DFHMF-VAL-EBCDIC		 VALUE 44.
+	       88 DFHMF-VAL-ASCII		 VALUE 23.
+	   05  FILLER REDEFINES DFHMF-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHMF			 PIC X.
+      *                                              EBCDIC x'2C'
+      *                                              ASCII  x'17'
+      *
+      ******************************************************************
+      *    unsupported 327X Data Stream order codes
+      *
+	   05  DFHSA-VAL VALUE 040		 PIC S9(4) COMP-4.
+	       88 DFHSA-VAL-EBCDIC		 VALUE 40.
+	       88 DFHSA-VAL-ASCII		 VALUE 21.
+	   05  FILLER REDEFINES DFHSA-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHSA			 PIC X.
+      *                                              EBCDIC x'28'
+      *                                              ASCII  x'15'
+	   05  DFHGE-VAL VALUE 008		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHGE-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHGE			 PIC X.
+      *                                              X'08'.
+      *
+      ******************************************************************
+      *    SFE and MF supported attribute types
+      *
+           05  DFHCOLOR                          PIC X VALUE 'ƒ'.
+      *                                              EBCDIC x'42'
+      *                                              ASCII  x'83'
+           05  DFHHLT                            PIC X VALUE 'Ö'.
+      *                                              EBCDIC x'41'
+      *                                              ASCII  x'D6'
+           05  DFH3270                           PIC X VALUE '{'.
+      *
+      *    supported for SEND TEXT command and printer terminal
+      *
+	   05  DFHBMPNL-VAL VALUE 021		 PIC S9(4) COMP-4.
+	       88 DFHBMPNL-VAL-EBCDIC		 VALUE 21.
+	       88 DFHBMPNL-VAL-ASCII		 VALUE 10.
+	   05  FILLER REDEFINES DFHBMPNL-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMPNL			 PIC X.
+      *                                              EBCDIC X'15'.
+      *                                              ASCII  X'0A'.
+      *
+      ******************************************************************
+      *    Printer terminal data stream only
+      *
+	   05  DFHBMPFF-VAL VALUE 012		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMPFF-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMPFF			 PIC X.
+      *                                              X'0C'.
+	   05  DFHBMPCR-VAL VALUE 013		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMPCR-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMPCR			 PIC X.
+      *                                              X'0D'.
+	   05  DFHBMPEM-VAL VALUE 025		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMPEM-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHBMPEM			 PIC X.
+      *                                              X'19'.
+      *
+      ******************************************************************
+      *    unsupported Miscellaneous attributes and constants
+      *
+	   05  DFHALL				 PIC X VALUE LOW-VALUES.
+           05  DFHBASE                           PIC X VALUE '0'.
+	   05  DFHBMDET 			 PIC X VALUE LOW-VALUES.
+	   05  DFHBMPSOSI-VAL VALUE 3599	 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHBMPSOSI-VAL.
+	       10  DFHBMPSO			 PIC X.
+      *                                              X'0E'.
+	       10  DFHBMPSI			 PIC X.
+      *                                              X'0F'.
+	   05  DFHDFT VALUE HIGH-VALUES 	 PIC X.
+           05  DFHERROR                          PIC X VALUE '¶'.
+      *                                              EBCDIC X'1A'.
+      *                                              ASCII  X'B6'.
+           05  DFHFIL                            PIC X VALUE '4'.
+           05  DFHMENT                           PIC X VALUE '2'.
+           05  DFHMET                            PIC X VALUE '3'.
+           05  DFHMFE                            PIC X VALUE '6'.
+           05  DFHMFET                           PIC X VALUE '7'.
+           05  DFHMFT                            PIC X VALUE '5'.
+           05  DFHMT                             PIC X VALUE '1'.
+           05  DFHOUTLN                          PIC X VALUE 'B'.
+           05  DFHPS                             PIC X VALUE '„'.
+      *                                              EBCDIC x'43'
+      *                                              ASCII  x'84'
+           05  DFHVAL                            PIC X VALUE 'A'.
+      *
+	   05  DFHSUB-VAL   VALUE 063		 PIC S9(4) COMP-4.
+	       88 DFHSUB-VAL-EBCDIC		 VALUE 63.
+	       88 DFHSUB-VAL-ASCII		 VALUE 26.
+	   05  FILLER REDEFINES DFHSUB-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHSUB			 PIC X.
+      *                                              EBCDIC X'3F'.
+      *                                              ASCII  X'1A'.
+      *
+	   05  DFHFM-VAL    VALUE 030		 PIC S9(4) COMP-4.
+	   05  FILLER REDEFINES DFHFM-VAL.
+	       10  FILLER			 PIC X.
+	       10  DFHFM			 PIC X.
+      *                                              EBCDIC X'1E'.
+	   05  DFHEO VALUE HIGH-VALUE		 PIC X.
+      *$PP-END-COPY
+
+       LINKAGE SECTION.
+      *$PP-START-INSERT CICS NA 					REALCICS
+       01  DFHEIBLK.							REALCICS
+	   05 EIBTIME  PIC S9(7) COMP-3.				REALCICS
+	   05 EIBDATE  PIC S9(7) COMP-3.				REALCICS
+	   05 EIBTRNID PIC X(4).					REALCICS
+	   05 EIBTASKN PIC S9(7) COMP-3.				REALCICS
+	   05 EIBTRMID PIC X(4).					REALCICS
+	   05 DFHEIGDI PIC S9(4) COMP-4.				REALCICS
+	   05 EIBCPOSN PIC S9(4) COMP-4.				REALCICS
+	   05 EIBCALEN PIC S9(4) COMP-4.				REALCICS
+	   05 EIBAID   PIC X.						REALCICS
+	   05 EIBFN    PIC X(2).					REALCICS
+	   05 EIBRCODE PIC X(6).					REALCICS
+	   05 EIBDS    PIC X(8).					REALCICS
+	   05 EIBREQID PIC X(8).					REALCICS
+	   05 EIBRSRCE PIC X(8).					REALCICS
+	   05 EIBSYNC  PIC X.						REALCICS
+	   05 EIBFREE  PIC X.						REALCICS
+	   05 EIBRECV  PIC X.						REALCICS
+	   05 EIBSEND  PIC X.						REALCICS
+	   05 EIBATT   PIC X.						REALCICS
+	   05 EIBEOC   PIC X.						REALCICS
+	   05 EIBFMH   PIC X.						REALCICS
+	   05 EIBCOMPL PIC X.						REALCICS
+	   05 EIBSIG   PIC X.						REALCICS
+	   05 EIBCONF  PIC X.						REALCICS
+	   05 EIBERR   PIC X.						REALCICS
+	   05 EIBERRCD PIC X(4).					REALCICS
+	   05 EIBSYNRB PIC X.						REALCICS
+	   05 EIBNODAT PIC X.						REALCICS
+	   05 EIBRESP  PIC S9(8) COMP-4.				REALCICS
+	   05 EIBRESP2 PIC S9(8) COMP-4.				REALCICS
+	   05 EIBRLDBK PIC X.						REALCICS
+	   05 EIBCARESERVED PIC X(32).					REALCICS
+      *$PP-END-INSERT CICS NA						REALCICS
+	01  DFHCOMMAREA.
+	  05  DF-REC.
+	      10  DF-USERID	       PIC X(8).
+	      10  DF-REC.
+		  15  DF-REQ	       PIC X.
+		  15  DF-ADMIN	       PIC X.
+		  15  DF-APP	       PIC X.
+		  15  DF-SERVICE       PIC X.
+	      10  DF-UPDATEDBY	       PIC X(8).
+	   05  DF-PRGNAME	       PIC  X(6).
+	   05  FILLER		       PIC X(19).
+	   05  DFHSTATE 	       PIC X(15).
+	   05  DF-TRANS 	       PIC X(04).
+	   05  DF-LUSER 	       PIC 9(03).
+	   05  DF-FUSER 	       PIC 9(03).
+	   05  DF-PAGE		       PIC 9(02).
+	   05  DF-PAGE-END	       PIC 9(01).
+	   05  DF-SWITCH	       PIC X.
+	   05  DF-QITEM 	       PIC S9(4) COMP.
+	   05  DF-QITEM-START	       PIC S9(4) COMP.
+	   05  DF-QITEM-END	       PIC S9(4) COMP.
+	   05  DF-QITEM-PAGE	       PIC S9(4) COMP.
+		   05  DF-SAMPLE	       PIC X(08).
+		   05  DF-UA02-STATE	       PIC X(15).
+      *
+       PROCEDURE DIVISION						REALCICS
+      *$PP-START-INSERT CICS NA 					REALCICS
+	   USING DFHEIBLK DFHCOMMAREA.					REALCICS
+      *$PP-END-INSERT CICS NA						REALCICS
+      *$PP-NOLIST CICS HI						REALCICS
+       DFH-ROUTINES SECTION.						REALCICS
+       DFH-ENTRY.							REALCICS
+           MOVE 'ua001p' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 0 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE LOW-VALUE TO DFH-COMMAND				REALCICS
+           CALL 'Mli_GetLAdr' USING DFHEIBLK DFH-ADDR (1)               REALCICS
+           CALL 'Mli_GetMaxLen' USING DFHCOMMAREA DFH-WORK-01           REALCICS
+	   ADD 0 DFH-WORK-01 GIVING DFH-SIZE (1)			REALCICS
+           CALL 'REALIA_GET_PARM_COUNT' USING DFH-WORK-01               REALCICS
+	   ADD 0 DFH-WORK-01U GIVING DFH-FLAG (1)			REALCICS
+	   MOVE 1 TO DFH-VARS-COUNT					REALCICS
+	   MOVE LOW-VALUE TO DFH-COMMAND				REALCICS
+           CALL 'CICS_Module_Init' USING CICSICB GIVING                 REALCICS
+	       DFH-RETURN-STATUS					REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN END-IF			REALCICS
+	   GO TO DFH-MAINLINE-ENTRY.					REALCICS
+       DFH-GET-INFO.							REALCICS
+           ENTRY 'CACX_GET_INFO_UA001P' USING DFHEIBLK.                 REALCICS
+	   STRING DFH-MODULE-INFO DELIMITED BY SIZE INTO EIBCARESERVED	REALCICS
+	   GOBACK.							REALCICS
+       DFH-MAINLINE-ENTRY SECTION.					REALCICS
+      *$PP-LIST CICS HI 						REALCICS
+       100-PROCESS SECTION.
+	   MOVE DFHCOMMAREA TO WS-COMMAREA
+	   STRING EIBTRMID DELIMITED BY SIZE
+		  EIBTRNID DELIMITED BY SIZE
+		  INTO WS-QNAME
+	   MOVE LENGTH OF UA001MI TO WS-LENGTH
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS
+      P      IGNORE CONDITION ERROR
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 155 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (02)                              REALCICS
+           MOVE X'020A' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_HANDLE' USING CICSICB GIVING                 REALCICS
+	       DFH-RETURN-STATUS					REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+	   IF EIBCALEN = +0
+	       MOVE 1 TO WS-PAGE
+	       MOVE WS-PAGE TO PAGEO
+               MOVE 'INITIAL' TO WS-DFHSTATE
+               MOVE 'N' TO DF-SWITCH
+	       PERFORM 999-MOVE-FILE-TO-Q
+	       PERFORM 500-MOVE-Q-TO-SCREEN
+	       PERFORM 100-NEW-MAP
+
+	   ELSE
+      *$PP-DEBUG							REALCICS
+      P 	EXEC CICS
+      P              RECEIVE MAP ('UA001M')
+      P              MAPSET ('UA001S')
+      P 	     INTO (UA001MI)
+      P 	 END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 169 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '7 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA001M' TO DFH-DATA7 (02)                              REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA7 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA7 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE '7 ' TO DFH-DATA-CLASS (03)                             REALCICS
+           MOVE 'UA001S' TO DFH-DATA7 (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF DFH-DATA7 (03)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA7 (03) GIVING DFH-SIZE (03)		REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (04)                              REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF UA001MI			REALCICS
+	   ADD 0 LENGTH OF UA001MI GIVING DFH-SIZE (04) 		REALCICS
+	   MOVE 002 TO DFH-FLAG (05)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (05)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (05)                              REALCICS
+           MOVE X'1802' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 005 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+      *$PP-START-INSERT CICS NA 					REALCICS
+      P 	IF  NOT EIBRESP = DFHRESP(MAPFAIL)
+      *$PP-END-INSERT CICS NA						REALCICS
+		IF  NOT EIBRESP =	  036				REALCICS
+		    EVALUATE EIBAID
+					 WHEN DFHPF2
+					    PERFORM 210-WHENF2
+		     WHEN DFHPF3
+      *$PP-DEBUG							REALCICS
+      P 		EXEC CICS
+      P 		    SEND CONTROL
+      P 		    ERASE
+      P 		END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 179 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (04)                              REALCICS
+	   MOVE 003 TO DFH-FLAG (12)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (12)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (12)                              REALCICS
+           MOVE X'1812' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 012 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+      *$PP-DEBUG							REALCICS
+      P 		EXEC CICS DELETEQ TS
+      P 		     QUEUE(WS-QNAME)
+      P 		END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 183 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '2' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   MOVE WS-QNAME TO DFH-DATA8 (02)				REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0A06' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+      *$PP-DEBUG							REALCICS
+      P 		EXEC CICS RETURN
+      P 		END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 186 TO DFH-SOURCE-LINE-NUM				REALCICS
+           MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 000 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+		    WHEN DFHPF7
+			PERFORM 220-WHENF7
+
+		    WHEN DFHPF8
+			PERFORM 230-WHENF8
+
+		    WHEN OTHER
+                        MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+		    END-EVALUATE
+	       ELSE
+		   PERFORM 100-NEW-MAP
+	       END-IF
+	   END-IF.
+
+
+       100-NEW-MAP SECTION.
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS ASSIGN
+      P        USERID(WS-USERID)
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 205 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 080 TO DFH-FLAG (02)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF WS-USERID			REALCICS
+	   ADD 0 LENGTH OF WS-USERID GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0208' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS ASKTIME
+      P        ABSTIME	(WS-TIME)
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 209 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE 'T ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF WS-TIME			REALCICS
+	   ADD 0 LENGTH OF WS-TIME GIVING DFH-SIZE (02) 		REALCICS
+           MOVE X'4A02' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS FORMATTIME
+      P        ABSTIME	(WS-TIME)
+      P        DATESEP  ('/')
+      P        DDMMYYYY   (DATEO)
+      P        TIMESEP    (':')
+      P        TIME	  (TIMEO)
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 213 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE 'T ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF WS-TIME			REALCICS
+	   ADD 0 LENGTH OF WS-TIME GIVING DFH-SIZE (02) 		REALCICS
+	   MOVE 001 TO DFH-FLAG (09)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (09)                               REALCICS
+           MOVE '1 ' TO DFH-DATA-CLASS (09)                             REALCICS
+           MOVE '/' TO DFH-DATA1 (09)                                   REALCICS
+	   SET DFH-ADDR (09) TO ADDRESS OF DFH-DATA1 (09)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA1 (09) GIVING DFH-SIZE (09)		REALCICS
+	   MOVE 001 TO DFH-FLAG (21)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (21)                               REALCICS
+           MOVE 'A ' TO DFH-DATA-CLASS (21)                             REALCICS
+	   SET DFH-ADDR (21) TO ADDRESS OF DATEO			REALCICS
+	   ADD 0 LENGTH OF DATEO GIVING DFH-SIZE (21)			REALCICS
+	   MOVE 001 TO DFH-FLAG (17)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (17)                               REALCICS
+           MOVE '1 ' TO DFH-DATA-CLASS (17)                             REALCICS
+           MOVE ':' TO DFH-DATA1 (17)                                   REALCICS
+	   SET DFH-ADDR (17) TO ADDRESS OF DFH-DATA1 (17)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA1 (17) GIVING DFH-SIZE (17)		REALCICS
+	   MOVE 001 TO DFH-FLAG (15)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (15)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (15)                             REALCICS
+	   SET DFH-ADDR (15) TO ADDRESS OF TIMEO			REALCICS
+	   ADD 0 LENGTH OF TIMEO GIVING DFH-SIZE (15)			REALCICS
+           MOVE X'4A04' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 021 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS
+      P        SEND MAP ('UA001M')
+      P        MAPSET ('UA001S')
+      P        FROM (UA001MO)
+      P        LENGTH(WS-LENGTH)
+      P        ERASE
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 221 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '7 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA001M' TO DFH-DATA7 (02)                              REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA7 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA7 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE '7 ' TO DFH-DATA-CLASS (03)                             REALCICS
+           MOVE 'UA001S' TO DFH-DATA7 (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF DFH-DATA7 (03)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA7 (03) GIVING DFH-SIZE (03)		REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (04)                              REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF UA001MO			REALCICS
+	   ADD 0 LENGTH OF UA001MO GIVING DFH-SIZE (04) 		REALCICS
+	   MOVE 001 TO DFH-FLAG (06)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (06)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (06)                             REALCICS
+	   ADD 0 WS-LENGTH GIVING DFH-DATAH (06)			REALCICS
+	   SET DFH-ADDR (06) TO ADDRESS OF DFH-DATAH (06)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (06) GIVING DFH-SIZE (06)		REALCICS
+	   MOVE 001 TO DFH-FLAG (09)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (09)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (09)                              REALCICS
+	   MOVE 003 TO DFH-FLAG (18)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (18)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (18)                              REALCICS
+           MOVE X'1804' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 018 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS RETURN
+      P        TRANSID('UA01')
+      P        COMMAREA(WS-COMMAREA)
+      P    END-EXEC.
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 229 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '4 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA01' TO DFH-DATA4 (02)                                REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA4 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA4 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (04)                              REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF WS-COMMAREA			REALCICS
+	   ADD 0 LENGTH OF WS-COMMAREA GIVING DFH-SIZE (04)		REALCICS
+           MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 004 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+	   .								REALCICS
+      *$PP-LIST 							REALCICS
+
+       210-WHENF2 SECTION.
+      *$PP-DEBUG							REALCICS
+      P        EXEC CICS ASSIGN
+      P        USERID(WS-USERID)
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 235 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 080 TO DFH-FLAG (02)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF WS-USERID			REALCICS
+	   ADD 0 LENGTH OF WS-USERID GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0208' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+               MOVE 'INITIAL' TO DF-UA02-STATE
+      *$PP-DEBUG							REALCICS
+      P 	   EXEC CICS XCTL
+      P
+      P         PROGRAM('UA002P')
+      P 			COMMAREA(DF-UA02-STATE)
+      P 			LENGTH(15)
+      P    END-EXEC.
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 239 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '2' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA002P' TO DFH-DATA8 (02)                              REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF DF-UA02-STATE		REALCICS
+	   ADD 0 LENGTH OF DF-UA02-STATE GIVING DFH-SIZE (03)		REALCICS
+	   MOVE 001 TO DFH-FLAG (05)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (05)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (05)                             REALCICS
+	   ADD 0 15 GIVING DFH-DATAH (05)				REALCICS
+	   SET DFH-ADDR (05) TO ADDRESS OF DFH-DATAH (05)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (05) GIVING DFH-SIZE (05)		REALCICS
+           MOVE X'0E04' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 005 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+	   .								REALCICS
+      *$PP-LIST 							REALCICS
+
+       220-WHENF7 SECTION.
+
+	    SUBTRACT 11 FROM WS-QITEM-PAGE
+	    SUBTRACT 1 FROM WS-PAGE
+	    IF WS-QITEM-PAGE = WS-QITEM-START OR
+	       WS-QITEM-PAGE <	WS-QITEM-START
+               MOVE 'THIS IS THE FIRST PAGE' TO ERRMSGO
+	       MOVE 1 TO WS-PAGE
+	       MOVE WS-QITEM-START TO WS-QITEM-PAGE
+	    ELSE
+	      SUBTRACT 1 FROM WS-PAGE
+	    END-IF
+	    MOVE WS-PAGE TO PAGEO
+	    PERFORM 500-MOVE-Q-TO-SCREEN
+	    PERFORM 100-NEW-MAP.
+
+       230-WHENF8 SECTION.
+
+	    ADD 11 TO WS-QITEM-PAGE
+	    IF WS-QITEM-PAGE > WS-QITEM-END
+	       SUBTRACT 11 FROM WS-QITEM-PAGE
+               MOVE 'THIS IS THE LAST PAGE' TO ERRMSGO
+	    ELSE
+	       ADD 1 TO WS-PAGE
+	       MOVE WS-PAGE TO PAGEO
+	       PERFORM 500-MOVE-Q-TO-SCREEN
+	    END-IF.
+	    PERFORM 100-NEW-MAP.
+
+       500-MOVE-Q-TO-SCREEN SECTION.
+
+	    MOVE WS-QITEM-PAGE TO WS-QITEM
+      *$PP-DEBUG							REALCICS
+      P     EXEC CICS READQ TS
+      P 	      QUEUE(WS-QNAME)
+      P 	      INTO (WS-REC)
+      P 	      LENGTH(WS-RECB-LENGTH)
+      P 	      ITEM (WS-QITEM)
+      P      END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 278 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '2' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   MOVE WS-QNAME TO DFH-DATA8 (02)				REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (03)			REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (04)                             REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF WS-RECB-LENGTH		REALCICS
+	   ADD 0 LENGTH OF WS-RECB-LENGTH GIVING DFH-SIZE (04)		REALCICS
+	   MOVE 002 TO DFH-FLAG (06)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (06)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (06)                             REALCICS
+	   ADD 0 WS-QITEM GIVING DFH-DATAH (06) 			REALCICS
+	   SET DFH-ADDR (06) TO ADDRESS OF DFH-DATAH (06)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (06) GIVING DFH-SIZE (06)		REALCICS
+           MOVE X'0A04' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 006 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+	    MOVE 1 TO WS-INDX
+
+	    PERFORM UNTIL WS-INDX > 11
+      *$PP-START-INSERT CICS NA 					REALCICS
+      P 	IF EIBRESP = DFHRESP(NORMAL) AND
+      *$PP-END-INSERT CICS NA						REALCICS
+		IF EIBRESP =	     000     AND			REALCICS
+		   WS-QITEM <= WS-QITEM-END
+		   MOVE WS-UID TO UIDI(WS-INDX)
+		   MOVE WS-REQ TO REQI(WS-INDX)
+		   MOVE WS-ADMN TO ADMNI(WS-INDX)
+		   MOVE WS-APP TO APPI(WS-INDX)
+		   MOVE WS-SP TO SPI(WS-INDX)
+		   ADD 1 TO WS-INDX
+		   ADD 1 TO WS-QITEM
+      *$PP-DEBUG							REALCICS
+      P 	   EXEC CICS READQ TS
+      P 		QUEUE(WS-QNAME)
+      P 		INTO (WS-REC)
+      P 		ITEM (WS-QITEM)
+      P 	  END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 297 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '2' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   MOVE WS-QNAME TO DFH-DATA8 (02)				REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (03)			REALCICS
+	   MOVE 002 TO DFH-FLAG (06)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (06)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (06)                             REALCICS
+	   ADD 0 WS-QITEM GIVING DFH-DATAH (06) 			REALCICS
+	   SET DFH-ADDR (06) TO ADDRESS OF DFH-DATAH (06)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (06) GIVING DFH-SIZE (06)		REALCICS
+           MOVE X'0A04' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 006 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+	       ELSE
+		  MOVE SPACES TO UDI(WS-INDX)
+		  MOVE SPACES TO UIDI(WS-INDX)
+		  MOVE SPACES TO REQI(WS-INDX)
+		  MOVE SPACES TO ADMNI(WS-INDX)
+		  MOVE SPACES TO APPI(WS-INDX)
+		  MOVE SPACES TO SPI(WS-INDX)
+                  MOVE 'THIS IS THE LAST PAGE'  TO ERRMSGO
+                  MOVE '1' TO WS-LASTPAGE
+		  ADD 1 TO WS-INDX
+	       END-IF
+	    END-PERFORM
+
+	   MOVE WS-USERNUM(1) TO WS-FUSER.
+
+       500-EXIT.
+	   EXIT.
+
+       999-MOVE-FILE-TO-Q SECTION.
+
+	    MOVE LOW-VALUES TO WS-KEYB.
+      *$PP-DEBUG							REALCICS
+      P     EXEC CICS
+      P        STARTBR FILE('uaf00001')
+      P        RIDFLD (WS-KEYB)
+      P        GTEQ
+      P     END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 323 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UAF00001' TO DFH-DATA8 (02)                            REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-KEYB			REALCICS
+	   ADD 0 LENGTH OF WS-KEYB GIVING DFH-SIZE (03) 		REALCICS
+	   MOVE 001 TO DFH-FLAG (08)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (08)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (08)                              REALCICS
+           MOVE X'060C' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 008 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+      *$PP-DEBUG							REALCICS
+      P     EXEC CICS
+      P         READNEXT FILE('uaf00001')
+      P 	INTO (WS-REC)
+      P 	RIDFLD (WS-KEYB)
+      P     END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 329 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UAF00001' TO DFH-DATA8 (02)                            REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (03)			REALCICS
+	   MOVE 001 TO DFH-FLAG (05)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (05)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (05)                              REALCICS
+	   SET DFH-ADDR (05) TO ADDRESS OF WS-KEYB			REALCICS
+	   ADD 0 LENGTH OF WS-KEYB GIVING DFH-SIZE (05) 		REALCICS
+           MOVE X'060E' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 005 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+
+
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS WRITEQ TS
+      P 	     QUEUE(WS-QNAME)
+      P 	     FROM (WS-REC)
+      P 	     LENGTH (WS-RECB-LENGTH)
+      P 	     ITEM (WS-QITEM)
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 336 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '2' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   MOVE WS-QNAME TO DFH-DATA8 (02)				REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (03)			REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (04)                             REALCICS
+	   ADD 0 WS-RECB-LENGTH GIVING DFH-DATAH (04)			REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF DFH-DATAH (04)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (04) GIVING DFH-SIZE (04)		REALCICS
+	   MOVE 002 TO DFH-FLAG (05)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (05)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (05)                             REALCICS
+	   SET DFH-ADDR (05) TO ADDRESS OF WS-QITEM			REALCICS
+	   ADD 0 LENGTH OF WS-QITEM GIVING DFH-SIZE (05)		REALCICS
+           MOVE X'0A02' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 005 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+	   MOVE WS-QITEM TO WS-QITEM-START
+      *$PP-START-INSERT CICS NA 					REALCICS
+      P    PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
+      *$PP-END-INSERT CICS NA						REALCICS
+	   PERFORM UNTIL EIBRESP NOT =	       000			REALCICS
+	       MOVE WS-QITEM TO WS-QITEM-END
+      *$PP-DEBUG							REALCICS
+      P        EXEC CICS
+      P             READNEXT FILE('uaf00001')
+      P 	    INTO (WS-REC)
+      P 	    RIDFLD (WS-KEYB)
+      P        END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 345 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UAF00001' TO DFH-DATA8 (02)                            REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (03)			REALCICS
+	   MOVE 001 TO DFH-FLAG (05)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (05)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (05)                              REALCICS
+	   SET DFH-ADDR (05) TO ADDRESS OF WS-KEYB			REALCICS
+	   ADD 0 LENGTH OF WS-KEYB GIVING DFH-SIZE (05) 		REALCICS
+           MOVE X'060E' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 005 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+      *$PP-START-INSERT CICS NA 					REALCICS
+      P        IF EIBRESP = DFHRESP(NORMAL)
+      *$PP-END-INSERT CICS NA						REALCICS
+	       IF EIBRESP =	    000 				REALCICS
+      *$PP-DEBUG							REALCICS
+      P 	  EXEC CICS WRITEQ TS
+      P 	       QUEUE(WS-QNAME)
+      P 	       FROM (WS-REC)
+      P 	       LENGTH (WS-RECB-LENGTH)
+      P 	       ITEM (WS-QITEM)
+      P 	  END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 351 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '2' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+	   MOVE WS-QNAME TO DFH-DATA8 (02)				REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (03)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (03)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (03)                              REALCICS
+	   SET DFH-ADDR (03) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (03)			REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (04)                             REALCICS
+	   ADD 0 WS-RECB-LENGTH GIVING DFH-DATAH (04)			REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF DFH-DATAH (04)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (04) GIVING DFH-SIZE (04)		REALCICS
+	   MOVE 002 TO DFH-FLAG (05)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (05)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (05)                             REALCICS
+	   SET DFH-ADDR (05) TO ADDRESS OF WS-QITEM			REALCICS
+	   ADD 0 LENGTH OF WS-QITEM GIVING DFH-SIZE (05)		REALCICS
+           MOVE X'0A02' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 005 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+		  MOVE WS-USERID7 TO WS-KEYB7
+		  MOVE HIGH-VALUES TO WS-KEYB1
+	       END-IF
+	   END-PERFORM
+      *$PP-DEBUG							REALCICS
+      P    EXEC CICS
+      P         ENDBR FILE('uaf00001')
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 361 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UAF00001' TO DFH-DATA8 (02)                            REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0612' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+	   MOVE WS-QITEM-START TO WS-QITEM-PAGE.
+
+       999-EXIT.
+	   EXIT.
+
+
+
+      *$PP-NOLIST CICS HI						REALCICS
+       DFH-END SECTION. 						REALCICS
+       DFH-CALL-END.							REALCICS
+           MOVE 'UA001P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 371 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE LOW-VALUE TO DFH-COMMAND				REALCICS
+           CALL 'CICS_Module_End' USING CICSICB GIVING                  REALCICS
+	       DFH-RETURN-STATUS					REALCICS
+	   GOBACK.							REALCICS
+       DFH-GOTO-HANDLE. 						REALCICS
+      *$PP-LIST CICS HI 						REALCICS

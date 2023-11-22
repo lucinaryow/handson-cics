@@ -1,0 +1,20 @@
+Record Type: Text, 23/11/07, 17:17:45:06
+CACX0004E: 17:17:43 Transaction SW00 failed. ProgID SW000 did not load.
+
+Record Type: Text, 23/11/07, 17:18:29:77
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 17:18:41:71
+CACX0003E: 17:18:40 Transaction SWSM is unrecognized.
+
+Record Type: Text, 23/11/07, 17:18:53:68
+CACX0004E: 17:18:52 Transaction SW00 failed. ProgID SW000 did not load.
+
+Record Type: Text, 23/11/07, 17:19:11:08
+CACX0003E: 17:19:10 Transaction 8 is unrecognized.
+
+Record Type: Text, 23/11/07, 17:19:15:66
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 17:19:23:24
+CACX0004E: 17:19:22 Transaction SW00 failed. ProgID SW000 did not load.

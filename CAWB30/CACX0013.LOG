@@ -1,0 +1,44 @@
+Record Type: Message, 23/11/05, 18:58:26:37
+CACX0026E: Load of Program SW00P failed. ResultCode:66
+
+Record Type: Text, 23/11/05, 18:58:26:37
+CACX0004E: 18:58:26 Transaction SW00 failed. ProgID SW00P did not load.
+
+Record Type: Message, 23/11/05, 18:58:30:72
+CACX0026E: Load of Program SW00P failed. ResultCode:66
+
+Record Type: Text, 23/11/05, 18:58:30:72
+CACX0004E: 18:58:30 Transaction SW00 failed. ProgID SW00P did not load.
+
+Record Type: Text, 23/11/05, 18:58:55:29
+CACX0003E: 18:58:55 Transaction CLR is unrecognized.
+
+Record Type: Text, 23/11/05, 18:58:56:89
+CACX0003E: 18:58:56 Transaction CLR is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:02:78
+CACX0003E: 18:59:02 Transaction CLS is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:08:69
+CACX0003E: 18:59:08 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:10:10
+CACX0003E: 18:59:10 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:11:31
+CACX0003E: 18:59:11 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:12:04
+CACX0003E: 18:59:12 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:12:53
+CACX0003E: 18:59:12 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:13:41
+CACX0003E: 18:59:13 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:14:16
+CACX0003E: 18:59:14 Transaction CLEA is unrecognized.
+
+Record Type: Text, 23/11/05, 18:59:14:83
+CACX0003E: 18:59:14 Transaction CLEA is unrecognized.

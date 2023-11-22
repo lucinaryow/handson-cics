@@ -1,0 +1,88 @@
+CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     22NOV23 13:37:32 PAGE  1
+
+    1    PRINT NOGEN
+    2 SM002    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
+    3                CTRL=(FREEKB,FRSET),TERM=3270,TIOAPFX=YES,EXTATT=NO,    C
+    4                MAPATTS=(COLOR,HILIGHT)
+W **** TERM is ignored by CA-Realia CICS
+    5 SM002M   DFHMDI SIZE=(24,80)
+    6          DFHMDF POS=(01,01),LENGTH=06,ATTRB=(ASKIP,NORM),              C
+    7                INITIAL='SM002'
+    8          DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              C
+    9                INITIAL='SERVICE MANAGEMENT'
+   10          DFHMDF POS=(02,35),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+   11                INITIAL='ADD TICKET'
+   12          DFHMDF POS=(03,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   13                INITIAL=''
+   14          DFHMDF POS=(04,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   15                INITIAL=''
+   16          DFHMDF POS=(05,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   17                INITIAL='TICKET NUMBER      : '
+   18          DFHMDF POS=(06,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   19                INITIAL='TICKET TITLE       : '
+   20          DFHMDF POS=(07,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   21                INITIAL='TICKET DESCRIPTION : '
+   22          DFHMDF POS=(09,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+   23                INITIAL='STATUS             : '
+   24          DFHMDF POS=(09,33),LENGTH=31,ATTRB=(ASKIP,NORM),              C
+   25                INITIAL=''
+   26 UPDREM   DFHMDF POS=(10,02),LENGTH=21,ATTRB=(ASKIP,DRK),               C
+   27                INITIAL='UPDATE REMARKS     : '
+   28 UPDDT    DFHMDF POS=(12,02),LENGTH=21,ATTRB=(ASKIP,DRK),               C
+   29                INITIAL='UPDATE DATE/TIME   : '
+   30 UPDBY1   DFHMDF POS=(13,02),LENGTH=21,ATTRB=(ASKIP,DRK),               C
+   31                INITIAL='UPDATE BY          : '
+   32          DFHMDF POS=(14,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   33                INITIAL=''
+   34          DFHMDF POS=(15,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   35                INITIAL=''
+   36          DFHMDF POS=(16,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   37                INITIAL=''
+   38          DFHMDF POS=(17,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   39                INITIAL=''
+   40          DFHMDF POS=(18,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   41                INITIAL=''
+   42          DFHMDF POS=(19,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   43                INITIAL=''
+   44          DFHMDF POS=(20,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   45                INITIAL=''
+   46          DFHMDF POS=(21,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   47                INITIAL=''
+   48          DFHMDF POS=(22,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
+   49                INITIAL=''
+   50 ERRMSG   DFHMDF POS=(23,02),LENGTH=58,ATTRB=(ASKIP,NORM,FSET)
+   51          DFHMDF POS=(24,03),LENGTH=09,ATTRB=(ASKIP,NORM),              C
+   52                INITIAL='PF2 - ADD'
+   53          DFHMDF POS=(24,15),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+   54                INITIAL='PF3 - EXIT'
+   55          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              C
+   56                INITIAL='PF5 - ABORT'
+   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     22NOV23 13:37:32 PAGE  2
+
+   58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   59 TIXNUM   DFHMDF POS=(05,24),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
+   60 TIXTTL   DFHMDF POS=(06,24),LENGTH=25,ATTRB=(UNPROT,IC,NORM,FSET)
+   61 TIXDESC1 DFHMDF POS=(07,24),LENGTH=40,ATTRB=(UNPROT,NORM,FSET)
+W **** Label should be less than 8 characters long
+   62 TIXDESC2 DFHMDF POS=(08,24),LENGTH=40,ATTRB=(UNPROT,NORM,FSET)
+W **** Label should be less than 8 characters long
+   63 STAT     DFHMDF POS=(09,24),LENGTH=8,ATTRB=(ASKIP,NORM,FSET)
+   64 UPDRMK   DFHMDF POS=(10,24),LENGTH=25,ATTRB=(UNPROT,DRK,FSET)
+   65 UPDRMK1  DFHMDF POS=(11,24),LENGTH=25,ATTRB=(UNPROT,DRK,FSET)
+   66 DATE1    DFHMDF POS=(12,24),LENGTH=11,ATTRB=(UNPROT,DRK,FSET)
+   67 TIME1    DFHMDF POS=(12,36),LENGTH=10,ATTRB=(UNPROT,DRK,FSET)
+   68 UPDBY2   DFHMDF POS=(13,24),LENGTH=7,ATTRB=(UNPROT,DRK,FSET)
+   69          DFHMSD TYPE=FINAL
+      sm002 loaded with 1 MAPS, 38 FIELDS and 211 Bytes of Literals
+
+   70          END
+   71
+W **** Blank records not supported by Mainframe.
+   72
+W **** Blank records not supported by Mainframe.
+There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     22NOV23 13:37:32 PAGE  3
+
+      COBOL COPY file generated
+
+      Mapset generated. Object size is 1,276.
+

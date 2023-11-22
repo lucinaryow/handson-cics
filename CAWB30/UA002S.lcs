@@ -1,0 +1,80 @@
+CA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    22NOV23 13:37:34 PAGE  1
+
+    1 UA002S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
+    2                CTRL=(FREEKB,FRSET),TIOAPFX=YES,EXTATT=NO,              C
+    3                MAPATTS=(COLOR,HILIGHT)
+    4 UA002M   DFHMDI SIZE=(24,80)
+    5          DFHMDF POS=(01,01),LENGTH=05,ATTRB=(ASKIP,NORM),              C
+    6                INITIAL='UA002'
+    7          DFHMDF POS=(01,33),LENGTH=18,ATTRB=(ASKIP,NORM),              C
+    8                INITIAL='SERVICE MANAGEMENT'
+    9 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   10          DFHMDF POS=(02,01),LENGTH=36,ATTRB=(ASKIP,DRK)
+   11          DFHMDF POS=(02,38),LENGTH=08,ATTRB=(ASKIP,NORM),              C
+   12                INITIAL='ADD USER'
+   13 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   14          DFHMDF POS=(04,01),LENGTH=35,ATTRB=(ASKIP,NORM)
+   15          DFHMDF POS=(05,02),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   16                INITIAL='USER ID               :'
+   17          DFHMDF POS=(05,26),LENGTH=03,ATTRB=(ASKIP,DRK)
+   18 USER     DFHMDF POS=(05,30),LENGTH=08,ATTRB=(UNPROT,IC,NORM,FSET),     C
+   19                INITIAL='XXXXXXXX'
+   20          DFHMDF POS=(05,39),LENGTH=38,ATTRB=(ASKIP,DRK)
+   21          DFHMDF POS=(06,02),LENGTH=75,ATTRB=(ASKIP,NORM)
+   22          DFHMDF POS=(07,02),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   23                INITIAL='REQUESTOR TAG         :'
+   24          DFHMDF POS=(07,26),LENGTH=03,ATTRB=(ASKIP,DRK)
+   25 REQUEST  DFHMDF POS=(07,30),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        C
+   26                INITIAL='_'
+   27          DFHMDF POS=(07,32),LENGTH=05,ATTRB=(ASKIP,NORM),              C
+   28                INITIAL='(Y/N)'
+   29          DFHMDF POS=(07,38),LENGTH=39,ATTRB=(ASKIP,DRK)
+   30          DFHMDF POS=(08,02),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   31                INITIAL='ADMIN TAG             :'
+   32          DFHMDF POS=(08,26),LENGTH=03,ATTRB=(ASKIP,DRK)
+   33 ADMIN    DFHMDF POS=(08,30),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        C
+   34                INITIAL='_'
+   35          DFHMDF POS=(08,32),LENGTH=05,ATTRB=(ASKIP,NORM),              C
+   36                INITIAL='(Y/N)'
+   37          DFHMDF POS=(08,38),LENGTH=39,ATTRB=(ASKIP,DRK)
+   38          DFHMDF POS=(09,02),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   39                INITIAL='APPROVER TAG          :'
+   40          DFHMDF POS=(09,26),LENGTH=03,ATTRB=(ASKIP,DRK)
+   41 APPROVE  DFHMDF POS=(09,30),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        C
+   42                INITIAL='_'
+   43          DFHMDF POS=(09,32),LENGTH=05,ATTRB=(ASKIP,NORM),              C
+   44                INITIAL='(Y/N)'
+   45          DFHMDF POS=(09,38),LENGTH=39,ATTRB=(ASKIP,DRK)
+   46          DFHMDF POS=(10,02),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   47                INITIAL='SERVICE PROVIDER TAG  :'
+   48          DFHMDF POS=(10,26),LENGTH=03,ATTRB=(ASKIP,DRK)
+   49 SERVICE  DFHMDF POS=(10,30),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        C
+   50                INITIAL='_'
+   51          DFHMDF POS=(10,32),LENGTH=05,ATTRB=(ASKIP,NORM),              C
+   52                INITIAL='(Y/N)'
+   53          DFHMDF POS=(11,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   54                  DFHMDF POS=(12,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   55                  DFHMDF POS=(13,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   56                  DFHMDF POS=(14,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   57                  DFHMDF POS=(15,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   58                  DFHMDF POS=(16,01),LENGTH=40,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    22NOV23 13:37:34 PAGE  2
+
+   59                  DFHMDF POS=(17,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   60                  DFHMDF POS=(18,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   61                  DFHMDF POS=(19,01),LENGTH=40,ATTRB=(ASKIP,DRK)
+   62          DFHMDF POS=(20,01),LENGTH=40,ATTRB=(ASKIP,NORM)
+   63          DFHMDF POS=(21,01),LENGTH=40,ATTRB=(ASKIP,NORM)
+   64 ERRMSG   DFHMDF POS=(23,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET),         C
+   65                INITIAL='ENTER USER DETAILS AND PRESS PF2'
+   66          DFHMDF POS=(24,02),LENGTH=37,ATTRB=(ASKIP,NORM),              C
+   67                INITIAL='PF2 - ADD   FF3 - EXIT    PF5 - ABORT'
+   68          DFHMDF POS=(24,40),LENGTH=32,ATTRB=(ASKIP,DRK)
+   69          DFHMSD TYPE=FINAL
+      ua002s loaded with 1 MAPS, 45 FIELDS and 286 Bytes of Literals
+
+   70          ENDCA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    22NOV23 13:37:34 PAGE  3
+
+      COBOL COPY file generated
+
+      Mapset generated. Object size is 1,533.
+

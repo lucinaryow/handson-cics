@@ -1,0 +1,17 @@
+------------------------------------------------------------------
+ CA-Realia II Workbench Start Compile Task
+    Source File: C:\CAWB30\sm000.cob
+   Options File: C:\CAWB30\DEFAULT.OPT
+    Working Dir: C:\CAWB30\
+------------------------------------------------------------------
+
+=========== Start List of Compile Response File ============ 
+ C:\CAWB30\sm000.cob
+ C:\CAWB30\sm000.OBJ
+ C:\CAWB30\sm000.LST
+=========== End List of Compile Response File ============== 
+-------------------------------------------------- 
+..Compile Error WBC001 - Compile Errors Detected!  
+..Flagging F level violations and below were found.  
+-------------------------------------------------- 
+

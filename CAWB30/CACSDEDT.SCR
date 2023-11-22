@@ -1,0 +1,19 @@
+' ***************************************************
+' CA-Realia II WorkBench Start DOS CSD Editor Script
+' ***************************************************
+
+REALCICS = CA_Real2Dir
+CICSLINK = CA_Real2Dir + "\LIB"
+REALCOB  = CA_Real2Dir
+COBLINK  = CA_Real2Dir + "\LIB"
+
+if  CSS_FN_FN_PATH <> " " Then
+  if  CSS_FN_FN_PATH <> "" Then
+     SetDir(CSS_FN_FN_PATH)
+  End If
+End If
+
+shell "START /w " + CA_Real2Dir + "\cacxcsdw.exe" + " " + CSSEDIT_FN
+MY_RC = 0
+Return MY_RC
+

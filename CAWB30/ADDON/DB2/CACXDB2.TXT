@@ -1,0 +1,11 @@
+CACXDB2.BND is provided so it can be used to BIND the CACXDB2.DLL
+to your database.
+
+CACXDB2.CBL is the source for the Realia CICS DB2/2 interface module.
+This code can be customised to suit your site requirements.
+
+This program, although part of the CICS run time, does not need to
+be processed as a CICS program and does not to be linked with the
+CICS runtime library.
+
+

@@ -1,0 +1,91 @@
+    19	      IDENTIFICATION DIVISION.
+    20	      PROGRAM-ID. SM002.
+    21
+    22	      ENVIRONMENT DIVISION.
+    23	      CONFIGURATION SECTION.
+    24	      SOURCE-COMPUTER.	  IBM-PC.
+    25	      OBJECT-COMPUTER.	  IBM-PC.
+    26	      DATA DIVISION.
+    27	      WORKING-STORAGE SECTION.
+    73	      01  WS-COMMAREA.
+    74		  05 WS-PROG-STATE		      PIC X(20).
+    75	      LINKAGE SECTION.
+    77	      01  DFHEIBLK.						       R
+    78		  05 EIBTIME  PIC S9(7) COMP-3. 			       R
+    79		  05 EIBDATE  PIC S9(7) COMP-3. 			       R
+    80		  05 EIBTRNID PIC X(4). 				       R
+    81		  05 EIBTASKN PIC S9(7) COMP-3. 			       R
+    82		  05 EIBTRMID PIC X(4). 				       R
+    83		  05 DFHEIGDI PIC S9(4) COMP-4. 			       R
+    84		  05 EIBCPOSN PIC S9(4) COMP-4. 			       R
+    85		  05 EIBCALEN PIC S9(4) COMP-4. 			       R
+    86		  05 EIBAID   PIC X.					       R
+    87		  05 EIBFN    PIC X(2). 				       R
+    88		  05 EIBRCODE PIC X(6). 				       R
+    89		  05 EIBDS    PIC X(8). 				       R
+    90		  05 EIBREQID PIC X(8). 				       R
+    91		  05 EIBRSRCE PIC X(8). 				       R
+    92		  05 EIBSYNC  PIC X.					       R
+    93		  05 EIBFREE  PIC X.					       R
+    94		  05 EIBRECV  PIC X.					       R
+    95		  05 EIBSEND  PIC X.					       R
+    96		  05 EIBATT   PIC X.					       R
+    97		  05 EIBEOC   PIC X.					       R
+    98		  05 EIBFMH   PIC X.					       R
+    99		  05 EIBCOMPL PIC X.					       R
+   100		  05 EIBSIG   PIC X.					       R
+   101		  05 EIBCONF  PIC X.					       R
+   102		  05 EIBERR   PIC X.					       R
+   103		  05 EIBERRCD PIC X(4). 				       R
+   104		  05 EIBSYNRB PIC X.					       R
+   105		  05 EIBNODAT PIC X.					       R
+   106		  05 EIBRESP  PIC S9(8) COMP-4. 			       R
+   107		  05 EIBRESP2 PIC S9(8) COMP-4. 			       R
+   108		  05 EIBRLDBK PIC X.					       R
+   109		  05 EIBCARESERVED PIC X(32).				       R
+   111	      01  DFHCOMMAREA			      PIC X(20).
+   112	     *
+   116	      PROCEDURE DIVISION					       R
+   118		  USING DFHEIBLK DFHCOMMAREA.				       R
+   143	      100-PROC.
+   144            MOVE 'SM002 IS IN CONTROL' TO WS-PROG-STATE
+   146		  EXEC CICS XCTL
+   147                PROGRAM('SM000')
+   148		      COMMAREA(WS-COMMAREA)
+   149		  END-EXEC.
+   174	      100-EXIT.
+   175		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\CAWB30\sm002.cic		       PAGE    2
+
+
+
+			Realia COBOL Compiler Version Information
+
+			      Pass 1	 Version 6.072
+			      Pass 1a	 Version 6.015
+			      Pass 2	 Version 6.068
+			      Pass 2a	 Version 6.020
+			      Pass 3	 Version 6.094
+			      Pass 4	 Version 6.007
+			      Pass 5	 Version 6.022
+
+
+			Compilation Directives in Effect
+
+COMP-4		  DCHK		    OPT 	      NOCALL
+NOSUBCHK	  STRCHK	    NOTRUNC	      NOSMALLCOMP
+NODCALL 	  NODIVZERO	    NOEPDCALL	      APOST
+EBCDIC		  STATABORT	    NOMOVELINK	      BLL4K
+ARGCHK		  UPLOW 	    NOVERARG	      MDY
+LP:   60	  PP		    FCREATE	      NOIEEE
+NOLILIAN	  CURRENCY-SIGN=$   WRITEAFTER	      SOSI
+NOCOPY68	  NOFLAG-COM	    NOFLAG-SEG	      NOFLAG-FIPS
+DEBUGXREF	  DIALECT-OSVS
+
+			Error level limit: W
+
+			Source lines compiled:	     186
+			Compilation time (mm:ss.ss):  0:00.41
+			Compilation speed (lines/minute): 27219
+
+			Compilation date (yy/mm/dd): 23/11/10
+			     Time of day (hh:mm:ss): 07:59:48
