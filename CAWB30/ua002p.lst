@@ -768,7 +768,7 @@
   1254			     MOVE WS-AFTER-ADD TO ERRMSGO  1255                           MOVE 'AFTER ADD' TO WS-DFHSTATE
   1256			  END-IF.
   1257
-  1258CA-Realia COBOL Version 6.0.45	 C:\CAWB30\ua002p.cic		       PAGE   15
+  1258CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\ua002p.cic     PAGE   15
 
 
 
@@ -798,8 +798,8 @@ DEBUGXREF	  DIALECT-VS2
 			Error level limit: W
 
 			Source lines compiled:	    1269
-			Compilation time (mm:ss.ss):  0:00.42
-			Compilation speed (lines/minute): 81285
+			Compilation time (mm:ss.ss):  0:00.40
+			Compilation speed (lines/minute): 90350
 
-			Compilation date (yy/mm/dd): 23/11/22
-			     Time of day (hh:mm:ss): 13:37:35
+			Compilation date (yy/mm/dd): 23/11/24
+			     Time of day (hh:mm:ss): 10:08:52

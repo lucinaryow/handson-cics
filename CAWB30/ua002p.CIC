@@ -129,7 +129,7 @@
 		   05  WS-VALIDF	       PIC X.
       *
       PCOPY UA002S.
-      *$PP-START-COPY C:\CAWB30\UA002S.COB
+      *$PP-START-COPY C:\handson-cics\CAWB30\UA002S.COB
       * SYMBOLIC MAP of ua002s Created by CACXBMS Version 6.0.27
        01  UA002MI.
 	   02  FILLER				      PIC X(12).
@@ -203,7 +203,7 @@
 
       *
       PCOPY DFHAID.
-      *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHAID.COB
+      *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
        01  DFHAID.
       *
       * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -263,7 +263,7 @@
       *$PP-END-COPY
       *
       P  COPY DFHBMSCA.
-      *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHBMSCA.COB
+      *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
        01  DFHBMSCA.
       *
       * CA-Realia CICS 6.0 Computer Associates International, Inc.

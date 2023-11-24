@@ -33,9 +33,9 @@
                10  USERID1                       PIC X(7).
                10  FILLER                        PIC X.
            05  REQUESTOR                         PIC X.
-           05  SERVICE-PROVIDER                  PIC X. 
-           05  APPROVER                          PIC X. 
            05  ADMINISTRATOR                     PIC X. 
+           05  APPROVER                          PIC X. 
+           05  SERVICE-PROVIDER                  PIC X. 
            05  UPDATED-BY1.
                10  UPDBY1                        PIC X(7).
                10  FILLER                        PIC X.

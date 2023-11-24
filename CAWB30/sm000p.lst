@@ -33,9 +33,9 @@
     96		      10  USERID1			PIC X(7).
     97		      10  FILLER			PIC X.
     98		  05  REQUESTOR 			PIC X.
-    99		  05  SERVICE-PROVIDER			PIC X.
+    99		  05  ADMINISTRATOR			PIC X.
    100		  05  APPROVER				PIC X.
-   101		  05  ADMINISTRATOR			PIC X.
+   101		  05  SERVICE-PROVIDER			PIC X.
    102		  05  UPDATED-BY1.
    103		      10  UPDBY1			PIC X(7).
    104		      10  FILLER			PIC X.
@@ -1060,7 +1060,7 @@
   2275		      PERFORM 600-VALIDATE-TICKET
   2276		  END-IF.
   2277	      700-EXIT.
-  2278		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\CAWB30\sm000p.cic		       PAGE   19
+  2278		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   19
 
 
 
@@ -1090,8 +1090,8 @@ DEBUGXREF	  DIALECT-VS2
 			Error level limit: W
 
 			Source lines compiled:	    2289
-			Compilation time (mm:ss.ss):  0:00.39
-			Compilation speed (lines/minute): 52153
+			Compilation time (mm:ss.ss):  0:00.53
+			Compilation speed (lines/minute): 59132
 
-			Compilation date (yy/mm/dd): 23/11/22
-			     Time of day (hh:mm:ss): 13:37:32
+			Compilation date (yy/mm/dd): 23/11/24
+			     Time of day (hh:mm:ss): 10:08:49

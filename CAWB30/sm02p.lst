@@ -725,14 +725,14 @@
   1184		   COMPUTE WS-STF01TCKIDR = WS-STF01TCKIDR + 1
   1185		   MOVE WS-STF01TCKIDR TO TIXNUMO
   1186		   ADD 1 TO WS-ENTRCTR
-  1187		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\CAWB30\sm02p.cic		       PAGE   14
+  1187		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   14
 
 LINE (REL)  ERR# LVL			ERROR TEXT
 
   75 (  12)  0348 W Trailing dash discarded from 'COMP'
   76 (  13)  0132 W Period assumed before 'WS-DATE'
 
-sm02p has    2 Warning messagesCA-Realia COBOL Version 6.0.45	 C:\CAWB30\sm02p.cic		       PAGE   15
+sm02p has    2 Warning messagesCA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   15
 
 
 
@@ -762,8 +762,8 @@ DEBUGXREF	  DIALECT-VS2
 			Error level limit: W
 
 			Source lines compiled:	    1198
-			Compilation time (mm:ss.ss):  0:00.53
-			Compilation speed (lines/minute): 35622
+			Compilation time (mm:ss.ss):  0:00.54
+			Compilation speed (lines/minute): 33111
 
-			Compilation date (yy/mm/dd): 23/11/22
-			     Time of day (hh:mm:ss): 13:37:33
+			Compilation date (yy/mm/dd): 23/11/24
+			     Time of day (hh:mm:ss): 10:08:51

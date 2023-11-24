@@ -1,4 +1,4 @@
-CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
      1	     CBL XOPTS(COBOL2)
@@ -58,7 +58,7 @@
     55                           'USER ID CREATED,PRESS'.
     56				 10 FILLER PIC X(32) VALUE
     57                           ' ENTER TO CREATE ANOTHER USER ID'.
-    58			 05  WS-INVALID-ACCESS PIC X(14) VALUECA-Realia CACXPREP C:\CAWB30\ua002p.COB
+    58			 05  WS-INVALID-ACCESS PIC X(14) VALUECA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
     59                       'INVALID ACCESS'.
@@ -71,7 +71,7 @@
     66			 05  WS-VALIDF		     PIC X.
     67	    *
     68	    PCOPY UA002S.
-    68	    *$PP-START-COPY C:\CAWB30\UA002S.COB
+    68	    *$PP-START-COPY C:\handson-cics\CAWB30\UA002S.COB
      1	    * SYMBOLIC MAP of ua002s Created by CACXBMS Version 6.0.27
      2	     01  UA002MI.
      3		 02  FILLER				    PIC X(12).
@@ -118,7 +118,7 @@
     44	     01  UA002MO REDEFINES UA002MI.
     45		 02  FILLER				    PIC X(12).
     46		 02  FILLER				    PIC XX.
-    47		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+    47		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
     48		 02  DATEO				    PIC X(010).
@@ -147,7 +147,7 @@
     69
     70	    *
     71	    PCOPY DFHAID.
-    71	    *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHAID.COB
+    71	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
      1	     01  DFHAID.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -178,7 +178,7 @@
     28           05  DFHPF11                   PIC X VALUE '#'.
     29           05  DFHPF12                   PIC X VALUE '@'.
     30           05  DFHPF13                   PIC X VALUE 'A'.
-    31           05  DFHPF14                   PIC X VALUE 'B'.CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+    31           05  DFHPF14                   PIC X VALUE 'B'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
     32           05  DFHPF15                   PIC X VALUE 'C'.
@@ -209,7 +209,7 @@
     71	    *$PP-END-COPY
     72	    *
     73	    P  COPY DFHBMSCA.
-    73	    *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHBMSCA.COB
+    73	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
      1	     01  DFHBMSCA.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -238,7 +238,7 @@
     26	    *	    must be changed.
     27	    *
     28	    *	    An alternative is to use REPLACING to change the values.
-    29	    *CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+    29	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
     30	    *	 i.e. COPY DFHBMSCA replacing
@@ -298,7 +298,7 @@
     84		 05  DFHBMCUR-VAL VALUE 002	       PIC S9(4) COMP-4.
     85		 05  FILLER REDEFINES DFHBMCUR-VAL.
     86		     10  FILLER 		       PIC X.
-    87		     10  DFHBMCUR		       PIC X.CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+    87		     10  DFHBMCUR		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
     88      *                                          x'02'.
@@ -358,7 +358,7 @@
    142		     10  DFHEUA 		       PIC X.
    143      *                                              x'12'
    144		 05  DFHIC-VAL VALUE 019	       PIC S9(4) COMP-4.
-   145		 05  FILLER REDEFINES DFHIC-VAL.CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   145		 05  FILLER REDEFINES DFHIC-VAL.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    146		     10  FILLER 		       PIC X.
@@ -418,7 +418,7 @@
    200		     10  FILLER 		       PIC X.
    201		     10  DFHGE			       PIC X.
    202      *                                              X'08'.
-   203	    *CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   203	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    204	    ******************************************************************
@@ -478,7 +478,7 @@
    258           05  DFHERROR                          PIC X VALUE '¶'.
    259      *                                              EBCDIC X'1A'.
    260      *                                              ASCII  X'B6'.
-   261           05  DFHFIL                            PIC X VALUE '4'.CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   261           05  DFHFIL                            PIC X VALUE '4'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    262           05  DFHMENT                           PIC X VALUE '2'.
@@ -538,7 +538,7 @@
    100                     MAPSET ('UA002S')
    101			   INTO (UA002MI)
    102		       END-EXEC
-   103		      IF  NOT EIBRESP = DFHRESP(MAPFAIL)CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   103		      IF  NOT EIBRESP = DFHRESP(MAPFAIL)CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    104			  EVALUATE EIBAID
@@ -598,7 +598,7 @@
    158		     USERID(WS-USERID)
    159		 END-EXEC
    160			 EXEC CICS
-   161                READ FILE('uaf00001')CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   161                READ FILE('uaf00001')CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    162		      INTO (WS-REC)
@@ -658,7 +658,7 @@
    216			    MOVE WS-DFHSTATE  TO ERRMSGO
    217			 END-EVALUATE.
    218
-   219	     220-WHEN-F5 SECTION.CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   219	     220-WHEN-F5 SECTION.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    220		 EVALUATE WS-DFHSTATE
@@ -718,7 +718,7 @@
    274                   IF SERVICEI = ' ' OR SERVICEI = '_'
    275			     MOVE DFHBMBRY TO SERVICEA
    276                           MOVE 'SERVICE PROVIDER IS REQUIRED'
-   277				       TO ERRMSGOCA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   277				       TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
    278				 PERFORM 100-NEW-MAP
@@ -778,10 +778,10 @@
    332                          MOVE 'AFTER ADD' TO WS-DFHSTATE
    333			 END-IF.
    334
-   335CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+   335CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
-CA-Realia CACXPREP C:\CAWB30\ua002p.COB
+CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
 		Options Summary
@@ -799,5 +799,5 @@
 		      DCHK
 
 		Source Lines Translated:     758
-		Translation Time:	     .03 sec
-		Translation Speed:	  516000 lines per min
+		Translation Time:	     .05 sec
+		Translation Speed:	  947500 lines per min

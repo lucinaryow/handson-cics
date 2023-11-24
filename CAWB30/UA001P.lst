@@ -1300,7 +1300,7 @@
   1956		  EXIT.
   1957
   1958
-  1959CA-Realia COBOL Version 6.0.45	 C:\CAWB30\ua001p.cic		       PAGE   24
+  1959CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\ua001p.cic     PAGE   24
 
 
 
@@ -1333,5 +1333,5 @@ DEBUGXREF	  DIALECT-VS2
 			Compilation time (mm:ss.ss):  0:00.40
 			Compilation speed (lines/minute): 95500
 
-			Compilation date (yy/mm/dd): 23/11/22
-			     Time of day (hh:mm:ss): 13:37:34
+			Compilation date (yy/mm/dd): 23/11/24
+			     Time of day (hh:mm:ss): 10:08:51

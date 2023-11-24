@@ -96,9 +96,9 @@
 	       10  USERID1			 PIC X(7).
 	       10  FILLER			 PIC X.
 	   05  REQUESTOR			 PIC X.
-	   05  SERVICE-PROVIDER 		 PIC X.
-	   05  APPROVER 			 PIC X.
 	   05  ADMINISTRATOR			 PIC X.
+	   05  APPROVER 			 PIC X.
+	   05  SERVICE-PROVIDER 		 PIC X.
 	   05  UPDATED-BY1.
 	       10  UPDBY1			 PIC X(7).
 	       10  FILLER			 PIC X.
@@ -142,7 +142,7 @@
 
       *
       P    COPY SM000S.
-      *$PP-START-COPY C:\CAWB30\SM000S.COB
+      *$PP-START-COPY C:\handson-cics\CAWB30\SM000S.COB
       * SYMBOLIC MAP of sm000s Created by CACXBMS Version 6.0.27
        01  SW00MI.
 	   02  FILLER				      PIC X(12).
@@ -303,7 +303,7 @@
       *$PP-END-COPY
       *
       P    COPY DFHAID.
-      *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHAID.COB
+      *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
        01  DFHAID.
       *
       * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -363,7 +363,7 @@
       *$PP-END-COPY
       *
       PCOPY DFHBMSCA.
-      *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHBMSCA.COB
+      *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
        01  DFHBMSCA.
       *
       * CA-Realia CICS 6.0 Computer Associates International, Inc.

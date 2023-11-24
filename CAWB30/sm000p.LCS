@@ -1,4 +1,4 @@
-CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
      1	       CBL XOPTS(COBOL2)
@@ -36,9 +36,9 @@
     33		     10  USERID1		       PIC X(7).
     34		     10  FILLER 		       PIC X.
     35		 05  REQUESTOR			       PIC X.
-    36		 05  SERVICE-PROVIDER		       PIC X.
+    36		 05  ADMINISTRATOR		       PIC X.
     37		 05  APPROVER			       PIC X.
-    38		 05  ADMINISTRATOR		       PIC X.
+    38		 05  SERVICE-PROVIDER		       PIC X.
     39		 05  UPDATED-BY1.
     40		     10  UPDBY1 		       PIC X(7).
     41		     10  FILLER 		       PIC X.
@@ -58,7 +58,7 @@
     55		 05  UPDATED-BY2.
     56		     10  UPDBY2 		       PIC X(7).
     57		     10  FILLER 		       PIC X.
-    58		 05  LAST-UPDATE-REM		       PIC X(50).CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+    58		 05  LAST-UPDATE-REM		       PIC X(50).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
     59		 05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
@@ -84,7 +84,7 @@
     79
     80	    *
     81	    P	 COPY SM000S.
-    81	    *$PP-START-COPY C:\CAWB30\SM000S.COB
+    81	    *$PP-START-COPY C:\handson-cics\CAWB30\SM000S.COB
      1	    * SYMBOLIC MAP of sm000s Created by CACXBMS Version 6.0.27
      2	     01  SW00MI.
      3		 02  FILLER				    PIC X(12).
@@ -118,7 +118,7 @@
     31		 02  FILLER REDEFINES OPTNO3F.
     32		     03  OPTNO3A			    PIC X.
     33		 02  OPTNO3I				    PIC X(001).
-    34		 02  OPTCHC4L				    PIC S9(4) COMP.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+    34		 02  OPTCHC4L				    PIC S9(4) COMP.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
     35		 02  OPTCHC4F				    PIC X.
@@ -178,7 +178,7 @@
     89		 02  DATEL				    PIC S9(4) COMP.
     90		 02  DATEF				    PIC X.
     91		 02  FILLER REDEFINES DATEF.
-    92		     03  DATEA				    PIC X.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+    92		     03  DATEA				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
     93		 02  DATEI				    PIC X(010).
@@ -238,7 +238,7 @@
    147		 02  FILLER				    PIC X.
    148		 02  TIXNOO				    PIC X(006).
    149		 02  FILLER				    PIC XX.
-   150		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   150		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    151		 02  ERRMSGO				    PIC X(071).
@@ -251,7 +251,7 @@
     81	    *$PP-END-COPY
     82	    *
     83	    P	 COPY DFHAID.
-    83	    *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHAID.COB
+    83	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
      1	     01  DFHAID.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -298,7 +298,7 @@
     44           05  DFHOPID                   PIC X VALUE 'W'.
     45           05  DFHMSRE                   PIC X VALUE 'X'.
     46           05  DFHTRIG                   PIC X VALUE '"'.
-    47      *                                        value QUOTE  "CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+    47      *                                        value QUOTE  "CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
     48           05  DFHPEN                    PIC X VALUE '='.
@@ -313,7 +313,7 @@
     83	    *$PP-END-COPY
     84	    *
     85	    PCOPY DFHBMSCA.
-    85	    *$PP-START-COPY C:\CAWB30\CICSCOPY\DFHBMSCA.COB
+    85	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
      1	     01  DFHBMSCA.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -358,7 +358,7 @@
     42	    *
     43	    *	 Field Attributes
     44	    *
-    45           05  DFHBMASB                          PIC X VALUE '8'.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+    45           05  DFHBMASB                          PIC X VALUE '8'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
     46           05  DFHBMASF                          PIC X VALUE '1'.
@@ -418,7 +418,7 @@
    100		 05  FILLER REDEFINES DFHBMFLG-VAL.
    101		     10  FILLER 		       PIC X.
    102		     10  DFHBMFLG		       PIC X.
-   103CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   103CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    104		 05  DFHBMDUP-VAL VALUE 028	       PIC S9(4) COMP-4.
@@ -478,7 +478,7 @@
    158		     10  FILLER 		       PIC X.
    159		     10  DFHPT			       PIC X.
    160      *                                              EBCDIC X'05'.
-   161      *                                              ASCII  X'09'.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   161      *                                              ASCII  X'09'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    162		 05  DFHRA-VAL VALUE 060	       PIC S9(4) COMP-4.
@@ -538,7 +538,7 @@
    216	    *
    217		 05  DFHBMPNL-VAL VALUE 021	       PIC S9(4) COMP-4.
    218		     88 DFHBMPNL-VAL-EBCDIC	       VALUE 21.
-   219		     88 DFHBMPNL-VAL-ASCII	       VALUE 10.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   219		     88 DFHBMPNL-VAL-ASCII	       VALUE 10.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    220		 05  FILLER REDEFINES DFHBMPNL-VAL.
@@ -598,7 +598,7 @@
    274		 05  DFHSUB-VAL   VALUE 063	       PIC S9(4) COMP-4.
    275		     88 DFHSUB-VAL-EBCDIC	       VALUE 63.
    276		     88 DFHSUB-VAL-ASCII	       VALUE 26.
-   277		 05  FILLER REDEFINES DFHSUB-VAL.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   277		 05  FILLER REDEFINES DFHSUB-VAL.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    278		     10  FILLER 		       PIC X.
@@ -658,7 +658,7 @@
    128			 COMMAREA(WS-COMMAREA)
    129		     END-EXEC.
    130	     000-EXIT.
-   131		 EXIT.CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   131		 EXIT.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    132
@@ -718,7 +718,7 @@
    186			     PERFORM 700-TRANSFER-PROG
    187			     IF EIBCALEN = +0
    188				 EXEC CICS XCTL
-   189                               PROGRAM('SM001')CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   189                               PROGRAM('SM001')CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    190				 END-EXEC
@@ -778,7 +778,7 @@
    244			     PERFORM 700-TRANSFER-PROG
    245			     IF EIBCALEN = +0
    246				 EXEC CICS XCTL
-   247                               PROGRAM('UA001P')CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   247                               PROGRAM('UA001P')CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    248				 END-EXEC
@@ -838,7 +838,7 @@
    302			     IF EIBCALEN = +0
    303				 EXEC CICS XCTL
    304                               PROGRAM('SM004')
-   305				 END-EXECCA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   305				 END-EXECCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    306			     ELSE
@@ -898,7 +898,7 @@
    360			     END-IF
    361			 END-IF
    362			 IF WS-CHC6 = LOW-VALUES
-   363                       MOVE 'INVALID OPTION' TO ERRMSGOCA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   363                       MOVE 'INVALID OPTION' TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    364			     PERFORM 100-SEND-MAP
@@ -958,7 +958,7 @@
    418               MOVE '- ADD TICKET' TO WS-CHOICE
    419		     PERFORM 500-MOVE-CHOICE-VAL
    420               MOVE '- UPDATE TICKET' TO WS-CHOICE
-   421		     PERFORM 500-MOVE-CHOICE-VALCA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   421		     PERFORM 500-MOVE-CHOICE-VALCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    422               MOVE '- CLOSE TICKET' TO WS-CHOICE
@@ -1018,7 +1018,7 @@
    476			 MOVE WS-INDEX TO OPTNO5O
    477			 MOVE WS-CHOICE TO OPTCHC5O
    478			 MOVE WS-CHOICE TO WS-CHC5
-   479			 ADD 1 TO WS-INDEXCA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   479			 ADD 1 TO WS-INDEXCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    480		     WHEN OPTCHC6O = LOW-VALUES
@@ -1078,7 +1078,7 @@
    534
    535	     700-TRANSFER-PROG.
    536		 IF TIXNOI = SPACES OR TIXNOL = ZERO
-   537		     MOVE +0 TO EIBCALENCA-Realia CACXPREP C:\CAWB30\sm000p.COB
+   537		     MOVE +0 TO EIBCALENCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
    538		 ELSE
@@ -1088,7 +1088,7 @@
    542		 END-IF.
    543	     700-EXIT.
    544		 EXIT.
-CA-Realia CACXPREP C:\CAWB30\sm000p.COB
+CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
 		Options Summary
@@ -1106,5 +1106,5 @@
 		      DCHK
 
 		Source Lines Translated:    1055
-		Translation Time:	     .03 sec
-		Translation Speed:	  110000 lines per min
+		Translation Time:	     .06 sec
+		Translation Speed:	   55000 lines per min
