@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     23NOV23 03:45:24 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     24NOV23 12:38:02 PAGE  1
 
     1    PRINT NOGEN
     2 SM003    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      *
@@ -57,7 +57,7 @@ W **** LITERAL exceeds LENGTH - truncation likely
    53          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              *
    54                INITIAL='PF5 - ABORT'
    55          DFHMDF POS=(24,55),LENGTH=11,ATTRB=(ASKIP,NORM),              *
-   56                INITIAL='PF11 - LOGS'CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     23NOV23 03:45:24 PAGE  2
+   56                INITIAL='PF11 - LOGS'CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     24NOV23 12:38:02 PAGE  2
 
    57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
@@ -82,7 +82,7 @@ W **** Blank records not supported by Mainframe.
    72          END
    73
 W **** Blank records not supported by Mainframe.
-There were     6 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     23NOV23 03:45:24 PAGE  3
+There were     6 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     24NOV23 12:38:02 PAGE  3
 
       COBOL COPY file generated
 

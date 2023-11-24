@@ -100,27 +100,29 @@
        PROCEDURE DIVISION.
        100-PROCESS.
            
+           PERFORM 500-VALIDATION
+           
            MOVE DFHCOMMAREA TO WS-COMMAREA
            IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM02'
                IF EIBCALEN NOT = +0
                 
                  IF WS-PROG-STATE = '1' 
                    MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
-                   MOVE SPACES TO TIXTTLI
-                   MOVE SPACES TO TIXDESC1I
+                
                    MOVE 2 TO WS-PROG-STATE
-                  
+                   
+                   IF WS-PROG-STATE = '2' 
+                    MOVE SPACES TO TIXTTLI
+                    MOVE SPACES TO TIXDESC1I
+                    MOVE SPACES TO TIXDESC2I
+                    PERFORM 300-READ-STF1
+                   END-IF
                    PERFORM 110-NEW-MAP
+                  
                  ELSE
+                   MOVE 1 TO WS-PROG-STATE
                    PERFORM 200-REC-MAP
                  END-IF
-               ELSE
-                   MOVE DFHCOMMAREA TO WS-COMMAREA
-                   MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
-                   MOVE 1 TO WS-PROG-STATE
-                   PERFORM 110-NEW-MAP
-               
-              
                END-IF
            ELSE    
                EXEC CICS SEND TEXT
@@ -160,7 +162,8 @@
             
             ERASE
            END-EXEC
-
+           
+           
            EXEC CICS RETURN
             TRANSID('SM02')
             COMMAREA(WS-COMMAREA)
@@ -175,34 +178,39 @@
 
            IF EIBAID = DFHENTER
             IF WS-PROG-STATE = '2' 
-             
+             MOVE SPACES TO ERRMSGO
              MOVE SPACES TO TIXTTLI
              MOVE SPACES TO TIXDESC1I
              MOVE SPACES TO TIXDESC2I
              MOVE SPACES TO STATI
-             MOVE HIGH-VALUES TO WS-STF01TCKID
+             
              MOVE 3 TO WS-PROG-STATE
             
-            PERFORM 300-READ-STF1
+             PERFORM 300-READ-STF1
 
             ELSE
             
-             IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES
+             IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES 
+             OR TIXDESC2I NOT = SPACES
              
               MOVE 'PRESS PF2 TO ADD TICKET' TO ERRMSGO
+              MOVE 2 TO WS-PROG-STATE
               CONTINUE
              ELSE
               
               IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
                MOVE 'TITLE AND DESCRIPTION IS REQUIRED' TO ERRMSGO
+               MOVE 2 TO WS-PROG-STATE
               END-IF
 
               IF TIXTTLI = SPACES AND TIXDESC1I NOT = SPACES
                MOVE 'TITLE IS REQUIRED' TO ERRMSGO
+               MOVE 2 TO WS-PROG-STATE
               END-IF
 
               IF TIXTTLI NOT = SPACES AND TIXDESC1I = SPACES
                MOVE 'DESCRIPTION IS REQUIRED' TO ERRMSGO
+               MOVE 2 TO WS-PROG-STATE
               END-IF
 
              END-IF
@@ -216,7 +224,7 @@
              MOVE 'INVALID SPACES' TO ERRMSGO
              PERFORM 110-NEW-MAP
             ELSE
-             MOVE 0 TO WS-ENTRCTR
+          
              MOVE DFHDFHI TO UPDREMA
              MOVE DFHDFHI TO UPDDTA
              MOVE DFHDFHI TO UPDBY1A
@@ -289,6 +297,7 @@
               MOVE DFHBMPRO TO DATE1A
               MOVE DFHBMPRO TO TIME1A
               MOVE DFHBMPRO TO UPDBY2A
+              MOVE 1 TO WS-PROG-STATE
               
              END-IF
              
@@ -296,20 +305,6 @@
            END-IF
 
 
-           IF EIBAID = DFHPF3
-            IF WS-PROG-STATE = '1'
-             EXEC CICS SEND TEXT
-              FROM (WS-END)
-              LENGTH (15)
-              ERASE
-             END-EXEC 
-             EXEC CICS RETURN END-EXEC    
-            ELSE
-             EXEC CICS XCTL
-              PROGRAM('SM000')
-             END-EXEC
-            END-IF
-           END-IF
            
            IF EIBAID = DFHPF5
             MOVE SPACES TO ERRMSGO
@@ -320,9 +315,11 @@
             MOVE 2 TO WS-PROG-STATE
             PERFORM 110-NEW-MAP
            END-IF.
+
+
        
        300-READ-STF1.
-
+           MOVE HIGH-VALUES TO WS-STF01TCKID
            EXEC CICS STARTBR 
             FILE('STf00001')
             RIDFLD (WS-STF01TCKID)
@@ -341,7 +338,7 @@
             COMPUTE WS-STF01TCKIDR = WS-STF01TCKIDR + 1
             MOVE WS-STF01TCKIDR TO TIXNUMO
             MOVE WS-STF01TCKID TO WS-TICKET-NUM
-            MOVE 1 TO WS-ENTRCTR
+          
            END-IF.
        
        400-CREATE-LOG.
@@ -381,3 +378,13 @@
                RIDFLD(LOG-TIX-ID)
                RESP(WS-RES-CODE)
            END-EXEC.
+
+       500-VALIDATION.    
+           
+           IF EIBAID = DFHPF3
+           
+             EXEC CICS XCTL
+              PROGRAM('SM000')
+             END-EXEC
+       
+           END-IF
