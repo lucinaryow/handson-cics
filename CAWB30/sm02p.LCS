@@ -38,6 +38,7 @@
     35		 05  WS-STUPDBY 			PIC X(8).
     36		 05  WS-LSTUPDRMK			PIC X(50).
     37
+<<<<<<< HEAD
     38
     39	     01  WS-FIELD01.
     40		 05 WS-STF01TCKID		       PIC X(6).
@@ -255,6 +256,163 @@
    101	    *
    102	    P	 COPY DFHAID.
    102	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
+=======
+    38	     01  WS-HV				       PIC X(20).
+    39	     01  WS-RES-CODE			       PIC S9(8) COMP.
+    40	     01  WS-ENTRCTR			       PIC 9(1) VALUE 0.
+    41	     01  WS-HDATE			       PIC 9(8).
+    42	     01  WS-HDATE-X REDEFINES WS-HDATE	       PIC X(8).
+    43	     01  WS-HTIME			      PIC 9(15).
+    44	     01  WS-HTIME-X REDEFINES WS-HTIME	       PIC X(8).
+    45
+    46
+    47	    *
+    48	    P	 COPY SM002.
+    48	    *$PP-START-COPY C:\handson-cics\CAWB30\SM002.COB
+     1	    * SYMBOLIC MAP of sm002 Created by CACXBMS Version 6.0.27
+     2	     01  SM002MI.
+     3		 02  FILLER				    PIC X(12).
+     4		 02  UPDREML				    PIC S9(4) COMP.
+     5		 02  UPDREMF				    PIC X.
+     6		 02  FILLER REDEFINES UPDREMF.
+     7		     03  UPDREMA			    PIC X.
+     8		 02  UPDREMI				    PIC X(021).
+     9		 02  UPDDTL				    PIC S9(4) COMP.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+    10		 02  UPDDTF				    PIC X.
+    11		 02  FILLER REDEFINES UPDDTF.
+    12		     03  UPDDTA 			    PIC X.
+    13		 02  UPDDTI				    PIC X(021).
+    14		 02  UPDBY1L				    PIC S9(4) COMP.
+    15		 02  UPDBY1F				    PIC X.
+    16		 02  FILLER REDEFINES UPDBY1F.
+    17		     03  UPDBY1A			    PIC X.
+    18		 02  UPDBY1I				    PIC X(021).
+    19		 02  ERRMSGL				    PIC S9(4) COMP.
+    20		 02  ERRMSGF				    PIC X.
+    21		 02  FILLER REDEFINES ERRMSGF.
+    22		     03  ERRMSGA			    PIC X.
+    23		 02  ERRMSGI				    PIC X(058).
+    24		 02  DATEL				    PIC S9(4) COMP.
+    25		 02  DATEF				    PIC X.
+    26		 02  FILLER REDEFINES DATEF.
+    27		     03  DATEA				    PIC X.
+    28		 02  DATEI				    PIC X(010).
+    29		 02  TIMEL				    PIC S9(4) COMP.
+    30		 02  TIMEF				    PIC X.
+    31		 02  FILLER REDEFINES TIMEF.
+    32		     03  TIMEA				    PIC X.
+    33		 02  TIMEI				    PIC X(008).
+    34		 02  TIXNUML				    PIC S9(4) COMP.
+    35		 02  TIXNUMF				    PIC X.
+    36		 02  FILLER REDEFINES TIXNUMF.
+    37		     03  TIXNUMA			    PIC X.
+    38		 02  TIXNUMI				    PIC X(006).
+    39		 02  TIXTTLL				    PIC S9(4) COMP.
+    40		 02  TIXTTLF				    PIC X.
+    41		 02  FILLER REDEFINES TIXTTLF.
+    42		     03  TIXTTLA			    PIC X.
+    43		 02  TIXTTLI				    PIC X(025).
+    44		 02  TIXDESC1L				    PIC S9(4) COMP.
+    45		 02  TIXDESC1F				    PIC X.
+    46		 02  FILLER REDEFINES TIXDESC1F.
+    47		     03  TIXDESC1A			    PIC X.
+    48		 02  TIXDESC1I				    PIC X(040).
+    49		 02  TIXDESC2L				    PIC S9(4) COMP.
+    50		 02  TIXDESC2F				    PIC X.
+    51		 02  FILLER REDEFINES TIXDESC2F.
+    52		     03  TIXDESC2A			    PIC X.
+    53		 02  TIXDESC2I				    PIC X(040).
+    54		 02  STATL				    PIC S9(4) COMP.
+    55		 02  STATF				    PIC X.
+    56		 02  FILLER REDEFINES STATF.
+    57		     03  STATA				    PIC X.
+    58		 02  STATI				    PIC X(008).
+    59		 02  UPDRMKL				    PIC S9(4) COMP.
+    60		 02  UPDRMKF				    PIC X.
+    61		 02  FILLER REDEFINES UPDRMKF.
+    62		     03  UPDRMKA			    PIC X.
+    63		 02  UPDRMKI				    PIC X(025).
+    64		 02  UPDRMK1L				    PIC S9(4) COMP.
+    65		 02  UPDRMK1F				    PIC X.
+    66		 02  FILLER REDEFINES UPDRMK1F.
+    67		     03  UPDRMK1A			    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+    68		 02  UPDRMK1I				    PIC X(025).
+    69		 02  DATE1L				    PIC S9(4) COMP.
+    70		 02  DATE1F				    PIC X.
+    71		 02  FILLER REDEFINES DATE1F.
+    72		     03  DATE1A 			    PIC X.
+    73		 02  DATE1I				    PIC X(011).
+    74		 02  TIME1L				    PIC S9(4) COMP.
+    75		 02  TIME1F				    PIC X.
+    76		 02  FILLER REDEFINES TIME1F.
+    77		     03  TIME1A 			    PIC X.
+    78		 02  TIME1I				    PIC X(010).
+    79		 02  UPDBY2L				    PIC S9(4) COMP.
+    80		 02  UPDBY2F				    PIC X.
+    81		 02  FILLER REDEFINES UPDBY2F.
+    82		     03  UPDBY2A			    PIC X.
+    83		 02  UPDBY2I				    PIC X(007).
+    84	     01  SM002MO REDEFINES SM002MI.
+    85		 02  FILLER				    PIC X(12).
+    86		 02  FILLER				    PIC XX.
+    87		 02  FILLER				    PIC X.
+    88		 02  UPDREMO				    PIC X(021).
+    89		 02  FILLER				    PIC XX.
+    90		 02  FILLER				    PIC X.
+    91		 02  UPDDTO				    PIC X(021).
+    92		 02  FILLER				    PIC XX.
+    93		 02  FILLER				    PIC X.
+    94		 02  UPDBY1O				    PIC X(021).
+    95		 02  FILLER				    PIC XX.
+    96		 02  FILLER				    PIC X.
+    97		 02  ERRMSGO				    PIC X(058).
+    98		 02  FILLER				    PIC XX.
+    99		 02  FILLER				    PIC X.
+   100		 02  DATEO				    PIC X(010).
+   101		 02  FILLER				    PIC XX.
+   102		 02  FILLER				    PIC X.
+   103		 02  TIMEO				    PIC X(008).
+   104		 02  FILLER				    PIC XX.
+   105		 02  FILLER				    PIC X.
+   106		 02  TIXNUMO				    PIC X(006).
+   107		 02  FILLER				    PIC XX.
+   108		 02  FILLER				    PIC X.
+   109		 02  TIXTTLO				    PIC X(025).
+   110		 02  FILLER				    PIC XX.
+   111		 02  FILLER				    PIC X.
+   112		 02  TIXDESC1O				    PIC X(040).
+   113		 02  FILLER				    PIC XX.
+   114		 02  FILLER				    PIC X.
+   115		 02  TIXDESC2O				    PIC X(040).
+   116		 02  FILLER				    PIC XX.
+   117		 02  FILLER				    PIC X.
+   118		 02  STATO				    PIC X(008).
+   119		 02  FILLER				    PIC XX.
+   120		 02  FILLER				    PIC X.
+   121		 02  UPDRMKO				    PIC X(025).
+   122		 02  FILLER				    PIC XX.
+   123		 02  FILLER				    PIC X.
+   124		 02  UPDRMK1O				    PIC X(025).
+   125		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+   126		 02  FILLER				    PIC X.
+   127		 02  DATE1O				    PIC X(011).
+   128		 02  FILLER				    PIC XX.
+   129		 02  FILLER				    PIC X.
+   130		 02  TIME1O				    PIC X(010).
+   131		 02  FILLER				    PIC XX.
+   132		 02  FILLER				    PIC X.
+   133		 02  UPDBY2O				    PIC X(007).
+    48	    *$PP-END-COPY
+    49	    *
+    50	    P	 COPY DFHAID.
+    50	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
      1	     01  DFHAID.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -302,7 +460,13 @@
 
 
     45           05  DFHMSRE                   PIC X VALUE 'X'.
+<<<<<<< HEAD
     46           05  DFHTRIG                   PIC X VALUE '"'.
+=======
+    46           05  DFHTRIG                   PIC X VALUE '"'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
     47      *                                        value QUOTE  "
     48           05  DFHPEN                    PIC X VALUE '='.
     49           05  DFHCLRP                   PIC X VALUE 'Ý'.
@@ -313,10 +477,17 @@
     54	    *	 It is set by using <Ctrl>+C or <Ctrl>+<Break> Keys
     55           05  DFHQUIT                   PIC X VALUE '!'.
     56		 05  DFHNULL		       PIC X VALUE LOW-VALUE.
+<<<<<<< HEAD
    102	    *$PP-END-COPY
    103	    *
    104	    PCOPY DFHBMSCA.
    104	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
+=======
+    50	    *$PP-END-COPY
+    51	    *
+    52	    PCOPY DFHBMSCA.
+    52	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
      1	     01  DFHBMSCA.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -362,7 +533,13 @@
 
 
     43	    *	 Field Attributes
+<<<<<<< HEAD
     44	    *
+=======
+    44	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
     45           05  DFHBMASB                          PIC X VALUE '8'.
     46           05  DFHBMASF                          PIC X VALUE '1'.
     47           05  DFHBMASK                          PIC X VALUE '0'.
@@ -422,7 +599,13 @@
 
 
    101		     10  FILLER 		       PIC X.
+<<<<<<< HEAD
    102		     10  DFHBMFLG		       PIC X.
+=======
+   102		     10  DFHBMFLG		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
    103
    104		 05  DFHBMDUP-VAL VALUE 028	       PIC S9(4) COMP-4.
    105		 05  FILLER REDEFINES DFHBMDUP-VAL.
@@ -482,7 +665,13 @@
 
 
    159		     10  DFHPT			       PIC X.
+<<<<<<< HEAD
    160      *                                              EBCDIC X'05'.
+=======
+   160      *                                              EBCDIC X'05'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
    161      *                                              ASCII  X'09'.
    162		 05  DFHRA-VAL VALUE 060	       PIC S9(4) COMP-4.
    163		     88 DFHRA-VAL-EBCDIC	       VALUE 60.
@@ -542,7 +731,13 @@
 
 
    217		 05  DFHBMPNL-VAL VALUE 021	       PIC S9(4) COMP-4.
+<<<<<<< HEAD
    218		     88 DFHBMPNL-VAL-EBCDIC	       VALUE 21.
+=======
+   218		     88 DFHBMPNL-VAL-EBCDIC	       VALUE 21.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
    219		     88 DFHBMPNL-VAL-ASCII	       VALUE 10.
    220		 05  FILLER REDEFINES DFHBMPNL-VAL.
    221		     10  FILLER 		       PIC X.
@@ -602,7 +797,13 @@
 
 
    275		     88 DFHSUB-VAL-EBCDIC	       VALUE 63.
+<<<<<<< HEAD
    276		     88 DFHSUB-VAL-ASCII	       VALUE 26.
+=======
+   276		     88 DFHSUB-VAL-ASCII	       VALUE 26.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
    277		 05  FILLER REDEFINES DFHSUB-VAL.
    278		     10  FILLER 		       PIC X.
    279		     10  DFHSUB 		       PIC X.
@@ -615,6 +816,7 @@
    286		     10  DFHFM			       PIC X.
    287      *                                              EBCDIC X'1E'.
    288		 05  DFHEO VALUE HIGH-VALUE	       PIC X.
+<<<<<<< HEAD
    104	    *$PP-END-COPY
    105
    106	     LINKAGE SECTION.
@@ -688,6 +890,135 @@
    172
    173		 MOVE DFHBMASB TO TIMEA
    174		 MOVE DFHBMASB TO DATEA
+=======
+    52	    *$PP-END-COPY
+    53
+    54	     LINKAGE SECTION.
+    55	     01  DFHCOMMAREA			       PIC X(14).
+    56	    *
+    57	     PROCEDURE DIVISION 					      REALCICS
+    58	     100-PROCESS.
+    59
+    60		 EXEC CICS IGNORE CONDITION
+    61			   ERROR
+    62		 END-EXEC
+    63		 MOVE 0 TO WS-ENTRCTR
+    64
+    65		 IF EIBCALEN NOT = +0
+    66		     PERFORM 200-REC-MAP
+    67		     MOVE DFHCOMMAREA TO WS-COMMAREA
+    68
+    69		 ELSE
+    70		     MOVE DFHCOMMAREA TO WS-COMMAREA
+    71
+    72               MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
+    73               MOVE '1' TO WS-COMMAREA
+    74		     PERFORM 110-NEW-MAP
+    75
+    76
+    77		 END-IF.
+    78
+    79	     100-EXIT.
+    80		 EXIT.
+    81
+    82
+    83	     110-NEW-MAP.
+    84
+    85		     MOVE EIBDATE TO WS-DATE.
+    86		 MOVE WS-DATE-X TO DATEO.
+    87		 EXEC CICS ASKTIME
+    88		  ABSTIME (WS-TIME)
+    89		 END-EXEC
+    90
+    91		 EXEC CICS FORMATTIME
+    92		  ABSTIME (WS-TIME)
+    93            DATESEP ('-')
+    94		  MMDDYY (DATEO)
+    95		  TIME (TIMEO)
+    96            TIMESEP (':')
+    97		 END-EXECCA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+    98
+    99		 MOVE DFHBMASB TO TIMEA
+   100		 MOVE DFHBMASB TO DATEA
+   101
+   102		 EXEC CICS
+   103            SEND MAP('SM002M')
+   104            MAPSET('SM002')
+   105		  FROM(SM002MO)
+   106
+   107		  ERASE
+   108		 END-EXEC
+   109
+   110		 EXEC CICS RETURN
+   111            TRANSID('SM02')
+   112		  COMMAREA(WS-COMMAREA)
+   113		 END-EXEC.
+   114
+   115	     200-REC-MAP.
+   116		 EXEC CICS
+   117               RECEIVE MAP('SM002M')
+   118               MAPSET('SM002')
+   119		     INTO (SM002MI)
+   120		 END-EXEC
+   121		 IF EIBAID = DFHENTER
+   122            MOVE 'ENTER PRESSED' TO ERRMSGO
+   123
+   124		  MOVE HIGH-VALUES TO WS-STF01TCKID
+   125
+   126		  PERFORM 300-READ-STF1
+   127
+   128		 END-IF
+   129
+   130		 IF EIBAID = DFHPF2
+   131		  IF TIXTTLI = SPACES OR TIXDESC2I = SPACES
+   132             MOVE 'INVALID SPACES' TO ERRMSGO
+   133		  ELSE
+   134		   MOVE DFHDFHI TO UPDREMA
+   135		   MOVE DFHDFHI TO UPDDTA
+   136		   MOVE DFHDFHI TO UPDBY1A
+   137		   MOVE DFHDFHI TO UPDRMKA
+   138		   MOVE DFHDFHI TO UPDRMK1A
+   139		   MOVE DFHDFHI TO DATE1A
+   140		   MOVE DFHDFHI TO TIME1A
+   141
+   142		   MOVE SPACES TO WS-STF01TCKREQ
+   143		   MOVE SPACES TO WS-STF01TCKSTAT
+   144		   MOVE SPACES TO WS-STF01TCKTTL
+   145		   MOVE SPACES TO WS-STF01TCKDESC
+   146		   MOVE SPACES TO WS-STF01LSTUPD
+   147		   MOVE SPACES TO WS-STF01LSTUPDBY
+   148		   MOVE SPACES TO WS-STF01LSTUPDRMK
+   149
+   150		   MOVE TIXTTLI TO WS-STF01TCKTTL
+   151		   MOVE TIXDESC2I TO WS-STF01TCKDESC
+   152             MOVE 'CREATED' TO STATI
+   153		   MOVE STATI TO WS-STF01TCKSTAT
+   154             MOVE 'TICKET CREATED' TO UPDRMKI
+   155		   MOVE UPDRMKI TO WS-STF01LSTUPDRMKCA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+
+
+   156
+   157
+   158		   MOVE EIBDATE TO WS-HDATE
+   159		   EXEC CICS ASKTIME
+   160		    ABSTIME (WS-HTIME)
+   161		   END-EXEC
+   162
+   163		   EXEC CICS FORMATTIME
+   164		    ABSTIME (WS-HTIME)
+   165              DATESEP ('-')
+   166		    MMDDYY (WS-HDATE-X)
+   167		    TIME (WS-HTIME)
+   168              TIMESEP (':')
+   169		   END-EXEC
+   170
+   171		   MOVE WS-HDATE-X TO WS-STF01LSTUPD(1:10)
+   172		   MOVE WS-HDATE-X TO DATE1O
+   173		   MOVE WS-HTIME-X TO WS-STF01LSTUPD(11:10)
+   174		   MOVE WS-HTIME-X TO TIME1O
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
    175
    176		 EXEC CICS
    177            SEND MAP('SM002M')
@@ -713,12 +1044,29 @@
    197		 IF EIBAID = DFHENTER
    198            IF WS-PROG-STATE = '2'
    199
+<<<<<<< HEAD
    200
    201		    IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
    202               MOVE 'TITLE AND DESCRIPTION IS REQUIRED' TO ERRMSGO
    203		     MOVE 3 TO WS-PROG-STATE
    204		    END-IF
    205CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+=======
+   200		 IF EIBAID = DFHPF3
+   201		  EXEC CICS XCTL
+   202                PROGRAM('SM000')
+   203		  END-EXEC
+   204
+   205		 END-IF.
+   206
+   207	     300-READ-STF1.
+   208
+   209		 EXEC CICS STARTBR
+   210            FILE('STf00001')
+   211		  RIDFLD (WS-STF01TCKID)
+   212		  RESP(WS-RES-CODE)
+   213		  GTEQCA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 
 
    206		    IF TIXTTLI = SPACES AND TIXDESC1I NOT = SPACES
@@ -738,6 +1086,7 @@
    220
    221
    222
+<<<<<<< HEAD
    223		  ELSE
    224
    225		   IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES
@@ -995,6 +1344,13 @@
    469
    470
    471		 END-IF.
+=======
+   223		 IF EIBRESP = DFHRESP(NORMAL)
+   224		  COMPUTE WS-STF01TCKIDR = WS-STF01TCKIDR + 1
+   225		  MOVE WS-STF01TCKIDR TO TIXNUMO
+   226		  ADD 1 TO WS-ENTRCTR
+   227		 END-IF.
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 CA-Realia CACXPREP C:\handson-cics\CAWB30\sm02p.COB
 
 

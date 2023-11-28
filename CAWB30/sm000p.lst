@@ -33,9 +33,9 @@
     96		      10  USERID1			PIC X(7).
     97		      10  FILLER			PIC X.
     98		  05  REQUESTOR 			PIC X.
-    99		  05  SERVICE-PROVIDER			PIC X.
+    99		  05  ADMINISTRATOR			PIC X.
    100		  05  APPROVER				PIC X.
-   101		  05  ADMINISTRATOR			PIC X.
+   101		  05  SERVICE-PROVIDER			PIC X.
    102		  05  UPDATED-BY1.
    103		      10  UPDBY1			PIC X(7).
    104		      10  FILLER			PIC X.
@@ -950,6 +950,7 @@
   2021		      PERFORM 500-MOVE-CHOICE-VAL
   2022                MOVE '- CANCEL TICKET' TO WS-CHOICE
   2023		      PERFORM 500-MOVE-CHOICE-VAL
+<<<<<<< HEAD
   2024		  END-IF
   2025            IF SERVICE-PROVIDER = 'Y'
   2026                IF NOT REQUESTOR = 'Y'
@@ -1075,6 +1076,104 @@
   2306		  END-IF.
   2307	      700-EXIT.
   2308		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   20
+=======
+  2024		  END-IF.
+  2025	      400-EXIT.
+  2026		  EXIT.
+  2027
+  2028	      500-MOVE-CHOICE-VAL.
+  2029		  EVALUATE TRUE
+  2030		      WHEN OPTCHC1O = LOW-VALUES
+  2031			  MOVE WS-INDEX TO OPTNO1O
+  2032			  MOVE WS-CHOICE TO OPTCHC1O
+  2033			  MOVE WS-CHOICE TO WS-CHC1
+  2034			  ADD 1 TO WS-INDEX
+  2035		      WHEN OPTCHC2O = LOW-VALUES
+  2036			  MOVE WS-INDEX TO OPTNO2O
+  2037			  MOVE WS-CHOICE TO OPTCHC2O
+  2038			  MOVE WS-CHOICE TO WS-CHC2
+  2039			  ADD 1 TO WS-INDEX
+  2040		      WHEN OPTCHC3O = LOW-VALUES
+  2041			  MOVE WS-INDEX TO OPTNO3O
+  2042			  MOVE WS-CHOICE TO OPTCHC3O
+  2043			  MOVE WS-CHOICE TO WS-CHC3
+  2044			  ADD 1 TO WS-INDEX
+  2045		      WHEN OPTCHC4O = LOW-VALUES
+  2046			  MOVE WS-INDEX TO OPTNO4O
+  2047			  MOVE WS-CHOICE TO OPTCHC4O
+  2048			  MOVE WS-CHOICE TO WS-CHC4
+  2049			  ADD 1 TO WS-INDEX
+  2050		      WHEN OPTCHC5O = LOW-VALUES
+  2051			  MOVE WS-INDEX TO OPTNO5O
+  2052			  MOVE WS-CHOICE TO OPTCHC5O
+  2053			  MOVE WS-CHOICE TO WS-CHC5
+  2054			  ADD 1 TO WS-INDEX
+  2055		      WHEN OPTCHC6O = LOW-VALUES
+  2056			  MOVE WS-INDEX TO OPTNO6O
+  2057			  MOVE WS-CHOICE TO OPTCHC6O
+  2058			  MOVE WS-CHOICE TO WS-CHC6
+  2059			  ADD 1 TO WS-INDEX
+  2060		      WHEN OPTCHC7O = LOW-VALUES  2061			  MOVE WS-INDEX TO OPTNO7O
+  2062			  MOVE WS-CHOICE TO OPTCHC7O
+  2063			  MOVE WS-CHOICE TO WS-CHC7
+  2064			  ADD 1 TO WS-INDEX
+  2065		  END-EVALUATE.
+  2066	      500-EXIT.
+  2067		  EXIT.
+  2068
+  2069	      600-VALIDATE-TICKET.
+  2071		  EXEC CICS
+  2072                READ FILE('STF00001')
+  2073		      INTO (WS-TIX-REC)
+  2074		      RIDFLD (WS-TICKET-NUM)
+  2075		      RESP(WS-RESPONSE-CODE)
+  2076		      GTEQ
+  2077		  END-EXEC
+  2116		  IF EIBRESP = DFHRESP(NOTFND)
+  2118		  IF EIBRESP =	       013				       R
+  2119		      MOVE WS-INVALID-TICKET TO ERRMSGO
+  2120		      MOVE EIBDATE TO WS-DATE
+  2121		      MOVE WS-DATE-X TO DATEO
+  2123		      EXEC CICS ASKTIME
+  2124			      ABSTIME  (WS-TIME)
+  2125			  END-EXEC
+  2144			  EXEC CICS FORMATTIME
+  2145			      ABSTIME  (WS-TIME)
+  2146                        DATESEP  ('-')
+  2147			      MMDDYY   (DATEO)
+  2148			  TIME	   (TIMEO)
+  2149                    TIMESEP  (':')
+  2150		      END-EXEC
+  2190		      MOVE DFHBMASB TO TIMEA
+  2191		      MOVE DFHBMASB TO DATEA
+  2192		      MOVE DFHUNIMD TO OPTIONA
+  2194		      EXEC CICS
+  2195                    SEND MAP('SW00M')
+  2196                         MAPSET('SW00S')
+  2197			       FROM(SW00MO)
+  2198			       ERASE
+  2199		      END-EXEC
+  2236		      EXEC CICS RETURN
+  2237                    TRANSID('SM00')
+  2238			  COMMAREA(WS-COMMAREA)
+  2239		      END-EXEC
+  2263		  ELSE
+  2264		      MOVE 1 TO WS-PROG-STATE
+  2265		  END-IF.
+  2266	      600-EXIT.
+  2267		  EXIT.
+  2268
+  2269	      700-TRANSFER-PROG.
+  2270		  IF TIXNOI = SPACES OR TIXNOL = ZERO
+  2271		      MOVE +0 TO EIBCALEN
+  2272		  ELSE
+  2273                MOVE 'N' TO WS-INIT
+  2274		      MOVE TIXNOI TO WS-TICKET-NUM
+  2275		      PERFORM 600-VALIDATE-TICKET
+  2276		  END-IF.
+  2277	      700-EXIT.
+  2278		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   19
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 
 
 
@@ -1103,9 +1202,18 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
+<<<<<<< HEAD
 			Source lines compiled:	    2319
 			Compilation time (mm:ss.ss):  0:00.11
 			Compilation speed (lines/minute): 64909
 
 			Compilation date (yy/mm/dd): 23/11/28
 			     Time of day (hh:mm:ss): 11:35:50
+=======
+			Source lines compiled:	    2289
+			Compilation time (mm:ss.ss):  0:00.53
+			Compilation speed (lines/minute): 59132
+
+			Compilation date (yy/mm/dd): 23/11/24
+			     Time of day (hh:mm:ss): 10:08:49
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7

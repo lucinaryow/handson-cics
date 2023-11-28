@@ -799,5 +799,10 @@
 		      DCHK
 
 		Source Lines Translated:     758
+<<<<<<< HEAD
 		Translation Time:	     .02 sec
 		Translation Speed:	  526666 lines per min
+=======
+		Translation Time:	     .05 sec
+		Translation Speed:	  947500 lines per min
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
