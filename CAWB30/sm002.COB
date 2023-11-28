@@ -1,6 +1,11 @@
       * SYMBOLIC MAP of sm002 Created by CACXBMS Version 6.0.27
        01  SM002MI.
 	   02  FILLER				      PIC X(12).
+	   02  HEADERL				      PIC S9(4) COMP.
+	   02  HEADERF				      PIC X.
+	   02  FILLER REDEFINES HEADERF.
+	       03  HEADERA			      PIC X.
+	   02  HEADERI				      PIC X(013).
 	   02  UPDREML				      PIC S9(4) COMP.
 	   02  UPDREMF				      PIC X.
 	   02  FILLER REDEFINES UPDREMF.
@@ -83,6 +88,9 @@
 	   02  UPDBY2I				      PIC X(007).
        01  SM002MO REDEFINES SM002MI.
 	   02  FILLER				      PIC X(12).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  HEADERO				      PIC X(013).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
 	   02  UPDREMO				      PIC X(021).

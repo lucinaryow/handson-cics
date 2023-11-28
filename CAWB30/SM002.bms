@@ -7,7 +7,7 @@ SM002M   DFHMDI SIZE=(24,80)
                INITIAL='SM002'
          DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              C
                INITIAL='SERVICE MANAGEMENT'
-         DFHMDF POS=(02,35),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+HEADER   DFHMDF POS=(02,35),LENGTH=13,ATTRB=(ASKIP,NORM),              C
                INITIAL='ADD TICKET'
          DFHMDF POS=(03,01),LENGTH=60,ATTRB=(ASKIP,NORM),              C
                INITIAL=''

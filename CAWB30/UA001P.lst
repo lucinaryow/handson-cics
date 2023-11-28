@@ -1330,8 +1330,13 @@ DEBUGXREF	  DIALECT-VS2
 			Error level limit: W
 
 			Source lines compiled:	    1970
-			Compilation time (mm:ss.ss):  0:00.40
-			Compilation speed (lines/minute): 95500
+			Compilation time (mm:ss.ss):  0:00.08
+			Compilation speed (lines/minute): 77500
 
+<<<<<<< HEAD
+			Compilation date (yy/mm/dd): 23/11/28
+			     Time of day (hh:mm:ss): 11:35:51
+=======
 			Compilation date (yy/mm/dd): 23/11/24
 			     Time of day (hh:mm:ss): 10:08:51
+>>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7

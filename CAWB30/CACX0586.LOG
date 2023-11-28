@@ -1,0 +1,6 @@
+Record Type: Text, 23/11/22, 20:11:15:70
+Abend Detected in Program:SM000 module:SM000 Line:160
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/22, 20:11:19:71
+CACX0001E: 20:11:15 Transaction SM00 program SM000 abend AEI9

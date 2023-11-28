@@ -79,6 +79,14 @@
                10  FILLER                         PIC X.
            05  WS-PROG-STATE                      PIC 9(1).  
            05  WS-INIT                            PIC X VALUE 'Y'. 
+           05  WS-TCKID                           PIC X(6).
+           05  WS-TCKREQ                          PIC X(8).
+           05  WS-TCKSTAT                         PIC X(10).
+           05  WS-TCKTTL                          PIC X(25).
+           05  WS-TCKDESC                         PIC X(100).
+           05  WS-LSTUPD                          PIC X(20).
+           05  WS-STUPDBY                         PIC X(8).
+           05  WS-LSTUPDRMK                       PIC X(50).
   
       *
 	   COPY SM000S.
@@ -209,8 +217,10 @@
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
+                           
                            EXEC CICS XCTL 
                                PROGRAM('SM02P')
+                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
@@ -227,11 +237,11 @@
                        END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
                                COMMAREA(WS-COMMAREA)
                            END-EXEC
                        END-IF
@@ -296,11 +306,12 @@
                        END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
+                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
-                               PROGRAM('SM003')
+                               PROGRAM('SM03P')
                                COMMAREA(WS-COMMAREA)
                            END-EXEC
                        END-IF
@@ -332,6 +343,7 @@
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM004')
+                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
@@ -449,6 +461,9 @@
                    ERASE 
                END-EXEC
                EXEC CICS RETURN END-EXEC
+           ELSE
+            MOVE WS-USERID TO WS-USERID1
+            MOVE 1 TO WS-PROG-STATE
            END-IF
            IF REQUESTOR = 'Y' 
                MOVE '- SEARCH TICKET' TO WS-CHOICE
@@ -542,6 +557,12 @@
            ELSE 
                MOVE 'Y' TO WS-VALID-TIX-FLAG
                MOVE 1 TO WS-PROG-STATE
+
+               IF WS-CHC2 = '- ADD TICKET'
+                IF WS-TICKET-NUM = SPACES
+                 MOVE '0' TO WS-TICKET-NUM
+                END-IF 
+               END-IF 
            END-IF.
        600-EXIT.
            EXIT.
@@ -550,6 +571,7 @@
            IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
                MOVE TIXNOI TO WS-TICKET-NUM1
                MOVE +0 TO EIBCALEN
+               MOVE '0' TO WS-TICKET-NUM
            ELSE 
                MOVE 'N' TO WS-INIT
                MOVE TIXNOI TO WS-TICKET-NUM1

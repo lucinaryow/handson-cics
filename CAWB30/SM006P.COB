@@ -112,7 +112,7 @@
                        MOVE 'Y' TO WS-INIT
                    ELSE 
                        IF EIBAID = DFHPF3 OR DFHPF2 OR DFHPF5 OR
-                                       DFHENTER OR DFHPF11 OR DFHPF11
+                                       DFHENTER OR DFHPF11 OR DFHPF12
                            PERFORM 200-REC-MAP
                        ELSE
                            IF WS-TICKET-NUM NOT = LOW-VALUES
