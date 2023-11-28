@@ -186,7 +186,10 @@
                    END-IF  
                    IF WS-CHC1 = '- SEARCH TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 800-NEED-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM001')
@@ -201,8 +204,8 @@
                WHEN OPTIONI = 2
                    IF WS-CHC2 = '- ADD TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF WS-TICKET-NUM1 = SPACES OR 
-                           WS-TICKET-NUM1 = LOW-VALUES
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -218,7 +221,10 @@
                    END-IF  
                    IF WS-CHC2 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 900-NO-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 900-NO-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM003')
@@ -231,7 +237,10 @@
                        END-IF
                    END-IF  
                    IF WS-CHC2 = '- APPROVE TICKET'
-                       PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 700-TRANSFER-PROG
+                       END-IF
                        PERFORM 800-NEED-TIX
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
@@ -264,7 +273,10 @@
                    END-IF  
                    IF WS-CHC3 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 800-NEED-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM005')
@@ -278,7 +290,10 @@
                    END-IF  
                    IF WS-CHC3 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 800-NEED-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM003')
@@ -310,7 +325,10 @@
                    END-IF  
                    IF WS-CHC4 = '- CLOSE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 800-NEED-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM004')
@@ -329,7 +347,10 @@
                WHEN OPTIONI = 5 
                    IF WS-CHC5 = '- CANCEL TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 800-NEED-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM006P')
@@ -348,7 +369,10 @@
                WHEN OPTIONI = 6 
                    IF WS-CHC6 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       PERFORM 800-NEED-TIX
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM005')
