@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     24NOV23 12:38:02 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     28NOV23 11:35:50 PAGE  1
 
     1    PRINT NOGEN
     2 SM003    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      *
@@ -57,16 +57,16 @@ W **** LITERAL exceeds LENGTH - truncation likely
    53          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              *
    54                INITIAL='PF5 - ABORT'
    55          DFHMDF POS=(24,55),LENGTH=11,ATTRB=(ASKIP,NORM),              *
-   56                INITIAL='PF11 - LOGS'CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     24NOV23 12:38:02 PAGE  2
+   56                INITIAL='PF11 - LOGS'CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     28NOV23 11:35:50 PAGE  2
 
    57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
-   59 TIXNUM   DFHMDF POS=(05,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
+   59 TIXNUM   DFHMDF POS=(05,23),LENGTH=6,ATTRB=(UNPROT,IC,NORM,FSET)
    60 REQBY    DFHMDF POS=(06,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
-   61 TIXTTL   DFHMDF POS=(07,23),LENGTH=25,ATTRB=(UNPROT,NORM,FSET)
-   62 TIXDESC1 DFHMDF POS=(08,23),LENGTH=40,ATTRB=(UNPROT,NORM,FSET)
+   61 TIXTTL   DFHMDF POS=(07,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   62 TIXDESC1 DFHMDF POS=(08,23),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
 W **** Label should be less than 8 characters long
-   63 TIXDESC2 DFHMDF POS=(09,23),LENGTH=40,ATTRB=(UNPROT,NORM,FSET)
+   63 TIXDESC2 DFHMDF POS=(09,23),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
 W **** Label should be less than 8 characters long
    64 STAT     DFHMDF POS=(10,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
    65 UPDBY    DFHMDF POS=(11,23),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
@@ -82,7 +82,7 @@ W **** Blank records not supported by Mainframe.
    72          END
    73
 W **** Blank records not supported by Mainframe.
-There were     6 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     24NOV23 12:38:02 PAGE  3
+There were     6 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm003.bms                                                                     28NOV23 11:35:50 PAGE  3
 
       COBOL COPY file generated
 

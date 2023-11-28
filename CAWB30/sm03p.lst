@@ -589,13 +589,13 @@
    695			    ERROR
    696		  END-EXEC
    711		  MOVE 0 TO WS-ENTRCTR   712		  MOVE DFHCOMMAREA TO WS-COMMAREA
-   713            IF EIBTRNID = 'SM00' OR 'SM01'
+   713            IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM03' OR  'SM012'
    714		      IF EIBCALEN NOT = +0
    715
    716                  IF WS-PROG-STATE = '1'
    717                    MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
    718			  MOVE 2 TO WS-PROG-STATE
-   719
+   719			  MOVE WS-TICKET-NUM TO TIXNUMO
    720			  PERFORM 110-NEW-MAP
    721			ELSE
    722			  PERFORM 200-REC-MAP
@@ -660,7 +660,15 @@
    977
    978		  IF EIBAID = DFHENTER
    979             MOVE 'ENTER PRESSED' TO ERRMSGO
-   980		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm03p.cic      PAGE   13
+   980		  END-IF
+   981
+   982		  IF EIBAID = DFHPF3
+   983
+   985		    EXEC CICS XCTL
+   986               PROGRAM('SM000')
+   987		    END-EXEC
+  1006
+  1007		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm03p.cic      PAGE   13
 
 LINE (REL)  ERR# LVL			ERROR TEXT
 
@@ -696,9 +704,9 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
-			Source lines compiled:	     991
-			Compilation time (mm:ss.ss):  0:00.21
-			Compilation speed (lines/minute): 83142
+			Source lines compiled:	    1018
+			Compilation time (mm:ss.ss):  0:00.09
+			Compilation speed (lines/minute): 78666
 
-			Compilation date (yy/mm/dd): 23/11/24
-			     Time of day (hh:mm:ss): 12:38:03
+			Compilation date (yy/mm/dd): 23/11/28
+			     Time of day (hh:mm:ss): 11:35:50

@@ -1082,22 +1082,27 @@
 
 
    538		     MOVE 1 TO WS-PROG-STATE
-   539               MOVE '0' TO WS-TICKET-NUM
-   540		 END-IF.
-   541	     600-EXIT.
-   542		 EXIT.
-   543
-   544	     700-TRANSFER-PROG.
-   545		 IF TIXNOI = SPACES OR TIXNOL = ZERO
-   546		     MOVE +0 TO EIBCALEN
-   547               MOVE '0' TO WS-TICKET-NUM
-   548		 ELSE
-   549               MOVE 'N' TO WS-INIT
-   550		     MOVE TIXNOI TO WS-TICKET-NUM
-   551		     PERFORM 600-VALIDATE-TICKET
-   552		 END-IF.
-   553	     700-EXIT.
-   554		 EXIT.
+   539
+   540               IF WS-CHC2 = '- ADD TICKET'
+   541		      IF WS-TICKET-NUM = SPACES
+   542                 MOVE '0' TO WS-TICKET-NUM
+   543		      END-IF
+   544		     END-IF
+   545		 END-IF.
+   546	     600-EXIT.
+   547		 EXIT.
+   548
+   549	     700-TRANSFER-PROG.
+   550		 IF TIXNOI = SPACES OR TIXNOL = ZERO
+   551		     MOVE +0 TO EIBCALEN
+   552               MOVE '0' TO WS-TICKET-NUM
+   553		 ELSE
+   554               MOVE 'N' TO WS-INIT
+   555		     MOVE TIXNOI TO WS-TICKET-NUM
+   556		     PERFORM 600-VALIDATE-TICKET
+   557		 END-IF.
+   558	     700-EXIT.
+   559		 EXIT.
 CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
@@ -1115,6 +1120,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:    1065
-		Translation Time:	     .05 sec
-		Translation Speed:	  331250 lines per min
+		Source Lines Translated:    1070
+		Translation Time:	     .03 sec
+		Translation Speed:	  140000 lines per min

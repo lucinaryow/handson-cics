@@ -592,13 +592,13 @@
    104		 END-EXEC
    105		 MOVE 0 TO WS-ENTRCTR
    106		 MOVE DFHCOMMAREA TO WS-COMMAREA
-   107           IF EIBTRNID = 'SM00' OR 'SM01'
+   107           IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM03' OR  'SM012'
    108		     IF EIBCALEN NOT = +0
    109
    110                 IF WS-PROG-STATE = '1'
    111                   MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
    112			 MOVE 2 TO WS-PROG-STATE
-   113CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+   113			 MOVE WS-TICKET-NUM TO TIXNUMOCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
    114			 PERFORM 110-NEW-MAP
@@ -668,7 +668,15 @@
    176
    177		 IF EIBAID = DFHENTER
    178            MOVE 'ENTER PRESSED' TO ERRMSGO
-   179		 END-IF.
+   179		 END-IF
+   180
+   181		 IF EIBAID = DFHPF3
+   182
+   183		   EXEC CICS XCTL
+   184              PROGRAM('SM000')
+   185		   END-EXEC
+   186
+   187		 END-IF.
 CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
@@ -686,6 +694,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:     650
-		Translation Time:	     .03 sec
-		Translation Speed:	  300000 lines per min
+		Source Lines Translated:     658
+		Translation Time:	     .01 sec
+		Translation Speed:	  580000 lines per min

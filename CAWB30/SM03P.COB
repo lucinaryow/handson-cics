@@ -104,13 +104,13 @@
            END-EXEC
            MOVE 0 TO WS-ENTRCTR
            MOVE DFHCOMMAREA TO WS-COMMAREA
-           IF EIBTRNID = 'SM00' OR 'SM01'
+           IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM03' OR  'SM012'
                IF EIBCALEN NOT = +0
                 
                  IF WS-PROG-STATE = '1' 
                    MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
                    MOVE 2 TO WS-PROG-STATE
-                   
+                   MOVE WS-TICKET-NUM TO TIXNUMO
                    PERFORM 110-NEW-MAP
                  ELSE
                    PERFORM 200-REC-MAP
@@ -176,4 +176,12 @@
 
            IF EIBAID = DFHENTER
             MOVE 'ENTER PRESSED' TO ERRMSGO
+           END-IF
+           
+           IF EIBAID = DFHPF3
+           
+             EXEC CICS XCTL
+              PROGRAM('SM000')
+             END-EXEC
+       
            END-IF.

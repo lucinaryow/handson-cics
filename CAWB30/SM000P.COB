@@ -536,7 +536,12 @@
                END-EXEC
            ELSE 
                MOVE 1 TO WS-PROG-STATE
-               MOVE '0' TO WS-TICKET-NUM
+
+               IF WS-CHC2 = '- ADD TICKET'
+                IF WS-TICKET-NUM = SPACES
+                 MOVE '0' TO WS-TICKET-NUM
+                END-IF 
+               END-IF 
            END-IF.
        600-EXIT.
            EXIT.

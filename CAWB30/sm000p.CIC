@@ -2285,7 +2285,12 @@
       *$PP-LIST 							REALCICS
 	   ELSE
 	       MOVE 1 TO WS-PROG-STATE
-               MOVE '0' TO WS-TICKET-NUM
+
+               IF WS-CHC2 = '- ADD TICKET'
+		IF WS-TICKET-NUM = SPACES
+                 MOVE '0' TO WS-TICKET-NUM
+		END-IF
+	       END-IF
 	   END-IF.
        600-EXIT.
 	   EXIT.
@@ -2305,7 +2310,7 @@
        DFH-END SECTION. 						REALCICS
        DFH-CALL-END.							REALCICS
            MOVE 'SM000P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 555 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 560 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE LOW-VALUE TO DFH-COMMAND				REALCICS
            CALL 'CICS_Module_End' USING CICSICB GIVING                  REALCICS
 	       DFH-RETURN-STATUS					REALCICS

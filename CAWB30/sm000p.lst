@@ -1055,21 +1055,26 @@
   2262		      END-EXEC
   2286		  ELSE
   2287		      MOVE 1 TO WS-PROG-STATE
-  2288                MOVE '0' TO WS-TICKET-NUM
-  2289		  END-IF.
-  2290	      600-EXIT.
-  2291		  EXIT.
-  2292
-  2293	      700-TRANSFER-PROG.  2294		  IF TIXNOI = SPACES OR TIXNOL = ZERO
-  2295		      MOVE +0 TO EIBCALEN
-  2296                MOVE '0' TO WS-TICKET-NUM
-  2297		  ELSE
-  2298                MOVE 'N' TO WS-INIT
-  2299		      MOVE TIXNOI TO WS-TICKET-NUM
-  2300		      PERFORM 600-VALIDATE-TICKET
-  2301		  END-IF.
-  2302	      700-EXIT.
-  2303		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   20
+  2288
+  2289                IF WS-CHC2 = '- ADD TICKET'
+  2290		       IF WS-TICKET-NUM = SPACES
+  2291                  MOVE '0' TO WS-TICKET-NUM
+  2292		       END-IF
+  2293		      END-IF  2294		  END-IF.
+  2295	      600-EXIT.
+  2296		  EXIT.
+  2297
+  2298	      700-TRANSFER-PROG.
+  2299		  IF TIXNOI = SPACES OR TIXNOL = ZERO
+  2300		      MOVE +0 TO EIBCALEN
+  2301                MOVE '0' TO WS-TICKET-NUM
+  2302		  ELSE
+  2303                MOVE 'N' TO WS-INIT
+  2304		      MOVE TIXNOI TO WS-TICKET-NUM
+  2305		      PERFORM 600-VALIDATE-TICKET
+  2306		  END-IF.
+  2307	      700-EXIT.
+  2308		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   20
 
 
 
@@ -1098,9 +1103,9 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
-			Source lines compiled:	    2314
-			Compilation time (mm:ss.ss):  0:00.23
-			Compilation speed (lines/minute):  3652
+			Source lines compiled:	    2319
+			Compilation time (mm:ss.ss):  0:00.11
+			Compilation speed (lines/minute): 64909
 
-			Compilation date (yy/mm/dd): 23/11/24
-			     Time of day (hh:mm:ss): 12:38:01
+			Compilation date (yy/mm/dd): 23/11/28
+			     Time of day (hh:mm:ss): 11:35:50
