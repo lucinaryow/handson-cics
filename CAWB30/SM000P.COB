@@ -194,7 +194,7 @@
                    END-IF  
                    IF WS-CHC1 = '- SEARCH TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -211,7 +211,7 @@
                WHEN OPTIONI = 2
                    IF WS-CHC2 = '- ADD TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -229,7 +229,7 @@
                    END-IF  
                    IF WS-CHC2 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -244,7 +244,7 @@
                        END-IF
                    END-IF  
                    IF WS-CHC2 = '- APPROVE TICKET'
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 700-TRANSFER-PROG
                        END-IF
                        PERFORM 800-NEED-TIX
@@ -279,7 +279,7 @@
                    END-IF  
                    IF WS-CHC3 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -295,7 +295,7 @@
                    END-IF  
                    IF WS-CHC3 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -330,7 +330,7 @@
                    END-IF  
                    IF WS-CHC4 = '- CLOSE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -352,7 +352,7 @@
                WHEN OPTIONI = 5 
                    IF WS-CHC5 = '- CANCEL TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -373,7 +373,7 @@
                WHEN OPTIONI = 6 
                    IF WS-CHC6 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = +0
+                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
