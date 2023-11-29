@@ -188,14 +188,17 @@
 					EVALUATE WS-DFHSTATE
 					WHEN 'DATA ENTRY'
                       PERFORM 210-WHEN-DATA-ENTRY	
-                    WHEN 'CONFIRM UPDATE'
-					  PERFORM 850-PROTECT-FIELDS
+                    WHEN 'CONFIRM UPDATE'					  
                       PERFORM 220-WHEN-CONFIRM-U
                     WHEN 'AFTER UPDATE'
-                      PERFORM 850-PROTECT-FIELDS
                       PERFORM 230-WHEN-AFTER-UPDATE					  
                     END-EVALUATE
                ELSE
+			       EXEC CICS DELETEQ TS
+					QUEUE(WS-QNAME)
+				  END-EXEC
+			       PERFORM 999-MOVE-FILE-TO-Q
+                   PERFORM 910-MOVE-Q-TO-SCREEN
                    PERFORM 100-NEW-MAP
                END-IF
            END-IF.
@@ -266,12 +269,8 @@
 	       WHEN DFHENTER
               PERFORM 500-UPD-DEL-RECORDS
               MOVE WS-UPDATED TO MSGO
-			  MOVE 1 TO WS-PAGE
-              MOVE WS-PAGE TO PAGEO
-              MOVE 'DATA ENTRY' TO WS-DFHSTATE
-              PERFORM 999-MOVE-FILE-TO-Q
-              PERFORM 910-MOVE-Q-TO-SCREEN
-              PERFORM 100-NEW-MAP
+              MOVE 'AFTER UPDATE' TO WS-DFHSTATE
+			  PERFORM 850-PROTECT-FIELDS
 			WHEN DFHPF3
 			  EXEC CICS 
 			    SEND CONTROL 
@@ -286,11 +285,19 @@
 			   
 			WHEN OTHER
 			  MOVE 'INVALID PFKEY PRESSED' TO MSGO 
+			  PERFORM 850-PROTECT-FIELDS
 			END-EVALUATE.
         230-WHEN-AFTER-UPDATE SECTION.
 	       EVALUATE EIBAID
 	       WHEN DFHENTER
-              MOVE 'YOU ARE IN AFTER UPDATE' TO MSGO
+              MOVE 'UPDATE USER ROLES AND PRESS ENTER' 
+			  TO MSGO
+			  
+			  MOVE 'DATA ENTRY' TO WS-DFHSTATE
+			  			  
+			  PERFORM 999-MOVE-FILE-TO-Q
+              PERFORM 910-MOVE-Q-TO-SCREEN
+              PERFORM 100-NEW-MAP
 			  
 			WHEN DFHPF3
 			  EXEC CICS 
@@ -302,10 +309,11 @@
 			  END-EXEC 
 			  EXEC CICS RETURN
 			  END-EXEC
-			 
-			   
+			 			   
 			WHEN OTHER
-			  MOVE 'INVALID PFKEY PRESSED' TO MSGO 
+			  PERFORM 850-PROTECT-FIELDS
+			  MOVE 'INVALID PFKEY PRESSED' TO MSGO
+			  
 			END-EVALUATE.
        300-CHECK-UD-INPUT SECTION.
 	       MOVE 1 TO WS-INDX
@@ -546,12 +554,14 @@
 
             PERFORM UNTIL WS-INDX > 11
                 IF EIBRESP = DFHRESP(NORMAL) AND 
-                   WS-QITEM <= WS-QITEM-END  
+                   WS-QITEM <= WS-QITEM-END
+                   				   
                    MOVE WS-UID TO UIDI(WS-INDX)
                    MOVE WS-REQ TO REQI(WS-INDX)
                    MOVE WS-ADMN TO ADMNI(WS-INDX)
                    MOVE WS-APP TO APPI(WS-INDX)
                    MOVE WS-SP TO SPI(WS-INDX)
+
                    ADD 1 TO WS-INDX
                    ADD 1 TO WS-QITEM
                    EXEC CICS READQ TS
@@ -575,7 +585,17 @@
            MOVE WS-USERNUM(1) TO WS-FUSER.
 
        910-EXIT.
-           EXIT.		   
+           EXIT.	
+       920-RESET-FIELDS SECTION.
+           MOVE 1 TO WS-INDX
+           PERFORM UNTIL WS-INDX > 11
+		     MOVE DFHBMUNP TO UDA(WS-INDX)
+			 MOVE DFHBMUNP TO REQA(WS-INDX)
+	         MOVE DFHBMUNP TO ADMNA(WS-INDX)
+		     MOVE DFHBMUNP TO APPA(WS-INDX)
+			 MOVE DFHBMUNP TO SPA(WS-INDX)
+		     ADD 1 TO WS-INDX
+           END-PERFORM. 		   
        999-MOVE-FILE-TO-Q SECTION.
 
             MOVE LOW-VALUES TO WS-KEYB. 
