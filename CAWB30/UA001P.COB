@@ -40,6 +40,8 @@
            05  WS-UID-REDEF REDEFINES WS-UID.
                10  WS-USERID7      PIC X(7).
                10  FILLER          PIC X(1).
+		   05  WS-UID-ARR REDEFINES WS-UID.
+		       10 WS-UID-CHAR   PIC X(01) OCCURS 8.
            05  WS-REQ                  PIC X.
            05  WS-ADMN                 PIC X.
            05  WS-APP                  PIC X.
@@ -60,7 +62,9 @@
 		   05  WS-PAGE-NUM REDEFINES WS-PAGE-X PIC 9(2).
 		   05  WS-PG.
 		       10 WS-PAGE1 PIC X.
-               10 WS-PAGE2 PIC X.			   
+               10 WS-PAGE2 PIC X.
+           05  WS-FILTER-ID.
+               10 WS-FILTER-ARR PIC X(01) OCCURS 8.		   
        01  WS-COUNT.
 	       05  WS-EDIT-COUNT      PIC 9(2).
 		   05  WS-ERROR-COUNT     PIC 9999.
@@ -68,6 +72,7 @@
        01  WS-SWITCH.
 		   05  WS-VALID-I-SW           PIC X.
 		   05  WS-NO-CHANGE            PIC X.
+		   05  WS-FILTER-SW            PIC X.
        01  WS-COMMAREA.
            05  WS-COMMAREA-REC.
                10  WS-CA-UID           PIC X(8).
@@ -180,6 +185,7 @@
                MOVE 1 TO WS-PAGE
                MOVE WS-PAGE TO PAGEO
                MOVE 'DATA ENTRY' TO WS-DFHSTATE
+			   MOVE SPACES TO USERIDI
                PERFORM 999-MOVE-FILE-TO-Q
                PERFORM 910-MOVE-Q-TO-SCREEN
                PERFORM 100-NEW-MAP
@@ -538,7 +544,23 @@
            END-EXEC
            EXEC CICS 
 		        DELETE FILE('UAF00001')
-           END-EXEC.		   
+           END-EXEC.	
+       600-FILTER-USER SECTION.
+	       MOVE 1 TO WS-INDX
+		   MOVE 'Y' TO WS-FILTER-SW
+           MOVE USERIDI TO WS-FILTER-ID
+		   
+		   PERFORM UNTIL WS-FILTER-ARR(WS-INDX) = ' ' OR
+		                 WS-INDX > 8 OR
+						 WS-FILTER-SW = 'N'
+		           
+		     IF WS-FILTER-ARR(WS-INDX) NOT = 
+			    WS-UID-CHAR (WS-INDX)
+				MOVE 'N' TO  WS-FILTER-SW
+			 END-IF   
+			 ADD 1 TO WS-INDX
+		   END-PERFORM.
+	       
        800-WHENF2 SECTION.
 	       EXEC CICS ASSIGN
                USERID(WS-USERID)
@@ -659,26 +681,19 @@
            END-PERFORM. 		   
        999-MOVE-FILE-TO-Q SECTION.
 
-            MOVE LOW-VALUES TO WS-KEYB. 
-            EXEC CICS 
-               STARTBR FILE('uaf00001')
-               RIDFLD (WS-KEYB)
-               GTEQ
-            END-EXEC
-                 
-            EXEC CICS 
-                READNEXT FILE('uaf00001')
-                INTO (WS-REC)
-                RIDFLD (WS-KEYB)
-            END-EXEC
-
-
-           EXEC CICS WRITEQ TS
-                     QUEUE(WS-QNAME)
-                     FROM (WS-REC)
-                     LENGTH (WS-RECB-LENGTH)
-                     ITEM (WS-QITEM)
+           MOVE LOW-VALUES TO WS-KEYB. 
+           EXEC CICS 
+              STARTBR FILE('uaf00001')
+              RIDFLD (WS-KEYB)
+              GTEQ
            END-EXEC
+                 
+           EXEC CICS 
+               READNEXT FILE('uaf00001')
+               INTO (WS-REC)
+               RIDFLD (WS-KEYB)
+           END-EXEC
+           
            MOVE WS-QITEM TO WS-QITEM-START
            PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
                MOVE WS-QITEM TO WS-QITEM-END
@@ -687,16 +702,19 @@
                     INTO (WS-REC)
                     RIDFLD (WS-KEYB)
                END-EXEC
-               IF EIBRESP = DFHRESP(NORMAL)
-                  EXEC CICS WRITEQ TS
-                       QUEUE(WS-QNAME)
-                       FROM (WS-REC)
-                       LENGTH (WS-RECB-LENGTH)
-                       ITEM (WS-QITEM)
-                  END-EXEC
-                  MOVE WS-USERID7 TO WS-KEYB7
-                  MOVE HIGH-VALUES TO WS-KEYB1
-               END-IF
+			   
+
+			     IF EIBRESP = DFHRESP(NORMAL)
+			 	   EXEC CICS WRITEQ TS
+				 	    QUEUE(WS-QNAME)
+				 	    FROM (WS-REC)
+				 	    LENGTH (WS-RECB-LENGTH)
+				 	    ITEM (WS-QITEM)
+				    END-EXEC
+				    MOVE WS-USERID7 TO WS-KEYB7
+				    MOVE HIGH-VALUES TO WS-KEYB1
+			     END-IF
+
            END-PERFORM
            EXEC CICS
                 ENDBR FILE('uaf00001')
