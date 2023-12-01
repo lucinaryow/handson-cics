@@ -40,14 +40,14 @@ rem Generate Sample System Maps
 if exist sm000s.bin erase sm000s.bin
 if exist sm000s.cob erase sm000s.cob
 rem Generate Sample System Maps
+if exist sm001s.bin erase sm001s.bin
+if exist sm001s.cob erase sm001s.cob
+rem Generate Sample System Maps
 if exist sm006s.bin erase sm006s.bin
 if exist sm006s.cob erase sm006s.cob
 rem Generate Sample System Maps
 if exist sm002.bin erase sm002.bin
 if exist sm002.cob erase sm002.cob
-rem Generate Sample System Maps
-if exist sm004s.bin erase sm004s.bin
-if exist sm004s.cob erase sm004s.cob
 rem Generate Sample System Maps
 if exist ua001s.bin erase ua001s.bin
 if exist ua001s.cob erase ua001s.cob
@@ -61,6 +61,12 @@ rem Generate Sample System Programs: Translate, Compile, and Link
 if exist sm000p.dll erase sm000p.dll
 if exist sm000p.obj erase sm000p.obj
 call cicstran sm000p /hvw
+call bms sm001s
+if errorlevel 1 goto builderr
+rem Generate Sample System Programs: Translate, Compile, and Link
+if exist sm001p.dll erase sm001p.dll
+if exist sm001p.obj erase sm001p.obj
+call cicstran sm001p /hvw
 if errorlevel 1 goto builderr
 call bms sm002
 if errorlevel 1 goto builderr
@@ -68,20 +74,6 @@ rem Generate Sample System Programs: Translate, Compile, and Link
 if exist sm02p.dll erase sm02p.dll
 if exist sm02p.obj erase sm02p.obj
 call cicstran sm02p /hvw
-if errorlevel 1 goto builderr
-call bms sm003
-if errorlevel 1 goto builderr
-rem Generate Sample System Programs: Translate, Compile, and Link
-if exist sm03p.dll erase sm03p.dll
-if exist sm03p.obj erase sm03p.obj
-call cicstran sm03p /hvw
-if errorlevel 1 goto builderr
-call bms sm004s
-if errorlevel 1 goto builderr
-rem Generate Sample System Programs: Translate, Compile, and Link
-if exist sm004.dll erase sm004.dll
-if exist sm004.obj erase sm004.obj
-call cicstran SM004 /hvw
 if errorlevel 1 goto builderr
 call bms ua001s
 if errorlevel 1 goto builderr
