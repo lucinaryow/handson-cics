@@ -87,6 +87,10 @@
            05  WS-QITEM-START          PIC S9(4) COMP.
            05  WS-QITEM-END            PIC S9(4) COMP.
            05  WS-QITEM-PAGE           PIC S9(4) COMP.
+           05  WS-USERID1                         PIC X(7).
+           05  WS-TICKET-NUM.
+               10  WS-TICKET-NUM1                 PIC X(6).
+               10  FILLER                         PIC X.
   
       *
 	   COPY SM000S.
@@ -96,7 +100,7 @@
        COPY DFHBMSCA.
 
        LINKAGE SECTION.
-       01  DFHCOMMAREA                           PIC X(20).
+       01  DFHCOMMAREA                           PIC X(322).
       *
        PROCEDURE DIVISION.
        000-PROCESS-MENU. 
@@ -194,9 +198,6 @@
                    END-IF  
                    IF WS-CHC1 = '- SEARCH TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
-                           PERFORM 800-NEED-TIX
-                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM001P')
@@ -211,14 +212,12 @@
                WHEN OPTIONI = 2
                    IF WS-CHC2 = '- ADD TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
-                           
                            EXEC CICS XCTL 
                                PROGRAM('SM02P')
-                               COMMAREA(WS-COMMAREA)
                            END-EXEC
                        ELSE
                            EXEC CICS XCTL 
@@ -229,7 +228,7 @@
                    END-IF  
                    IF WS-CHC2 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -244,7 +243,7 @@
                        END-IF
                    END-IF  
                    IF WS-CHC2 = '- APPROVE TICKET'
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 700-TRANSFER-PROG
                        END-IF
                        PERFORM 800-NEED-TIX
@@ -279,7 +278,7 @@
                    END-IF  
                    IF WS-CHC3 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -295,7 +294,7 @@
                    END-IF  
                    IF WS-CHC3 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -330,7 +329,7 @@
                    END-IF  
                    IF WS-CHC4 = '- CLOSE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -352,7 +351,7 @@
                WHEN OPTIONI = 5 
                    IF WS-CHC5 = '- CANCEL TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -373,7 +372,7 @@
                WHEN OPTIONI = 6 
                    IF WS-CHC6 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF TIXNOL NOT = 1 AND WS-TICKETNUM1 NOT = SPACE
+                       IF TIXNOL NOT = +0
                            PERFORM 800-NEED-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -453,7 +452,7 @@
                END-EXEC
                EXEC CICS RETURN END-EXEC
            ELSE
-            MOVE WS-USERID TO WS-USERID1
+            MOVE WS-USERID TO USERID
             MOVE 1 TO WS-PROG-STATE
            END-IF
            IF REQUESTOR = 'Y' 

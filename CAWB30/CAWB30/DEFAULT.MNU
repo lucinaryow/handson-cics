@@ -1,0 +1,84 @@
+* DEFAULT.MNU
+ MenuItem "&Run DOS Program..."     CARUNDOS.SCR
+      Description "Execute a DOS program"
+      DialogBox "Run DOS Program"
+      PromptFile "&Command Line..."  RUN_FN*           Profile
+            BrowseFilter "Files (*.exe;*.bat)^*.EXE;*.BAT"
+            BrowseTitle "Select DOS File to Run"
+      Prompt "&Working Directory:"       RUN_DIR          Profile
+ MenuSeparator
+SubMenu "CICS &Utilities"
+   Description "CICS Utilities"
+
+   SubMenuItem "CICS &BMS Map Edit..."     CABMSEDT.SCR
+     Description "Edit a CICS BMS Map"
+     DialogBox "CICS BMS Map Edit"
+       PromptFile "&Mapset File Name..."  BMSEDIT_FN       Profile
+           BrowseFilter "BMS Files (*.BMS)^*.BMS"
+           BrowseTitle "Select BMS Map Name"
+
+   SubMenuItem "CICS BMS &Map Build..."            CABMSBLD.SCR
+     Description "Build CICS BMS Map"
+     DialogBox "CICS BMS Map Build"
+       PromptFile "&Mapset File Name..."  BMS_FN*        Profile
+           BrowseFilter "BMS Files (*.BMS)^*.BMS"
+           BrowseTitle "Select BMS Map Name"
+       Prompt "&Optional Switches:" BMS_SWITCHES         Profile
+
+   SubMenuItem "CICS &System Setup..." CACSDEDT.SCR
+     Description "CICS System Setup"
+     DialogBox "CICS System Setup"
+       PromptFile "&Session File Name..."  CSSEDIT_FN       Profile
+         BrowseFilter " Sesion Files (*.CSS)^*.CSS"
+       BrowseTitle "Select Session Name"
+
+ MenuSeparator
+
+SubMenu "COBOL U&tilities"
+   Description "COBOL Utilities"
+   SubMenuItem "&RealCopy..."            CARCOPY.SCR
+     Description "Copy Files Using the REALCopy Utility"
+     DialogBox "RealCopy Utility"
+       PromptFile "&Input File..."         Copy_In        Profile
+           BrowseFilter "Files (*.Dat;*.IDX)^*.DAT;*.IDX"
+           BrowseTitle "Select RealCopy Input File Name"
+       Prompt "I&nput Descriptor:"  Copy_In_d       Profile
+       PromptFile "&Output File..."        Copy_Out       Profile
+           BrowseFilter "Files (*.Dat;*.IDX)^*.DAT;*.IDX"
+           BrowseTitle "Select RealCopy Output File Name"
+       Prompt "O&utput Descriptor:" Copy_Out_d      Profile
+       Prompt "Override &Switches:"   Copy_Switches   Profile
+
+   SubMenuItem "&Dump Index Header..."    CARIF.SCR
+     Description "Dump ISAM File Information"
+     DialogBox "Dump Index Header Utility"
+       PromptFile "&Input File..."        Dump_In         Profile
+           BrowseFilter "Index Files (*.IDX)^*.IDX"
+           BrowseTitle "Select Index File Name"
+       Prompt "&Switches:"          Dump_Switches   Profile
+
+MenuSeparator
+
+ MenuItem "Preprocessor Maintenance..."
+      Description "Create/Edit Preprocessor Groups and Steps"
+
+    SubMenuItem "Edit Groups..."
+      Description "Create and modify preprocessor groups"
+      Invoke cawbopt.dll PreprocessorGroupMaint
+
+    SubMenuItem "Edit Steps..."
+      Description "Create and modify preprocessor steps"
+      Invoke cawbopt.dll PreprocessorStepMaint
+
+ MenuSeparator
+ SubMenu "&My Tools"
+    Description "Examples of User-defined Menu Entries"
+
+    SubMenuItem "&Paint"
+      Description "Launch Window Paintbrush Applet"
+      WinExec "PBRUSH.EXE"
+
+    SubMenuItem "&DOS Shell"
+      Description "Open a DOS Window"
+      WinExec "dosprmpt.pif"
+

@@ -1,0 +1,54 @@
+CMAPSET  DFHMSD TYPE=&SYSPARM,                                         C
+               CTRL=(FREEKB),                                          C
+               EXTATT=YES,                                             C
+               TIOAPFX=YES,                                            C
+               MODE=INOUT
+CMAPSET  DFHMDI SIZE=(24,80)
+         DFHMDF INITIAL='CA-Realia CICS Runtime  - Mapset View TransactC
+               ion',                                                   C
+               POS=(1,1),                                              C
+               LENGTH=49,                                              C
+               ATTRB=(ASKIP,BRT)
+TRNID    DFHMDF INITIAL='CMAP',                                        C
+               POS=(1,76),                                             C
+               LENGTH=4,                                               C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF INITIAL='Copyright (c) 1984 - 1997 Computer Associates C
+               International, Inc.',                                   C
+               POS=(2,1),                                              C
+               LENGTH=65,                                              C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF INITIAL='Enter MAPSET name:',                          C
+               POS=(5,1),                                              C
+               LENGTH=18,                                              C
+               ATTRB=ASKIP
+MAPSET   DFHMDF POS=(5,20),                                            C
+               LENGTH=7,                                               C
+               ATTRB=(UNPROT,NORM,IC,FSET)
+         DFHMDF POS=(5,28),                                            C
+               LENGTH=1,                                               C
+               ATTRB=(ASKIP,DRK)
+         DFHMDF INITIAL='Enter MAP name   :',                          C
+               POS=(7,1),                                              C
+               LENGTH=18,                                              C
+               ATTRB=ASKIP
+MAPNAME  DFHMDF POS=(7,20),                                            C
+               LENGTH=7,                                               C
+               ATTRB=(UNPROT,NORM,FSET)
+         DFHMDF POS=(7,28),                                            C
+               LENGTH=1,                                               C
+               ATTRB=(ASKIP,DRK)
+         DFHMDF INITIAL='This Transaction will SEND and RECEIVE the indC
+               icated MAP until PF1 is pressed',                       C
+               POS=(10,1),                                             C
+               LENGTH=77,                                              C
+               ATTRB=ASKIP
+MAPMSG   DFHMDF POS=(15,1),                                            C
+               LENGTH=70,                                              C
+               ATTRB=(ASKIP,NORM)
+         DFHMDF INITIAL='Press PF1 to EXIT this Transaction',          C
+               POS=(18,1),                                             C
+               LENGTH=34,                                              C
+               ATTRB=(ASKIP,NORM)
+         DFHMSD TYPE=FINAL
+         END

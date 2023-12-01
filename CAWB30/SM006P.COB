@@ -22,6 +22,18 @@
        01  WS-LOGID.
            05  LOGID2                            PIC X(6).
            05  FILLER                            PIC X.
+       01  WS-LOG.
+           05  LOG-TIX-ID.
+               10  LOG-TIX-ID1                   PIC X(6).
+               10  LOG-SEQ-NUM                   PIC 9(3).
+           05  LOG-LAST-UPDATE.
+               10  LOG-LAST-UPDATE-DATE          PIC X(10).
+               10  LOG-LAST-UPDATE-TIME          PIC X(10).
+           05  LOG-UPDATED-BY.
+               10  LOG-UPDBY2                    PIC X(7).
+               10  FILLER                        PIC X.
+           05  LOG-LAST-UPDATE-REM               PIC X(50).
+           05  FILLER                            PIC X(02).
        01  WS-LOG-PH                             PIC X(9).
        01  WS-LOG-PH2 REDEFINES WS-LOG-PH.
            05  WS-LOG-ID                         PIC 9(6).
@@ -82,6 +94,10 @@
            05  WS-QITEM-START          PIC S9(4) COMP.
            05  WS-QITEM-END            PIC S9(4) COMP.
            05  WS-QITEM-PAGE           PIC S9(4) COMP.
+           05  WS-USERID1                         PIC X(7).
+           05  WS-TICKET-NUM.
+               10  WS-TICKET-NUM1                 PIC X(6).
+               10  FILLER                         PIC X.
 
       *
 	   COPY SM006S.
@@ -91,7 +107,7 @@
        COPY DFHBMSCA.
 
        LINKAGE SECTION.
-       01  DFHCOMMAREA                           PIC X(20).
+       01  DFHCOMMAREA                           PIC X(322).
       *
        PROCEDURE DIVISION.
        000-PROCESS-MENU. 

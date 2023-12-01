@@ -1,0 +1,12 @@
+Record Type: Text, 23/11/07, 10:46:58:65
+Abend Detected in Program:SM000 module:SM000 Line:90
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 10:46:59:73
+CACX0001E: 10:46:58 Transaction SM00 program SM000 abend AEI9
+
+Record Type: Text, 23/11/07, 10:48:47:07
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 10:48:52:81
+CACX0003E: 10:48:51 Transaction CLEA is unrecognized.

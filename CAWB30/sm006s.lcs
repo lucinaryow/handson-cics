@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    28NOV23 11:35:51 PAGE  1
-=======
-CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    24NOV23 10:08:53 PAGE  1
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 13:49:50 PAGE  1
 
     1          PRINT NOGEN
     2 SM006S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -41,42 +37,33 @@
    35                INITIAL='PF11 - LOGS'
    36 DATE1    DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    37 TIME1    DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
-   38 TIXNO    DFHMDF POS=(05,22),LENGTH=06,ATTRB=(UNPROT,IC,NORM,FSET)
-W **** This field overlaps previously defined field
-   39 REQBY    DFHMDF POS=(06,22),LENGTH=07,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   40 TITLE    DFHMDF POS=(07,22),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   41 DESC1    DFHMDF POS=(08,22),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   42 DESC2    DFHMDF POS=(09,22),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
-   43 STAT     DFHMDF POS=(10,22),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   44 UPDBY    DFHMDF POS=(11,22),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   45 REM1     DFHMDF POS=(12,22),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   46 REM2     DFHMDF POS=(13,22),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
-   47 DATE2    DFHMDF POS=(14,22),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
+   38 TIXNO    DFHMDF POS=(05,23),LENGTH=06,ATTRB=(UNPROT,IC,NORM,FSET)
+   39 REQBY    DFHMDF POS=(06,23),LENGTH=07,ATTRB=(ASKIP,NORM,FSET)
+   40 TITLE    DFHMDF POS=(07,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   41 DESC1    DFHMDF POS=(08,23),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
+   42 DESC2    DFHMDF POS=(09,23),LENGTH=40,ATTRB=(ASKIP,NORM,FSET)
+   43 STAT     DFHMDF POS=(10,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   44 UPDBY    DFHMDF POS=(11,23),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   45 REM1     DFHMDF POS=(12,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   46 REM2     DFHMDF POS=(13,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)
+   47 DATE2    DFHMDF POS=(14,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    48 TIME2    DFHMDF POS=(14,35),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    49 ERRMSG   DFHMDF POS=(23,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
-<<<<<<< HEAD
-   50          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    28NOV23 11:35:51 PAGE  2
-=======
-   50          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    24NOV23 10:08:53 PAGE  2
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+   50          DFHMDF POS=(15,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   51          DFHMDF POS=(16,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   52          DFHMDF POS=(17,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   53          DFHMDF POS=(18,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   54          DFHMDF POS=(19,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   55          DFHMDF POS=(20,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   56          DFHMDF POS=(21,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   57          DFHMDF POS=(22,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   58          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 13:49:50 PAGE  2
 
-      sm006s loaded with 1 MAPS, 29 FIELDS and 249 Bytes of Literals
+      sm006s loaded with 1 MAPS, 37 FIELDS and 249 Bytes of Literals
 
-   51          END
-<<<<<<< HEAD
-There were     8 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    28NOV23 11:35:51 PAGE  3
-=======
-There were     8 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    24NOV23 10:08:53 PAGE  3
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+   59          ENDCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 13:49:50 PAGE  3
 
       COBOL COPY file generated
 
-      Mapset generated. Object size is 1,080.
+      Mapset generated. Object size is 1,288.
 

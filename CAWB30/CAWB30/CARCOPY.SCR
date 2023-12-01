@@ -1,0 +1,16 @@
+
+' **********************************************
+' CA-Realia II WorkBench RealCopy Utility Script
+' **********************************************
+if  SHOW_WIN = "Y" then
+	ShowWindow(_SW_NORMAL)
+End If
+
+shell CA_Real2Dir + "\REALCOPY.EXE" + " " + Copy_In  + Copy_In_D +  " " +
+		                            Copy_Out + Copy_Out_D + " " + Copy_Switches
+  MY_RC = _RC
+
+  Shell "cawbecho 0"
+
+
+Return MY_RC

@@ -1,0 +1,70 @@
+*                                                                       REALCICS
+         DFHPCT TYPE=GROUP,                                            CREALCICS
+               GROUP=REALCICS                                           REALCICS
+*Session Initialize routine                                             REALCICS
+         DFHPCT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CINT,                                           CREALCICS
+               TRANSID=CINT,                                           CREALCICS
+               RSL=PUBLIC                                               REALCICS
+*Map view Utility                                                       REALCICS
+         DFHPCT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CMAP,                                           CREALCICS
+               TRANSID=CMAP,                                           CREALCICS
+               RSL=PUBLIC                                               REALCICS
+*SEND PAGE Utility                                                      REALCICS
+         DFHPCT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CSPG,                                           CREALCICS
+               TRANSID=CSPG,                                           CREALCICS
+               RSL=PUBLIC                                               REALCICS
+*Security Routine                                                       REALCICS
+         DFHPCT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CSSN,                                           CREALCICS
+               TRANSID=CSSN,                                           CREALCICS
+               RSL=PUBLIC                                               REALCICS
+*                                                                       REALCICS
+         DFHPPT TYPE=GROUP,                                            CREALCICS
+               GROUP=REALCICS                                           REALCICS
+*Session Initialize routine                                             REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CINT,                                           CREALCICS
+               PGMLANG=COBOL                                            REALCICS
+*Session Initialize routine                                             REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               MAPSET=CINTSET,                                         CREALCICS
+               USAGE=MAP                                                REALCICS
+*Map view Utility                                                       REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CMAP,                                           CREALCICS
+               PGMLANG=COBOL                                            REALCICS
+*Map view Utility Mapset                                                REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               MAPSET=CMAPSET,                                         CREALCICS
+               USAGE=MAP                                                REALCICS
+*SEND PAGE Utility                                                      REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CSPG,                                           CREALCICS
+               PGMLANG=COBOL                                            REALCICS
+*Security Routine                                                       REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               PROGRAM=CSSN,                                           CREALCICS
+               PGMLANG=COBOL                                            REALCICS
+*Security Routine Mapset                                                REALCICS
+         DFHPPT TYPE=ENTRY,                                            CREALCICS
+               MAPSET=CSSNSET,                                         CREALCICS
+               USAGE=MAP                                                REALCICS
+*                                                                       REALCICS
+         DFHTCT TYPE=GROUP,                                            CREALCICS
+               GROUP=REALCICS                                           REALCICS
+*Printer Terminal                                                       REALCICS
+         DFHTCT TYPE=TERMINAL,                                         CREALCICS
+               TRMIDNT=P001,                                           CREALCICS
+               TRMTYPE=SCSPRT,                                         CREALCICS
+               DEFSCRN=(60,80),                                        CREALCICS
+               PGESIZE=(60,80)                                          REALCICS
+*Default Terminal                                                       REALCICS
+         DFHTCT TYPE=TERMINAL,                                         CREALCICS
+               TRMIDNT=T001,                                           CREALCICS
+               TRMTYPE=3270,                                           CREALCICS
+               DEFSCRN=(24,80),                                        CREALCICS
+               FEATURE=(COLOR,EXTDS,HILIGHT,UCTRAN,AUDALARM)            REALCICS
+         COPY SAMPLE

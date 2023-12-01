@@ -1,0 +1,27 @@
+
+
+    File          Description
+    ============  ============================================================
+    REALIA.CBL    Realia Library External Program Definition
+    CARFSAPI.CBL  Realia File System API External Program Definition
+    RFSFILE.CBL   Realia File System File Copy Book
+    RFSKEY.CBL    Realia File System Key Copy Book
+    RFSTATUS.CBL  Realia File System Status Copy Book
+    BTRV.CBL      BTRIEVE API (C Language Bindings) External Program
+                  Definition
+    REALBTRV.CBL  BTRIEVE API (COBOL Language Bindings) External Program
+                  Definition
+    CEEIGZCT      Language Environment Condition Token Copy Book
+    IGZIGZCT      COBOL Condition Token Copy Book
+    POSIX.CBL     Posix Library (C Language Bindings) External Program
+                  Definition
+    CLIB.CBL      Microsoft C Library Extensions External Program Definition
+    STATCNS.CBL   stat Function Constants Copy Book
+    STATREC.CBL   stat Record Copy Book
+    TIMEREC.CBL   tm Record Copy Book
+
+    CARCOR.H      Open Realia API Header
+    REALIA.H      Realia Library API Header
+    CARFSAPI.H    Realia File System API Header
+    CARCRUM.H     Realia Run Unit Management API Header
+

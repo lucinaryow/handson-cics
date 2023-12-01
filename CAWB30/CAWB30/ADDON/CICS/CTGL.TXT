@@ -1,0 +1,7 @@
+CTGL Program has been replaced by two CICS system calls
+
+     *>  Disable uppercase translation...
+     Call 'CICS_UCTRAN_OFF'.
+
+     *>  Enable uppercase translation...
+     Call 'CICS_UCTRAN_ON'.

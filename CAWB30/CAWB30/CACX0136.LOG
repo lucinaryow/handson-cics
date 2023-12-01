@@ -1,0 +1,26 @@
+Record Type: Text, 23/11/07, 17:37:42:53
+Abend Detected in Program:SM000 module:SM000 Line:113
+ABCODE:AEI0 EIBRESP:27 EIBRESP2:01
+
+Record Type: Text, 23/11/07, 17:37:43:67
+CACX0001E: 17:37:42 Transaction SM00 program SM000 abend AEI0
+
+Record Type: Text, 23/11/07, 17:39:57:53
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 17:40:08:94
+Abend Detected in Program:SM000 module:SM000 Line:113
+ABCODE:AEI0 EIBRESP:27 EIBRESP2:01
+
+Record Type: Text, 23/11/07, 17:40:10:03
+CACX0001E: 17:40:08 Transaction SM00 program SM000 abend AEI0
+
+Record Type: Text, 23/11/07, 17:40:17:86
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 17:40:32:14
+Abend Detected in Program:SM000 module:SM000 Line:113
+ABCODE:AEI0 EIBRESP:27 EIBRESP2:01
+
+Record Type: Text, 23/11/07, 17:40:33:25
+CACX0001E: 17:40:32 Transaction SM00 program SM000 abend AEI0

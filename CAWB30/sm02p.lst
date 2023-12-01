@@ -756,7 +756,6 @@
   1059
   1060		   END-IF
   1061
-<<<<<<< HEAD
   1062		  END-IF
   1063
   1064		  IF EIBAID = DFHPF2
@@ -976,55 +975,13 @@
   1578
   1579
   1580		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   18
-=======
-  1062
-  1063		  END-IF
-  1064
-  1065		  IF WS-ENTRCTR > 0
-  1066		   MOVE HIGH-VALUES TO WS-STF01TCKID
-  1067		   PERFORM 300-READ-STF1
-  1068		  END-IF
-  1069
-  1070		  IF EIBAID = DFHPF3
-  1072		   EXEC CICS XCTL
-  1073                 PROGRAM('SM000')
-  1074		   END-EXEC
-  1093
-  1094		  END-IF.
-  1095
-  1096	      300-READ-STF1.
-  1097  1099		  EXEC CICS STARTBR
-  1100             FILE('STf00001')
-  1101		   RIDFLD (WS-STF01TCKID)
-  1102		   RESP(WS-RES-CODE)
-  1103		   GTEQ
-  1104		  END-EXEC
-  1137
-  1139		  EXEC CICS READNEXT
-  1140             FILE('STf00001')
-  1141		   INTO (WS-FIELD01)
-  1142		   RIDFLD (WS-STF01TCKID)
-  1143		   RESP(WS-RES-CODE)
-  1144		  END-EXEC
-  1179
-  1181		  IF EIBRESP = DFHRESP(NORMAL)
-  1183		  IF EIBRESP =	       000				       R
-  1184		   COMPUTE WS-STF01TCKIDR = WS-STF01TCKIDR + 1
-  1185		   MOVE WS-STF01TCKIDR TO TIXNUMO
-  1186		   ADD 1 TO WS-ENTRCTR
-  1187		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   14
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 
 LINE (REL)  ERR# LVL			ERROR TEXT
 
   75 (  12)  0348 W Trailing dash discarded from 'COMP'
   76 (  13)  0132 W Period assumed before 'WS-DATE'
 
-<<<<<<< HEAD
 sm02p has    2 Warning messagesCA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   19
-=======
-sm02p has    2 Warning messagesCA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   15
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 
 
 
@@ -1053,18 +1010,9 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
-<<<<<<< HEAD
 			Source lines compiled:	    1591
-			Compilation time (mm:ss.ss):  0:00.14
-			Compilation speed (lines/minute): 81857
+			Compilation time (mm:ss.ss):  0:00.06
+			Compilation speed (lines/minute): 91000
 
-			Compilation date (yy/mm/dd): 23/11/28
-			     Time of day (hh:mm:ss): 11:35:50
-=======
-			Source lines compiled:	    1198
-			Compilation time (mm:ss.ss):  0:00.54
-			Compilation speed (lines/minute): 33111
-
-			Compilation date (yy/mm/dd): 23/11/24
-			     Time of day (hh:mm:ss): 10:08:51
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+			Compilation date (yy/mm/dd): 23/12/01
+			     Time of day (hh:mm:ss): 13:49:50

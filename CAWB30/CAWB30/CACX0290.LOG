@@ -1,0 +1,12 @@
+Record Type: Text, 23/11/16, 16:27:39:34
+Abend Detected in Program:SM000 module:SM000 Line:221
+ABCODE:AEI0 EIBRESP:27 EIBRESP2:01
+
+Record Type: Text, 23/11/16, 16:27:41:33
+CACX0001E: 16:27:39 Transaction SM00 program SM000 abend AEI0
+
+Record Type: Text, 23/11/16, 16:27:44:21
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/16, 16:29:51:63
+CACX0009E: Transaction ID is required.

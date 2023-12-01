@@ -1,0 +1,14 @@
+' **************************************
+' CA-Realia II WorkBench  RealIf Utility
+' **************************************
+
+if  SHOW_WIN = "Y" then
+	ShowWindow(_SW_NORMAL)
+End If
+
+shell CA_Real2Dir + "\REALIF.EXE" + " " + Dump_In  + " " + Dump_Switches
+
+  MY_RC = _RC
+  Shell "cawbecho 0"
+
+Return MY_RC

@@ -16,121 +16,121 @@
 	   02  FILLER REDEFINES TIMEF.
 	       03  TIMEA			      PIC X.
 	   02  TIMEI				      PIC X(008).
-	   02  USERL				      PIC S9(4) COMP.
-	   02  USERF				      PIC X.
-	   02  FILLER REDEFINES USERF.
-	       03  USERA			      PIC X.
-	   02  USERI				      PIC X(006).
-	   02  OPTN1L				      PIC S9(4) COMP.
-	   02  OPTN1F				      PIC X.
-	   02  FILLER REDEFINES OPTN1F.
-	       03  OPTN1A			      PIC X.
-	   02  OPTN1I				      PIC X(001).
-	   02  OPTN2L				      PIC S9(4) COMP.
-	   02  OPTN2F				      PIC X.
-	   02  FILLER REDEFINES OPTN2F.
-	       03  OPTN2A			      PIC X.
-	   02  OPTN2I				      PIC X(001).
-	   02  OPTN3L				      PIC S9(4) COMP.
-	   02  OPTN3F				      PIC X.
-	   02  FILLER REDEFINES OPTN3F.
-	       03  OPTN3A			      PIC X.
-	   02  OPTN3I				      PIC X(001).
-	   02  OPTN4L				      PIC S9(4) COMP.
-	   02  OPTN4F				      PIC X.
-	   02  FILLER REDEFINES OPTN4F.
-	       03  OPTN4A			      PIC X.
-	   02  OPTN4I				      PIC X(001).
-	   02  OPTN5L				      PIC S9(4) COMP.
-	   02  OPTN5F				      PIC X.
-	   02  FILLER REDEFINES OPTN5F.
-	       03  OPTN5A			      PIC X.
-	   02  OPTN5I				      PIC X(001).
-	   02  OPTN6L				      PIC S9(4) COMP.
-	   02  OPTN6F				      PIC X.
-	   02  FILLER REDEFINES OPTN6F.
-	       03  OPTN6A			      PIC X.
-	   02  OPTN6I				      PIC X(001).
-	   02  OPTN7L				      PIC S9(4) COMP.
-	   02  OPTN7F				      PIC X.
-	   02  FILLER REDEFINES OPTN7F.
-	       03  OPTN7A			      PIC X.
-	   02  OPTN7I				      PIC X(001).
-	   02  OPTN8L				      PIC S9(4) COMP.
-	   02  OPTN8F				      PIC X.
-	   02  FILLER REDEFINES OPTN8F.
-	       03  OPTN8A			      PIC X.
-	   02  OPTN8I				      PIC X(001).
-	   02  OPTN9L				      PIC S9(4) COMP.
-	   02  OPTN9F				      PIC X.
-	   02  FILLER REDEFINES OPTN9F.
-	       03  OPTN9A			      PIC X.
-	   02  OPTN9I				      PIC X(001).
-	   02  OPTN10L				      PIC S9(4) COMP.
-	   02  OPTN10F				      PIC X.
-	   02  FILLER REDEFINES OPTN10F.
-	       03  OPTN10A			      PIC X.
-	   02  OPTN10I				      PIC X(001).
-	   02  OPTN11L				      PIC S9(4) COMP.
-	   02  OPTN11F				      PIC X.
-	   02  FILLER REDEFINES OPTN11F.
-	       03  OPTN11A			      PIC X.
-	   02  OPTN11I				      PIC X(001).
-	   02  USER1L				      PIC S9(4) COMP.
-	   02  USER1F				      PIC X.
-	   02  FILLER REDEFINES USER1F.
-	       03  USER1A			      PIC X.
-	   02  USER1I				      PIC X(006).
-	   02  USER2L				      PIC S9(4) COMP.
-	   02  USER2F				      PIC X.
-	   02  FILLER REDEFINES USER2F.
-	       03  USER2A			      PIC X.
-	   02  USER2I				      PIC X(006).
-	   02  USER3L				      PIC S9(4) COMP.
-	   02  USER3F				      PIC X.
-	   02  FILLER REDEFINES USER3F.
-	       03  USER3A			      PIC X.
-	   02  USER3I				      PIC X(006).
-	   02  USER4L				      PIC S9(4) COMP.
-	   02  USER4F				      PIC X.
-	   02  FILLER REDEFINES USER4F.
-	       03  USER4A			      PIC X.
-	   02  USER4I				      PIC X(006).
-	   02  USER5L				      PIC S9(4) COMP.
-	   02  USER5F				      PIC X.
-	   02  FILLER REDEFINES USER5F.
-	       03  USER5A			      PIC X.
-	   02  USER5I				      PIC X(006).
-	   02  USER6L				      PIC S9(4) COMP.
-	   02  USER6F				      PIC X.
-	   02  FILLER REDEFINES USER6F.
-	       03  USER6A			      PIC X.
-	   02  USER6I				      PIC X(006).
-	   02  USER7L				      PIC S9(4) COMP.
-	   02  USER7F				      PIC X.
-	   02  FILLER REDEFINES USER7F.
-	       03  USER7A			      PIC X.
-	   02  USER7I				      PIC X(006).
-	   02  USER8L				      PIC S9(4) COMP.
-	   02  USER8F				      PIC X.
-	   02  FILLER REDEFINES USER8F.
-	       03  USER8A			      PIC X.
-	   02  USER8I				      PIC X(006).
-	   02  USER9L				      PIC S9(4) COMP.
-	   02  USER9F				      PIC X.
-	   02  FILLER REDEFINES USER9F.
-	       03  USER9A			      PIC X.
-	   02  USER9I				      PIC X(006).
-	   02  USER10L				      PIC S9(4) COMP.
-	   02  USER10F				      PIC X.
-	   02  FILLER REDEFINES USER10F.
-	       03  USER10A			      PIC X.
-	   02  USER10I				      PIC X(006).
-	   02  USER11L				      PIC S9(4) COMP.
-	   02  USER11F				      PIC X.
-	   02  FILLER REDEFINES USER11F.
-	       03  USER11A			      PIC X.
-	   02  USER11I				      PIC X(006).
+	   02  USERIDL				      PIC S9(4) COMP.
+	   02  USERIDF				      PIC X.
+	   02  FILLER REDEFINES USERIDF.
+	       03  USERIDA			      PIC X.
+	   02  USERIDI				      PIC X(008).
+	   02  UD1L				      PIC S9(4) COMP.
+	   02  UD1F				      PIC X.
+	   02  FILLER REDEFINES UD1F.
+	       03  UD1A 			      PIC X.
+	   02  UD1I				      PIC X(001).
+	   02  UD2L				      PIC S9(4) COMP.
+	   02  UD2F				      PIC X.
+	   02  FILLER REDEFINES UD2F.
+	       03  UD2A 			      PIC X.
+	   02  UD2I				      PIC X(001).
+	   02  UD3L				      PIC S9(4) COMP.
+	   02  UD3F				      PIC X.
+	   02  FILLER REDEFINES UD3F.
+	       03  UD3A 			      PIC X.
+	   02  UD3I				      PIC X(001).
+	   02  UD4L				      PIC S9(4) COMP.
+	   02  UD4F				      PIC X.
+	   02  FILLER REDEFINES UD4F.
+	       03  UD4A 			      PIC X.
+	   02  UD4I				      PIC X(001).
+	   02  UD5L				      PIC S9(4) COMP.
+	   02  UD5F				      PIC X.
+	   02  FILLER REDEFINES UD5F.
+	       03  UD5A 			      PIC X.
+	   02  UD5I				      PIC X(001).
+	   02  UD6L				      PIC S9(4) COMP.
+	   02  UD6F				      PIC X.
+	   02  FILLER REDEFINES UD6F.
+	       03  UD6A 			      PIC X.
+	   02  UD6I				      PIC X(001).
+	   02  UD7L				      PIC S9(4) COMP.
+	   02  UD7F				      PIC X.
+	   02  FILLER REDEFINES UD7F.
+	       03  UD7A 			      PIC X.
+	   02  UD7I				      PIC X(001).
+	   02  UD8L				      PIC S9(4) COMP.
+	   02  UD8F				      PIC X.
+	   02  FILLER REDEFINES UD8F.
+	       03  UD8A 			      PIC X.
+	   02  UD8I				      PIC X(001).
+	   02  UD9L				      PIC S9(4) COMP.
+	   02  UD9F				      PIC X.
+	   02  FILLER REDEFINES UD9F.
+	       03  UD9A 			      PIC X.
+	   02  UD9I				      PIC X(001).
+	   02  UD10L				      PIC S9(4) COMP.
+	   02  UD10F				      PIC X.
+	   02  FILLER REDEFINES UD10F.
+	       03  UD10A			      PIC X.
+	   02  UD10I				      PIC X(001).
+	   02  UD11L				      PIC S9(4) COMP.
+	   02  UD11F				      PIC X.
+	   02  FILLER REDEFINES UD11F.
+	       03  UD11A			      PIC X.
+	   02  UD11I				      PIC X(001).
+	   02  UID1L				      PIC S9(4) COMP.
+	   02  UID1F				      PIC X.
+	   02  FILLER REDEFINES UID1F.
+	       03  UID1A			      PIC X.
+	   02  UID1I				      PIC X(008).
+	   02  UID2L				      PIC S9(4) COMP.
+	   02  UID2F				      PIC X.
+	   02  FILLER REDEFINES UID2F.
+	       03  UID2A			      PIC X.
+	   02  UID2I				      PIC X(008).
+	   02  UID3L				      PIC S9(4) COMP.
+	   02  UID3F				      PIC X.
+	   02  FILLER REDEFINES UID3F.
+	       03  UID3A			      PIC X.
+	   02  UID3I				      PIC X(008).
+	   02  UID4L				      PIC S9(4) COMP.
+	   02  UID4F				      PIC X.
+	   02  FILLER REDEFINES UID4F.
+	       03  UID4A			      PIC X.
+	   02  UID4I				      PIC X(008).
+	   02  UID5L				      PIC S9(4) COMP.
+	   02  UID5F				      PIC X.
+	   02  FILLER REDEFINES UID5F.
+	       03  UID5A			      PIC X.
+	   02  UID5I				      PIC X(008).
+	   02  UID6L				      PIC S9(4) COMP.
+	   02  UID6F				      PIC X.
+	   02  FILLER REDEFINES UID6F.
+	       03  UID6A			      PIC X.
+	   02  UID6I				      PIC X(008).
+	   02  UID7L				      PIC S9(4) COMP.
+	   02  UID7F				      PIC X.
+	   02  FILLER REDEFINES UID7F.
+	       03  UID7A			      PIC X.
+	   02  UID7I				      PIC X(008).
+	   02  UID8L				      PIC S9(4) COMP.
+	   02  UID8F				      PIC X.
+	   02  FILLER REDEFINES UID8F.
+	       03  UID8A			      PIC X.
+	   02  UID8I				      PIC X(008).
+	   02  UID9L				      PIC S9(4) COMP.
+	   02  UID9F				      PIC X.
+	   02  FILLER REDEFINES UID9F.
+	       03  UID9A			      PIC X.
+	   02  UID9I				      PIC X(008).
+	   02  UID10L				      PIC S9(4) COMP.
+	   02  UID10F				      PIC X.
+	   02  FILLER REDEFINES UID10F.
+	       03  UID10A			      PIC X.
+	   02  UID10I				      PIC X(008).
+	   02  UID11L				      PIC S9(4) COMP.
+	   02  UID11F				      PIC X.
+	   02  FILLER REDEFINES UID11F.
+	       03  UID11A			      PIC X.
+	   02  UID11I				      PIC X(008).
 	   02  REQ1L				      PIC S9(4) COMP.
 	   02  REQ1F				      PIC X.
 	   02  FILLER REDEFINES REQ1F.
@@ -186,176 +186,206 @@
 	   02  FILLER REDEFINES REQ11F.
 	       03  REQ11A			      PIC X.
 	   02  REQ11I				      PIC X(001).
-	   02  ADMIN1L				      PIC S9(4) COMP.
-	   02  ADMIN1F				      PIC X.
-	   02  FILLER REDEFINES ADMIN1F.
-	       03  ADMIN1A			      PIC X.
-	   02  ADMIN1I				      PIC X(001).
-	   02  ADMIN2L				      PIC S9(4) COMP.
-	   02  ADMIN2F				      PIC X.
-	   02  FILLER REDEFINES ADMIN2F.
-	       03  ADMIN2A			      PIC X.
-	   02  ADMIN2I				      PIC X(001).
-	   02  ADMIN3L				      PIC S9(4) COMP.
-	   02  ADMIN3F				      PIC X.
-	   02  FILLER REDEFINES ADMIN3F.
-	       03  ADMIN3A			      PIC X.
-	   02  ADMIN3I				      PIC X(001).
-	   02  ADMIN4L				      PIC S9(4) COMP.
-	   02  ADMIN4F				      PIC X.
-	   02  FILLER REDEFINES ADMIN4F.
-	       03  ADMIN4A			      PIC X.
-	   02  ADMIN4I				      PIC X(001).
-	   02  ADMIN5L				      PIC S9(4) COMP.
-	   02  ADMIN5F				      PIC X.
-	   02  FILLER REDEFINES ADMIN5F.
-	       03  ADMIN5A			      PIC X.
-	   02  ADMIN5I				      PIC X(001).
-	   02  ADMIN6L				      PIC S9(4) COMP.
-	   02  ADMIN6F				      PIC X.
-	   02  FILLER REDEFINES ADMIN6F.
-	       03  ADMIN6A			      PIC X.
-	   02  ADMIN6I				      PIC X(001).
-	   02  ADMIN7L				      PIC S9(4) COMP.
-	   02  ADMIN7F				      PIC X.
-	   02  FILLER REDEFINES ADMIN7F.
-	       03  ADMIN7A			      PIC X.
-	   02  ADMIN7I				      PIC X(001).
-	   02  ADMIN8L				      PIC S9(4) COMP.
-	   02  ADMIN8F				      PIC X.
-	   02  FILLER REDEFINES ADMIN8F.
-	       03  ADMIN8A			      PIC X.
-	   02  ADMIN8I				      PIC X(001).
-	   02  ADMIN9L				      PIC S9(4) COMP.
-	   02  ADMIN9F				      PIC X.
-	   02  FILLER REDEFINES ADMIN9F.
-	       03  ADMIN9A			      PIC X.
-	   02  ADMIN9I				      PIC X(001).
-	   02  ADMIN10L 			      PIC S9(4) COMP.
-	   02  ADMIN10F 			      PIC X.
-	   02  FILLER REDEFINES ADMIN10F.
-	       03  ADMIN10A			      PIC X.
-	   02  ADMIN10I 			      PIC X(001).
-	   02  ADMIN11L 			      PIC S9(4) COMP.
-	   02  ADMIN11F 			      PIC X.
-	   02  FILLER REDEFINES ADMIN11F.
-	       03  ADMIN11A			      PIC X.
-	   02  ADMIN11I 			      PIC X(001).
-	   02  APROV1L				      PIC S9(4) COMP.
-	   02  APROV1F				      PIC X.
-	   02  FILLER REDEFINES APROV1F.
-	       03  APROV1A			      PIC X.
-	   02  APROV1I				      PIC X(001).
-	   02  APROV2L				      PIC S9(4) COMP.
-	   02  APROV2F				      PIC X.
-	   02  FILLER REDEFINES APROV2F.
-	       03  APROV2A			      PIC X.
-	   02  APROV2I				      PIC X(001).
-	   02  APROV3L				      PIC S9(4) COMP.
-	   02  APROV3F				      PIC X.
-	   02  FILLER REDEFINES APROV3F.
-	       03  APROV3A			      PIC X.
-	   02  APROV3I				      PIC X(001).
-	   02  APROV4L				      PIC S9(4) COMP.
-	   02  APROV4F				      PIC X.
-	   02  FILLER REDEFINES APROV4F.
-	       03  APROV4A			      PIC X.
-	   02  APROV4I				      PIC X(001).
-	   02  APROV5L				      PIC S9(4) COMP.
-	   02  APROV5F				      PIC X.
-	   02  FILLER REDEFINES APROV5F.
-	       03  APROV5A			      PIC X.
-	   02  APROV5I				      PIC X(001).
-	   02  APROV6L				      PIC S9(4) COMP.
-	   02  APROV6F				      PIC X.
-	   02  FILLER REDEFINES APROV6F.
-	       03  APROV6A			      PIC X.
-	   02  APROV6I				      PIC X(001).
-	   02  APROV7L				      PIC S9(4) COMP.
-	   02  APROV7F				      PIC X.
-	   02  FILLER REDEFINES APROV7F.
-	       03  APROV7A			      PIC X.
-	   02  APROV7I				      PIC X(001).
-	   02  APROV8L				      PIC S9(4) COMP.
-	   02  APROV8F				      PIC X.
-	   02  FILLER REDEFINES APROV8F.
-	       03  APROV8A			      PIC X.
-	   02  APROV8I				      PIC X(001).
-	   02  APROV9L				      PIC S9(4) COMP.
-	   02  APROV9F				      PIC X.
-	   02  FILLER REDEFINES APROV9F.
-	       03  APROV9A			      PIC X.
-	   02  APROV9I				      PIC X(001).
-	   02  APROV10L 			      PIC S9(4) COMP.
-	   02  APROV10F 			      PIC X.
-	   02  FILLER REDEFINES APROV10F.
-	       03  APROV10A			      PIC X.
-	   02  APROV10I 			      PIC X(001).
-	   02  APROV11L 			      PIC S9(4) COMP.
-	   02  APROV11F 			      PIC X.
-	   02  FILLER REDEFINES APROV11F.
-	       03  APROV11A			      PIC X.
-	   02  APROV11I 			      PIC X(001).
-	   02  SERV1L				      PIC S9(4) COMP.
-	   02  SERV1F				      PIC X.
-	   02  FILLER REDEFINES SERV1F.
-	       03  SERV1A			      PIC X.
-	   02  SERV1I				      PIC X(001).
-	   02  SERV2L				      PIC S9(4) COMP.
-	   02  SERV2F				      PIC X.
-	   02  FILLER REDEFINES SERV2F.
-	       03  SERV2A			      PIC X.
-	   02  SERV2I				      PIC X(001).
-	   02  SERV3L				      PIC S9(4) COMP.
-	   02  SERV3F				      PIC X.
-	   02  FILLER REDEFINES SERV3F.
-	       03  SERV3A			      PIC X.
-	   02  SERV3I				      PIC X(001).
-	   02  SERV4L				      PIC S9(4) COMP.
-	   02  SERV4F				      PIC X.
-	   02  FILLER REDEFINES SERV4F.
-	       03  SERV4A			      PIC X.
-	   02  SERV4I				      PIC X(001).
-	   02  SERV5L				      PIC S9(4) COMP.
-	   02  SERV5F				      PIC X.
-	   02  FILLER REDEFINES SERV5F.
-	       03  SERV5A			      PIC X.
-	   02  SERV5I				      PIC X(001).
-	   02  SERV6L				      PIC S9(4) COMP.
-	   02  SERV6F				      PIC X.
-	   02  FILLER REDEFINES SERV6F.
-	       03  SERV6A			      PIC X.
-	   02  SERV6I				      PIC X(001).
-	   02  SERV7L				      PIC S9(4) COMP.
-	   02  SERV7F				      PIC X.
-	   02  FILLER REDEFINES SERV7F.
-	       03  SERV7A			      PIC X.
-	   02  SERV7I				      PIC X(001).
-	   02  SERV8L				      PIC S9(4) COMP.
-	   02  SERV8F				      PIC X.
-	   02  FILLER REDEFINES SERV8F.
-	       03  SERV8A			      PIC X.
-	   02  SERV8I				      PIC X(001).
-	   02  SERV9L				      PIC S9(4) COMP.
-	   02  SERV9F				      PIC X.
-	   02  FILLER REDEFINES SERV9F.
-	       03  SERV9A			      PIC X.
-	   02  SERV9I				      PIC X(001).
-	   02  SERV10L				      PIC S9(4) COMP.
-	   02  SERV10F				      PIC X.
-	   02  FILLER REDEFINES SERV10F.
-	       03  SERV10A			      PIC X.
-	   02  SERV10I				      PIC X(001).
-	   02  SERV11L				      PIC S9(4) COMP.
-	   02  SERV11F				      PIC X.
-	   02  FILLER REDEFINES SERV11F.
-	       03  SERV11A			      PIC X.
-	   02  SERV11I				      PIC X(001).
-	   02  ERRMSGL				      PIC S9(4) COMP.
-	   02  ERRMSGF				      PIC X.
-	   02  FILLER REDEFINES ERRMSGF.
-	       03  ERRMSGA			      PIC X.
-	   02  ERRMSGI				      PIC X(071).
+	   02  ADMN1L				      PIC S9(4) COMP.
+	   02  ADMN1F				      PIC X.
+	   02  FILLER REDEFINES ADMN1F.
+	       03  ADMN1A			      PIC X.
+	   02  ADMN1I				      PIC X(001).
+	   02  ADMN2L				      PIC S9(4) COMP.
+	   02  ADMN2F				      PIC X.
+	   02  FILLER REDEFINES ADMN2F.
+	       03  ADMN2A			      PIC X.
+	   02  ADMN2I				      PIC X(001).
+	   02  ADMN3L				      PIC S9(4) COMP.
+	   02  ADMN3F				      PIC X.
+	   02  FILLER REDEFINES ADMN3F.
+	       03  ADMN3A			      PIC X.
+	   02  ADMN3I				      PIC X(001).
+	   02  ADMN4L				      PIC S9(4) COMP.
+	   02  ADMN4F				      PIC X.
+	   02  FILLER REDEFINES ADMN4F.
+	       03  ADMN4A			      PIC X.
+	   02  ADMN4I				      PIC X(001).
+	   02  ADMN5L				      PIC S9(4) COMP.
+	   02  ADMN5F				      PIC X.
+	   02  FILLER REDEFINES ADMN5F.
+	       03  ADMN5A			      PIC X.
+	   02  ADMN5I				      PIC X(001).
+	   02  ADMN6L				      PIC S9(4) COMP.
+	   02  ADMN6F				      PIC X.
+	   02  FILLER REDEFINES ADMN6F.
+	       03  ADMN6A			      PIC X.
+	   02  ADMN6I				      PIC X(001).
+	   02  ADMN7L				      PIC S9(4) COMP.
+	   02  ADMN7F				      PIC X.
+	   02  FILLER REDEFINES ADMN7F.
+	       03  ADMN7A			      PIC X.
+	   02  ADMN7I				      PIC X(001).
+	   02  ADMN8L				      PIC S9(4) COMP.
+	   02  ADMN8F				      PIC X.
+	   02  FILLER REDEFINES ADMN8F.
+	       03  ADMN8A			      PIC X.
+	   02  ADMN8I				      PIC X(001).
+	   02  ADMN9L				      PIC S9(4) COMP.
+	   02  ADMN9F				      PIC X.
+	   02  FILLER REDEFINES ADMN9F.
+	       03  ADMN9A			      PIC X.
+	   02  ADMN9I				      PIC X(001).
+	   02  ADMN10L				      PIC S9(4) COMP.
+	   02  ADMN10F				      PIC X.
+	   02  FILLER REDEFINES ADMN10F.
+	       03  ADMN10A			      PIC X.
+	   02  ADMN10I				      PIC X(001).
+	   02  ADMN11L				      PIC S9(4) COMP.
+	   02  ADMN11F				      PIC X.
+	   02  FILLER REDEFINES ADMN11F.
+	       03  ADMN11A			      PIC X.
+	   02  ADMN11I				      PIC X(001).
+	   02  APP1L				      PIC S9(4) COMP.
+	   02  APP1F				      PIC X.
+	   02  FILLER REDEFINES APP1F.
+	       03  APP1A			      PIC X.
+	   02  APP1I				      PIC X(001).
+	   02  APP2L				      PIC S9(4) COMP.
+	   02  APP2F				      PIC X.
+	   02  FILLER REDEFINES APP2F.
+	       03  APP2A			      PIC X.
+	   02  APP2I				      PIC X(001).
+	   02  APP3L				      PIC S9(4) COMP.
+	   02  APP3F				      PIC X.
+	   02  FILLER REDEFINES APP3F.
+	       03  APP3A			      PIC X.
+	   02  APP3I				      PIC X(001).
+	   02  APP4L				      PIC S9(4) COMP.
+	   02  APP4F				      PIC X.
+	   02  FILLER REDEFINES APP4F.
+	       03  APP4A			      PIC X.
+	   02  APP4I				      PIC X(001).
+	   02  APP5L				      PIC S9(4) COMP.
+	   02  APP5F				      PIC X.
+	   02  FILLER REDEFINES APP5F.
+	       03  APP5A			      PIC X.
+	   02  APP5I				      PIC X(001).
+	   02  APP6L				      PIC S9(4) COMP.
+	   02  APP6F				      PIC X.
+	   02  FILLER REDEFINES APP6F.
+	       03  APP6A			      PIC X.
+	   02  APP6I				      PIC X(001).
+	   02  APP7L				      PIC S9(4) COMP.
+	   02  APP7F				      PIC X.
+	   02  FILLER REDEFINES APP7F.
+	       03  APP7A			      PIC X.
+	   02  APP7I				      PIC X(001).
+	   02  APP8L				      PIC S9(4) COMP.
+	   02  APP8F				      PIC X.
+	   02  FILLER REDEFINES APP8F.
+	       03  APP8A			      PIC X.
+	   02  APP8I				      PIC X(001).
+	   02  APP9L				      PIC S9(4) COMP.
+	   02  APP9F				      PIC X.
+	   02  FILLER REDEFINES APP9F.
+	       03  APP9A			      PIC X.
+	   02  APP9I				      PIC X(001).
+	   02  APP10L				      PIC S9(4) COMP.
+	   02  APP10F				      PIC X.
+	   02  FILLER REDEFINES APP10F.
+	       03  APP10A			      PIC X.
+	   02  APP10I				      PIC X(001).
+	   02  APP11L				      PIC S9(4) COMP.
+	   02  APP11F				      PIC X.
+	   02  FILLER REDEFINES APP11F.
+	       03  APP11A			      PIC X.
+	   02  APP11I				      PIC X(001).
+	   02  SP1L				      PIC S9(4) COMP.
+	   02  SP1F				      PIC X.
+	   02  FILLER REDEFINES SP1F.
+	       03  SP1A 			      PIC X.
+	   02  SP1I				      PIC X(001).
+	   02  SP2L				      PIC S9(4) COMP.
+	   02  SP2F				      PIC X.
+	   02  FILLER REDEFINES SP2F.
+	       03  SP2A 			      PIC X.
+	   02  SP2I				      PIC X(001).
+	   02  SP3L				      PIC S9(4) COMP.
+	   02  SP3F				      PIC X.
+	   02  FILLER REDEFINES SP3F.
+	       03  SP3A 			      PIC X.
+	   02  SP3I				      PIC X(001).
+	   02  SP4L				      PIC S9(4) COMP.
+	   02  SP4F				      PIC X.
+	   02  FILLER REDEFINES SP4F.
+	       03  SP4A 			      PIC X.
+	   02  SP4I				      PIC X(001).
+	   02  SP5L				      PIC S9(4) COMP.
+	   02  SP5F				      PIC X.
+	   02  FILLER REDEFINES SP5F.
+	       03  SP5A 			      PIC X.
+	   02  SP5I				      PIC X(001).
+	   02  SP6L				      PIC S9(4) COMP.
+	   02  SP6F				      PIC X.
+	   02  FILLER REDEFINES SP6F.
+	       03  SP6A 			      PIC X.
+	   02  SP6I				      PIC X(001).
+	   02  SP7L				      PIC S9(4) COMP.
+	   02  SP7F				      PIC X.
+	   02  FILLER REDEFINES SP7F.
+	       03  SP7A 			      PIC X.
+	   02  SP7I				      PIC X(001).
+	   02  SP8L				      PIC S9(4) COMP.
+	   02  SP8F				      PIC X.
+	   02  FILLER REDEFINES SP8F.
+	       03  SP8A 			      PIC X.
+	   02  SP8I				      PIC X(001).
+	   02  SP9L				      PIC S9(4) COMP.
+	   02  SP9F				      PIC X.
+	   02  FILLER REDEFINES SP9F.
+	       03  SP9A 			      PIC X.
+	   02  SP9I				      PIC X(001).
+	   02  SP10L				      PIC S9(4) COMP.
+	   02  SP10F				      PIC X.
+	   02  FILLER REDEFINES SP10F.
+	       03  SP10A			      PIC X.
+	   02  SP10I				      PIC X(001).
+	   02  SP11L				      PIC S9(4) COMP.
+	   02  SP11F				      PIC X.
+	   02  FILLER REDEFINES SP11F.
+	       03  SP11A			      PIC X.
+	   02  SP11I				      PIC X(001).
+	   02  MSGL				      PIC S9(4) COMP.
+	   02  MSGF				      PIC X.
+	   02  FILLER REDEFINES MSGF.
+	       03  MSGA 			      PIC X.
+	   02  MSGI				      PIC X(060).
+	   02  ADDL				      PIC S9(4) COMP.
+	   02  ADDF				      PIC X.
+	   02  FILLER REDEFINES ADDF.
+	       03  ADDA 			      PIC X.
+	   02  ADDI				      PIC X(009).
+	   02  EXITL				      PIC S9(4) COMP.
+	   02  EXITF				      PIC X.
+	   02  FILLER REDEFINES EXITF.
+	       03  EXITA			      PIC X.
+	   02  EXITI				      PIC X(010).
+	   02  FINDL				      PIC S9(4) COMP.
+	   02  FINDF				      PIC X.
+	   02  FILLER REDEFINES FINDF.
+	       03  FINDA			      PIC X.
+	   02  FINDI				      PIC X(010).
+	   02  UPL				      PIC S9(4) COMP.
+	   02  UPF				      PIC X.
+	   02  FILLER REDEFINES UPF.
+	       03  UPA				      PIC X.
+	   02  UPI				      PIC X(008).
+	   02  DOWNL				      PIC S9(4) COMP.
+	   02  DOWNF				      PIC X.
+	   02  FILLER REDEFINES DOWNF.
+	       03  DOWNA			      PIC X.
+	   02  DOWNI				      PIC X(010).
+	   02  RESETL				      PIC S9(4) COMP.
+	   02  RESETF				      PIC X.
+	   02  FILLER REDEFINES RESETF.
+	       03  RESETA			      PIC X.
+	   02  RESETI				      PIC X(012).
        01  UA001MO REDEFINES UA001MI.
 	   02  FILLER				      PIC X(12).
 	   02  FILLER				      PIC XX.
@@ -369,73 +399,73 @@
 	   02  TIMEO				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USERO				      PIC X(006).
+	   02  USERIDO				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN1O				      PIC X(001).
+	   02  UD1O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN2O				      PIC X(001).
+	   02  UD2O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN3O				      PIC X(001).
+	   02  UD3O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN4O				      PIC X(001).
+	   02  UD4O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN5O				      PIC X(001).
+	   02  UD5O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN6O				      PIC X(001).
+	   02  UD6O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN7O				      PIC X(001).
+	   02  UD7O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN8O				      PIC X(001).
+	   02  UD8O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN9O				      PIC X(001).
+	   02  UD9O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN10O				      PIC X(001).
+	   02  UD10O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  OPTN11O				      PIC X(001).
+	   02  UD11O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER1O				      PIC X(006).
+	   02  UID1O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER2O				      PIC X(006).
+	   02  UID2O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER3O				      PIC X(006).
+	   02  UID3O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER4O				      PIC X(006).
+	   02  UID4O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER5O				      PIC X(006).
+	   02  UID5O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER6O				      PIC X(006).
+	   02  UID6O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER7O				      PIC X(006).
+	   02  UID7O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER8O				      PIC X(006).
+	   02  UID8O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER9O				      PIC X(006).
+	   02  UID9O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER10O				      PIC X(006).
+	   02  UID10O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  USER11O				      PIC X(006).
+	   02  UID11O				      PIC X(008).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
 	   02  REQ1O				      PIC X(001).
@@ -471,103 +501,121 @@
 	   02  REQ11O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN1O				      PIC X(001).
+	   02  ADMN1O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN2O				      PIC X(001).
+	   02  ADMN2O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN3O				      PIC X(001).
+	   02  ADMN3O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN4O				      PIC X(001).
+	   02  ADMN4O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN5O				      PIC X(001).
+	   02  ADMN5O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN6O				      PIC X(001).
+	   02  ADMN6O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN7O				      PIC X(001).
+	   02  ADMN7O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN8O				      PIC X(001).
+	   02  ADMN8O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN9O				      PIC X(001).
+	   02  ADMN9O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN10O 			      PIC X(001).
+	   02  ADMN10O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ADMIN11O 			      PIC X(001).
+	   02  ADMN11O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV1O				      PIC X(001).
+	   02  APP1O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV2O				      PIC X(001).
+	   02  APP2O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV3O				      PIC X(001).
+	   02  APP3O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV4O				      PIC X(001).
+	   02  APP4O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV5O				      PIC X(001).
+	   02  APP5O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV6O				      PIC X(001).
+	   02  APP6O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV7O				      PIC X(001).
+	   02  APP7O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV8O				      PIC X(001).
+	   02  APP8O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV9O				      PIC X(001).
+	   02  APP9O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV10O 			      PIC X(001).
+	   02  APP10O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  APROV11O 			      PIC X(001).
+	   02  APP11O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV1O				      PIC X(001).
+	   02  SP1O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV2O				      PIC X(001).
+	   02  SP2O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV3O				      PIC X(001).
+	   02  SP3O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV4O				      PIC X(001).
+	   02  SP4O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV5O				      PIC X(001).
+	   02  SP5O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV6O				      PIC X(001).
+	   02  SP6O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV7O				      PIC X(001).
+	   02  SP7O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV8O				      PIC X(001).
+	   02  SP8O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV9O				      PIC X(001).
+	   02  SP9O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV10O				      PIC X(001).
+	   02  SP10O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  SERV11O				      PIC X(001).
+	   02  SP11O				      PIC X(001).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  ERRMSGO				      PIC X(071).
+	   02  MSGO				      PIC X(060).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  ADDO				      PIC X(009).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  EXITO				      PIC X(010).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  FINDO				      PIC X(010).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  UPO				      PIC X(008).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  DOWNO				      PIC X(010).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  RESETO				      PIC X(012).

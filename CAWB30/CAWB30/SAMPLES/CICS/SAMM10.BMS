@@ -1,0 +1,112 @@
+SAMM10   DFHMSD TYPE=&SYSPARM,                                         C
+               CTRL=(FRSET,FREEKB),                                    C
+               EXTATT=YES,                                             C
+               TIOAPFX=YES,                                            C
+               MODE=INOUT,                                             C
+               STORAGE=AUTO
+*
+*       Header for ACCUM mapset
+*
+SAMM10H  DFHMDI SIZE=(4,80),                                           C
+               HEADER=YES
+         DFHMDF INITIAL='SAMM10',                                      C
+               POS=(1,1),                                              C
+               LENGTH=6,                                               C
+               ATTRB=ASKIP
+         DFHMDF INITIAL='CA-Realia CICS Name && Address System',       C
+               POS=(1,21),                                             C
+               LENGTH=36,                                              C
+               ATTRB=(ASKIP,NORM)
+M10DATE  DFHMDF POS=(1,70),                                            C
+               LENGTH=10,                                              C
+               ATTRB=(ASKIP,NORM)
+         DFHMDF INITIAL='NAME LIST',                                   C
+               POS=(2,31),                                             C
+               LENGTH=9,                                               C
+               ATTRB=(ASKIP,NORM)
+         DFHMDF INITIAL='CODE',                                        C
+               POS=(2,1),                                              C
+               LENGTH=4,                                               C
+               ATTRB=(ASKIP,NORM)
+PROMPT   DFHMDF INITIAL='          ',                                  C
+               POS=(3,1),                                              C
+               LENGTH=10,                                              C
+               ATTRB=(ASKIP,NORM)
+FCODE    DFHMDF INITIAL='    ',                                        C
+               POS=(3,13),                                             C
+               LENGTH=4,                                               C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF POS=(3,18),                                            C
+               ATTRB=ASKIP
+PROMPT2  DFHMDF INITIAL='             ',                               C
+               POS=(3,27),                                             C
+               LENGTH=13,                                              C
+               ATTRB=(ASKIP,NORM)
+SHRTNM   DFHMDF INITIAL='          ',                                  C
+               POS=(3,42),                                             C
+               LENGTH=10,                                              C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF POS=(3,53),                                            C
+               ATTRB=ASKIP
+         DFHMDF INITIAL='COMPANY NAME AND CONTACT',                    C
+               POS=(4,13),                                             C
+               LENGTH=24,                                              C
+               ATTRB=(ASKIP,NORM)
+         DFHMDF INITIAL='PHONE NUMBER',                                C
+               POS=(4,56),                                             C
+               LENGTH=12,                                              C
+               ATTRB=(ASKIP,NORM)
+*
+*       Detail for ACCUM mapset
+*
+SAMM10D  DFHMDI SIZE=(2,80),                                           C
+               LINE=NEXT
+CCODE    DFHMDF POS=(1,1),                                             C
+               LENGTH=4,                                               C
+               ATTRB=(ASKIP,BRT,FSET)
+CNAME    DFHMDF POS=(1,13),                                            C
+               LENGTH=40,                                              C
+               ATTRB=(ASKIP,BRT)
+CONTCT   DFHMDF POS=(2,23),                                            C
+               LENGTH=30,                                              C
+               ATTRB=(ASKIP,BRT)
+PPHONE   DFHMDF POS=(2,56),                                            C
+               LENGTH=24,                                              C
+               ATTRB=(ASKIP,BRT)
+*
+*       Trailer for ACCUM mapset
+*
+SAMM10T  DFHMDI SIZE=(3,80),                                           C
+               JUSTIFY=BOTTOM,                                         C
+               TRAILER=YES
+         DFHMDF INITIAL='PF1-FIND NAME',                               C
+               POS=(1,1),                                              C
+               LENGTH=13,                                              C
+               ATTRB=(ASKIP,NORM)
+         DFHMDF INITIAL='PF2-SCROLL FORWARDS',                         C
+               POS=(1,30),                                             C
+               LENGTH=19,                                              C
+               ATTRB=ASKIP
+         DFHMDF INITIAL='PF3-SCROLL BACKWARDS',                        C
+               POS=(1,56),                                             C
+               LENGTH=24,                                              C
+               ATTRB=(ASKIP,NORM)
+         DFHMDF INITIAL='PF5-NAME MAINTENANCE',                        C
+               POS=(2,1),                                              C
+               LENGTH=20,                                              C
+               ATTRB=ASKIP
+         DFHMDF INITIAL='PF9-PRINT LIST',                              C
+               POS=(2,30),                                             C
+               LENGTH=14,                                              C
+               ATTRB=ASKIP
+         DFHMDF INITIAL='PF10-MAIN MENU',                              C
+               POS=(2,56),                                             C
+               LENGTH=14,                                              C
+               ATTRB=(ASKIP,NORM)
+MSG      DFHMDF INITIAL='                                              C
+                                                ',                     C
+               POS=(3,1),                                              C
+               LENGTH=79,                                              C
+               ATTRB=(ASKIP,BRT)
+         DFHMSD TYPE=FINAL
+         END

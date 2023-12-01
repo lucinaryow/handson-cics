@@ -1,0 +1,25 @@
+'****************************************
+' CA-Realia II WorkBench BMS Build Script
+'****************************************
+REALCICS = CA_Real2Dir
+CICSLINK = CA_Real2Dir + "\LIB"
+REALCOB  = CA_Real2Dir
+COBLINK  = CA_Real2Dir + "\LIB"
+
+if  BMS_FN_FN_PATH <> " " Then
+  if  BMS_FN_FN_PATH <> "" Then
+     SetDir(BMS_FN_FN_PATH)
+  End If
+End If
+
+if  SHOW_WIN = "Y" then
+	ShowWindow(_SW_NORMAL)
+End If
+
+  shell CA_Real2Dir + "\cacxbms.exe" + " " + BMS_FN + " /r " + BMS_SWITCHES
+
+  MY_RC = _RC
+
+  Shell "cawbecho 0"
+
+Return MY_RC
