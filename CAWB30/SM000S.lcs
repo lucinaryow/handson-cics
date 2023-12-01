@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 13:49:49 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 15:52:42 PAGE  1
 
     1          PRINT NOGEN
     2 SW00S    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -11,44 +11,44 @@
     9                INITIAL='SERVICE MANAGEMENT'
    10          DFHMDF POS=(02,37),LENGTH=09,ATTRB=(ASKIP,NORM),              C
    11                INITIAL='MAIN MENU'
-   12          DFHMDF POS=(1,8),LENGTH=23,ATTRB=(ASKIP,DRK)
-   13          DFHMDF POS=(2,1),LENGTH=35,ATTRB=(ASKIP,DRK)
-   14          DFHMDF POS=(3,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   15          DFHMDF POS=(4,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   16          DFHMDF POS=(5,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   17          DFHMDF POS=(6,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   18          DFHMDF POS=(7,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   19          DFHMDF POS=(8,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   20          DFHMDF POS=(9,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   21          DFHMDF POS=(10,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   22          DFHMDF POS=(11,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   23          DFHMDF POS=(12,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   24          DFHMDF POS=(13,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   25          DFHMDF POS=(14,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   26          DFHMDF POS=(15,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   27          DFHMDF POS=(16,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   28          DFHMDF POS=(17,1),LENGTH=30,ATTRB=(ASKIP,DRK)
-   29          DFHMDF POS=(18,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   30          DFHMDF POS=(19,1),LENGTH=33,ATTRB=(ASKIP,DRK)
-   31          DFHMDF POS=(20,1),LENGTH=33,ATTRB=(ASKIP,DRK)
-   32          DFHMDF POS=(21,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   33          DFHMDF POS=(23,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   34          DFHMDF POS=(15,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   12          DFHMDF POS=(1,8),LENGTH=23,ATTRB=(ASKIP,NORM)
+   13          DFHMDF POS=(2,1),LENGTH=35,ATTRB=(ASKIP,NORM)
+   14          DFHMDF POS=(3,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   15          DFHMDF POS=(4,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   16          DFHMDF POS=(5,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   17          DFHMDF POS=(6,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   18          DFHMDF POS=(7,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   19          DFHMDF POS=(8,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   20          DFHMDF POS=(9,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   21          DFHMDF POS=(10,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   22          DFHMDF POS=(11,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   23          DFHMDF POS=(12,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   24          DFHMDF POS=(13,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   25          DFHMDF POS=(14,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   26          DFHMDF POS=(15,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   27          DFHMDF POS=(16,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   28          DFHMDF POS=(17,1),LENGTH=30,ATTRB=(ASKIP,NORM)
+   29          DFHMDF POS=(18,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   30          DFHMDF POS=(19,1),LENGTH=33,ATTRB=(ASKIP,NORM)
+   31          DFHMDF POS=(20,1),LENGTH=33,ATTRB=(ASKIP,NORM)
+   32          DFHMDF POS=(21,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   33          DFHMDF POS=(23,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   34          DFHMDF POS=(15,1),LENGTH=79,ATTRB=(ASKIP,NORM)
 W **** This field overlaps previously defined field
-   35          DFHMDF POS=(17,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   35          DFHMDF POS=(17,1),LENGTH=79,ATTRB=(ASKIP,NORM)
 W **** This field overlaps previously defined field
-   36          DFHMDF POS=(19,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   36          DFHMDF POS=(19,1),LENGTH=79,ATTRB=(ASKIP,NORM)
 W **** This field overlaps previously defined field
-   37          DFHMDF POS=(23,1),LENGTH=79,ATTRB=(ASKIP,DRK)
+   37          DFHMDF POS=(23,1),LENGTH=79,ATTRB=(ASKIP,NORM)
 W **** This field overlaps previously defined field
-   38          DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,DRK)
-   39          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,DRK)
-   40          DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,DRK)
-   41          DFHMDF POS=(11,57),LENGTH=23,ATTRB=(ASKIP,DRK)
-   42          DFHMDF POS=(13,57),LENGTH=23,ATTRB=(ASKIP,DRK)
-   43          DFHMDF POS=(15,57),LENGTH=23,ATTRB=(ASKIP,DRK)
+   38          DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   39          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   40          DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   41          DFHMDF POS=(11,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   42          DFHMDF POS=(13,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   43          DFHMDF POS=(15,57),LENGTH=23,ATTRB=(ASKIP,NORM)
 W **** This field overlaps previously defined field
-   44          DFHMDF POS=(17,57),LENGTH=23,ATTRB=(ASKIP,DRK)
+   44          DFHMDF POS=(17,57),LENGTH=23,ATTRB=(ASKIP,NORM)
 W **** This field overlaps previously defined field
    45 OPTCHC1  DFHMDF POS=(05,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
    46 OPTNO1   DFHMDF POS=(05,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
@@ -57,7 +57,7 @@ W **** This field overlaps previously defined field
    49 OPTCHC3  DFHMDF POS=(09,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
    50 OPTNO3   DFHMDF POS=(09,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
    51 OPTCHC4  DFHMDF POS=(11,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   52 OPTNO4   DFHMDF POS=(11,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 13:49:49 PAGE  2
+   52 OPTNO4   DFHMDF POS=(11,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 15:52:42 PAGE  2
 
    53 OPTCHC5  DFHMDF POS=(13,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
    54 OPTNO5   DFHMDF POS=(13,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
@@ -86,7 +86,7 @@ W **** This field overlaps previously defined field
       sm000s loaded with 1 MAPS, 58 FIELDS and 73 Bytes of Literals
 
    71          END
-There were    12 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 13:49:49 PAGE  3
+There were    12 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 15:52:42 PAGE  3
 
       COBOL COPY file generated
 

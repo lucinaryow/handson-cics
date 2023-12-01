@@ -49,50 +49,50 @@
    112	      01  WS-INVALID-USER			  PIC X(24) VALUE
    113            'INVALID ACCESS TO TICKET'.
    114	      01  WS-COMMAREA.
-   115		  05  WS-USER-REC.
-   116		      10  USERID.
-   117			  15  USERID1			    PIC X(7).
-   118			  15  FILLER			    PIC X.
-   119		      10  REQUESTOR			    PIC X.
-   120		      10  ADMINISTRATOR 		    PIC X.
-   121		      10  APPROVER			    PIC X.
-   122		      10  SERVICE-PROVIDER		    PIC X.
-   123		      10  UPDATED-BY1.   124			  15  UPDBY1			    PIC X(7).
-   125			  15  FILLER			    PIC X.
-   126		  05  WS-TIX-REC.
-   127		      10  TIX-ID			    PIC X(06).
-   128		      10  TIX-REQUESTOR 		    PIC X(08).
-   129		      10  TIX-STATUS			    PIC X(10).
-   130		      10  TIX-TITLE			    PIC X(25).
-   131		      10  TIX-DESC			    PIC X(100).
-   132		      10  TIX-DESC-RED REDEFINES TIX-DESC.
-   133			  15  TIX-DESC1 		    PIC X(50).
-   134			  15  TIX-DESC2 		    PIC X(50).
-   135		      10  LAST-UPDATE			    PIC X(20).
-   136		      10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-   137			  15  LAST-UPDATE-DATE		    PIC X(11).
-   138			  15  LAST-UPDATE-TIME		    PIC X(09).
-   139		      10  UPDATED-BY2.
-   140			  15  UPDBY2			    PIC X(7).
-   141			  15  FILLER			    PIC X.
-   142		      10  LAST-UPDATE-REM		    PIC X(50).
-   143		      10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-   144			  15  LAST-UPDATE-REM1		    PIC X(25).
-   145			  15  LAST-UPDATE-REM2		    PIC X(25).
-   146		  05  WS-PROG-STATE			 PIC 9(1).
-   147            05  WS-INIT                            PIC X VALUE 'Y'.
-   148		  05  WS-CA-PRGNAME	      PIC X(06).
-   149		  05  FILLER		      PIC X(19).
-   150		  05  WS-DFHSTATE	      PIC X(15).
-   151		  05  WS-TRANS		      PIC X(04).
-   152		  05  WS-LUSER		      PIC 9(03).
-   153		  05  WS-FUSER		      PIC 9(03).
-   154		  05  WS-PAGE		      PIC 9(02).
-   155		  05  WS-PAGE-END	      PIC 9(01).
-   156		  05  WS-QITEM		      PIC S9(4) COMP.
-   157		  05  WS-QITEM-START	      PIC S9(4) COMP.
-   158		  05  WS-QITEM-END	      PIC S9(4) COMP.
-   159		  05  WS-QITEM-PAGE	      PIC S9(4) COMP.
+   115		  05  WS-CA-PRGNAME	      PIC X(06).
+   116		  05  FILLER		      PIC X(19).
+   117		  05  WS-DFHSTATE	      PIC X(15).
+   118		  05  WS-TRANS		      PIC X(04).
+   119		  05  WS-LUSER		      PIC 9(03).
+   120		  05  WS-FUSER		      PIC 9(03).
+   121		  05  WS-PAGE		      PIC 9(02).
+   122		  05  WS-PAGE-END	      PIC 9(01).
+   123		  05  WS-QITEM		      PIC S9(4) COMP.   124		  05  WS-QITEM-START	      PIC S9(4) COMP.
+   125		  05  WS-QITEM-END	      PIC S9(4) COMP.
+   126		  05  WS-QITEM-PAGE	      PIC S9(4) COMP.
+   127		  05  WS-USER-REC.
+   128		      10  USERID.
+   129			  15  USERID1			    PIC X(7).
+   130			  15  FILLER			    PIC X.
+   131		      10  REQUESTOR			    PIC X.
+   132		      10  ADMINISTRATOR 		    PIC X.
+   133		      10  APPROVER			    PIC X.
+   134		      10  SERVICE-PROVIDER		    PIC X.
+   135		      10  UPDATED-BY1.
+   136			  15  UPDBY1			    PIC X(7).
+   137			  15  FILLER			    PIC X.
+   138		  05  WS-TIX-REC.
+   139		      10  TIX-ID			    PIC X(06).
+   140		      10  TIX-REQUESTOR 		    PIC X(08).
+   141		      10  TIX-STATUS			    PIC X(10).
+   142		      10  TIX-TITLE			    PIC X(25).
+   143		      10  TIX-DESC			    PIC X(100).
+   144		      10  TIX-DESC-RED REDEFINES TIX-DESC.
+   145			  15  TIX-DESC1 		    PIC X(50).
+   146			  15  TIX-DESC2 		    PIC X(50).
+   147		      10  LAST-UPDATE			    PIC X(20).
+   148		      10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+   149			  15  LAST-UPDATE-DATE		    PIC X(11).
+   150			  15  LAST-UPDATE-TIME		    PIC X(09).
+   151		      10  UPDATED-BY2.
+   152			  15  UPDBY2			    PIC X(7).
+   153			  15  FILLER			    PIC X.
+   154		      10  LAST-UPDATE-REM		    PIC X(50).
+   155		      10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+   156			  15  LAST-UPDATE-REM1		    PIC X(25).
+   157			  15  LAST-UPDATE-REM2		    PIC X(25).
+   158		  05  WS-PROG-STATE			 PIC 9(1).
+   159            05  WS-INIT                            PIC X VALUE 'Y'.
    160		  05  WS-USERID1			 PIC X(7).
    161		  05  WS-TICKET-NUM.
    162		      10  WS-TICKET-NUM1		 PIC X(6).
@@ -967,4 +967,4 @@ DEBUGXREF	  DIALECT-VS2
 			Compilation speed (lines/minute): 80000
 
 			Compilation date (yy/mm/dd): 23/12/01
-			     Time of day (hh:mm:ss): 13:49:50
+			     Time of day (hh:mm:ss): 15:52:44

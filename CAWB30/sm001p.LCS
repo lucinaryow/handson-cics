@@ -20,61 +20,61 @@
     17	     01  WS-USERID		     PIC X(8).
     18	     01  WS-PRGNAME		     PIC X(6).
     19	     01  WS-LENGTH		     PIC S9(4) COMP.
-    20	     01  WS-QNAME		     PIC X(8).
-    21	     01  WS-RECB-LENGTH 	     PIC S9(4) COMP VALUE +20.
-    22	     01  WS-KEYB-LENGTH 	     PIC S9(4) COMP VALUE +8.
-    23	     01  WS-INDX		     PIC 9(2)  VALUE 1.
-    24	     01  WS-LASTPAGE		     PIC X(1).
-    25	     01  WS-FIRSTPAGE		     PIC X(1).
-    26	     01  WS-PAGE-CTR		     PIC 9(02).
-    27	     01  WS-COMMAREA.
-    28		 05  WS-USER-REC.
-    29		     10  USERID.
-    30			 15  USERID1			   PIC X(7).
-    31			 15  FILLER			   PIC X.
-    32		     10  REQUESTOR			   PIC X.
-    33		     10  ADMINISTRATOR			   PIC X.
-    34		     10  APPROVER			   PIC X.
-    35		     10  SERVICE-PROVIDER		   PIC X.
-    36		     10  UPDATED-BY1.
-    37			 15  UPDBY1			   PIC X(7).
-    38			 15  FILLER			   PIC X.
-    39		 05  WS-TIX-REC.
-    40		     10  TIX-ID 			   PIC X(06).
-    41		     10  TIX-REQUESTOR			   PIC X(08).
-    42		     10  TIX-STATUS			   PIC X(10).
-    43		     10  TIX-TITLE			   PIC X(25).
-    44		     10  TIX-DESC			   PIC X(100).
-    45		     10  TIX-DESC-RED REDEFINES TIX-DESC.
-    46			 15  TIX-DESC1			   PIC X(50).
-    47			 15  TIX-DESC2			   PIC X(50).
-    48		     10  LAST-UPDATE			   PIC X(20).
-    49		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-    50			 15  LAST-UPDATE-DATE		   PIC X(11).
-    51			 15  LAST-UPDATE-TIME		   PIC X(09).
-    52		     10  UPDATED-BY2.
-    53			 15  UPDBY2			   PIC X(7).
-    54			 15  FILLER			   PIC X.
-    55		     10  LAST-UPDATE-REM		   PIC X(50).
-    56		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-    57			 15  LAST-UPDATE-REM1		   PIC X(25).
-    58			 15  LAST-UPDATE-REM2		   PIC X(25).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
+    20	     01  WS-RECB-LENGTH 	     PIC S9(4) COMP VALUE +20.
+    21	     01  WS-KEYB-LENGTH 	     PIC S9(4) COMP VALUE +8.
+    22	     01  WS-INDX		     PIC 9(2)  VALUE 1.
+    23	     01  WS-LASTPAGE		     PIC X(1).
+    24	     01  WS-FIRSTPAGE		     PIC X(1).
+    25	     01  WS-PAGE-CTR		     PIC 9(02).
+    26	     01  WS-COMMAREA.
+    27		 05  WS-CA-PRGNAME	     PIC X(06).
+    28		 05  FILLER		     PIC X(19).
+    29		 05  WS-DFHSTATE	     PIC X(15).
+    30		 05  WS-TRANS		     PIC X(04).
+    31		 05  WS-LUSER		     PIC 9(03).
+    32		 05  WS-FUSER		     PIC 9(03).
+    33		 05  WS-PAGE		     PIC 9(02).
+    34		 05  WS-QNAME		     PIC X(8).
+    35		 05  WS-PAGE-END	     PIC 9(01).
+    36		 05  WS-QITEM		     PIC S9(4) COMP.
+    37		 05  WS-QITEM-START	     PIC S9(4) COMP.
+    38		 05  WS-QITEM-END	     PIC S9(4) COMP.
+    39		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    40		 05  WS-USER-REC.
+    41		     10  USERID.
+    42			 15  USERID1			   PIC X(7).
+    43			 15  FILLER			   PIC X.
+    44		     10  REQUESTOR			   PIC X.
+    45		     10  ADMINISTRATOR			   PIC X.
+    46		     10  APPROVER			   PIC X.
+    47		     10  SERVICE-PROVIDER		   PIC X.
+    48		     10  UPDATED-BY1.
+    49			 15  UPDBY1			   PIC X(7).
+    50			 15  FILLER			   PIC X.
+    51		 05  WS-TIX-REC.
+    52		     10  TIX-ID 			   PIC X(06).
+    53		     10  TIX-REQUESTOR			   PIC X(08).
+    54		     10  TIX-STATUS			   PIC X(10).
+    55		     10  TIX-TITLE			   PIC X(25).
+    56		     10  TIX-DESC			   PIC X(100).
+    57		     10  TIX-DESC-RED REDEFINES TIX-DESC.
+    58			 15  TIX-DESC1			   PIC X(50).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
-    59		 05  WS-PROG-STATE			PIC 9(1).
-    60           05  WS-INIT                            PIC X VALUE 'Y'.
-    61		 05  WS-CA-PRGNAME	     PIC X(06).
-    62		 05  FILLER		     PIC X(19).
-    63		 05  WS-DFHSTATE	     PIC X(15).
-    64		 05  WS-TRANS		     PIC X(04).
-    65		 05  WS-LUSER		     PIC 9(03).
-    66		 05  WS-FUSER		     PIC 9(03).
-    67		 05  WS-PAGE		     PIC 9(02).
-    68		 05  WS-PAGE-END	     PIC 9(01).
-    69		 05  WS-QITEM		     PIC S9(4) COMP.
-    70		 05  WS-QITEM-START	     PIC S9(4) COMP.
-    71		 05  WS-QITEM-END	     PIC S9(4) COMP.
-    72		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    59			 15  TIX-DESC2			   PIC X(50).
+    60		     10  LAST-UPDATE			   PIC X(20).
+    61		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+    62			 15  LAST-UPDATE-DATE		   PIC X(11).
+    63			 15  LAST-UPDATE-TIME		   PIC X(09).
+    64		     10  UPDATED-BY2.
+    65			 15  UPDBY2			   PIC X(7).
+    66			 15  FILLER			   PIC X.
+    67		     10  LAST-UPDATE-REM		   PIC X(50).
+    68		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+    69			 15  LAST-UPDATE-REM1		   PIC X(25).
+    70			 15  LAST-UPDATE-REM2		   PIC X(25).
+    71		 05  WS-PROG-STATE			PIC 9(1).
+    72           05  WS-INIT                            PIC X VALUE 'Y'.
     73		 05  WS-USERID1 			PIC X(7).
     74		 05  WS-TICKET-NUM.
     75		     10  WS-TICKET-NUM1 		PIC X(6).
@@ -1174,15 +1174,15 @@
    138           IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM02' OR 'SM03' OR 'SM04'
    139                          OR 'SM05' OR 'SM06'
    140		     MOVE DFHCOMMAREA TO WS-COMMAREA
-   141		     STRING EIBTRMID DELIMITED BY SIZE
-   142			    EIBTRNID DELIMITED BY SIZE
-   143			    INTO WS-QNAME
-   144		     MOVE LENGTH OF SM001MI TO WS-LENGTH
-   145		     EXEC CICS
-   146		       IGNORE CONDITION ERROR
-   147		     END-EXEC
-   148
-   149		     IF EIBCALEN = +0
+   141		     EXEC CICS
+   142		       IGNORE CONDITION ERROR
+   143		     END-EXEC
+   144
+   145		     IF EIBCALEN = +0
+   146			 STRING EIBTRMID DELIMITED BY SIZE
+   147				 EIBTRNID DELIMITED BY SIZE
+   148			     INTO WS-QNAME
+   149			 MOVE LENGTH OF SM001MI TO WS-LENGTH
    150			 MOVE 1 TO WS-PAGE
    151			 MOVE WS-PAGE TO PAGEO
    152			 PERFORM 999-MOVE-FILE-TO-Q
@@ -1287,325 +1287,326 @@
    247		  ADD 11 TO WS-QITEM-PAGE
    248		  IF WS-QITEM-PAGE > WS-QITEM-END
    249		     SUBTRACT 11 FROM WS-QITEM-PAGE
-   250               MOVE 'THIS IS THE LAST PAGE' TO MSGO
-   251		  ELSE
-   252		     ADD 1 TO WS-PAGE
-   253		     MOVE WS-PAGE TO PAGEO
-   254		     PERFORM 500-MOVE-Q-TO-SCREEN
-   255		  END-IF.
-   256		  PERFORM 100-NEW-MAP.
-   257
-   258	     240-WHENF2 SECTION.
-   259		 EXEC CICS ASSIGN
-   260		     USERID(WS-USERID)
-   261		 END-EXEC
-   262		 EXEC CICS
-   263               READ FILE('UAF00001')
-   264		     INTO (WS-USER-REC)
-   265		     RIDFLD (WS-USERID)
-   266		     RESP(WS-RESPONSE-CODE)
-   267		     GTEQ
-   268		 END-EXEC
-   269           IF NOT WS-RESPONSE-CODE = +00 OR REQUESTOR NOT = 'Y'
-   270               MOVE 'INVALID ACCESS' TO MSGO
-   271		     PERFORM 100-NEW-MAP
-   272		 ELSE
-   273		     EXEC CICS XCTL
-   274                   PROGRAM('SM02P')
-   275		     END-EXEC
-   276		 END-IF.
-   277
-   278	     250-WHENENTER SECTION.
-   279		 MOVE 1 TO WS-INDX
-   280		 PERFORM UNTIL WS-INDX > 11
-   281		     MOVE UCI(WS-INDX) TO WS-CHOICECA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
+   250		     MOVE WS-PAGE TO PAGEO
+   251               MOVE 'THIS IS THE LAST PAGE' TO MSGO
+   252		  ELSE
+   253		     ADD 1 TO WS-PAGE
+   254		     MOVE WS-PAGE TO PAGEO
+   255		     PERFORM 500-MOVE-Q-TO-SCREEN
+   256		  END-IF.
+   257		  PERFORM 100-NEW-MAP.
+   258
+   259	     240-WHENF2 SECTION.
+   260		 EXEC CICS ASSIGN
+   261		     USERID(WS-USERID)
+   262		 END-EXEC
+   263		 EXEC CICS
+   264               READ FILE('UAF00001')
+   265		     INTO (WS-USER-REC)
+   266		     RIDFLD (WS-USERID)
+   267		     RESP(WS-RESPONSE-CODE)
+   268		     GTEQ
+   269		 END-EXEC
+   270           IF NOT WS-RESPONSE-CODE = +00 OR REQUESTOR NOT = 'Y'
+   271               MOVE 'INVALID ACCESS' TO MSGO
+   272		     PERFORM 100-NEW-MAP
+   273		 ELSE
+   274		     EXEC CICS XCTL
+   275                   PROGRAM('SM02P')
+   276		     END-EXEC
+   277		 END-IF.
+   278
+   279	     250-WHENENTER SECTION.
+   280		 MOVE 1 TO WS-INDX
+   281		 PERFORM UNTIL WS-INDX > 11CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
-   282               IF NOT WS-CHOICE = '_'
-   283			 ADD 1 TO WS-COUNTER
-   284			 MOVE WS-INDX TO WS-COUNTER2
-   285		     END-IF
-   286		     ADD 1 TO WS-INDX
-   287		 END-PERFORM
-   288		 IF WS-COUNTER > 1
-   289		     MOVE 1 TO WS-INDX
-   290		     PERFORM UNTIL WS-INDX > 11
-   291                   MOVE '_' TO UCI(WS-INDX)
-   292			 ADD 1 TO WS-INDX
-   293		     END-PERFORM
-   294               MOVE 'ENTER 1 SELECTION ONLY' TO MSGO
-   295		 ELSE
-   296		     EVALUATE UCI(WS-COUNTER2)
-   297                   WHEN 'U'
-   298                       IF STI(WS-COUNTER2) = 'APPROVED' OR 'ONGOING'
-   299				 PERFORM 600-VALIDATE-USER
-   300				 EVALUATE TRUE
-   301                               WHEN SERVICE-PROVIDER = 'Y' AND
-   302                                    REQUESTOR = 'Y'
-   303					 EXEC CICS XCTL
-   304                                       PROGRAM('SM003P')
-   305					 END-EXEC
-   306                               WHEN SERVICE-PROVIDER = 'Y'
-   307					 EXEC CICS XCTL
-   308                                       PROGRAM('SM003P')
-   309					 END-EXEC
-   310                               WHEN REQUESTOR = 'Y'
-   311					 EXEC CICS
-   312                                       READ FILE('STF00001')
-   313					     INTO (WS-TIX-REC)
-   314					     RIDFLD (TNI(WS-COUNTER2))
-   315					     RESP(WS-RESPONSE-CODE)
-   316					     EQUAL
-   317					 END-EXEC
-   318					 IF WS-USERID = TIX-REQUESTOR
-   319					     EXEC CICS XCTL
-   320                                           PROGRAM('SM003P')
-   321					     END-EXEC
-   322					 ELSE
-   323                                       MOVE '_' TO UCI(WS-COUNTER2)
-   324                                       MOVE 'INVALID ACCESS' TO MSGO
-   325					     PERFORM 100-NEW-MAP
-   326					 END-IF
-   327				     WHEN OTHER
-   328                                   MOVE '_' TO UCI(WS-COUNTER2)
-   329                                   MOVE 'INVALID ACCESS' TO MSGO
-   330					 PERFORM 100-NEW-MAP
-   331				 END-EVALUATE
-   332			     ELSE
-   333                           MOVE '_' TO UCI(WS-COUNTER2)
-   334                           MOVE 'STATUS MUST BE APPROVED OR ONGOING' TO
-   335				     MSGO
-   336				 PERFORM 100-NEW-MAP
-   337			     END-IF
-   338                   WHEN 'C'
-   339                       IF STI(WS-COUNTER2) = 'COMPLETED'CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
+   282		     MOVE UCI(WS-INDX) TO WS-CHOICE
+   283               IF NOT WS-CHOICE = '_'
+   284			 ADD 1 TO WS-COUNTER
+   285			 MOVE WS-INDX TO WS-COUNTER2
+   286		     END-IF
+   287		     ADD 1 TO WS-INDX
+   288		 END-PERFORM
+   289		 IF WS-COUNTER > 1
+   290		     MOVE 1 TO WS-INDX
+   291		     PERFORM UNTIL WS-INDX > 11
+   292                   MOVE '_' TO UCI(WS-INDX)
+   293			 ADD 1 TO WS-INDX
+   294		     END-PERFORM
+   295               MOVE 'ENTER 1 SELECTION ONLY' TO MSGO
+   296		 ELSE
+   297		     EVALUATE UCI(WS-COUNTER2)
+   298                   WHEN 'U'
+   299                       IF STI(WS-COUNTER2) = 'APPROVED' OR 'ONGOING'
+   300				 PERFORM 600-VALIDATE-USER
+   301				 EVALUATE TRUE
+   302                               WHEN SERVICE-PROVIDER = 'Y' AND
+   303                                    REQUESTOR = 'Y'
+   304					 EXEC CICS XCTL
+   305                                       PROGRAM('SM003P')
+   306					 END-EXEC
+   307                               WHEN SERVICE-PROVIDER = 'Y'
+   308					 EXEC CICS XCTL
+   309                                       PROGRAM('SM003P')
+   310					 END-EXEC
+   311                               WHEN REQUESTOR = 'Y'
+   312					 EXEC CICS
+   313                                       READ FILE('STF00001')
+   314					     INTO (WS-TIX-REC)
+   315					     RIDFLD (TNI(WS-COUNTER2))
+   316					     RESP(WS-RESPONSE-CODE)
+   317					     EQUAL
+   318					 END-EXEC
+   319					 IF WS-USERID = TIX-REQUESTOR
+   320					     EXEC CICS XCTL
+   321                                           PROGRAM('SM003P')
+   322					     END-EXEC
+   323					 ELSE
+   324                                       MOVE '_' TO UCI(WS-COUNTER2)
+   325                                       MOVE 'INVALID ACCESS' TO MSGO
+   326					     PERFORM 100-NEW-MAP
+   327					 END-IF
+   328				     WHEN OTHER
+   329                                   MOVE '_' TO UCI(WS-COUNTER2)
+   330                                   MOVE 'INVALID ACCESS' TO MSGO
+   331					 PERFORM 100-NEW-MAP
+   332				 END-EVALUATE
+   333			     ELSE
+   334                           MOVE '_' TO UCI(WS-COUNTER2)
+   335                           MOVE 'STATUS MUST BE APPROVED OR ONGOING' TO
+   336				     MSGO
+   337				 PERFORM 100-NEW-MAP
+   338			     END-IF
+   339                   WHEN 'C'CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
-   340				 PERFORM 600-VALIDATE-USER
-   341				 EXEC CICS
-   342                               READ FILE('STF00001')
-   343				     INTO (WS-TIX-REC)
-   344				     RIDFLD (TNI(WS-COUNTER2))
-   345				     RESP(WS-RESPONSE-CODE)
-   346				     EQUAL
-   347				 END-EXEC
-   348				 IF WS-USERID = TIX-REQUESTOR
-   349				     EXEC CICS XCTL
-   350                                   PROGRAM('SM004P')
-   351				     END-EXEC
-   352				 ELSE
-   353                               MOVE '_' TO UCI(WS-COUNTER2)
-   354                               MOVE 'INVALID ACCESS' TO MSGO
-   355				     PERFORM 100-NEW-MAP
-   356				 END-IF
-   357			     ELSE
-   358                           MOVE '_' TO UCI(WS-COUNTER2)
-   359                           MOVE 'STATUS MUST BE COMPLETED' TO
-   360				     MSGO
-   361				 PERFORM 100-NEW-MAP
-   362			     END-IF
-   363                   WHEN 'A'
-   364                           IF STI(WS-COUNTER2) = 'CREATED'
-   365				 PERFORM 600-VALIDATE-USER
-   366				 EVALUATE TRUE
-   367                               WHEN APPROVER = 'Y'
-   368					 EXEC CICS
-   369                                       READ FILE('STF00001')
-   370					     INTO (WS-TIX-REC)
-   371					     RIDFLD (TNI(WS-COUNTER2))
-   372					     RESP(WS-RESPONSE-CODE)
-   373					     EQUAL
-   374					 END-EXEC
-   375					 IF WS-USERID = TIX-REQUESTOR
-   376					     EXEC CICS XCTL
-   377                                           PROGRAM('SM005P')
-   378					     END-EXEC
-   379					 ELSE
-   380                                       MOVE '_' TO UCI(WS-COUNTER2)
-   381                                       MOVE 'INVALID ACCESS' TO MSGO
-   382					     PERFORM 100-NEW-MAP
-   383					 END-IF
-   384				     WHEN OTHER
-   385                                   MOVE '_' TO UCI(WS-COUNTER2)
-   386                                   MOVE 'INVALID ACCESS' TO MSGO
-   387					 PERFORM 100-NEW-MAP
-   388				 END-EVALUATE
-   389			     ELSE
-   390                           MOVE '_' TO UCI(WS-COUNTER2)
-   391                           MOVE 'STATUS MUST BE CREATED' TO
-   392				     MSGO
-   393				 PERFORM 100-NEW-MAP
-   394			     END-IF
-   395                   WHEN 'X'
-   396			     EXEC CICS
-   397                           READ FILE('STF00001')CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
+   340                       IF STI(WS-COUNTER2) = 'COMPLETED'
+   341				 PERFORM 600-VALIDATE-USER
+   342				 EXEC CICS
+   343                               READ FILE('STF00001')
+   344				     INTO (WS-TIX-REC)
+   345				     RIDFLD (TNI(WS-COUNTER2))
+   346				     RESP(WS-RESPONSE-CODE)
+   347				     EQUAL
+   348				 END-EXEC
+   349				 IF WS-USERID = TIX-REQUESTOR
+   350				     EXEC CICS XCTL
+   351                                   PROGRAM('SM004P')
+   352				     END-EXEC
+   353				 ELSE
+   354                               MOVE '_' TO UCI(WS-COUNTER2)
+   355                               MOVE 'INVALID ACCESS' TO MSGO
+   356				     PERFORM 100-NEW-MAP
+   357				 END-IF
+   358			     ELSE
+   359                           MOVE '_' TO UCI(WS-COUNTER2)
+   360                           MOVE 'STATUS MUST BE COMPLETED' TO
+   361				     MSGO
+   362				 PERFORM 100-NEW-MAP
+   363			     END-IF
+   364                   WHEN 'A'
+   365                           IF STI(WS-COUNTER2) = 'CREATED'
+   366				 PERFORM 600-VALIDATE-USER
+   367				 EVALUATE TRUE
+   368                               WHEN APPROVER = 'Y'
+   369					 EXEC CICS
+   370                                       READ FILE('STF00001')
+   371					     INTO (WS-TIX-REC)
+   372					     RIDFLD (TNI(WS-COUNTER2))
+   373					     RESP(WS-RESPONSE-CODE)
+   374					     EQUAL
+   375					 END-EXEC
+   376					 IF WS-USERID = TIX-REQUESTOR
+   377					     EXEC CICS XCTL
+   378                                           PROGRAM('SM005P')
+   379					     END-EXEC
+   380					 ELSE
+   381                                       MOVE '_' TO UCI(WS-COUNTER2)
+   382                                       MOVE 'INVALID ACCESS' TO MSGO
+   383					     PERFORM 100-NEW-MAP
+   384					 END-IF
+   385				     WHEN OTHER
+   386                                   MOVE '_' TO UCI(WS-COUNTER2)
+   387                                   MOVE 'INVALID ACCESS' TO MSGO
+   388					 PERFORM 100-NEW-MAP
+   389				 END-EVALUATE
+   390			     ELSE
+   391                           MOVE '_' TO UCI(WS-COUNTER2)
+   392                           MOVE 'STATUS MUST BE CREATED' TO
+   393				     MSGO
+   394				 PERFORM 100-NEW-MAP
+   395			     END-IF
+   396                   WHEN 'X'
+   397			     EXEC CICSCA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
-   398				 INTO (WS-TIX-REC)
-   399				 RIDFLD (TNI(WS-COUNTER2))
-   400				 RESP(WS-RESPONSE-CODE)
-   401				 EQUAL
-   402			     END-EXEC
-   403			     IF WS-USERID = TIX-REQUESTOR
-   404				 EXEC CICS XCTL
-   405                               PROGRAM('SM006P')
-   406				 END-EXEC
-   407			     ELSE
-   408                           MOVE '_' TO UCI(WS-COUNTER2)
-   409                           MOVE 'INVALID ACCESS' TO MSGO
-   410				 PERFORM 100-NEW-MAP
-   411			     END-IF
-   412			 WHEN SPACE
-   413                       MOVE '_' TO UCI(WS-COUNTER2)
-   414                       MOVE 'OPTION IS REQUIRED' TO MSGO
-   415			     PERFORM 100-NEW-MAP
-   416			 WHEN OTHER
-   417                       MOVE '_' TO UCI(WS-COUNTER2)
-   418                       MOVE 'ENTER U, C, A, OR X AND PRESS ENTER' TO
-   419				   MSGO
-   420			     PERFORM 100-NEW-MAP
-   421		     END-EVALUATE
-   422		 END-IF.
-   423
-   424	     260-WHENF5 SECTION.
-   425		 EXEC CICS ASSIGN
-   426		     USERID(WS-USERID)
-   427		 END-EXEC
-   428		 EXEC CICS
-   429               READ FILE('UAF00001')
-   430		     INTO (WS-USER-REC)
-   431		     RIDFLD (WS-USERID)
-   432		     RESP(WS-RESPONSE-CODE)
-   433		     GTEQ
-   434		 END-EXEC
-   435           IF NOT WS-RESPONSE-CODE = +00 OR REQUESTOR NOT = 'Y'
-   436               MOVE 'INVALID ACCESS' TO MSGO
-   437		     PERFORM 100-NEW-MAP
-   438		 ELSE
-   439		     EXEC CICS XCTL
-   440                   PROGRAM('SM02P')
-   441		     END-EXEC
-   442		 END-IF.
-   443
-   444	     270-WHENF12 SECTION.
-   445		 PERFORM UNTIL WS-QITEM-PAGE < WS-QITEM-START OR
-   446			       WS-QITEM-PAGE = WS-QITEM-START
-   447			     SUBTRACT 11 FROM WS-QITEM-PAGE
-   448		 END-PERFORM
-   449           MOVE 'THIS IS THE FIRST PAGE' TO MSGO
-   450		 MOVE 1 TO WS-PAGE
-   451		 MOVE WS-QITEM-START TO WS-QITEM-PAGE
-   452		  MOVE WS-PAGE TO PAGEO
-   453		  PERFORM 500-MOVE-Q-TO-SCREEN
-   454		  PERFORM 100-NEW-MAP.
-   455CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
+   398                           READ FILE('STF00001')
+   399				 INTO (WS-TIX-REC)
+   400				 RIDFLD (TNI(WS-COUNTER2))
+   401				 RESP(WS-RESPONSE-CODE)
+   402				 EQUAL
+   403			     END-EXEC
+   404			     IF WS-USERID = TIX-REQUESTOR
+   405				 EXEC CICS XCTL
+   406                               PROGRAM('SM006P')
+   407				 END-EXEC
+   408			     ELSE
+   409                           MOVE '_' TO UCI(WS-COUNTER2)
+   410                           MOVE 'INVALID ACCESS' TO MSGO
+   411				 PERFORM 100-NEW-MAP
+   412			     END-IF
+   413			 WHEN SPACE
+   414                       MOVE '_' TO UCI(WS-COUNTER2)
+   415                       MOVE 'OPTION IS REQUIRED' TO MSGO
+   416			     PERFORM 100-NEW-MAP
+   417			 WHEN OTHER
+   418                       MOVE '_' TO UCI(WS-COUNTER2)
+   419                       MOVE 'ENTER U, C, A, OR X AND PRESS ENTER' TO
+   420				   MSGO
+   421			     PERFORM 100-NEW-MAP
+   422		     END-EVALUATE
+   423		 END-IF.
+   424
+   425	     260-WHENF5 SECTION.
+   426		 EXEC CICS ASSIGN
+   427		     USERID(WS-USERID)
+   428		 END-EXEC
+   429		 EXEC CICS
+   430               READ FILE('UAF00001')
+   431		     INTO (WS-USER-REC)
+   432		     RIDFLD (WS-USERID)
+   433		     RESP(WS-RESPONSE-CODE)
+   434		     GTEQ
+   435		 END-EXEC
+   436           IF NOT WS-RESPONSE-CODE = +00 OR REQUESTOR NOT = 'Y'
+   437               MOVE 'INVALID ACCESS' TO MSGO
+   438		     PERFORM 100-NEW-MAP
+   439		 ELSE
+   440		     EXEC CICS XCTL
+   441                   PROGRAM('SM02P')
+   442		     END-EXEC
+   443		 END-IF.
+   444
+   445	     270-WHENF12 SECTION.
+   446		 PERFORM UNTIL WS-QITEM-PAGE < WS-QITEM-START OR
+   447			       WS-QITEM-PAGE = WS-QITEM-START
+   448			     SUBTRACT 11 FROM WS-QITEM-PAGE
+   449		 END-PERFORM
+   450           MOVE 'THIS IS THE FIRST PAGE' TO MSGO
+   451		 MOVE 1 TO WS-PAGE
+   452		 MOVE WS-QITEM-START TO WS-QITEM-PAGE
+   453		  MOVE WS-PAGE TO PAGEO
+   454		  PERFORM 500-MOVE-Q-TO-SCREEN
+   455		  PERFORM 100-NEW-MAP.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
-   456	     500-MOVE-Q-TO-SCREEN SECTION.
-   457
-   458		  MOVE WS-QITEM-PAGE TO WS-QITEM
-   459		  EXEC CICS READQ TS
-   460			    QUEUE(WS-QNAME)
-   461			    INTO (WS-TIX-REC)
-   462			    ITEM (WS-QITEM)
-   463		   END-EXEC
-   464
-   465		  MOVE 1 TO WS-INDX
-   466
-   467		  PERFORM UNTIL WS-INDX > 11
-   468		      IF EIBRESP = DFHRESP(NORMAL) AND
-   469			 WS-QITEM <= WS-QITEM-END
-   470			 MOVE TIX-ID TO TNI(WS-INDX)
-   471			 MOVE TIX-TITLE TO TTI(WS-INDX)
-   472			 MOVE TIX-STATUS TO STI(WS-INDX)
-   473			 MOVE LAST-UPDATE TO UDI(WS-INDX)
-   474			 MOVE UPDBY2 TO UBI(WS-INDX)
-   475			 ADD 1 TO WS-INDX
-   476			 ADD 1 TO WS-QITEM
-   477			 EXEC CICS READQ TS
-   478			      QUEUE(WS-QNAME)
-   479			      INTO (WS-TIX-REC)
-   480			      ITEM (WS-QITEM)
-   481			END-EXEC
-   482		     ELSE
-   483			MOVE SPACES TO TNI(WS-INDX)
-   484			MOVE SPACES TO TTI(WS-INDX)
-   485			MOVE SPACES TO STI(WS-INDX)
-   486			MOVE SPACES TO UDI(WS-INDX)
-   487			MOVE SPACES TO UBI(WS-INDX)
-   488                  MOVE 'THIS IS THE LAST PAGE' TO MSGO
-   489                  MOVE '1' TO WS-LASTPAGE
-   490			ADD 1 TO WS-INDX
-   491		     END-IF
-   492		  END-PERFORM.
-   493
-   494	     500-EXIT.
-   495		 EXIT.
-   496
-   497	     600-VALIDATE-USER.
-   498		 EXEC CICS ASSIGN
-   499		     USERID(WS-USERID)
-   500		 END-EXEC
-   501		 EXEC CICS
-   502               READ FILE('UAF00001')
-   503		     INTO (WS-USER-REC)
-   504		     RIDFLD (WS-USERID)
-   505		     RESP(WS-RESPONSE-CODE)
-   506		     GTEQ
-   507		 END-EXEC
-   508		 IF NOT WS-RESPONSE-CODE = +00
-   509               MOVE 'INVALID ACCESS' TO MSGO
-   510		     PERFORM 100-NEW-MAP
-   511		 END-IF.
-   512
-   513	     999-MOVE-FILE-TO-Q SECTION.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
+   456
+   457	     500-MOVE-Q-TO-SCREEN SECTION.
+   458
+   459		  MOVE WS-QITEM-PAGE TO WS-QITEM
+   460		  EXEC CICS READQ TS
+   461			    QUEUE(WS-QNAME)
+   462			    INTO (WS-TIX-REC)
+   463			    ITEM (WS-QITEM)
+   464		   END-EXEC
+   465
+   466		  MOVE 1 TO WS-INDX
+   467
+   468		  PERFORM UNTIL WS-INDX > 11
+   469		      IF EIBRESP = DFHRESP(NORMAL) AND
+   470			 WS-QITEM <= WS-QITEM-END
+   471			 MOVE TIX-ID TO TNI(WS-INDX)
+   472			 MOVE TIX-TITLE TO TTI(WS-INDX)
+   473			 MOVE TIX-STATUS TO STI(WS-INDX)
+   474			 MOVE LAST-UPDATE TO UDI(WS-INDX)
+   475			 MOVE UPDBY2 TO UBI(WS-INDX)
+   476			 ADD 1 TO WS-INDX
+   477			 ADD 1 TO WS-QITEM
+   478			 EXEC CICS READQ TS
+   479			      QUEUE(WS-QNAME)
+   480			      INTO (WS-TIX-REC)
+   481			      ITEM (WS-QITEM)
+   482			END-EXEC
+   483		     ELSE
+   484			MOVE SPACES TO TNI(WS-INDX)
+   485			MOVE SPACES TO TTI(WS-INDX)
+   486			MOVE SPACES TO STI(WS-INDX)
+   487			MOVE SPACES TO UDI(WS-INDX)
+   488			MOVE SPACES TO UBI(WS-INDX)
+   489                  MOVE 'THIS IS THE LAST PAGE' TO MSGO
+   490                  MOVE '1' TO WS-LASTPAGE
+   491			ADD 1 TO WS-INDX
+   492		     END-IF
+   493		  END-PERFORM.
+   494
+   495	     500-EXIT.
+   496		 EXIT.
+   497
+   498	     600-VALIDATE-USER.
+   499		 EXEC CICS ASSIGN
+   500		     USERID(WS-USERID)
+   501		 END-EXEC
+   502		 EXEC CICS
+   503               READ FILE('UAF00001')
+   504		     INTO (WS-USER-REC)
+   505		     RIDFLD (WS-USERID)
+   506		     RESP(WS-RESPONSE-CODE)
+   507		     GTEQ
+   508		 END-EXEC
+   509		 IF NOT WS-RESPONSE-CODE = +00
+   510               MOVE 'INVALID ACCESS' TO MSGO
+   511		     PERFORM 100-NEW-MAP
+   512		 END-IF.
+   513CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
-   514
-   515		  MOVE LOW-VALUES TO TIX-ID.
-   516		  EXEC CICS
-   517               STARTBR FILE('stf00001')
-   518		     RIDFLD (TIX-ID)
-   519		     GTEQ
-   520		  END-EXEC
-   521
-   522		  EXEC CICS
-   523                READNEXT FILE('stf00001')
-   524		      INTO (WS-TIX-REC)
-   525		      RIDFLD (TIX-ID)
-   526		  END-EXEC
-   527
-   528		 EXEC CICS WRITEQ TS
-   529			   QUEUE(WS-QNAME)
-   530			   FROM (WS-TIX-REC)
-   531			   ITEM (WS-QITEM)
-   532		 END-EXEC
-   533		 MOVE WS-QITEM TO WS-QITEM-START
-   534		 PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
-   535		     MOVE WS-QITEM TO WS-QITEM-END
-   536		     EXEC CICS
-   537                    READNEXT FILE('stf00001')
-   538			  INTO (WS-TIX-REC)
-   539			  RIDFLD (TIX-ID)
-   540		     END-EXEC
-   541		     IF EIBRESP = DFHRESP(NORMAL)
-   542			EXEC CICS WRITEQ TS
-   543			     QUEUE(WS-QNAME)
-   544			     FROM (WS-TIX-REC)
-   545			     ITEM (WS-QITEM)
-   546			END-EXEC
-   547		     END-IF
-   548		 END-PERFORM
-   549		 EXEC CICS
-   550                ENDBR FILE('stf00001')
-   551		 END-EXEC
-   552		 MOVE WS-QITEM-START TO WS-QITEM-PAGE.
-   553
-   554	     999-EXIT.
-   555		 EXIT.
-   556
+   514	     999-MOVE-FILE-TO-Q SECTION.
+   515
+   516		  MOVE LOW-VALUES TO TIX-ID.
+   517		  EXEC CICS
+   518               STARTBR FILE('stf00001')
+   519		     RIDFLD (TIX-ID)
+   520		     GTEQ
+   521		  END-EXEC
+   522
+   523		  EXEC CICS
+   524                READNEXT FILE('stf00001')
+   525		      INTO (WS-TIX-REC)
+   526		      RIDFLD (TIX-ID)
+   527		  END-EXEC
+   528
+   529		 EXEC CICS WRITEQ TS
+   530			   QUEUE(WS-QNAME)
+   531			   FROM (WS-TIX-REC)
+   532			   ITEM (WS-QITEM)
+   533		 END-EXEC
+   534		 MOVE WS-QITEM TO WS-QITEM-START
+   535		 PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
+   536		     MOVE WS-QITEM TO WS-QITEM-END
+   537		     EXEC CICS
+   538                    READNEXT FILE('stf00001')
+   539			  INTO (WS-TIX-REC)
+   540			  RIDFLD (TIX-ID)
+   541		     END-EXEC
+   542		     IF EIBRESP = DFHRESP(NORMAL)
+   543			EXEC CICS WRITEQ TS
+   544			     QUEUE(WS-QNAME)
+   545			     FROM (WS-TIX-REC)
+   546			     ITEM (WS-QITEM)
+   547			END-EXEC
+   548		     END-IF
+   549		 END-PERFORM
+   550		 EXEC CICS
+   551                ENDBR FILE('stf00001')
+   552		 END-EXEC
+   553		 MOVE WS-QITEM-START TO WS-QITEM-PAGE.
+   554
+   555	     999-EXIT.
+   556		 EXIT.
    557
    558
+   559
 CA-Realia CACXPREP C:\handson-cics\CAWB30\sm001p.COB
 
 
@@ -1623,6 +1624,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:    1557
-		Translation Time:	     .05 sec
-		Translation Speed:	  946250 lines per min
+		Source Lines Translated:    1558
+		Translation Time:	     .04 sec
+		Translation Speed:	  596666 lines per min

@@ -52,53 +52,53 @@
     49	     01  WS-INVALID-USER			 PIC X(24) VALUE
     50           'INVALID ACCESS TO TICKET'.
     51	     01  WS-COMMAREA.
-    52		 05  WS-USER-REC.
-    53		     10  USERID.
-    54			 15  USERID1			   PIC X(7).
-    55			 15  FILLER			   PIC X.
-    56		     10  REQUESTOR			   PIC X.
-    57		     10  ADMINISTRATOR			   PIC X.
-    58		     10  APPROVER			   PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm006p.COB
+    52		 05  WS-CA-PRGNAME	     PIC X(06).
+    53		 05  FILLER		     PIC X(19).
+    54		 05  WS-DFHSTATE	     PIC X(15).
+    55		 05  WS-TRANS		     PIC X(04).
+    56		 05  WS-LUSER		     PIC 9(03).
+    57		 05  WS-FUSER		     PIC 9(03).
+    58		 05  WS-PAGE		     PIC 9(02).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm006p.COB
 
 
-    59		     10  SERVICE-PROVIDER		   PIC X.
-    60		     10  UPDATED-BY1.
-    61			 15  UPDBY1			   PIC X(7).
-    62			 15  FILLER			   PIC X.
-    63		 05  WS-TIX-REC.
-    64		     10  TIX-ID 			   PIC X(06).
-    65		     10  TIX-REQUESTOR			   PIC X(08).
-    66		     10  TIX-STATUS			   PIC X(10).
-    67		     10  TIX-TITLE			   PIC X(25).
-    68		     10  TIX-DESC			   PIC X(100).
-    69		     10  TIX-DESC-RED REDEFINES TIX-DESC.
-    70			 15  TIX-DESC1			   PIC X(50).
-    71			 15  TIX-DESC2			   PIC X(50).
-    72		     10  LAST-UPDATE			   PIC X(20).
-    73		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-    74			 15  LAST-UPDATE-DATE		   PIC X(11).
-    75			 15  LAST-UPDATE-TIME		   PIC X(09).
-    76		     10  UPDATED-BY2.
-    77			 15  UPDBY2			   PIC X(7).
-    78			 15  FILLER			   PIC X.
-    79		     10  LAST-UPDATE-REM		   PIC X(50).
-    80		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-    81			 15  LAST-UPDATE-REM1		   PIC X(25).
-    82			 15  LAST-UPDATE-REM2		   PIC X(25).
-    83		 05  WS-PROG-STATE			PIC 9(1).
-    84           05  WS-INIT                            PIC X VALUE 'Y'.
-    85		 05  WS-CA-PRGNAME	     PIC X(06).
-    86		 05  FILLER		     PIC X(19).
-    87		 05  WS-DFHSTATE	     PIC X(15).
-    88		 05  WS-TRANS		     PIC X(04).
-    89		 05  WS-LUSER		     PIC 9(03).
-    90		 05  WS-FUSER		     PIC 9(03).
-    91		 05  WS-PAGE		     PIC 9(02).
-    92		 05  WS-PAGE-END	     PIC 9(01).
-    93		 05  WS-QITEM		     PIC S9(4) COMP.
-    94		 05  WS-QITEM-START	     PIC S9(4) COMP.
-    95		 05  WS-QITEM-END	     PIC S9(4) COMP.
-    96		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    59		 05  WS-PAGE-END	     PIC 9(01).
+    60		 05  WS-QITEM		     PIC S9(4) COMP.
+    61		 05  WS-QITEM-START	     PIC S9(4) COMP.
+    62		 05  WS-QITEM-END	     PIC S9(4) COMP.
+    63		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    64		 05  WS-USER-REC.
+    65		     10  USERID.
+    66			 15  USERID1			   PIC X(7).
+    67			 15  FILLER			   PIC X.
+    68		     10  REQUESTOR			   PIC X.
+    69		     10  ADMINISTRATOR			   PIC X.
+    70		     10  APPROVER			   PIC X.
+    71		     10  SERVICE-PROVIDER		   PIC X.
+    72		     10  UPDATED-BY1.
+    73			 15  UPDBY1			   PIC X(7).
+    74			 15  FILLER			   PIC X.
+    75		 05  WS-TIX-REC.
+    76		     10  TIX-ID 			   PIC X(06).
+    77		     10  TIX-REQUESTOR			   PIC X(08).
+    78		     10  TIX-STATUS			   PIC X(10).
+    79		     10  TIX-TITLE			   PIC X(25).
+    80		     10  TIX-DESC			   PIC X(100).
+    81		     10  TIX-DESC-RED REDEFINES TIX-DESC.
+    82			 15  TIX-DESC1			   PIC X(50).
+    83			 15  TIX-DESC2			   PIC X(50).
+    84		     10  LAST-UPDATE			   PIC X(20).
+    85		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+    86			 15  LAST-UPDATE-DATE		   PIC X(11).
+    87			 15  LAST-UPDATE-TIME		   PIC X(09).
+    88		     10  UPDATED-BY2.
+    89			 15  UPDBY2			   PIC X(7).
+    90			 15  FILLER			   PIC X.
+    91		     10  LAST-UPDATE-REM		   PIC X(50).
+    92		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+    93			 15  LAST-UPDATE-REM1		   PIC X(25).
+    94			 15  LAST-UPDATE-REM2		   PIC X(25).
+    95		 05  WS-PROG-STATE			PIC 9(1).
+    96           05  WS-INIT                            PIC X VALUE 'Y'.
     97		 05  WS-USERID1 			PIC X(7).
     98		 05  WS-TICKET-NUM.
     99		     10  WS-TICKET-NUM1 		PIC X(6).

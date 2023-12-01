@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 13:49:49 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 15:52:43 PAGE  1
 
     1 SM001S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      *
     2                CTRL=(FREEKB,FRSET),TIOAPFX=YES,EXTATT=NO,              *
@@ -57,7 +57,7 @@ W **** This field overlaps previously defined field
    54                INITIAL='_'
    55 UC3      DFHMDF POS=(12,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
    56                INITIAL='_'
-   57 UC4      DFHMDF POS=(13,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 13:49:49 PAGE  2
+   57 UC4      DFHMDF POS=(13,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 15:52:43 PAGE  2
 
    58                INITIAL='_'
    59 UC5      DFHMDF POS=(14,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
@@ -116,7 +116,7 @@ W **** This field overlaps previously defined field
   112                INITIAL='   '
   113 TT10     DFHMDF POS=(19,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
   114                INITIAL='   '
-  115 TT11     DFHMDF POS=(20,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 13:49:49 PAGE  3
+  115 TT11     DFHMDF POS=(20,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 15:52:43 PAGE  3
 
   116                INITIAL='   '
   117 ST1      DFHMDF POS=(10,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
@@ -175,7 +175,7 @@ W **** This field overlaps previously defined field
   170                INITIAL='   '
   171 UB6      DFHMDF POS=(15,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
   172                INITIAL='   '
-  173 UB7      DFHMDF POS=(16,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 13:49:49 PAGE  4
+  173 UB7      DFHMDF POS=(16,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 15:52:43 PAGE  4
 
   174                INITIAL='   '
   175 UB8      DFHMDF POS=(17,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
@@ -205,7 +205,7 @@ W **** This field overlaps previously defined field
       sm001s loaded with 1 MAPS, 99 FIELDS and 869 Bytes of Literals
 
   199          END
-There were     1 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 13:49:49 PAGE  5
+There were     1 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm001s.bms                                                                    01DEV23 15:52:43 PAGE  5
 
       COBOL COPY file generated
 

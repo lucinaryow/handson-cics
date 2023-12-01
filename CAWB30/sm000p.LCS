@@ -45,54 +45,54 @@
     42	     01  WS-INVALID-USER			 PIC X(24) VALUE
     43           'INVALID ACCESS TO TICKET'.
     44	     01  WS-COMMAREA.
-    45		 05  WS-USER-REC.
-    46		     10  USERID.
-    47			 15  USERID1			   PIC X(7).
-    48			 15  FILLER			   PIC X.
-    49		     10  REQUESTOR			   PIC X.
-    50		     10  ADMINISTRATOR			   PIC X.
-    51		     10  APPROVER			   PIC X.
-    52		     10  SERVICE-PROVIDER		   PIC X.
-    53		     10  UPDATED-BY1.
-    54			 15  UPDBY1			   PIC X(7).
-    55			 15  FILLER			   PIC X.
-    56		 05  WS-TIX-REC.
-    57		     10  TIX-ID 			   PIC X(06).
-    58		     10  TIX-REQUESTOR			   PIC X(08).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+    45		 05  WS-CA-PRGNAME	     PIC X(06).
+    46		 05  FILLER		     PIC X(19).
+    47		 05  WS-DFHSTATE	     PIC X(15).
+    48		 05  WS-TRANS		     PIC X(04).
+    49		 05  WS-LUSER		     PIC 9(03).
+    50		 05  WS-FUSER		     PIC 9(03).
+    51		 05  WS-PAGE		     PIC 9(02).
+    52		 05  WS-PAGE-END	     PIC 9(01).
+    53		 05  WS-QITEM		     PIC S9(4) COMP.
+    54		 05  WS-QITEM-START	     PIC S9(4) COMP.
+    55		 05  WS-QITEM-END	     PIC S9(4) COMP.
+    56		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    57		 05  WS-USERID1 			PIC X(7).
+    58		 05  WS-USER-REC.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-    59		     10  TIX-STATUS			   PIC X(10).
-    60		     10  TIX-TITLE			   PIC X(25).
-    61		     10  TIX-DESC			   PIC X(100).
-    62		     10  TIX-DESC-RED REDEFINES TIX-DESC.
-    63			 15  TIX-DESC1			   PIC X(50).
-    64			 15  TIX-DESC2			   PIC X(50).
-    65		     10  LAST-UPDATE			   PIC X(20).
-    66		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-    67			 15  LAST-UPDATE-DATE		   PIC X(11).
-    68			 15  LAST-UPDATE-TIME		   PIC X(09).
-    69		     10  UPDATED-BY2.
-    70			 15  UPDBY2			   PIC X(7).
-    71			 15  FILLER			   PIC X.
-    72		     10  LAST-UPDATE-REM		   PIC X(50).
-    73		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-    74			 15  LAST-UPDATE-REM1		   PIC X(25).
-    75			 15  LAST-UPDATE-REM2		   PIC X(25).
-    76		 05  WS-PROG-STATE			PIC 9(1).
-    77           05  WS-INIT                            PIC X VALUE 'Y'.
-    78		 05  WS-CA-PRGNAME	     PIC X(06).
-    79		 05  FILLER		     PIC X(19).
-    80		 05  WS-DFHSTATE	     PIC X(15).
-    81		 05  WS-TRANS		     PIC X(04).
-    82		 05  WS-LUSER		     PIC 9(03).
-    83		 05  WS-FUSER		     PIC 9(03).
-    84		 05  WS-PAGE		     PIC 9(02).
-    85		 05  WS-PAGE-END	     PIC 9(01).
-    86		 05  WS-QITEM		     PIC S9(4) COMP.
-    87		 05  WS-QITEM-START	     PIC S9(4) COMP.
-    88		 05  WS-QITEM-END	     PIC S9(4) COMP.
-    89		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
-    90		 05  WS-USERID1 			PIC X(7).
+    59		     10  USERID.
+    60			 15  USERID1			   PIC X(7).
+    61			 15  FILLER			   PIC X.
+    62		     10  REQUESTOR			   PIC X.
+    63		     10  ADMINISTRATOR			   PIC X.
+    64		     10  APPROVER			   PIC X.
+    65		     10  SERVICE-PROVIDER		   PIC X.
+    66		     10  UPDATED-BY1.
+    67			 15  UPDBY1			   PIC X(7).
+    68			 15  FILLER			   PIC X.
+    69		 05  WS-TIX-REC.
+    70		     10  TIX-ID 			   PIC X(06).
+    71		     10  TIX-REQUESTOR			   PIC X(08).
+    72		     10  TIX-STATUS			   PIC X(10).
+    73		     10  TIX-TITLE			   PIC X(25).
+    74		     10  TIX-DESC			   PIC X(100).
+    75		     10  TIX-DESC-RED REDEFINES TIX-DESC.
+    76			 15  TIX-DESC1			   PIC X(50).
+    77			 15  TIX-DESC2			   PIC X(50).
+    78		     10  LAST-UPDATE			   PIC X(20).
+    79		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+    80			 15  LAST-UPDATE-DATE		   PIC X(11).
+    81			 15  LAST-UPDATE-TIME		   PIC X(09).
+    82		     10  UPDATED-BY2.
+    83			 15  UPDBY2			   PIC X(7).
+    84			 15  FILLER			   PIC X.
+    85		     10  LAST-UPDATE-REM		   PIC X(50).
+    86		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+    87			 15  LAST-UPDATE-REM1		   PIC X(25).
+    88			 15  LAST-UPDATE-REM2		   PIC X(25).
+    89		 05  WS-PROG-STATE			PIC 9(1).
+    90           05  WS-INIT                            PIC X VALUE 'Y'.
     91		 05  WS-TICKET-NUM.
     92		     10  WS-TICKET-NUM1 		PIC X(6).
     93		     10  FILLER 			PIC X.
@@ -731,418 +731,408 @@
    197			     END-IF
    198			 END-IF
    199                   IF WS-CHC1 = '- SEARCH TICKET'
-   200			     PERFORM 700-TRANSFER-PROG
-   201			     IF EIBCALEN = +0
-   202				 EXEC CICS XCTL
-   203                               PROGRAM('SM001P')
-   204				 END-EXEC
-   205			     ELSE
-   206				 EXEC CICS XCTL
-   207                               PROGRAM('SM001P')
-   208				     COMMAREA(WS-COMMAREA)
-   209				 END-EXEC
-   210			     END-IF
-   211			 END-IF
-   212		     WHEN OPTIONI = 2
-   213                   IF WS-CHC2 = '- ADD TICKET'
-   214			     PERFORM 700-TRANSFER-PROG
-   215			     IF TIXNOL NOT = +0
-   216				 PERFORM 900-NO-TIX
-   217			     END-IF
-   218			     IF EIBCALEN = +0
-   219				 EXEC CICS XCTL
-   220                               PROGRAM('SM02P')
-   221				 END-EXEC
-   222			     ELSE
-   223				 EXEC CICS XCTL
-   224                               PROGRAM('SM02P')
-   225				     COMMAREA(WS-COMMAREA)
-   226				 END-EXEC
-   227			     END-IF
-   228			 END-IF
-   229                   IF WS-CHC2 = '- UPDATE TICKET'
-   230			     PERFORM 700-TRANSFER-PROG
-   231			     IF TIXNOL NOT = +0
-   232				 PERFORM 900-NO-TIX
-   233			     END-IF
-   234			     IF EIBCALEN = +0
-   235				 EXEC CICS XCTL
-   236                               PROGRAM('SM03P')
-   237				 END-EXEC
-   238			     ELSE
-   239				 EXEC CICS XCTL
-   240                               PROGRAM('SM03P')
-   241				     COMMAREA(WS-COMMAREA)
-   242				 END-EXEC
-   243			     END-IF
-   244			 END-IF
-   245                   IF WS-CHC2 = '- APPROVE TICKET'
-   246			     IF TIXNOL NOT = +0
-   247				 PERFORM 700-TRANSFER-PROGCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+   200			     EXEC CICS XCTL
+   201                           PROGRAM('SM001P')
+   202			     END-EXEC
+   203			 END-IF
+   204		     WHEN OPTIONI = 2
+   205                   IF WS-CHC2 = '- ADD TICKET'
+   206			     PERFORM 700-TRANSFER-PROG
+   207			     IF TIXNOL NOT = +0
+   208				 PERFORM 900-NO-TIX
+   209			     END-IF
+   210			     IF EIBCALEN = +0
+   211				 EXEC CICS XCTL
+   212                               PROGRAM('SM02P')
+   213				 END-EXEC
+   214			     ELSE
+   215				 EXEC CICS XCTL
+   216                               PROGRAM('SM02P')
+   217				     COMMAREA(WS-COMMAREA)
+   218				 END-EXEC
+   219			     END-IF
+   220			 END-IF
+   221                   IF WS-CHC2 = '- UPDATE TICKET'
+   222			     PERFORM 700-TRANSFER-PROG
+   223			     IF TIXNOL NOT = +0
+   224				 PERFORM 900-NO-TIX
+   225			     END-IF
+   226			     IF EIBCALEN = +0
+   227				 EXEC CICS XCTL
+   228                               PROGRAM('SM03P')
+   229				 END-EXEC
+   230			     ELSE
+   231				 EXEC CICS XCTL
+   232                               PROGRAM('SM03P')
+   233				     COMMAREA(WS-COMMAREA)
+   234				 END-EXEC
+   235			     END-IF
+   236			 END-IF
+   237                   IF WS-CHC2 = '- APPROVE TICKET'
+   238			     IF TIXNOL NOT = +0
+   239				 PERFORM 700-TRANSFER-PROG
+   240			     END-IF
+   241			     PERFORM 800-NEED-TIX
+   242			     IF EIBCALEN = +0
+   243				 EXEC CICS XCTL
+   244                               PROGRAM('SM005')
+   245				 END-EXEC
+   246			     ELSE
+   247				 EXEC CICS XCTLCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-   248			     END-IF
-   249			     PERFORM 800-NEED-TIX
-   250			     IF EIBCALEN = +0
-   251				 EXEC CICS XCTL
-   252                               PROGRAM('SM005')
-   253				 END-EXEC
-   254			     ELSE
-   255				 EXEC CICS XCTL
-   256                               PROGRAM('SM005')
-   257				     COMMAREA(WS-COMMAREA)
-   258				 END-EXEC
-   259			     END-IF
-   260			 END-IF
-   261			 IF WS-CHC2 = LOW-VALUES
-   262                       MOVE 'INVALID OPTION' TO ERRMSGO
-   263			     PERFORM 100-SEND-MAP
-   264			 END-IF
-   265		     WHEN OPTIONI = 3
-   266                   IF WS-CHC3 = '- USER MAINTENANCE'
-   267			     PERFORM 700-TRANSFER-PROG
-   268			     IF EIBCALEN = +0
-   269				 EXEC CICS XCTL
-   270                               PROGRAM('UA001P')
-   271				 END-EXEC
-   272			     ELSE
-   273				 EXEC CICS XCTL
-   274                               PROGRAM('UA001P')
-   275				     COMMAREA(WS-COMMAREA)
-   276				 END-EXEC
-   277			     END-IF
-   278			 END-IF
-   279                   IF WS-CHC3 = '- APPROVE TICKET'
-   280			     PERFORM 700-TRANSFER-PROG
-   281			     IF TIXNOL NOT = +0
-   282				 PERFORM 800-NEED-TIX
-   283			     END-IF
-   284			     IF EIBCALEN = +0
-   285				 EXEC CICS XCTL
-   286                               PROGRAM('SM005')
-   287				 END-EXEC
-   288			     ELSE
-   289				 EXEC CICS XCTL
-   290                               PROGRAM('SM005')
-   291				     COMMAREA(WS-COMMAREA)
-   292				 END-EXEC
-   293			     END-IF
-   294			 END-IF
-   295                   IF WS-CHC3 = '- UPDATE TICKET'
-   296			     PERFORM 700-TRANSFER-PROG
-   297			     IF TIXNOL NOT = +0
-   298				 PERFORM 800-NEED-TIX
-   299			     END-IF
-   300			     IF EIBCALEN = +0
-   301				 EXEC CICS XCTL
-   302                               PROGRAM('SM03P')
-   303				     COMMAREA(WS-COMMAREA)
-   304				 END-EXEC
-   305			     ELSECA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+   248                               PROGRAM('SM005')
+   249				     COMMAREA(WS-COMMAREA)
+   250				 END-EXEC
+   251			     END-IF
+   252			 END-IF
+   253			 IF WS-CHC2 = LOW-VALUES
+   254                       MOVE 'INVALID OPTION' TO ERRMSGO
+   255			     PERFORM 100-SEND-MAP
+   256			 END-IF
+   257		     WHEN OPTIONI = 3
+   258                   IF WS-CHC3 = '- USER MAINTENANCE'
+   259			     PERFORM 700-TRANSFER-PROG
+   260			     IF EIBCALEN = +0
+   261				 EXEC CICS XCTL
+   262                               PROGRAM('UA001P')
+   263				 END-EXEC
+   264			     ELSE
+   265				 EXEC CICS XCTL
+   266                               PROGRAM('UA001P')
+   267				     COMMAREA(WS-COMMAREA)
+   268				 END-EXEC
+   269			     END-IF
+   270			 END-IF
+   271                   IF WS-CHC3 = '- APPROVE TICKET'
+   272			     PERFORM 700-TRANSFER-PROG
+   273			     IF TIXNOL NOT = +0
+   274				 PERFORM 800-NEED-TIX
+   275			     END-IF
+   276			     IF EIBCALEN = +0
+   277				 EXEC CICS XCTL
+   278                               PROGRAM('SM005')
+   279				 END-EXEC
+   280			     ELSE
+   281				 EXEC CICS XCTL
+   282                               PROGRAM('SM005')
+   283				     COMMAREA(WS-COMMAREA)
+   284				 END-EXEC
+   285			     END-IF
+   286			 END-IF
+   287                   IF WS-CHC3 = '- UPDATE TICKET'
+   288			     PERFORM 700-TRANSFER-PROG
+   289			     IF TIXNOL NOT = +0
+   290				 PERFORM 800-NEED-TIX
+   291			     END-IF
+   292			     IF EIBCALEN = +0
+   293				 EXEC CICS XCTL
+   294                               PROGRAM('SM03P')
+   295				     COMMAREA(WS-COMMAREA)
+   296				 END-EXEC
+   297			     ELSE
+   298				 EXEC CICS XCTL
+   299                               PROGRAM('SM03P')
+   300				     COMMAREA(WS-COMMAREA)
+   301				 END-EXEC
+   302			     END-IF
+   303			 END-IF
+   304			 IF WS-CHC3 = LOW-VALUES
+   305                       MOVE 'INVALID OPTION' TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-   306				 EXEC CICS XCTL
-   307                               PROGRAM('SM03P')
-   308				     COMMAREA(WS-COMMAREA)
-   309				 END-EXEC
-   310			     END-IF
-   311			 END-IF
-   312			 IF WS-CHC3 = LOW-VALUES
-   313                       MOVE 'INVALID OPTION' TO ERRMSGO
-   314			     PERFORM 100-SEND-MAP
-   315			 END-IF
-   316		     WHEN OPTIONI = 4
-   317                   IF WS-CHC4 = '- USER MAINTENANCE'
-   318			     PERFORM 700-TRANSFER-PROG
-   319			     IF EIBCALEN = +0
-   320				 EXEC CICS XCTL
-   321                               PROGRAM('UA001P')
-   322				 END-EXEC
-   323			     ELSE
-   324				 EXEC CICS XCTL
-   325                               PROGRAM('UA001P')
-   326				     COMMAREA(WS-COMMAREA)
-   327				 END-EXEC
-   328			     END-IF
-   329			 END-IF
-   330                   IF WS-CHC4 = '- CLOSE TICKET'
-   331			     PERFORM 700-TRANSFER-PROG
-   332			     IF TIXNOL NOT = +0
-   333				 PERFORM 800-NEED-TIX
-   334			     END-IF
-   335			     IF EIBCALEN = +0
-   336				 EXEC CICS XCTL
-   337                               PROGRAM('SM004')
-   338				     COMMAREA(WS-COMMAREA)
-   339				 END-EXEC
-   340			     ELSE
-   341				 EXEC CICS XCTL
-   342                               PROGRAM('SM004')
-   343				     COMMAREA(WS-COMMAREA)
-   344				 END-EXEC
-   345			     END-IF
-   346			 END-IF
-   347			 IF WS-CHC4 = LOW-VALUES
-   348                       MOVE 'INVALID OPTION' TO ERRMSGO
-   349			     PERFORM 100-SEND-MAP
-   350			 END-IF
-   351		     WHEN OPTIONI = 5
-   352                   IF WS-CHC5 = '- CANCEL TICKET'
-   353			     PERFORM 700-TRANSFER-PROG
-   354			     IF TIXNOL NOT = +0
-   355				 PERFORM 800-NEED-TIX
-   356			     END-IF
-   357			     IF EIBCALEN = +0
-   358				 EXEC CICS XCTL
-   359                               PROGRAM('SM006P')
-   360				 END-EXEC
-   361			     ELSE
-   362				 EXEC CICS XCTL
-   363                               PROGRAM('SM006P')CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+   306			     PERFORM 100-SEND-MAP
+   307			 END-IF
+   308		     WHEN OPTIONI = 4
+   309                   IF WS-CHC4 = '- USER MAINTENANCE'
+   310			     PERFORM 700-TRANSFER-PROG
+   311			     IF EIBCALEN = +0
+   312				 EXEC CICS XCTL
+   313                               PROGRAM('UA001P')
+   314				 END-EXEC
+   315			     ELSE
+   316				 EXEC CICS XCTL
+   317                               PROGRAM('UA001P')
+   318				     COMMAREA(WS-COMMAREA)
+   319				 END-EXEC
+   320			     END-IF
+   321			 END-IF
+   322                   IF WS-CHC4 = '- CLOSE TICKET'
+   323			     PERFORM 700-TRANSFER-PROG
+   324			     IF TIXNOL NOT = +0
+   325				 PERFORM 800-NEED-TIX
+   326			     END-IF
+   327			     IF EIBCALEN = +0
+   328				 EXEC CICS XCTL
+   329                               PROGRAM('SM004')
+   330				     COMMAREA(WS-COMMAREA)
+   331				 END-EXEC
+   332			     ELSE
+   333				 EXEC CICS XCTL
+   334                               PROGRAM('SM004')
+   335				     COMMAREA(WS-COMMAREA)
+   336				 END-EXEC
+   337			     END-IF
+   338			 END-IF
+   339			 IF WS-CHC4 = LOW-VALUES
+   340                       MOVE 'INVALID OPTION' TO ERRMSGO
+   341			     PERFORM 100-SEND-MAP
+   342			 END-IF
+   343		     WHEN OPTIONI = 5
+   344                   IF WS-CHC5 = '- CANCEL TICKET'
+   345			     PERFORM 700-TRANSFER-PROG
+   346			     IF TIXNOL NOT = +0
+   347				 PERFORM 800-NEED-TIX
+   348			     END-IF
+   349			     IF EIBCALEN = +0
+   350				 EXEC CICS XCTL
+   351                               PROGRAM('SM006P')
+   352				 END-EXEC
+   353			     ELSE
+   354				 EXEC CICS XCTL
+   355                               PROGRAM('SM006P')
+   356				     COMMAREA(WS-COMMAREA)
+   357				 END-EXEC
+   358			     END-IF
+   359			 END-IF
+   360			 IF WS-CHC5 = LOW-VALUES
+   361                       MOVE 'INVALID OPTION' TO ERRMSGO
+   362			     PERFORM 100-SEND-MAP
+   363			 END-IFCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-   364				     COMMAREA(WS-COMMAREA)
-   365				 END-EXEC
-   366			     END-IF
-   367			 END-IF
-   368			 IF WS-CHC5 = LOW-VALUES
-   369                       MOVE 'INVALID OPTION' TO ERRMSGO
-   370			     PERFORM 100-SEND-MAP
-   371			 END-IF
-   372		     WHEN OPTIONI = 6
-   373                   IF WS-CHC6 = '- APPROVE TICKET'
-   374			     PERFORM 700-TRANSFER-PROG
-   375			     IF TIXNOL NOT = +0
-   376				 PERFORM 800-NEED-TIX
-   377			     END-IF
-   378			     IF EIBCALEN = +0
-   379				 EXEC CICS XCTL
-   380                               PROGRAM('SM005')
-   381				 END-EXEC
-   382			     ELSE
-   383				 EXEC CICS XCTL
-   384                               PROGRAM('SM005')
-   385				     COMMAREA(WS-COMMAREA)
+   364		     WHEN OPTIONI = 6
+   365                   IF WS-CHC6 = '- APPROVE TICKET'
+   366			     PERFORM 700-TRANSFER-PROG
+   367			     IF TIXNOL NOT = +0
+   368				 PERFORM 800-NEED-TIX
+   369			     END-IF
+   370			     IF EIBCALEN = +0
+   371				 EXEC CICS XCTL
+   372                               PROGRAM('SM005')
+   373				 END-EXEC
+   374			     ELSE
+   375				 EXEC CICS XCTL
+   376                               PROGRAM('SM005')
+   377				     COMMAREA(WS-COMMAREA)
+   378				 END-EXEC
+   379			     END-IF
+   380			 END-IF
+   381                   IF WS-CHC6 = '- USER MAINTENANCE'
+   382			     PERFORM 700-TRANSFER-PROG
+   383			     IF EIBCALEN = +0
+   384				 EXEC CICS XCTL
+   385                               PROGRAM('UA001P')
    386				 END-EXEC
-   387			     END-IF
-   388			 END-IF
-   389                   IF WS-CHC6 = '- USER MAINTENANCE'
-   390			     PERFORM 700-TRANSFER-PROG
-   391			     IF EIBCALEN = +0
-   392				 EXEC CICS XCTL
-   393                               PROGRAM('UA001P')
-   394				 END-EXEC
-   395			     ELSE
-   396				 EXEC CICS XCTL
-   397                               PROGRAM('UA001P')
-   398				     COMMAREA(WS-COMMAREA)
-   399				 END-EXEC
-   400			     END-IF
-   401			 END-IF
-   402			 IF WS-CHC6 = LOW-VALUES
-   403                       MOVE 'INVALID OPTION' TO ERRMSGO
-   404			     PERFORM 100-SEND-MAP
-   405			 END-IF
-   406		     WHEN OPTIONI = 7
-   407                   IF WS-CHC7 = '- USER MAINTENANCE'
-   408			     PERFORM 700-TRANSFER-PROG
-   409			     IF EIBCALEN = +0
-   410				 EXEC CICS XCTL
-   411                               PROGRAM('UA001P')
-   412				 END-EXEC
-   413			     ELSE
-   414				 EXEC CICS XCTL
-   415                               PROGRAM('UA001P')
-   416				     COMMAREA(WS-COMMAREA)
-   417				 END-EXEC
-   418			     END-IF
-   419			 END-IF
-   420			 IF WS-CHC7 = LOW-VALUES
-   421                       MOVE 'INVALID OPTION' TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+   387			     ELSE
+   388				 EXEC CICS XCTL
+   389                               PROGRAM('UA001P')
+   390				     COMMAREA(WS-COMMAREA)
+   391				 END-EXEC
+   392			     END-IF
+   393			 END-IF
+   394			 IF WS-CHC6 = LOW-VALUES
+   395                       MOVE 'INVALID OPTION' TO ERRMSGO
+   396			     PERFORM 100-SEND-MAP
+   397			 END-IF
+   398		     WHEN OPTIONI = 7
+   399                   IF WS-CHC7 = '- USER MAINTENANCE'
+   400			     PERFORM 700-TRANSFER-PROG
+   401			     IF EIBCALEN = +0
+   402				 EXEC CICS XCTL
+   403                               PROGRAM('UA001P')
+   404				 END-EXEC
+   405			     ELSE
+   406				 EXEC CICS XCTL
+   407                               PROGRAM('UA001P')
+   408				     COMMAREA(WS-COMMAREA)
+   409				 END-EXEC
+   410			     END-IF
+   411			 END-IF
+   412			 IF WS-CHC7 = LOW-VALUES
+   413                       MOVE 'INVALID OPTION' TO ERRMSGO
+   414			     PERFORM 100-SEND-MAP
+   415			 END-IF
+   416		     WHEN OPTIONI NOT = 1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7
+   417			 IF WS-CHC7 = LOW-VALUES
+   418                       MOVE 'INVALID OPTION' TO ERRMSGO
+   419			     PERFORM 100-SEND-MAP
+   420			 END-IF
+   421		 END-EVALUATECA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-   422			     PERFORM 100-SEND-MAP
-   423			 END-IF
-   424		     WHEN OPTIONI NOT = 1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7
-   425			 IF WS-CHC7 = LOW-VALUES
-   426                       MOVE 'INVALID OPTION' TO ERRMSGO
-   427			     PERFORM 100-SEND-MAP
-   428			 END-IF
-   429		 END-EVALUATE
-   430		 PERFORM 100-SEND-MAP.
-   431	     300-EXIT.
-   432		 EXIT.
-   433
-   434	     400-SEARCH-USER.
-   435		 EXEC CICS ASSIGN
-   436		     USERID(WS-USERID)
-   437		 END-EXEC
-   438		 EXEC CICS
-   439               READ FILE('UAF00001')
-   440		     INTO (WS-USER-REC)
-   441		     RIDFLD (WS-USERID)
-   442		     RESP(WS-RESPONSE-CODE)
-   443		     GTEQ
-   444		 END-EXEC
-   445           IF WS-RESPONSE-CODE NOT = +00 OR (REQUESTOR = 'N' AND
-   446                                     SERVICE-PROVIDER = 'N' AND APPROVER
-   447                                         = 'N' AND ADMINISTRATOR = 'N')
-   448		     EXEC CICS SEND TEXT
-   449			 FROM (WS-INVALID)
-   450			 LENGTH (+25)
-   451			 ERASE
-   452		     END-EXEC
-   453		     EXEC CICS RETURN END-EXEC
-   454		 ELSE
-   455		  MOVE WS-USERID TO USERID
-   456		  MOVE 1 TO WS-PROG-STATE
-   457		 END-IF
-   458           IF REQUESTOR = 'Y'
-   459               MOVE '- SEARCH TICKET' TO WS-CHOICE
+   422		 PERFORM 100-SEND-MAP.
+   423	     300-EXIT.
+   424		 EXIT.
+   425
+   426	     400-SEARCH-USER.
+   427		 EXEC CICS ASSIGN
+   428		     USERID(WS-USERID)
+   429		 END-EXEC
+   430		 EXEC CICS
+   431               READ FILE('UAF00001')
+   432		     INTO (WS-USER-REC)
+   433		     RIDFLD (WS-USERID)
+   434		     RESP(WS-RESPONSE-CODE)
+   435		     GTEQ
+   436		 END-EXEC
+   437           IF WS-RESPONSE-CODE NOT = +00 OR (REQUESTOR = 'N' AND
+   438                                     SERVICE-PROVIDER = 'N' AND APPROVER
+   439                                         = 'N' AND ADMINISTRATOR = 'N')
+   440		     EXEC CICS SEND TEXT
+   441			 FROM (WS-INVALID)
+   442			 LENGTH (+25)
+   443			 ERASE
+   444		     END-EXEC
+   445		     EXEC CICS RETURN END-EXEC
+   446		 ELSE
+   447		  MOVE WS-USERID TO USERID
+   448		  MOVE 1 TO WS-PROG-STATE
+   449		 END-IF
+   450           IF REQUESTOR = 'Y'
+   451               MOVE '- SEARCH TICKET' TO WS-CHOICE
+   452		     PERFORM 500-MOVE-CHOICE-VAL
+   453               MOVE '- ADD TICKET' TO WS-CHOICE
+   454		     PERFORM 500-MOVE-CHOICE-VAL
+   455               MOVE '- UPDATE TICKET' TO WS-CHOICE
+   456		     PERFORM 500-MOVE-CHOICE-VAL
+   457               MOVE '- CLOSE TICKET' TO WS-CHOICE
+   458		     PERFORM 500-MOVE-CHOICE-VAL
+   459               MOVE '- CANCEL TICKET' TO WS-CHOICE
    460		     PERFORM 500-MOVE-CHOICE-VAL
-   461               MOVE '- ADD TICKET' TO WS-CHOICE
-   462		     PERFORM 500-MOVE-CHOICE-VAL
-   463               MOVE '- UPDATE TICKET' TO WS-CHOICE
-   464		     PERFORM 500-MOVE-CHOICE-VAL
-   465               MOVE '- CLOSE TICKET' TO WS-CHOICE
-   466		     PERFORM 500-MOVE-CHOICE-VAL
-   467               MOVE '- CANCEL TICKET' TO WS-CHOICE
-   468		     PERFORM 500-MOVE-CHOICE-VAL
-   469		 END-IF
-   470           IF SERVICE-PROVIDER = 'Y'
-   471               IF NOT REQUESTOR = 'Y'
-   472                   MOVE '- SEARCH TICKET' TO WS-CHOICE
-   473			 PERFORM 500-MOVE-CHOICE-VAL
-   474                   MOVE '- UPDATE TICKET' TO WS-CHOICE
+   461		 END-IF
+   462           IF SERVICE-PROVIDER = 'Y'
+   463               IF NOT REQUESTOR = 'Y'
+   464                   MOVE '- SEARCH TICKET' TO WS-CHOICE
+   465			 PERFORM 500-MOVE-CHOICE-VAL
+   466                   MOVE '- UPDATE TICKET' TO WS-CHOICE
+   467			 PERFORM 500-MOVE-CHOICE-VAL
+   468		     ELSE
+   469			 CONTINUE
+   470		     END-IF
+   471		 END-IF
+   472           IF APPROVER = 'Y'
+   473               IF NOT (REQUESTOR = 'Y' OR SERVICE-PROVIDER = 'Y')
+   474                   MOVE '- SEARCH TICKET' TO WS-CHOICE
    475			 PERFORM 500-MOVE-CHOICE-VAL
    476		     ELSE
-   477			 CONTINUE
-   478		     END-IF
-   479		 END-IFCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+   477                   MOVE '- APPROVE TICKET' TO WS-CHOICE
+   478			 PERFORM 500-MOVE-CHOICE-VAL
+   479		     END-IFCA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-   480           IF APPROVER = 'Y'
-   481               IF NOT (REQUESTOR = 'Y' OR SERVICE-PROVIDER = 'Y')
-   482                   MOVE '- SEARCH TICKET' TO WS-CHOICE
-   483			 PERFORM 500-MOVE-CHOICE-VAL
-   484		     ELSE
-   485                   MOVE '- APPROVE TICKET' TO WS-CHOICE
-   486			 PERFORM 500-MOVE-CHOICE-VAL
-   487		     END-IF
-   488		 END-IF
-   489           IF ADMINISTRATOR = 'Y'
-   490               MOVE '- USER MAINTENANCE' TO WS-CHOICE
-   491		     PERFORM 500-MOVE-CHOICE-VAL
-   492		 END-IF.
-   493	     400-EXIT.
-   494		 EXIT.
-   495
-   496	     500-MOVE-CHOICE-VAL.
-   497		 EVALUATE TRUE
-   498		     WHEN OPTCHC1O = LOW-VALUES
-   499			 MOVE WS-INDEX TO OPTNO1O
-   500			 MOVE WS-CHOICE TO OPTCHC1O
-   501			 MOVE WS-CHOICE TO WS-CHC1
-   502			 ADD 1 TO WS-INDEX
-   503		     WHEN OPTCHC2O = LOW-VALUES
-   504			 MOVE WS-INDEX TO OPTNO2O
-   505			 MOVE WS-CHOICE TO OPTCHC2O
-   506			 MOVE WS-CHOICE TO WS-CHC2
-   507			 ADD 1 TO WS-INDEX
-   508		     WHEN OPTCHC3O = LOW-VALUES
-   509			 MOVE WS-INDEX TO OPTNO3O
-   510			 MOVE WS-CHOICE TO OPTCHC3O
-   511			 MOVE WS-CHOICE TO WS-CHC3
-   512			 ADD 1 TO WS-INDEX
-   513		     WHEN OPTCHC4O = LOW-VALUES
-   514			 MOVE WS-INDEX TO OPTNO4O
-   515			 MOVE WS-CHOICE TO OPTCHC4O
-   516			 MOVE WS-CHOICE TO WS-CHC4
-   517			 ADD 1 TO WS-INDEX
-   518		     WHEN OPTCHC5O = LOW-VALUES
-   519			 MOVE WS-INDEX TO OPTNO5O
-   520			 MOVE WS-CHOICE TO OPTCHC5O
-   521			 MOVE WS-CHOICE TO WS-CHC5
-   522			 ADD 1 TO WS-INDEX
-   523		     WHEN OPTCHC6O = LOW-VALUES
-   524			 MOVE WS-INDEX TO OPTNO6O
-   525			 MOVE WS-CHOICE TO OPTCHC6O
-   526			 MOVE WS-CHOICE TO WS-CHC6
-   527			 ADD 1 TO WS-INDEX
-   528		     WHEN OPTCHC7O = LOW-VALUES
-   529			 MOVE WS-INDEX TO OPTNO7O
-   530			 MOVE WS-CHOICE TO OPTCHC7O
-   531			 MOVE WS-CHOICE TO WS-CHC7
-   532			 ADD 1 TO WS-INDEX
-   533		 END-EVALUATE.
-   534	     500-EXIT.
-   535		 EXIT.
-   536
-   537	     600-VALIDATE-TICKET.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
+   480		 END-IF
+   481           IF ADMINISTRATOR = 'Y'
+   482               MOVE '- USER MAINTENANCE' TO WS-CHOICE
+   483		     PERFORM 500-MOVE-CHOICE-VAL
+   484		 END-IF.
+   485	     400-EXIT.
+   486		 EXIT.
+   487
+   488	     500-MOVE-CHOICE-VAL.
+   489		 EVALUATE TRUE
+   490		     WHEN OPTCHC1O = LOW-VALUES
+   491			 MOVE WS-INDEX TO OPTNO1O
+   492			 MOVE WS-CHOICE TO OPTCHC1O
+   493			 MOVE WS-CHOICE TO WS-CHC1
+   494			 ADD 1 TO WS-INDEX
+   495		     WHEN OPTCHC2O = LOW-VALUES
+   496			 MOVE WS-INDEX TO OPTNO2O
+   497			 MOVE WS-CHOICE TO OPTCHC2O
+   498			 MOVE WS-CHOICE TO WS-CHC2
+   499			 ADD 1 TO WS-INDEX
+   500		     WHEN OPTCHC3O = LOW-VALUES
+   501			 MOVE WS-INDEX TO OPTNO3O
+   502			 MOVE WS-CHOICE TO OPTCHC3O
+   503			 MOVE WS-CHOICE TO WS-CHC3
+   504			 ADD 1 TO WS-INDEX
+   505		     WHEN OPTCHC4O = LOW-VALUES
+   506			 MOVE WS-INDEX TO OPTNO4O
+   507			 MOVE WS-CHOICE TO OPTCHC4O
+   508			 MOVE WS-CHOICE TO WS-CHC4
+   509			 ADD 1 TO WS-INDEX
+   510		     WHEN OPTCHC5O = LOW-VALUES
+   511			 MOVE WS-INDEX TO OPTNO5O
+   512			 MOVE WS-CHOICE TO OPTCHC5O
+   513			 MOVE WS-CHOICE TO WS-CHC5
+   514			 ADD 1 TO WS-INDEX
+   515		     WHEN OPTCHC6O = LOW-VALUES
+   516			 MOVE WS-INDEX TO OPTNO6O
+   517			 MOVE WS-CHOICE TO OPTCHC6O
+   518			 MOVE WS-CHOICE TO WS-CHC6
+   519			 ADD 1 TO WS-INDEX
+   520		     WHEN OPTCHC7O = LOW-VALUES
+   521			 MOVE WS-INDEX TO OPTNO7O
+   522			 MOVE WS-CHOICE TO OPTCHC7O
+   523			 MOVE WS-CHOICE TO WS-CHC7
+   524			 ADD 1 TO WS-INDEX
+   525		 END-EVALUATE.
+   526	     500-EXIT.
+   527		 EXIT.
+   528
+   529	     600-VALIDATE-TICKET.
+   530		 EXEC CICS
+   531               READ FILE('STF00001')
+   532		     INTO (WS-TIX-REC)
+   533		     RIDFLD (WS-TICKET-NUM1)
+   534		     RESP(WS-RESPONSE-CODE)
+   535		     EQUAL
+   536		 END-EXEC
+   537		 IF EIBRESP = DFHRESP(NOTFND)CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
-   538		 EXEC CICS
-   539               READ FILE('STF00001')
-   540		     INTO (WS-TIX-REC)
-   541		     RIDFLD (WS-TICKET-NUM1)
-   542		     RESP(WS-RESPONSE-CODE)
-   543		     EQUAL
-   544		 END-EXEC
-   545		 IF EIBRESP = DFHRESP(NOTFND)
-   546               MOVE 'N' TO WS-VALID-TIX-FLAG
-   547		 ELSE
-   548               MOVE 'Y' TO WS-VALID-TIX-FLAG
-   549		     MOVE 1 TO WS-PROG-STATE
-   550
-   551               IF WS-CHC2 = '- ADD TICKET'
-   552		      IF WS-TICKET-NUM = SPACES
-   553                 MOVE '0' TO WS-TICKET-NUM
-   554		      END-IF
-   555		     END-IF
-   556		 END-IF.
-   557	     600-EXIT.
-   558		 EXIT.
-   559
-   560	     700-TRANSFER-PROG.
-   561		 IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
-   562		     MOVE TIXNOI TO WS-TICKET-NUM1
-   563		     MOVE +0 TO EIBCALEN
-   564               MOVE '0' TO WS-TICKET-NUM
-   565		 ELSE
-   566               MOVE 'N' TO WS-INIT
-   567		     MOVE TIXNOI TO WS-TICKET-NUM1
+   538               MOVE 'N' TO WS-VALID-TIX-FLAG
+   539		 ELSE
+   540               MOVE 'Y' TO WS-VALID-TIX-FLAG
+   541		     MOVE 1 TO WS-PROG-STATE
+   542
+   543               IF WS-CHC2 = '- ADD TICKET'
+   544		      IF WS-TICKET-NUM = SPACES
+   545                 MOVE '0' TO WS-TICKET-NUM
+   546		      END-IF
+   547		     END-IF
+   548		 END-IF.
+   549	     600-EXIT.
+   550		 EXIT.
+   551
+   552	     700-TRANSFER-PROG.
+   553		 IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
+   554		     MOVE TIXNOI TO WS-TICKET-NUM1
+   555		     MOVE +0 TO EIBCALEN
+   556               MOVE '0' TO WS-TICKET-NUM
+   557		 ELSE
+   558               MOVE 'N' TO WS-INIT
+   559		     MOVE TIXNOI TO WS-TICKET-NUM1
+   560		     PERFORM 600-VALIDATE-TICKET
+   561		 END-IF.
+   562	     700-EXIT.
+   563		 EXIT.
+   564
+   565	     800-NEED-TIX.
+   566           IF WS-VALID-TIX-FLAG = 'N'
+   567		     MOVE WS-INVALID-TICKET TO ERRMSGO
    568		     PERFORM 600-VALIDATE-TICKET
-   569		 END-IF.
-   570	     700-EXIT.
-   571		 EXIT.
-   572
-   573	     800-NEED-TIX.
-   574           IF WS-VALID-TIX-FLAG = 'N'
-   575		     MOVE WS-INVALID-TICKET TO ERRMSGO
-   576		     PERFORM 600-VALIDATE-TICKET
-   577		     PERFORM 100-SEND-MAP
-   578		     EXEC CICS RETURN
-   579                   TRANSID('SM00')
-   580			 COMMAREA(WS-COMMAREA)
-   581		     END-EXEC
-   582		 END-IF.
-   583	     800-EXIT.
-   584		 EXIT.
-   585
-   586	     900-NO-TIX.
-   587           IF WS-VALID-TIX-FLAG = 'Y'
-   588		     MOVE WS-DUP-TICKET TO ERRMSGO
-   589		     PERFORM 600-VALIDATE-TICKET
-   590		     PERFORM 100-SEND-MAP
-   591		     EXEC CICS RETURN
-   592                   TRANSID('SM00')
-   593			 COMMAREA(WS-COMMAREA)
-   594		     END-EXEC
-   595		 END-IF.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
-
-
-   596	     900-EXIT.
-   597		 EXIT.
+   569		     PERFORM 100-SEND-MAP
+   570		     EXEC CICS RETURN
+   571                   TRANSID('SM00')
+   572			 COMMAREA(WS-COMMAREA)
+   573		     END-EXEC
+   574		 END-IF.
+   575	     800-EXIT.
+   576		 EXIT.
+   577
+   578	     900-NO-TIX.
+   579           IF WS-VALID-TIX-FLAG = 'Y'
+   580		     MOVE WS-DUP-TICKET TO ERRMSGO
+   581		     PERFORM 600-VALIDATE-TICKET
+   582		     PERFORM 100-SEND-MAP
+   583		     EXEC CICS RETURN
+   584                   TRANSID('SM00')
+   585			 COMMAREA(WS-COMMAREA)
+   586		     END-EXEC
+   587		 END-IF.
+   588	     900-EXIT.
+   589		 EXIT.
 CA-Realia CACXPREP C:\handson-cics\CAWB30\sm000p.COB
 
 
@@ -1160,6 +1150,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:    1108
+		Source Lines Translated:    1100
 		Translation Time:	     .03 sec
-		Translation Speed:	  216000 lines per min
+		Translation Speed:	  200000 lines per min

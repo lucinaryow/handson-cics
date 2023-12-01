@@ -49,6 +49,18 @@
        01  WS-INVALID-USER			   PIC X(24) VALUE
            'INVALID ACCESS TO TICKET'.       
        01  WS-COMMAREA.
+           05  WS-CA-PRGNAME           PIC X(06).
+           05  FILLER                  PIC X(19).
+           05  WS-DFHSTATE             PIC X(15). 
+           05  WS-TRANS                PIC X(04).  
+           05  WS-LUSER                PIC 9(03).
+           05  WS-FUSER                PIC 9(03).
+           05  WS-PAGE                 PIC 9(02).
+           05  WS-PAGE-END             PIC 9(01).
+           05  WS-QITEM                PIC S9(4) COMP.
+           05  WS-QITEM-START          PIC S9(4) COMP.
+           05  WS-QITEM-END            PIC S9(4) COMP.
+           05  WS-QITEM-PAGE           PIC S9(4) COMP.
            05  WS-USER-REC.
                10  USERID.
                    15  USERID1                       PIC X(7).
@@ -82,18 +94,6 @@
                    15  LAST-UPDATE-REM2              PIC X(25).
            05  WS-PROG-STATE                      PIC 9(1).  
            05  WS-INIT                            PIC X VALUE 'Y'.
-           05  WS-CA-PRGNAME           PIC X(06).
-           05  FILLER                  PIC X(19).
-           05  WS-DFHSTATE             PIC X(15). 
-           05  WS-TRANS                PIC X(04).  
-           05  WS-LUSER                PIC 9(03).
-           05  WS-FUSER                PIC 9(03).
-           05  WS-PAGE                 PIC 9(02).
-           05  WS-PAGE-END             PIC 9(01).
-           05  WS-QITEM                PIC S9(4) COMP.
-           05  WS-QITEM-START          PIC S9(4) COMP.
-           05  WS-QITEM-END            PIC S9(4) COMP.
-           05  WS-QITEM-PAGE           PIC S9(4) COMP.
            05  WS-USERID1                         PIC X(7).
            05  WS-TICKET-NUM.
                10  WS-TICKET-NUM1                 PIC X(6).

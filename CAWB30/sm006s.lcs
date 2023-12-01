@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 13:49:50 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 15:52:44 PAGE  1
 
     1          PRINT NOGEN
     2 SM006S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -49,19 +49,19 @@
    47 DATE2    DFHMDF POS=(14,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    48 TIME2    DFHMDF POS=(14,35),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    49 ERRMSG   DFHMDF POS=(23,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
-   50          DFHMDF POS=(15,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   51          DFHMDF POS=(16,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   52          DFHMDF POS=(17,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   53          DFHMDF POS=(18,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   54          DFHMDF POS=(19,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   55          DFHMDF POS=(20,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   56          DFHMDF POS=(21,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   57          DFHMDF POS=(22,1),LENGTH=79,ATTRB=(ASKIP,DRK)
-   58          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 13:49:50 PAGE  2
+   50          DFHMDF POS=(15,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   51          DFHMDF POS=(16,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   52          DFHMDF POS=(17,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   53          DFHMDF POS=(18,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   54          DFHMDF POS=(19,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   55          DFHMDF POS=(20,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   56          DFHMDF POS=(21,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   57          DFHMDF POS=(22,1),LENGTH=79,ATTRB=(ASKIP,NORM)
+   58          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 15:52:44 PAGE  2
 
       sm006s loaded with 1 MAPS, 37 FIELDS and 249 Bytes of Literals
 
-   59          ENDCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 13:49:50 PAGE  3
+   59          ENDCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    01DEV23 15:52:44 PAGE  3
 
       COBOL COPY file generated
 

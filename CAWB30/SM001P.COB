@@ -17,7 +17,6 @@
        01  WS-USERID                   PIC X(8).
        01  WS-PRGNAME                  PIC X(6).     
        01  WS-LENGTH                   PIC S9(4) COMP.
-       01  WS-QNAME                    PIC X(8).
        01  WS-RECB-LENGTH              PIC S9(4) COMP VALUE +20.
        01  WS-KEYB-LENGTH              PIC S9(4) COMP VALUE +8. 
        01  WS-INDX                     PIC 9(2)  VALUE 1.
@@ -25,6 +24,19 @@
        01  WS-FIRSTPAGE                PIC X(1).
        01  WS-PAGE-CTR                 PIC 9(02).
        01  WS-COMMAREA.
+           05  WS-CA-PRGNAME           PIC X(06).
+           05  FILLER                  PIC X(19).
+           05  WS-DFHSTATE             PIC X(15). 
+           05  WS-TRANS                PIC X(04).  
+           05  WS-LUSER                PIC 9(03).
+           05  WS-FUSER                PIC 9(03).
+           05  WS-PAGE                 PIC 9(02).
+           05  WS-QNAME                PIC X(8).
+           05  WS-PAGE-END             PIC 9(01).
+           05  WS-QITEM                PIC S9(4) COMP.
+           05  WS-QITEM-START          PIC S9(4) COMP.
+           05  WS-QITEM-END            PIC S9(4) COMP.
+           05  WS-QITEM-PAGE           PIC S9(4) COMP.
            05  WS-USER-REC.
                10  USERID.
                    15  USERID1                       PIC X(7).
@@ -58,18 +70,6 @@
                    15  LAST-UPDATE-REM2              PIC X(25).
            05  WS-PROG-STATE                      PIC 9(1).  
            05  WS-INIT                            PIC X VALUE 'Y'.
-           05  WS-CA-PRGNAME           PIC X(06).
-           05  FILLER                  PIC X(19).
-           05  WS-DFHSTATE             PIC X(15). 
-           05  WS-TRANS                PIC X(04).  
-           05  WS-LUSER                PIC 9(03).
-           05  WS-FUSER                PIC 9(03).
-           05  WS-PAGE                 PIC 9(02).
-           05  WS-PAGE-END             PIC 9(01).
-           05  WS-QITEM                PIC S9(4) COMP.
-           05  WS-QITEM-START          PIC S9(4) COMP.
-           05  WS-QITEM-END            PIC S9(4) COMP.
-           05  WS-QITEM-PAGE           PIC S9(4) COMP.
            05  WS-USERID1                         PIC X(7).
            05  WS-TICKET-NUM.
                10  WS-TICKET-NUM1                 PIC X(6).
@@ -138,15 +138,15 @@
            IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM02' OR 'SM03' OR 'SM04'
                           OR 'SM05' OR 'SM06' 
                MOVE DFHCOMMAREA TO WS-COMMAREA
-               STRING EIBTRMID DELIMITED BY SIZE
-	              EIBTRNID DELIMITED BY SIZE
-                      INTO WS-QNAME 
-               MOVE LENGTH OF SM001MI TO WS-LENGTH
                EXEC CICS
                  IGNORE CONDITION ERROR
                END-EXEC
       
                IF EIBCALEN = +0 
+                   STRING EIBTRMID DELIMITED BY SIZE
+	                   EIBTRNID DELIMITED BY SIZE
+                       INTO WS-QNAME 
+                   MOVE LENGTH OF SM001MI TO WS-LENGTH
                    MOVE 1 TO WS-PAGE
                    MOVE WS-PAGE TO PAGEO
                    PERFORM 999-MOVE-FILE-TO-Q
@@ -247,6 +247,7 @@
             ADD 11 TO WS-QITEM-PAGE
             IF WS-QITEM-PAGE > WS-QITEM-END 
                SUBTRACT 11 FROM WS-QITEM-PAGE
+               MOVE WS-PAGE TO PAGEO
                MOVE 'THIS IS THE LAST PAGE' TO MSGO
             ELSE
                ADD 1 TO WS-PAGE
