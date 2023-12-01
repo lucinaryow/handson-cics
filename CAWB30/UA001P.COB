@@ -98,6 +98,9 @@
            05  WS-QITEM-START          PIC S9(4) COMP.
            05  WS-QITEM-END            PIC S9(4) COMP.
            05  WS-QITEM-PAGE           PIC S9(4) COMP.
+		   05  WS-TRANSFER-STATE.
+		       10  WS-UA01-STATE       PIC X(15).
+			   10  WS-FROM-PROG        PIC X(04). 
       *
        COPY UA001S.
        01  WS-UA001 REDEFINES UA001MI.
@@ -170,13 +173,18 @@
            05  DF-QITEM-START          PIC S9(4) COMP.
            05  DF-QITEM-END            PIC S9(4) COMP.
            05  DF-QITEM-PAGE           PIC S9(4) COMP.
-		   05  DF-SAMPLE               PIC X(08).
 		   05  DF-TRANSFER-STATE.
-		       10  DF-UA02-STATE       PIC X(15).
+		       10  DF-UA01-STATE       PIC X(15).
 			   10  DF-FROM-PROG        PIC X(04).      
       *
        PROCEDURE DIVISION.
        100-PROCESS SECTION.
+	   
+	       IF EIBCALEN = +0 
+		       MOVE 'UA01' TO DF-FROM-PROG
+			   MOVE 'INITIALUA01' TO DF-UA01-STATE			   		   
+		   END-IF
+	   
            MOVE DFHCOMMAREA TO WS-COMMAREA
            STRING EIBTRMID DELIMITED BY SIZE
 	          EIBTRNID DELIMITED BY SIZE
@@ -185,8 +193,11 @@
            EXEC CICS
              IGNORE CONDITION ERROR
            END-EXEC
-
-           IF EIBCALEN = +0 
+           
+           IF DF-UA01-STATE = 'INITIALUA01'
+		       PERFORM 110-CHECK-TRAN
+		       PERFORM 120-CHECKUSER
+		       move ' ' to DF-UA01-STATE
                MOVE 1 TO WS-PAGE
                MOVE WS-PAGE TO PAGEO
                MOVE 'DATA ENTRY' TO WS-DFHSTATE
@@ -250,6 +261,57 @@
                TRANSID('UA01')
                COMMAREA(WS-COMMAREA)
            END-EXEC.
+       110-CHECK-TRAN SECTION.
+           IF EIBTRNID NOT = 'UA01' AND 
+		                     'UA02' AND
+							 'SM00'
+		       EXEC CICS SEND TEXT
+                    FROM (WS-INVALID-ACCESS)
+                    LENGTH (+15)
+                    ERASE
+               END-EXEC
+               EXEC CICS RETURN
+               END-EXEC				 
+		   END-IF.	   
+       120-CHECKUSER SECTION.
+           EXEC CICS ASSIGN
+               USERID(WS-USERID)
+           END-EXEC
+		   EXEC CICS 
+                READ FILE('uaf00001')
+                INTO (WS-REC)
+                RIDFLD (WS-USERID)
+                KEYLENGTH (WS-STD-KEY-LEN)
+                EQUAL
+           END-EXEC
+		   
+		   IF WS-ADMN = 'N'
+		      EXEC CICS SEND TEXT
+                    FROM (WS-INVALID-ACCESS)
+                    LENGTH (+15)
+                    ERASE
+               END-EXEC
+               EXEC CICS RETURN
+               END-EXEC
+		   END-IF.
+       130-RETURN-TO-PREV SECTION.
+           EVALUATE EIBTRNID
+		   WHEN 'UA01'
+		        EXEC CICS 
+			       SEND CONTROL 
+				   ERASE
+			   END-EXEC
+			   EXEC CICS RETURN
+			   END-EXEC
+           WHEN 'SM00'
+		       EXEC CICS 
+			       SEND CONTROL 
+				   ERASE
+			   END-EXEC
+		       EXEC CICS RETURN
+				   TRANSID('SM00')
+			   END-EXEC
+           END-EVALUATE.
        210-WHEN-DATA-ENTRY SECTION.
 	        EVALUATE EIBAID
 			WHEN DFHENTER
@@ -272,8 +334,7 @@
 			  EXEC CICS DELETEQ TS
 				QUEUE(WS-QNAME)
 			  END-EXEC 
-			  EXEC CICS RETURN
-			  END-EXEC
+			  PERFORM 130-RETURN-TO-PREV
 			WHEN DFHPF5
               PERFORM 830-WHENF5
 			WHEN DFHPF7
@@ -286,28 +347,8 @@
 			  MOVE 'INVALID PFKEY PRESSED' TO MSGO 
 			  
 			END-EVALUATE.
-       110-CHECKUSER SECTION.
-           EXEC CICS ASSIGN
-               USERID(WS-USERID)
-           END-EXEC
-		   EXEC CICS 
-                READ FILE('uaf00001')
-                INTO (WS-REC)
-                RIDFLD (WS-USERID)
-                KEYLENGTH (WS-STD-KEY-LEN)
-                EQUAL
-           END-EXEC
-		   
-		   IF WS-ADMN = 'N'
-		      EXEC CICS SEND TEXT
-                    FROM (WS-INVALID-ACCESS)
-                    LENGTH (+15)
-                    ERASE
-               END-EXEC
-               EXEC CICS RETURN
-               END-EXEC
-		   END-IF.
-		   
+       
+       		   	   
        220-WHEN-CONFIRM-U SECTION.
 	       EVALUATE EIBAID
 	       WHEN DFHENTER
@@ -592,7 +633,7 @@
                USERID(WS-USERID)
            END-EXEC
 		   MOVE 'UA01' TO DF-FROM-PROG
-	       MOVE 'INITIAL' TO DF-UA02-STATE 
+	       MOVE 'INITIALUA02' TO DF-UA01-STATE 
 		   EXEC CICS XCTL			    
                 PROGRAM('UA002P')
 				COMMAREA(DF-TRANSFER-STATE)

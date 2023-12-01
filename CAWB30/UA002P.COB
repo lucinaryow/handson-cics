@@ -85,16 +85,10 @@
 	       
 		   IF EIBCALEN = +0 
 		       MOVE 'UA02' TO DF-FROM-PROG
-			   MOVE 'INITIAL' TO DF-UA02-STATE
-			   		   
+			   MOVE 'INITIALUA02' TO DF-UA02-STATE			   		   
 		   END-IF
 		   MOVE DFHCOMMAREA TO WS-COMMAREA
 
-           IF DF-FROM-PROG = SPACES
-		      MOVE 'UA02' TO DF-FROM-PROG
-			  MOVE 'INITIAL' TO DF-UA02-STATE
-			  MOVE DFHCOMMAREA TO WS-COMMAREA
-		   END-IF
            STRING EIBTRMID DELIMITED BY SIZE
 	          EIBTRNID DELIMITED BY SIZE
                   INTO WS-QNAME 
@@ -103,9 +97,10 @@
              IGNORE CONDITION ERROR
            END-EXEC
            MOVE EIBTRNID TO USERO
-           IF DF-UA02-STATE = 'INITIAL'
+           IF DF-UA02-STATE = 'INITIALUA02'
 		       
                PERFORM 110-CHECKUSER
+			   PERFORM 120-CHECK-TRAN
                MOVE 'DATA ENTRY' TO WS-DFHSTATE
 			   move ' ' to DF-UA02-STATE
                PERFORM 100-NEW-MAP
@@ -185,6 +180,18 @@
                EXEC CICS RETURN
                END-EXEC
 		   END-IF.
+       120-CHECK-TRAN SECTION.
+           IF EIBTRNID NOT = 'UA01' AND 
+		                     'UA02' AND
+							 'SM00'
+		       EXEC CICS SEND TEXT
+                    FROM (WS-INVALID-ACCESS)
+                    LENGTH (+15)
+                    ERASE
+               END-EXEC
+               EXEC CICS RETURN
+               END-EXEC				 
+		   END-IF.	
 		   
        200-WHEN-DATA-ENTRY SECTION.
            EVALUATE EIBAID
@@ -232,6 +239,10 @@
        300-RETURN-TO-PREV SECTION.
 	       EVALUATE EIBTRNID
 		   WHEN 'UA01'
+		       EXEC CICS 
+			       SEND CONTROL 
+				   ERASE
+			   END-EXEC
 			   EXEC CICS RETURN
 				   TRANSID('UA01')
 			   END-EXEC
@@ -243,6 +254,10 @@
               EXEC CICS RETURN
               END-EXEC
            WHEN 'SM00'
+		       EXEC CICS 
+			       SEND CONTROL 
+				   ERASE
+			   END-EXEC
 		       EXEC CICS RETURN
 				   TRANSID('SM00')
 			   END-EXEC
