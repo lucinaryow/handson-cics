@@ -22,49 +22,6 @@
        01  WS-LOGID.
            05  LOGID2                            PIC X(6).
            05  FILLER                            PIC X.
-       01  WS-USER-REC.
-           05  USERID.
-               10  USERID1                       PIC X(7).
-               10  FILLER                        PIC X.
-           05  REQUESTOR                         PIC X.
-           05  SERVICE-PROVIDER                  PIC X. 
-           05  APPROVER                          PIC X. 
-           05  ADMINISTRATOR                     PIC X. 
-           05  UPDATED-BY1.
-               10  UPDBY1                        PIC X(7).
-               10  FILLER                        PIC X.
-       01  WS-TIX-REC.
-           05  TIX-ID                            PIC X(06).
-           05  TIX-REQUESTOR                     PIC X(08).
-           05  TIX-STATUS                        PIC X(10). 
-           05  TIX-TITLE                         PIC X(25).
-           05  TIX-DESC                          PIC X(100). 
-           05  TIX-DESC-RED REDEFINES TIX-DESC.
-               10  TIX-DESC1                     PIC X(50).
-               10  TIX-DESC2                     PIC X(50).
-           05  LAST-UPDATE                       PIC X(20). 
-           05  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-               10  LAST-UPDATE-DATE              PIC X(11).
-               10  LAST-UPDATE-TIME              PIC X(09).
-           05  UPDATED-BY2.
-               10  UPDBY2                        PIC X(7).
-               10  FILLER                        PIC X.
-           05  LAST-UPDATE-REM                   PIC X(50).
-           05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-               10  LAST-UPDATE-REM1              PIC X(25).
-               10  LAST-UPDATE-REM2              PIC X(25).
-       01  WS-LOG.
-           05  LOG-TIX-ID.
-               10  LOG-TIX-ID1                   PIC X(6).
-               10  LOG-SEQ-NUM                   PIC 9(3).
-           05  LOG-LAST-UPDATE.
-               10  LOG-LAST-UPDATE-DATE          PIC X(10).
-               10  LOG-LAST-UPDATE-TIME          PIC X(10).
-           05  LOG-UPDATED-BY.
-               10  LOG-UPDBY2                    PIC X(7).
-               10  FILLER                        PIC X.
-           05  LOG-LAST-UPDATE-REM               PIC X(50).
-           05  FILLER                            PIC X(02).
        01  WS-LOG-PH                             PIC X(9).
        01  WS-LOG-PH2 REDEFINES WS-LOG-PH.
            05  WS-LOG-ID                         PIC 9(6).
@@ -79,13 +36,52 @@
            'TICKET NUMBER DOES NOT EXIST'.       
        01  WS-INVALID-USER			   PIC X(24) VALUE
            'INVALID ACCESS TO TICKET'.       
-       01  WS-COMMAREA. 
-           05  WS-USERID1                         PIC X(7).
-           05  WS-TICKET-NUM.
-               10  WS-TICKET-NUM1                 PIC X(6).
-               10  FILLER                         PIC X.
+       01  WS-COMMAREA.
+           05  WS-USER-REC.
+               10  USERID.
+                   15  USERID1                       PIC X(7).
+                   15  FILLER                        PIC X.
+               10  REQUESTOR                         PIC X.
+               10  ADMINISTRATOR                     PIC X. 
+               10  APPROVER                          PIC X. 
+               10  SERVICE-PROVIDER                  PIC X. 
+               10  UPDATED-BY1.
+                   15  UPDBY1                        PIC X(7).
+                   15  FILLER                        PIC X.
+           05  WS-TIX-REC.
+               10  TIX-ID                            PIC X(06).
+               10  TIX-REQUESTOR                     PIC X(08).
+               10  TIX-STATUS                        PIC X(10). 
+               10  TIX-TITLE                         PIC X(25).
+               10  TIX-DESC                          PIC X(100). 
+               10  TIX-DESC-RED REDEFINES TIX-DESC.
+                   15  TIX-DESC1                     PIC X(50).
+                   15  TIX-DESC2                     PIC X(50).
+               10  LAST-UPDATE                       PIC X(20). 
+               10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+                   15  LAST-UPDATE-DATE              PIC X(11).
+                   15  LAST-UPDATE-TIME              PIC X(09).
+               10  UPDATED-BY2.
+                   15  UPDBY2                        PIC X(7).
+                   15  FILLER                        PIC X.
+               10  LAST-UPDATE-REM                   PIC X(50).
+               10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+                   15  LAST-UPDATE-REM1              PIC X(25).
+                   15  LAST-UPDATE-REM2              PIC X(25).
            05  WS-PROG-STATE                      PIC 9(1).  
            05  WS-INIT                            PIC X VALUE 'Y'.
+           05  WS-CA-PRGNAME           PIC X(06).
+           05  FILLER                  PIC X(19).
+           05  WS-DFHSTATE             PIC X(15). 
+           05  WS-TRANS                PIC X(04).  
+           05  WS-LUSER                PIC 9(03).
+           05  WS-FUSER                PIC 9(03).
+           05  WS-PAGE                 PIC 9(02).
+           05  WS-PAGE-END             PIC 9(01).
+           05  WS-QITEM                PIC S9(4) COMP.
+           05  WS-QITEM-START          PIC S9(4) COMP.
+           05  WS-QITEM-END            PIC S9(4) COMP.
+           05  WS-QITEM-PAGE           PIC S9(4) COMP.
 
       *
 	   COPY SM006S.
