@@ -1,6 +1,6 @@
        CBL XOPTS(COBOL2)
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. UA001P.
+       PROGRAM-ID. UA001.
       
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
@@ -63,7 +63,8 @@
 		   05  WS-PG.
 		       10 WS-PAGE1 PIC X.
                10 WS-PAGE2 PIC X.
-           05  WS-FILTER-ID.
+           05  WS-FILTER-KEY       PIC X(08).
+           05  WS-FILTER-ID REDEFINES WS-FILTER-KEY.
                10 WS-FILTER-ARR PIC X(01) OCCURS 8.		   
        01  WS-COUNT.
 	       05  WS-EDIT-COUNT      PIC 9(2).
@@ -185,7 +186,7 @@
                MOVE 1 TO WS-PAGE
                MOVE WS-PAGE TO PAGEO
                MOVE 'DATA ENTRY' TO WS-DFHSTATE
-			   MOVE SPACES TO USERIDI
+			   MOVE SPACES TO WS-FILTER-KEY 
                PERFORM 999-MOVE-FILE-TO-Q
                PERFORM 910-MOVE-Q-TO-SCREEN
                PERFORM 100-NEW-MAP
@@ -208,7 +209,7 @@
                ELSE
 			       EXEC CICS DELETEQ TS
 					QUEUE(WS-QNAME)
-				  END-EXEC
+				   END-EXEC
 			       PERFORM 999-MOVE-FILE-TO-Q
                    PERFORM 910-MOVE-Q-TO-SCREEN
                    PERFORM 100-NEW-MAP
@@ -245,8 +246,6 @@
                TRANSID('UA01')
                COMMAREA(WS-COMMAREA)
            END-EXEC.
-
-			
        210-WHEN-DATA-ENTRY SECTION.
 	        EVALUATE EIBAID
 			WHEN DFHENTER
@@ -271,21 +270,14 @@
 			  END-EXEC 
 			  EXEC CICS RETURN
 			  END-EXEC
-			 
+			WHEN DFHPF5
+              PERFORM 830-WHENF5
 			WHEN DFHPF7
-			  PERFORM 810-WHENF7
-			   
+			  PERFORM 810-WHENF7			   
 			WHEN DFHPF8
 			  PERFORM 820-WHENF8
 			WHEN DFHPF12
-			   MOVE 'DATA ENTRY' TO WS-DFHSTATE
-               MOVE WS-QITEM-START TO WS-QITEM-PAGE	
-			   MOVE 1 TO WS-PAGE
-			   MOVE WS-PAGE TO PAGEO
-			 MOVE 'UPDATE USER ROLES AND PRESS ENTER' 
-			   TO MSGO
-               PERFORM 910-MOVE-Q-TO-SCREEN   
-               PERFORM 100-NEW-MAP
+			  PERFORM 840-WHENF12 
 			WHEN OTHER
 			  MOVE 'INVALID PFKEY PRESSED' TO MSGO 
 			  
@@ -308,14 +300,7 @@
 			  EXEC CICS RETURN
 			  END-EXEC
 			WHEN DFHPF12
-			   MOVE 'DATA ENTRY' TO WS-DFHSTATE
-               MOVE WS-QITEM-START TO WS-QITEM-PAGE	
-			   MOVE 1 TO WS-PAGE
-			   MOVE WS-PAGE TO PAGEO
-			 MOVE 'UPDATE USER ROLES AND PRESS ENTER' 
-			   TO MSGO
-               PERFORM 910-MOVE-Q-TO-SCREEN   
-               PERFORM 100-NEW-MAP
+			   PERFORM 840-WHENF12
 			WHEN OTHER
 			  MOVE 'INVALID PFKEY PRESSED' TO MSGO 
 			  PERFORM 850-PROTECT-FIELDS
@@ -323,15 +308,18 @@
         230-WHEN-AFTER-UPDATE SECTION.
 	       EVALUATE EIBAID
 	       WHEN DFHENTER
-              MOVE 'UPDATE USER ROLES AND PRESS ENTER' 
-			  TO MSGO
+              
 			  
 			  MOVE 'DATA ENTRY' TO WS-DFHSTATE
-			  			  
+			  MOVE SPACES TO WS-FILTER-KEY	  
+              EXEC CICS DELETEQ TS
+				QUEUE(WS-QNAME)
+			  END-EXEC 
 			  PERFORM 999-MOVE-FILE-TO-Q
-              PERFORM 910-MOVE-Q-TO-SCREEN
-              PERFORM 100-NEW-MAP
+              PERFORM 310-CHANGE-PAGE
 			  
+			  MOVE 'UPDATE USER ROLES AND PRESS ENTER' 
+			  TO MSGO
 			WHEN DFHPF3
 			  EXEC CICS 
 			    SEND CONTROL 
@@ -558,23 +546,21 @@
            END-EXEC
            EXEC CICS 
 		        DELETE FILE('UAF00001')
-           END-EXEC.	
+           END-EXEC.
        600-FILTER-USER SECTION.
-	       MOVE 1 TO WS-INDX
-		   MOVE 'Y' TO WS-FILTER-SW
-           MOVE USERIDI TO WS-FILTER-ID
+           MOVE 1 TO WS-INDX
+           MOVE 'Y' TO WS-FILTER-SW
 		   
-		   PERFORM UNTIL WS-FILTER-ARR(WS-INDX) = ' ' OR
-		                 WS-INDX > 8 OR
-						 WS-FILTER-SW = 'N'
-		           
-		     IF WS-FILTER-ARR(WS-INDX) NOT = 
-			    WS-UID-CHAR (WS-INDX)
-				MOVE 'N' TO  WS-FILTER-SW
-			 END-IF   
-			 ADD 1 TO WS-INDX
+		   PERFORM UNTIL WS-FILTER-ARR(WS-INDX) = ' '
+		              OR WS-INDX > 8
+					  OR WS-FILTER-SW = 'N'
+			  IF WS-FILTER-ARR(WS-INDX) NOT = 
+			     WS-UID-CHAR (WS-INDX)
+				 MOVE 'N' TO WS-FILTER-SW
+			  END-IF
+		      ADD 1 TO WS-INDX		  
 		   END-PERFORM.
-	       
+           		   
        800-WHENF2 SECTION.
 	       EXEC CICS ASSIGN
                USERID(WS-USERID)
@@ -613,6 +599,30 @@
                PERFORM 910-MOVE-Q-TO-SCREEN
             END-IF   
             PERFORM 100-NEW-MAP.
+       830-WHENF5 SECTION.
+		   IF USERIDI NOT = SPACES
+			   MOVE USERIDI TO WS-FILTER-KEY
+			   MOVE WS-FILTER-KEY TO MSGO
+			   EXEC CICS DELETEQ TS
+				QUEUE(WS-QNAME)
+			   END-EXEC 
+			   
+			   PERFORM 999-MOVE-FILE-TO-Q
+			   PERFORM 910-MOVE-Q-TO-SCREEN
+			   PERFORM 100-NEW-MAP
+		   END-IF.
+		   
+       840-WHENF12 SECTION.
+	       MOVE 'DATA ENTRY' TO WS-DFHSTATE
+		   MOVE WS-QITEM-START TO WS-QITEM-PAGE	
+		   MOVE 1 TO WS-PAGE
+		   MOVE WS-PAGE TO PAGEO
+		   MOVE 'UPDATE USER ROLES AND PRESS ENTER' 
+		   TO MSGO
+		   MOVE SPACES TO WS-FILTER-KEY
+		   PERFORM 910-MOVE-Q-TO-SCREEN   
+		   PERFORM 100-NEW-MAP.
+		   
        850-PROTECT-FIELDS SECTION.
 	       MOVE 1 TO WS-INDX
 		   MOVE SPACES TO USERIDO
@@ -673,6 +683,13 @@
                   MOVE SPACES TO ADMNI(WS-INDX)
                   MOVE SPACES TO APPI(WS-INDX)
                   MOVE SPACES TO SPI(WS-INDX)
+				       
+				  MOVE DFHBMASK TO UDA(WS-INDX)
+                  MOVE DFHBMASK TO UIDA(WS-INDX)
+                  MOVE DFHBMASK TO REQA(WS-INDX)
+                  MOVE DFHBMASK TO ADMNA(WS-INDX)
+                  MOVE DFHBMASK TO APPA(WS-INDX)
+                  MOVE DFHBMASK TO SPA(WS-INDX)
                   MOVE 'THIS IS THE LAST PAGE'  TO MSGO
                   MOVE '1' TO WS-LASTPAGE 
                   ADD 1 TO WS-INDX
@@ -692,22 +709,29 @@
 		     MOVE DFHBMUNP TO APPA(WS-INDX)
 			 MOVE DFHBMUNP TO SPA(WS-INDX)
 		     ADD 1 TO WS-INDX
-           END-PERFORM. 		   
+           END-PERFORM.
        999-MOVE-FILE-TO-Q SECTION.
 
-           MOVE LOW-VALUES TO WS-KEYB. 
-           EXEC CICS 
-              STARTBR FILE('uaf00001')
-              RIDFLD (WS-KEYB)
-              GTEQ
-           END-EXEC
-                 
-           EXEC CICS 
-               READNEXT FILE('uaf00001')
-               INTO (WS-REC)
+            MOVE LOW-VALUES TO WS-KEYB. 
+            EXEC CICS 
+               STARTBR FILE('uaf00001')
                RIDFLD (WS-KEYB)
+               GTEQ
+            END-EXEC
+                 
+            EXEC CICS 
+                READNEXT FILE('uaf00001')
+                INTO (WS-REC)
+                RIDFLD (WS-KEYB)
+            END-EXEC
+
+
+           EXEC CICS WRITEQ TS
+                     QUEUE(WS-QNAME)
+                     FROM (WS-REC)
+                     LENGTH (WS-RECB-LENGTH)
+                     ITEM (WS-QITEM)
            END-EXEC
-           
            MOVE WS-QITEM TO WS-QITEM-START
            PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
                MOVE WS-QITEM TO WS-QITEM-END
@@ -716,19 +740,19 @@
                     INTO (WS-REC)
                     RIDFLD (WS-KEYB)
                END-EXEC
-			   
-
-			     IF EIBRESP = DFHRESP(NORMAL)
-			 	   EXEC CICS WRITEQ TS
-				 	    QUEUE(WS-QNAME)
-				 	    FROM (WS-REC)
-				 	    LENGTH (WS-RECB-LENGTH)
-				 	    ITEM (WS-QITEM)
-				    END-EXEC
-				    MOVE WS-USERID7 TO WS-KEYB7
-				    MOVE HIGH-VALUES TO WS-KEYB1
-			     END-IF
-
+			   PERFORM 600-FILTER-USER
+			   IF WS-FILTER-SW = 'Y'
+                IF EIBRESP = DFHRESP(NORMAL)
+                   EXEC CICS WRITEQ TS
+                        QUEUE(WS-QNAME)
+                        FROM (WS-REC)
+                        LENGTH (WS-RECB-LENGTH)
+                        ITEM (WS-QITEM)
+                   END-EXEC
+                   MOVE WS-USERID7 TO WS-KEYB7
+                   MOVE HIGH-VALUES TO WS-KEYB1
+                END-IF
+			   END-IF
            END-PERFORM
            EXEC CICS
                 ENDBR FILE('uaf00001')
@@ -736,6 +760,4 @@
            MOVE WS-QITEM-START TO WS-QITEM-PAGE.
          
        999-EXIT.
-           EXIT. 
-
-
+           EXIT. 		   
