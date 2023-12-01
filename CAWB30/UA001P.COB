@@ -57,6 +57,8 @@
 		   'HIGHLIGHT FIELD HAS INVALID VALUE'.
 		   05  WS-UPDATED  PIC X(39)  VALUE
 		   'UPDATES POSTED, PRESS ENTER TO CONTINUE'.
+		   05  WS-INVALID-ACCESS PIC X(14) VALUE
+		       'INVALID ACCESS'.
 		   05  WS-F-TEMP          PIC X.
 		   05  WS-PAGE-X          PIC X(2).
 		   05  WS-PAGE-NUM REDEFINES WS-PAGE-X PIC 9(2).
@@ -169,7 +171,9 @@
            05  DF-QITEM-END            PIC S9(4) COMP.
            05  DF-QITEM-PAGE           PIC S9(4) COMP.
 		   05  DF-SAMPLE               PIC X(08).
-		   05  DF-UA02-STATE           PIC X(15).
+		   05  DF-TRANSFER-STATE.
+		       10  DF-UA02-STATE       PIC X(15).
+			   10  DF-FROM-PROG        PIC X(04).      
       *
        PROCEDURE DIVISION.
        100-PROCESS SECTION.
@@ -282,6 +286,28 @@
 			  MOVE 'INVALID PFKEY PRESSED' TO MSGO 
 			  
 			END-EVALUATE.
+       110-CHECKUSER SECTION.
+           EXEC CICS ASSIGN
+               USERID(WS-USERID)
+           END-EXEC
+		   EXEC CICS 
+                READ FILE('uaf00001')
+                INTO (WS-REC)
+                RIDFLD (WS-USERID)
+                KEYLENGTH (WS-STD-KEY-LEN)
+                EQUAL
+           END-EXEC
+		   
+		   IF WS-ADMN = 'N'
+		      EXEC CICS SEND TEXT
+                    FROM (WS-INVALID-ACCESS)
+                    LENGTH (+15)
+                    ERASE
+               END-EXEC
+               EXEC CICS RETURN
+               END-EXEC
+		   END-IF.
+		   
        220-WHEN-CONFIRM-U SECTION.
 	       EVALUATE EIBAID
 	       WHEN DFHENTER
@@ -565,11 +591,12 @@
 	       EXEC CICS ASSIGN
                USERID(WS-USERID)
            END-EXEC
+		   MOVE 'UA01' TO DF-FROM-PROG
 	       MOVE 'INITIAL' TO DF-UA02-STATE 
 		   EXEC CICS XCTL			    
                 PROGRAM('UA002P')
-				COMMAREA(DF-UA02-STATE)
-				LENGTH(15)
+				COMMAREA(DF-TRANSFER-STATE)
+				LENGTH(19)
            END-EXEC.
 		   
        810-WHENF7 SECTION.

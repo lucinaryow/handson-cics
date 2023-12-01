@@ -49,7 +49,9 @@
            05  WS-UPBY                 PIC X(08).
        01  WS-ERROR-COUNT              PIC 9.
        01  WS-COMMAREA.
-		   05 WS-DFHSTATE PIC X(15).
+	       05 WS-TRANSFER-STATE.
+		      10 WS-DFHSTATE PIC X(15).
+			  10 WS-FROM-PROG PIC X(04) VALUE 'UA02'.
        01  WS-LITERALS.
            05  WS-AFTER-ADD.
 	           10 FILLER PIC X(21) VALUE 
@@ -74,15 +76,25 @@
 
        LINKAGE SECTION.
         01  DFHCOMMAREA.
-          05 DF-SAMPLE PIC X(15).
+		    05 DF-TRANSFER-STATE.
+               10 DF-UA02-STATE       PIC X(15).
+			   10 DF-FROM-PROG        PIC X(04). 
       *
        PROCEDURE DIVISION.
        100-PROCESS SECTION.
 	       
-		   		  
-		   
-           MOVE DFHCOMMAREA TO WS-COMMAREA
+		   IF EIBCALEN = +0 
+		       MOVE 'UA02' TO DF-FROM-PROG
+			   MOVE 'INITIAL' TO DF-UA02-STATE
+			   		   
+		   END-IF
+		   MOVE DFHCOMMAREA TO WS-COMMAREA
 
+           IF DF-FROM-PROG = SPACES
+		      MOVE 'UA02' TO DF-FROM-PROG
+			  MOVE 'INITIAL' TO DF-UA02-STATE
+			  MOVE DFHCOMMAREA TO WS-COMMAREA
+		   END-IF
            STRING EIBTRMID DELIMITED BY SIZE
 	          EIBTRNID DELIMITED BY SIZE
                   INTO WS-QNAME 
@@ -90,12 +102,12 @@
            EXEC CICS
              IGNORE CONDITION ERROR
            END-EXEC
-           
-           IF DF-SAMPLE = 'INITIAL'
+           MOVE EIBTRNID TO USERO
+           IF DF-UA02-STATE = 'INITIAL'
 		       
                PERFORM 110-CHECKUSER
                MOVE 'DATA ENTRY' TO WS-DFHSTATE
-			   move ' ' to df-sample
+			   move ' ' to DF-UA02-STATE
                PERFORM 100-NEW-MAP
 
            ELSE
@@ -185,9 +197,7 @@
 			  MOVE 'PRESS PF2 TO CONFIRM ADD'
 			  TO ERRMSGO
 			WHEN DFHPF3
-			  EXEC CICS RETURN
-			   TRANSID('UA01')
-			  END-EXEC
+			  PERFORM 300-RETURN-TO-PREV
 			WHEN DFHPF5
 			  PERFORM 720-RESET-FIELDS
 			WHEN OTHER
@@ -200,10 +210,8 @@
 			  PERFORM 700-VALIDATE-FIELD
 		    WHEN DFHPF2
 			  PERFORM 800-WRITE-TOFILE
-			WHEN DFHPF3
-			  EXEC CICS RETURN
-			   TRANSID('UA01')
-			  END-EXEC
+			WHEN DFHPF3			  
+			  PERFORM 300-RETURN-TO-PREV
 			WHEN DFHPF5
 			  PERFORM 720-RESET-FIELDS
 			WHEN OTHER
@@ -217,13 +225,28 @@
               MOVE WS-INITIAL TO ERRMSGO			  
 		      PERFORM 100-NEW-MAP
 			WHEN DFHPF3
-			  EXEC CICS RETURN
-			   TRANSID('UA01')
-			  END-EXEC
+              PERFORM 300-RETURN-TO-PREV
 			WHEN OTHER
               MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO  			
            END-EVALUATE. 
-		   		   
+       300-RETURN-TO-PREV SECTION.
+	       EVALUATE EIBTRNID
+		   WHEN 'UA01'
+			   EXEC CICS RETURN
+				   TRANSID('UA01')
+			   END-EXEC
+           WHEN 'UA02'
+		      EXEC CICS 
+			    SEND CONTROL 
+				ERASE
+			  END-EXEC
+              EXEC CICS RETURN
+              END-EXEC
+           WHEN 'SM00'
+		       EXEC CICS RETURN
+				   TRANSID('SM00')
+			   END-EXEC
+           END-EVALUATE.		   
        700-VALIDATE-FIELD SECTION.
            MOVE 0 TO WS-ERROR-COUNT
 		   
@@ -308,8 +331,8 @@
 			  PERFORM 710-PROTECT-FIELDS
 		   ELSE
 		      PERFORM 100-NEW-MAP
-           END-IF		   
-		   .		
+           END-IF.		
+		   
        710-PROTECT-FIELDS SECTION.
            MOVE DFHBMPRF TO USERA
            MOVE DFHBMPRF TO REQUESTA
