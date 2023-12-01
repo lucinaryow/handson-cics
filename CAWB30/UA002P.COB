@@ -96,7 +96,7 @@
            EXEC CICS
              IGNORE CONDITION ERROR
            END-EXEC
-           MOVE EIBTRNID TO USERO
+           
            IF DF-UA02-STATE = 'INITIALUA02'
 		       
                PERFORM 110-CHECKUSER
