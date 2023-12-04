@@ -238,6 +238,7 @@
                   MOVE WS-BLANK-MESG  TO ERRMSGO
                   ADD 1 TO WS-PROG-STATE
                   MOVE DFHBMASK TO TNUMA
+                   MOVE 'Y' TO READ1
                   PERFORM 500-DISPLAY-UPDATE
                   PERFORM 101-DISPLAY-MAP
               WHEN EIBAID = DFHPF3 
@@ -284,11 +285,13 @@
         230-CHECK-AID-VALUE3.
              EVALUATE TRUE
                    WHEN EIBAID = DFHENTER
-                        PERFORM 400-CLEAR-VALS
-                        MOVE 'ENTER TICKET NUMBER AND PRESS ENTER' TO
-                        ERRMSGO   
-                        MOVE 1 TO WS-PROG-STATE
-                        PERFORM 101-DISPLAY-MAP
+                   PERFORM 400-CLEAR-VALS
+                   MOVE SPACE TO WS-TNUM 
+                   MOVE SPACES TO  WS-TICKET-NUM1                  
+                   MOVE 1 TO WS-PROG-STATE
+                   MOVE 'ENTER TICKET NUMBER AND PRESS ENTER' TO ERRMSGO 
+                   MOVE DFHPROTN  TO PF2A
+                   MOVE DFHPROTN TO PF5A
                    WHEN EIBAID = DFHPF5
                         MOVE 'TICKET CLOSURE ABORTED' TO ERRMSGO
                         PERFORM 400-CLEAR-VALS
@@ -497,7 +500,6 @@
                 RESP(WS-RESPONSE-CODE)
                EQUAL 
            END-EXEC
-           MOVE 'N' TO READ1
            EVALUATE EIBRESP
            WHEN DFHRESP(NORMAL)
             PERFORM 300-MOVE-TICKETVAL

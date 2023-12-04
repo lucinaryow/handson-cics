@@ -227,6 +227,7 @@
                   PERFORM 222-WRITE-LOGS
                   MOVE WS-BLANK-MESG  TO ERRMSGO
                   ADD 1 TO WS-PROG-STATE
+                   MOVE 'Y' TO READ1
                   MOVE DFHBMASK TO TNUMA
                   PERFORM 500-DISPLAY-UPDATE
                   PERFORM 101-DISPLAY-MAP
@@ -273,11 +274,14 @@
         230-CHECK-AID-VALUE3.
              EVALUATE TRUE
                    WHEN EIBAID = DFHENTER
-                        PERFORM 400-CLEAR-VALS
-                        MOVE 'ENTER TICKET NUMBER AND PRESS ENTER' TO
-                        ERRMSGO   
-                        MOVE 1 TO WS-PROG-STATE
-                        PERFORM 101-DISPLAY-MAP
+                   PERFORM 400-CLEAR-VALS
+                   MOVE SPACE TO WS-TNUM 
+                   MOVE SPACES TO  WS-TICKET-NUM1                  
+                   MOVE 1 TO WS-PROG-STATE
+                   MOVE 'ENTER TICKET NUMBER AND PRESS ENTER' TO ERRMSGO 
+                   MOVE DFHPROTN  TO PF2A
+                   MOVE DFHPROTN TO PF5A
+                   PERFORM 101-DISPLAY-MAP
                    WHEN EIBAID = DFHPF5
                         MOVE 'TICKET CLOSURE ABORTED' TO ERRMSGO
                         PERFORM 400-CLEAR-VALS
@@ -422,7 +426,6 @@
                       EXEC CICS ASSIGN   
                        USERID(WS-USER) 
                       END-EXEC  
-                  IF WS-USER = WS-REC-Requestor
                      IF WS-REC-Status = 'CREATED'
                      PERFORM 300-MOVE-TICKETVAL
                      MOVE WS-REC-KEY TO WS-TICKET-NUM
@@ -437,14 +440,6 @@
                    MOVE 'INVALID TICKET STATUS' TO ERRMSGO  
                    PERFORM 101-DISPLAY-MAP                    
                    END-IF   
-                   ELSE
-                   MOVE WS-REC-KEY TO TNUMO
-                   MOVE 1 TO WS-PROG-STATE
-                   MOVE 'Y' TO WS-INIT
-                   MOVE DFHUNIMD TO TNUMA
-                   MOVE 'INVALID ACCESS TO THE TICKET' TO ERRMSGO
-                   PERFORM 101-DISPLAY-MAP 
-                   END-IF       
                END-EVALUATE.
         230-EXIT.
            EXIT.       
@@ -484,7 +479,6 @@
                 RESP(WS-RESPONSE-CODE)
                EQUAL 
            END-EXEC
-           MOVE 'N' TO READ1
            EVALUATE EIBRESP
            WHEN DFHRESP(NORMAL)
             PERFORM 300-MOVE-TICKETVAL
