@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 15:52:42 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    04DEV23 09:33:39 PAGE  1
 
     1          PRINT NOGEN
     2 SW00S    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -33,62 +33,45 @@
    31          DFHMDF POS=(20,1),LENGTH=33,ATTRB=(ASKIP,NORM)
    32          DFHMDF POS=(21,1),LENGTH=79,ATTRB=(ASKIP,NORM)
    33          DFHMDF POS=(23,1),LENGTH=79,ATTRB=(ASKIP,NORM)
-   34          DFHMDF POS=(15,1),LENGTH=79,ATTRB=(ASKIP,NORM)
-W **** This field overlaps previously defined field
-   35          DFHMDF POS=(17,1),LENGTH=79,ATTRB=(ASKIP,NORM)
-W **** This field overlaps previously defined field
-   36          DFHMDF POS=(19,1),LENGTH=79,ATTRB=(ASKIP,NORM)
-W **** This field overlaps previously defined field
-   37          DFHMDF POS=(23,1),LENGTH=79,ATTRB=(ASKIP,NORM)
-W **** This field overlaps previously defined field
-   38          DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-   39          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-   40          DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-   41          DFHMDF POS=(11,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-   42          DFHMDF POS=(13,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-   43          DFHMDF POS=(15,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-W **** This field overlaps previously defined field
-   44          DFHMDF POS=(17,57),LENGTH=23,ATTRB=(ASKIP,NORM)
-W **** This field overlaps previously defined field
-   45 OPTCHC1  DFHMDF POS=(05,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   46 OPTNO1   DFHMDF POS=(05,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   47 OPTCHC2  DFHMDF POS=(07,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   48 OPTNO2   DFHMDF POS=(07,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   49 OPTCHC3  DFHMDF POS=(09,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   50 OPTNO3   DFHMDF POS=(09,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   51 OPTCHC4  DFHMDF POS=(11,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   52 OPTNO4   DFHMDF POS=(11,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 15:52:42 PAGE  2
+   34          DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   35          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   36          DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   37          DFHMDF POS=(11,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   38          DFHMDF POS=(13,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   39          DFHMDF POS=(15,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   40          DFHMDF POS=(17,57),LENGTH=23,ATTRB=(ASKIP,NORM)
+   41 OPTCHC1  DFHMDF POS=(05,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   42 OPTNO1   DFHMDF POS=(05,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   43 OPTCHC2  DFHMDF POS=(07,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   44 OPTNO2   DFHMDF POS=(07,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   45 OPTCHC3  DFHMDF POS=(09,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   46 OPTNO3   DFHMDF POS=(09,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   47 OPTCHC4  DFHMDF POS=(11,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   48 OPTNO4   DFHMDF POS=(11,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   49 OPTCHC5  DFHMDF POS=(13,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   50 OPTNO5   DFHMDF POS=(13,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   51 OPTCHC6  DFHMDF POS=(15,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   52 OPTNO6   DFHMDF POS=(15,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   53 OPTCHC7  DFHMDF POS=(17,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   54 OPTNO7   DFHMDF POS=(17,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   55          DFHMDF POS=(19,35),LENGTH=15,ATTRB=(ASKIP,NORM,FSET),         C
+   56                INITIAL='ENTER OPTION : '
+   57          DFHMDF POS=(20,35),LENGTH=15,ATTRB=(ASKIP,NORM),              C
+   58                INITIAL='ENTER TICKET : 'CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    04DEV23 09:33:39 PAGE  2
 
-   53 OPTCHC5  DFHMDF POS=(13,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   54 OPTNO5   DFHMDF POS=(13,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   55 OPTCHC6  DFHMDF POS=(15,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   56 OPTNO6   DFHMDF POS=(15,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   57 OPTCHC7  DFHMDF POS=(17,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   58 OPTNO7   DFHMDF POS=(17,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-W **** This field overlaps previously defined field
-   59          DFHMDF POS=(19,35),LENGTH=15,ATTRB=(ASKIP,NORM,FSET),         C
-   60                INITIAL='ENTER OPTION : '
-W **** This field overlaps previously defined field
-   61          DFHMDF POS=(20,35),LENGTH=15,ATTRB=(ASKIP,NORM),              C
-   62                INITIAL='ENTER TICKET : '
-   63          DFHMDF POS=(24,13),LENGTH=10,ATTRB=(ASKIP,NORM),              C
-   64                INITIAL='PF3 - EXIT'
-   65 OPTION   DFHMDF POS=(19,51),LENGTH=01,ATTRB=(UNPROT,NORM,IC,FSET)
-W **** This field overlaps previously defined field
-   66 TIXNO    DFHMDF POS=(20,51),LENGTH=06,ATTRB=(UNPROT,NORM,FSET)
-   67 ERRMSG   DFHMDF POS=(22,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
-   68 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
-   69 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
-   70          DFHMSD TYPE=FINAL
-      sm000s loaded with 1 MAPS, 58 FIELDS and 73 Bytes of Literals
+   59          DFHMDF POS=(24,13),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+   60                INITIAL='PF3 - EXIT'
+   61 OPTION   DFHMDF POS=(19,51),LENGTH=01,ATTRB=(UNPROT,NORM,IC,FSET)
+   62 TIXNO    DFHMDF POS=(20,51),LENGTH=06,ATTRB=(UNPROT,NORM,FSET)
+   63 ERRMSG   DFHMDF POS=(22,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
+   64 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   65 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   66          DFHMSD TYPE=FINAL
+      sm000s loaded with 1 MAPS, 54 FIELDS and 73 Bytes of Literals
 
-   71          END
-There were    12 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    01DEV23 15:52:42 PAGE  3
+   67          ENDCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    04DEV23 09:33:39 PAGE  3
 
       COBOL COPY file generated
 
-      Mapset generated. Object size is 1,658.
+      Mapset generated. Object size is 1,554.
 

@@ -132,11 +132,8 @@
                WHEN EIBAID = DFHENTER
                    PERFORM 300-PROCESS-TRAN
                WHEN OTHER
-                   EXEC CICS SEND TEXT
-                       ERASE
-                       FROM (WS-INVKEY)
-                       LENGTH (22)
-                   END-EXEC            
+                   MOVE WS-INVKEY TO ERRMSGO 
+                   PERFORM 400-SEARCH-USER           
            END-EVALUATE
            EXEC CICS 
                RETURN 

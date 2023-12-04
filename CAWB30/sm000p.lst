@@ -656,455 +656,453 @@
    836		      WHEN EIBAID = DFHENTER
    837			  PERFORM 300-PROCESS-TRAN
    838		      WHEN OTHER
-   840			  EXEC CICS SEND TEXT
-   841			      ERASE
-   842			      FROM (WS-INVKEY)
-   843			      LENGTH (22)
-   844			  END-EXEC
-   874		  END-EVALUATE
-   876		  EXEC CICS
-   877		      RETURN
-   878                    TRANSID('SM00')
-   879			  COMMAREA(WS-COMMAREA)
-   880		      END-EXEC.
-   905	      000-EXIT.
-   906		  EXIT.
-   907
-   908
-   909	      100-SEND-MAP.
-   910		  MOVE EIBDATE TO WS-DATE.
-   911		  MOVE WS-DATE-X TO DATEO.
-   913		  EXEC CICS ASKTIME
-   914			  ABSTIME      (WS-TIME)
-   915		      END-EXEC
-   934		      EXEC CICS FORMATTIME
-   935			  ABSTIME      (WS-TIME)
-   936                    DATESEP      ('-')
-   937			  MMDDYY   (DATEO)
-   938		      TIME     (TIMEO)
-   939                TIMESEP  (':')
-   940		  END-EXEC
-   980		  MOVE DFHBMASB TO TIMEA
-   981		  MOVE DFHBMASB TO DATEA
-   982		  MOVE DFHUNIMD TO OPTIONA
-   984		  EXEC CICS
-   985                SEND MAP('SW00M')
-   986                     MAPSET('SW00S')
-   987			   FROM(SW00MO)
-   988			   ERASE
-   989		  END-EXEC.
-  1026	      100-EXIT.
-  1027		  EXIT.
-  1028
-  1029	      300-PROCESS-TRAN.
-  1031		  EXEC CICS
-  1032               RECEIVE MAP('SW00M')
-  1033                       MAPSET('SW00S')
-  1034			     INTO (SW00MI)
-  1035		  END-EXEC
-  1068		  EVALUATE TRUE
-  1069		      WHEN OPTIONL = 0 OR OPTIONI = SPACE
-  1070                    MOVE 'OPTION IS REQUIRED' TO ERRMSGO
-  1071			  MOVE DFHBMBRY TO OPTIONA
-  1072		      WHEN OPTIONI = 1  1073                    IF WS-CHC1 = '- USER MAINTENANCE'
-  1074			      PERFORM 700-TRANSFER-PROG
-  1075			      IF EIBCALEN = +0
-  1077				  EXEC CICS XCTL
-  1078                                PROGRAM('UA001P')
-  1079				  END-EXEC
-  1098			      ELSE
-  1100				  EXEC CICS XCTL
-  1101                                PROGRAM('UA001P')
-  1102				      COMMAREA(WS-COMMAREA)
-  1103				  END-EXEC
-  1127			      END-IF
-  1128			  END-IF
-  1129                    IF WS-CHC1 = '- SEARCH TICKET'
-  1131			      EXEC CICS XCTL
-  1132                            PROGRAM('SM001P')
-  1133			      END-EXEC
-  1152			  END-IF
-  1153		      WHEN OPTIONI = 2
-  1154                    IF WS-CHC2 = '- ADD TICKET'
-  1155			      PERFORM 700-TRANSFER-PROG
-  1156			      IF TIXNOL NOT = +0
-  1157				  PERFORM 900-NO-TIX
-  1158			      END-IF
-  1159			      IF EIBCALEN = +0
-  1161				  EXEC CICS XCTL
-  1162                                PROGRAM('SM02P')
-  1163				  END-EXEC
-  1182			      ELSE
-  1184				  EXEC CICS XCTL
-  1185                                PROGRAM('SM02P')
-  1186				      COMMAREA(WS-COMMAREA)
-  1187				  END-EXEC
-  1211			      END-IF
-  1212			  END-IF
-  1213                    IF WS-CHC2 = '- UPDATE TICKET'
-  1214			      PERFORM 700-TRANSFER-PROG
-  1215			      IF TIXNOL NOT = +0
-  1216				  PERFORM 900-NO-TIX
-  1217			      END-IF
-  1218			      IF EIBCALEN = +0
-  1220				  EXEC CICS XCTL
-  1221                                PROGRAM('SM03P')
-  1222				  END-EXEC
-  1241			      ELSE
-  1243				  EXEC CICS XCTL
-  1244                                PROGRAM('SM03P')
-  1245				      COMMAREA(WS-COMMAREA)
-  1246				  END-EXEC
-  1270			      END-IF
-  1271			  END-IF
-  1272                    IF WS-CHC2 = '- APPROVE TICKET'
-  1273			      IF TIXNOL NOT = +0
-  1274				  PERFORM 700-TRANSFER-PROG
-  1275			      END-IF
-  1276			      PERFORM 800-NEED-TIX
-  1277			      IF EIBCALEN = +0
-  1279				  EXEC CICS XCTL
-  1280                                PROGRAM('SM005')
-  1281				  END-EXEC  1300			      ELSE
-  1302				  EXEC CICS XCTL
-  1303                                PROGRAM('SM005')
-  1304				      COMMAREA(WS-COMMAREA)
-  1305				  END-EXEC
-  1329			      END-IF
-  1330			  END-IF
-  1331			  IF WS-CHC2 = LOW-VALUES
-  1332                        MOVE 'INVALID OPTION' TO ERRMSGO
-  1333			      PERFORM 100-SEND-MAP
-  1334			  END-IF
-  1335		      WHEN OPTIONI = 3
-  1336                    IF WS-CHC3 = '- USER MAINTENANCE'
-  1337			      PERFORM 700-TRANSFER-PROG
-  1338			      IF EIBCALEN = +0
-  1340				  EXEC CICS XCTL
-  1341                                PROGRAM('UA001P')
-  1342				  END-EXEC
-  1361			      ELSE
-  1363				  EXEC CICS XCTL
-  1364                                PROGRAM('UA001P')
-  1365				      COMMAREA(WS-COMMAREA)
-  1366				  END-EXEC
-  1390			      END-IF
-  1391			  END-IF
-  1392                    IF WS-CHC3 = '- APPROVE TICKET'
-  1393			      PERFORM 700-TRANSFER-PROG
-  1394			      IF TIXNOL NOT = +0
-  1395				  PERFORM 800-NEED-TIX
-  1396			      END-IF
-  1397			      IF EIBCALEN = +0
-  1399				  EXEC CICS XCTL
-  1400                                PROGRAM('SM005')
-  1401				  END-EXEC
-  1420			      ELSE
-  1422				  EXEC CICS XCTL
-  1423                                PROGRAM('SM005')
-  1424				      COMMAREA(WS-COMMAREA)
-  1425				  END-EXEC
-  1449			      END-IF
-  1450			  END-IF
-  1451                    IF WS-CHC3 = '- UPDATE TICKET'
-  1452			      PERFORM 700-TRANSFER-PROG
-  1453			      IF TIXNOL NOT = +0
-  1454				  PERFORM 800-NEED-TIX
-  1455			      END-IF
-  1456			      IF EIBCALEN = +0
-  1458				  EXEC CICS XCTL
-  1459                                PROGRAM('SM03P')
-  1460				      COMMAREA(WS-COMMAREA)
-  1461				  END-EXEC
-  1485			      ELSE
-  1487				  EXEC CICS XCTL
-  1488                                PROGRAM('SM03P')
-  1489				      COMMAREA(WS-COMMAREA)
-  1490				  END-EXEC
-  1514			      END-IF
-  1515			  END-IF
-  1516			  IF WS-CHC3 = LOW-VALUES
-  1517                        MOVE 'INVALID OPTION' TO ERRMSGO  1518			      PERFORM 100-SEND-MAP
-  1519			  END-IF
-  1520		      WHEN OPTIONI = 4
-  1521                    IF WS-CHC4 = '- USER MAINTENANCE'
-  1522			      PERFORM 700-TRANSFER-PROG
-  1523			      IF EIBCALEN = +0
-  1525				  EXEC CICS XCTL
-  1526                                PROGRAM('UA001P')
-  1527				  END-EXEC
-  1546			      ELSE
-  1548				  EXEC CICS XCTL
-  1549                                PROGRAM('UA001P')
-  1550				      COMMAREA(WS-COMMAREA)
-  1551				  END-EXEC
-  1575			      END-IF
-  1576			  END-IF
-  1577                    IF WS-CHC4 = '- CLOSE TICKET'
-  1578			      PERFORM 700-TRANSFER-PROG
-  1579			      IF TIXNOL NOT = +0
-  1580				  PERFORM 800-NEED-TIX
-  1581			      END-IF
-  1582			      IF EIBCALEN = +0
-  1584				  EXEC CICS XCTL
-  1585                                PROGRAM('SM004')
-  1586				      COMMAREA(WS-COMMAREA)
-  1587				  END-EXEC
-  1611			      ELSE
-  1613				  EXEC CICS XCTL
-  1614                                PROGRAM('SM004')
-  1615				      COMMAREA(WS-COMMAREA)
-  1616				  END-EXEC
-  1640			      END-IF
-  1641			  END-IF
-  1642			  IF WS-CHC4 = LOW-VALUES
-  1643                        MOVE 'INVALID OPTION' TO ERRMSGO
-  1644			      PERFORM 100-SEND-MAP
-  1645			  END-IF
-  1646		      WHEN OPTIONI = 5
-  1647                    IF WS-CHC5 = '- CANCEL TICKET'
-  1648			      PERFORM 700-TRANSFER-PROG
-  1649			      IF TIXNOL NOT = +0
-  1650				  PERFORM 800-NEED-TIX
-  1651			      END-IF
-  1652			      IF EIBCALEN = +0
-  1654				  EXEC CICS XCTL
-  1655                                PROGRAM('SM006P')
-  1656				  END-EXEC
-  1675			      ELSE
-  1677				  EXEC CICS XCTL
-  1678                                PROGRAM('SM006P')
-  1679				      COMMAREA(WS-COMMAREA)
-  1680				  END-EXEC
-  1704			      END-IF
-  1705			  END-IF
-  1706			  IF WS-CHC5 = LOW-VALUES
-  1707                        MOVE 'INVALID OPTION' TO ERRMSGO
-  1708			      PERFORM 100-SEND-MAP
-  1709			  END-IF
-  1710		      WHEN OPTIONI = 6
-  1711                    IF WS-CHC6 = '- APPROVE TICKET'  1712			      PERFORM 700-TRANSFER-PROG
-  1713			      IF TIXNOL NOT = +0
-  1714				  PERFORM 800-NEED-TIX
-  1715			      END-IF
-  1716			      IF EIBCALEN = +0
-  1718				  EXEC CICS XCTL
-  1719                                PROGRAM('SM005')
-  1720				  END-EXEC
-  1739			      ELSE
-  1741				  EXEC CICS XCTL
-  1742                                PROGRAM('SM005')
-  1743				      COMMAREA(WS-COMMAREA)
+   839			  MOVE WS-INVKEY TO ERRMSGO
+   840			  PERFORM 400-SEARCH-USER
+   841			  PERFORM 100-SEND-MAP
+   842		  END-EVALUATE
+   844		  EXEC CICS
+   845		      RETURN
+   846                    TRANSID('SM00')
+   847			  COMMAREA(WS-COMMAREA)
+   848		      END-EXEC.
+   873	      000-EXIT.
+   874		  EXIT.
+   875
+   876
+   877	      100-SEND-MAP.
+   878		  MOVE EIBDATE TO WS-DATE.
+   879		  MOVE WS-DATE-X TO DATEO.
+   881		  EXEC CICS ASKTIME
+   882			  ABSTIME      (WS-TIME)
+   883		      END-EXEC
+   902		      EXEC CICS FORMATTIME
+   903			  ABSTIME      (WS-TIME)
+   904                    DATESEP      ('-')
+   905			  MMDDYY   (DATEO)
+   906		      TIME     (TIMEO)
+   907                TIMESEP  (':')
+   908		  END-EXEC
+   948		  MOVE DFHBMASB TO TIMEA
+   949		  MOVE DFHBMASB TO DATEA
+   950		  MOVE DFHUNIMD TO OPTIONA
+   952		  EXEC CICS
+   953                SEND MAP('SW00M')
+   954                     MAPSET('SW00S')
+   955			   FROM(SW00MO)
+   956			   ERASE
+   957		  END-EXEC.
+   994	      100-EXIT.
+   995		  EXIT.
+   996
+   997	      300-PROCESS-TRAN.
+   999		  EXEC CICS
+  1000               RECEIVE MAP('SW00M')
+  1001                       MAPSET('SW00S')
+  1002			     INTO (SW00MI)
+  1003		  END-EXEC
+  1036		  EVALUATE TRUE
+  1037		      WHEN OPTIONL = 0 OR OPTIONI = SPACE
+  1038                    MOVE 'OPTION IS REQUIRED' TO ERRMSGO
+  1039			  MOVE DFHBMBRY TO OPTIONA
+  1040		      WHEN OPTIONI = 1
+  1041                    IF WS-CHC1 = '- USER MAINTENANCE'
+  1042			      PERFORM 700-TRANSFER-PROG  1043			      IF EIBCALEN = +0
+  1045				  EXEC CICS XCTL
+  1046                                PROGRAM('UA001P')
+  1047				  END-EXEC
+  1066			      ELSE
+  1068				  EXEC CICS XCTL
+  1069                                PROGRAM('UA001P')
+  1070				      COMMAREA(WS-COMMAREA)
+  1071				  END-EXEC
+  1095			      END-IF
+  1096			  END-IF
+  1097                    IF WS-CHC1 = '- SEARCH TICKET'
+  1099			      EXEC CICS XCTL
+  1100                            PROGRAM('SM001P')
+  1101			      END-EXEC
+  1120			  END-IF
+  1121		      WHEN OPTIONI = 2
+  1122                    IF WS-CHC2 = '- ADD TICKET'
+  1123			      PERFORM 700-TRANSFER-PROG
+  1124			      IF TIXNOL NOT = +0
+  1125				  PERFORM 900-NO-TIX
+  1126			      END-IF
+  1127			      IF EIBCALEN = +0
+  1129				  EXEC CICS XCTL
+  1130                                PROGRAM('SM02P')
+  1131				  END-EXEC
+  1150			      ELSE
+  1152				  EXEC CICS XCTL
+  1153                                PROGRAM('SM02P')
+  1154				      COMMAREA(WS-COMMAREA)
+  1155				  END-EXEC
+  1179			      END-IF
+  1180			  END-IF
+  1181                    IF WS-CHC2 = '- UPDATE TICKET'
+  1182			      PERFORM 700-TRANSFER-PROG
+  1183			      IF TIXNOL NOT = +0
+  1184				  PERFORM 900-NO-TIX
+  1185			      END-IF
+  1186			      IF EIBCALEN = +0
+  1188				  EXEC CICS XCTL
+  1189                                PROGRAM('SM03P')
+  1190				  END-EXEC
+  1209			      ELSE
+  1211				  EXEC CICS XCTL
+  1212                                PROGRAM('SM03P')
+  1213				      COMMAREA(WS-COMMAREA)
+  1214				  END-EXEC
+  1238			      END-IF
+  1239			  END-IF
+  1240                    IF WS-CHC2 = '- APPROVE TICKET'
+  1241			      IF TIXNOL NOT = +0
+  1242				  PERFORM 700-TRANSFER-PROG
+  1243			      END-IF
+  1244			      PERFORM 800-NEED-TIX
+  1245			      IF EIBCALEN = +0
+  1247				  EXEC CICS XCTL
+  1248                                PROGRAM('SM005')
+  1249				  END-EXEC
+  1268			      ELSE
+  1270				  EXEC CICS XCTL  1271                                PROGRAM('SM005')
+  1272				      COMMAREA(WS-COMMAREA)
+  1273				  END-EXEC
+  1297			      END-IF
+  1298			  END-IF
+  1299			  IF WS-CHC2 = LOW-VALUES
+  1300                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1301			      PERFORM 100-SEND-MAP
+  1302			  END-IF
+  1303		      WHEN OPTIONI = 3
+  1304                    IF WS-CHC3 = '- USER MAINTENANCE'
+  1305			      PERFORM 700-TRANSFER-PROG
+  1306			      IF EIBCALEN = +0
+  1308				  EXEC CICS XCTL
+  1309                                PROGRAM('UA001P')
+  1310				  END-EXEC
+  1329			      ELSE
+  1331				  EXEC CICS XCTL
+  1332                                PROGRAM('UA001P')
+  1333				      COMMAREA(WS-COMMAREA)
+  1334				  END-EXEC
+  1358			      END-IF
+  1359			  END-IF
+  1360                    IF WS-CHC3 = '- APPROVE TICKET'
+  1361			      PERFORM 700-TRANSFER-PROG
+  1362			      IF TIXNOL NOT = +0
+  1363				  PERFORM 800-NEED-TIX
+  1364			      END-IF
+  1365			      IF EIBCALEN = +0
+  1367				  EXEC CICS XCTL
+  1368                                PROGRAM('SM005')
+  1369				  END-EXEC
+  1388			      ELSE
+  1390				  EXEC CICS XCTL
+  1391                                PROGRAM('SM005')
+  1392				      COMMAREA(WS-COMMAREA)
+  1393				  END-EXEC
+  1417			      END-IF
+  1418			  END-IF
+  1419                    IF WS-CHC3 = '- UPDATE TICKET'
+  1420			      PERFORM 700-TRANSFER-PROG
+  1421			      IF TIXNOL NOT = +0
+  1422				  PERFORM 800-NEED-TIX
+  1423			      END-IF
+  1424			      IF EIBCALEN = +0
+  1426				  EXEC CICS XCTL
+  1427                                PROGRAM('SM03P')
+  1428				      COMMAREA(WS-COMMAREA)
+  1429				  END-EXEC
+  1453			      ELSE
+  1455				  EXEC CICS XCTL
+  1456                                PROGRAM('SM03P')
+  1457				      COMMAREA(WS-COMMAREA)
+  1458				  END-EXEC
+  1482			      END-IF
+  1483			  END-IF
+  1484			  IF WS-CHC3 = LOW-VALUES
+  1485                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1486			      PERFORM 100-SEND-MAP
+  1487			  END-IF  1488		      WHEN OPTIONI = 4
+  1489                    IF WS-CHC4 = '- USER MAINTENANCE'
+  1490			      PERFORM 700-TRANSFER-PROG
+  1491			      IF EIBCALEN = +0
+  1493				  EXEC CICS XCTL
+  1494                                PROGRAM('UA001P')
+  1495				  END-EXEC
+  1514			      ELSE
+  1516				  EXEC CICS XCTL
+  1517                                PROGRAM('UA001P')
+  1518				      COMMAREA(WS-COMMAREA)
+  1519				  END-EXEC
+  1543			      END-IF
+  1544			  END-IF
+  1545                    IF WS-CHC4 = '- CLOSE TICKET'
+  1546			      PERFORM 700-TRANSFER-PROG
+  1547			      IF TIXNOL NOT = +0
+  1548				  PERFORM 800-NEED-TIX
+  1549			      END-IF
+  1550			      IF EIBCALEN = +0
+  1552				  EXEC CICS XCTL
+  1553                                PROGRAM('SM004')
+  1554				      COMMAREA(WS-COMMAREA)
+  1555				  END-EXEC
+  1579			      ELSE
+  1581				  EXEC CICS XCTL
+  1582                                PROGRAM('SM004')
+  1583				      COMMAREA(WS-COMMAREA)
+  1584				  END-EXEC
+  1608			      END-IF
+  1609			  END-IF
+  1610			  IF WS-CHC4 = LOW-VALUES
+  1611                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1612			      PERFORM 100-SEND-MAP
+  1613			  END-IF
+  1614		      WHEN OPTIONI = 5
+  1615                    IF WS-CHC5 = '- CANCEL TICKET'
+  1616			      PERFORM 700-TRANSFER-PROG
+  1617			      IF TIXNOL NOT = +0
+  1618				  PERFORM 800-NEED-TIX
+  1619			      END-IF
+  1620			      IF EIBCALEN = +0
+  1622				  EXEC CICS XCTL
+  1623                                PROGRAM('SM006P')
+  1624				  END-EXEC
+  1643			      ELSE
+  1645				  EXEC CICS XCTL
+  1646                                PROGRAM('SM006P')
+  1647				      COMMAREA(WS-COMMAREA)
+  1648				  END-EXEC
+  1672			      END-IF
+  1673			  END-IF
+  1674			  IF WS-CHC5 = LOW-VALUES
+  1675                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1676			      PERFORM 100-SEND-MAP
+  1677			  END-IF
+  1678		      WHEN OPTIONI = 6
+  1679                    IF WS-CHC6 = '- APPROVE TICKET'
+  1680			      PERFORM 700-TRANSFER-PROG
+  1681			      IF TIXNOL NOT = +0  1682				  PERFORM 800-NEED-TIX
+  1683			      END-IF
+  1684			      IF EIBCALEN = +0
+  1686				  EXEC CICS XCTL
+  1687                                PROGRAM('SM005')
+  1688				  END-EXEC
+  1707			      ELSE
+  1709				  EXEC CICS XCTL
+  1710                                PROGRAM('SM005')
+  1711				      COMMAREA(WS-COMMAREA)
+  1712				  END-EXEC
+  1736			      END-IF
+  1737			  END-IF
+  1738                    IF WS-CHC6 = '- USER MAINTENANCE'
+  1739			      PERFORM 700-TRANSFER-PROG
+  1740			      IF EIBCALEN = +0
+  1742				  EXEC CICS XCTL
+  1743                                PROGRAM('UA001P')
   1744				  END-EXEC
-  1768			      END-IF
-  1769			  END-IF
-  1770                    IF WS-CHC6 = '- USER MAINTENANCE'
-  1771			      PERFORM 700-TRANSFER-PROG
-  1772			      IF EIBCALEN = +0
-  1774				  EXEC CICS XCTL
-  1775                                PROGRAM('UA001P')
-  1776				  END-EXEC
-  1795			      ELSE
-  1797				  EXEC CICS XCTL
-  1798                                PROGRAM('UA001P')
-  1799				      COMMAREA(WS-COMMAREA)
-  1800				  END-EXEC
-  1824			      END-IF
-  1825			  END-IF
-  1826			  IF WS-CHC6 = LOW-VALUES
-  1827                        MOVE 'INVALID OPTION' TO ERRMSGO
-  1828			      PERFORM 100-SEND-MAP
-  1829			  END-IF
-  1830		      WHEN OPTIONI = 7
-  1831                    IF WS-CHC7 = '- USER MAINTENANCE'
-  1832			      PERFORM 700-TRANSFER-PROG
-  1833			      IF EIBCALEN = +0
-  1835				  EXEC CICS XCTL
-  1836                                PROGRAM('UA001P')
-  1837				  END-EXEC
-  1856			      ELSE
-  1858				  EXEC CICS XCTL
-  1859                                PROGRAM('UA001P')
-  1860				      COMMAREA(WS-COMMAREA)
-  1861				  END-EXEC
-  1885			      END-IF
-  1886			  END-IF
-  1887			  IF WS-CHC7 = LOW-VALUES
-  1888                        MOVE 'INVALID OPTION' TO ERRMSGO
-  1889			      PERFORM 100-SEND-MAP
-  1890			  END-IF
-  1891		      WHEN OPTIONI NOT = 1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7
-  1892			  IF WS-CHC7 = LOW-VALUES
-  1893                        MOVE 'INVALID OPTION' TO ERRMSGO
-  1894			      PERFORM 100-SEND-MAP
-  1895			  END-IF
-  1896		  END-EVALUATE
-  1897		  PERFORM 100-SEND-MAP.
-  1898	      300-EXIT.
-  1899		  EXIT.
-  1900  1901	      400-SEARCH-USER.
-  1903		  EXEC CICS ASSIGN
-  1904		      USERID(WS-USERID)
-  1905		  END-EXEC
-  1924		  EXEC CICS
-  1925                READ FILE('UAF00001')
-  1926		      INTO (WS-USER-REC)
-  1927		      RIDFLD (WS-USERID)
-  1928		      RESP(WS-RESPONSE-CODE)
-  1929		      GTEQ
-  1930		  END-EXEC
-  1968            IF WS-RESPONSE-CODE NOT = +00 OR (REQUESTOR = 'N' AND
-  1969                                      SERVICE-PROVIDER = 'N' AND APPROVER
-  1970                                          = 'N' AND ADMINISTRATOR = 'N')
-  1972		      EXEC CICS SEND TEXT
-  1973			  FROM (WS-INVALID)
-  1974			  LENGTH (+25)
-  1975			  ERASE
-  1976		      END-EXEC
-  2007		      EXEC CICS RETURN END-EXEC
-  2020		  ELSE
-  2021		   MOVE WS-USERID TO USERID
-  2022		   MOVE 1 TO WS-PROG-STATE
-  2023		  END-IF
-  2024            IF REQUESTOR = 'Y'
-  2025                MOVE '- SEARCH TICKET' TO WS-CHOICE
-  2026		      PERFORM 500-MOVE-CHOICE-VAL
-  2027                MOVE '- ADD TICKET' TO WS-CHOICE
-  2028		      PERFORM 500-MOVE-CHOICE-VAL
-  2029                MOVE '- UPDATE TICKET' TO WS-CHOICE
-  2030		      PERFORM 500-MOVE-CHOICE-VAL
-  2031                MOVE '- CLOSE TICKET' TO WS-CHOICE
-  2032		      PERFORM 500-MOVE-CHOICE-VAL
-  2033                MOVE '- CANCEL TICKET' TO WS-CHOICE
-  2034		      PERFORM 500-MOVE-CHOICE-VAL
-  2035		  END-IF
-  2036            IF SERVICE-PROVIDER = 'Y'
-  2037                IF NOT REQUESTOR = 'Y'
-  2038                    MOVE '- SEARCH TICKET' TO WS-CHOICE
-  2039			  PERFORM 500-MOVE-CHOICE-VAL
-  2040                    MOVE '- UPDATE TICKET' TO WS-CHOICE
-  2041			  PERFORM 500-MOVE-CHOICE-VAL
-  2042		      ELSE
-  2043			  CONTINUE
-  2044		      END-IF
-  2045		  END-IF
-  2046            IF APPROVER = 'Y'
-  2047                IF NOT (REQUESTOR = 'Y' OR SERVICE-PROVIDER = 'Y')
-  2048                    MOVE '- SEARCH TICKET' TO WS-CHOICE
-  2049			  PERFORM 500-MOVE-CHOICE-VAL
-  2050		      ELSE
-  2051                    MOVE '- APPROVE TICKET' TO WS-CHOICE
-  2052			  PERFORM 500-MOVE-CHOICE-VAL
-  2053		      END-IF
-  2054		  END-IF
-  2055            IF ADMINISTRATOR = 'Y'
-  2056                MOVE '- USER MAINTENANCE' TO WS-CHOICE
-  2057		      PERFORM 500-MOVE-CHOICE-VAL
-  2058		  END-IF.
-  2059	      400-EXIT.  2060		  EXIT.
-  2061
-  2062	      500-MOVE-CHOICE-VAL.
-  2063		  EVALUATE TRUE
-  2064		      WHEN OPTCHC1O = LOW-VALUES
-  2065			  MOVE WS-INDEX TO OPTNO1O
-  2066			  MOVE WS-CHOICE TO OPTCHC1O
-  2067			  MOVE WS-CHOICE TO WS-CHC1
-  2068			  ADD 1 TO WS-INDEX
-  2069		      WHEN OPTCHC2O = LOW-VALUES
-  2070			  MOVE WS-INDEX TO OPTNO2O
-  2071			  MOVE WS-CHOICE TO OPTCHC2O
-  2072			  MOVE WS-CHOICE TO WS-CHC2
-  2073			  ADD 1 TO WS-INDEX
-  2074		      WHEN OPTCHC3O = LOW-VALUES
-  2075			  MOVE WS-INDEX TO OPTNO3O
-  2076			  MOVE WS-CHOICE TO OPTCHC3O
-  2077			  MOVE WS-CHOICE TO WS-CHC3
-  2078			  ADD 1 TO WS-INDEX
-  2079		      WHEN OPTCHC4O = LOW-VALUES
-  2080			  MOVE WS-INDEX TO OPTNO4O
-  2081			  MOVE WS-CHOICE TO OPTCHC4O
-  2082			  MOVE WS-CHOICE TO WS-CHC4
-  2083			  ADD 1 TO WS-INDEX
-  2084		      WHEN OPTCHC5O = LOW-VALUES
-  2085			  MOVE WS-INDEX TO OPTNO5O
-  2086			  MOVE WS-CHOICE TO OPTCHC5O
-  2087			  MOVE WS-CHOICE TO WS-CHC5
-  2088			  ADD 1 TO WS-INDEX
-  2089		      WHEN OPTCHC6O = LOW-VALUES
-  2090			  MOVE WS-INDEX TO OPTNO6O
-  2091			  MOVE WS-CHOICE TO OPTCHC6O
-  2092			  MOVE WS-CHOICE TO WS-CHC6
-  2093			  ADD 1 TO WS-INDEX
-  2094		      WHEN OPTCHC7O = LOW-VALUES
-  2095			  MOVE WS-INDEX TO OPTNO7O
-  2096			  MOVE WS-CHOICE TO OPTCHC7O
-  2097			  MOVE WS-CHOICE TO WS-CHC7
-  2098			  ADD 1 TO WS-INDEX
-  2099		  END-EVALUATE.
-  2100	      500-EXIT.
-  2101		  EXIT.
-  2102
-  2103	      600-VALIDATE-TICKET.
-  2105		  EXEC CICS
-  2106                READ FILE('STF00001')
-  2107		      INTO (WS-TIX-REC)
-  2108		      RIDFLD (WS-TICKET-NUM1)
-  2109		      RESP(WS-RESPONSE-CODE)
-  2110		      EQUAL
-  2111		  END-EXEC
-  2150		  IF EIBRESP = DFHRESP(NOTFND)
-  2152		  IF EIBRESP =	       013				       R
-  2153                MOVE 'N' TO WS-VALID-TIX-FLAG
-  2154		  ELSE
-  2155                MOVE 'Y' TO WS-VALID-TIX-FLAG
-  2156		      MOVE 1 TO WS-PROG-STATE
-  2157
-  2158                IF WS-CHC2 = '- ADD TICKET'
-  2159		       IF WS-TICKET-NUM = SPACES  2160                  MOVE '0' TO WS-TICKET-NUM
-  2161		       END-IF
-  2162		      END-IF
-  2163		  END-IF.
-  2164	      600-EXIT.
-  2165		  EXIT.
-  2166
-  2167	      700-TRANSFER-PROG.
-  2168		  IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
-  2169		      MOVE TIXNOI TO WS-TICKET-NUM1
-  2170		      MOVE +0 TO EIBCALEN
-  2171                MOVE '0' TO WS-TICKET-NUM
-  2172		  ELSE
-  2173                MOVE 'N' TO WS-INIT
-  2174		      MOVE TIXNOI TO WS-TICKET-NUM1
-  2175		      PERFORM 600-VALIDATE-TICKET
-  2176		  END-IF.
-  2177	      700-EXIT.
-  2178		  EXIT.
-  2179
-  2180	      800-NEED-TIX.
-  2181            IF WS-VALID-TIX-FLAG = 'N'
-  2182		      MOVE WS-INVALID-TICKET TO ERRMSGO
-  2183		      PERFORM 600-VALIDATE-TICKET
-  2184		      PERFORM 100-SEND-MAP
-  2186		      EXEC CICS RETURN
-  2187                    TRANSID('SM00')
-  2188			  COMMAREA(WS-COMMAREA)
-  2189		      END-EXEC
-  2213		  END-IF.
-  2214	      800-EXIT.
-  2215		  EXIT.
-  2216
-  2217	      900-NO-TIX.
-  2218            IF WS-VALID-TIX-FLAG = 'Y'
-  2219		      MOVE WS-DUP-TICKET TO ERRMSGO
-  2220		      PERFORM 600-VALIDATE-TICKET
-  2221		      PERFORM 100-SEND-MAP
-  2223		      EXEC CICS RETURN
-  2224                    TRANSID('SM00')
-  2225			  COMMAREA(WS-COMMAREA)
-  2226		      END-EXEC
-  2250		  END-IF.
-  2251	      900-EXIT.
-  2252		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   20
+  1763			      ELSE
+  1765				  EXEC CICS XCTL
+  1766                                PROGRAM('UA001P')
+  1767				      COMMAREA(WS-COMMAREA)
+  1768				  END-EXEC
+  1792			      END-IF
+  1793			  END-IF
+  1794			  IF WS-CHC6 = LOW-VALUES
+  1795                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1796			      PERFORM 100-SEND-MAP
+  1797			  END-IF
+  1798		      WHEN OPTIONI = 7
+  1799                    IF WS-CHC7 = '- USER MAINTENANCE'
+  1800			      PERFORM 700-TRANSFER-PROG
+  1801			      IF EIBCALEN = +0
+  1803				  EXEC CICS XCTL
+  1804                                PROGRAM('UA001P')
+  1805				  END-EXEC
+  1824			      ELSE
+  1826				  EXEC CICS XCTL
+  1827                                PROGRAM('UA001P')
+  1828				      COMMAREA(WS-COMMAREA)
+  1829				  END-EXEC
+  1853			      END-IF
+  1854			  END-IF
+  1855			  IF WS-CHC7 = LOW-VALUES
+  1856                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1857			      PERFORM 100-SEND-MAP
+  1858			  END-IF
+  1859		      WHEN OPTIONI NOT = 1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7
+  1860			  IF WS-CHC7 = LOW-VALUES
+  1861                        MOVE 'INVALID OPTION' TO ERRMSGO
+  1862			      PERFORM 100-SEND-MAP
+  1863			  END-IF
+  1864		  END-EVALUATE
+  1865		  PERFORM 100-SEND-MAP.
+  1866	      300-EXIT.
+  1867		  EXIT.
+  1868
+  1869	      400-SEARCH-USER.
+  1871		  EXEC CICS ASSIGN  1872		      USERID(WS-USERID)
+  1873		  END-EXEC
+  1892		  EXEC CICS
+  1893                READ FILE('UAF00001')
+  1894		      INTO (WS-USER-REC)
+  1895		      RIDFLD (WS-USERID)
+  1896		      RESP(WS-RESPONSE-CODE)
+  1897		      GTEQ
+  1898		  END-EXEC
+  1936            IF WS-RESPONSE-CODE NOT = +00 OR (REQUESTOR = 'N' AND
+  1937                                      SERVICE-PROVIDER = 'N' AND APPROVER
+  1938                                          = 'N' AND ADMINISTRATOR = 'N')
+  1940		      EXEC CICS SEND TEXT
+  1941			  FROM (WS-INVALID)
+  1942			  LENGTH (+25)
+  1943			  ERASE
+  1944		      END-EXEC
+  1975		      EXEC CICS RETURN END-EXEC
+  1988		  ELSE
+  1989		   MOVE WS-USERID TO USERID
+  1990		   MOVE 1 TO WS-PROG-STATE
+  1991		  END-IF
+  1992            IF REQUESTOR = 'Y'
+  1993                MOVE '- SEARCH TICKET' TO WS-CHOICE
+  1994		      PERFORM 500-MOVE-CHOICE-VAL
+  1995                MOVE '- ADD TICKET' TO WS-CHOICE
+  1996		      PERFORM 500-MOVE-CHOICE-VAL
+  1997                MOVE '- UPDATE TICKET' TO WS-CHOICE
+  1998		      PERFORM 500-MOVE-CHOICE-VAL
+  1999                MOVE '- CLOSE TICKET' TO WS-CHOICE
+  2000		      PERFORM 500-MOVE-CHOICE-VAL
+  2001                MOVE '- CANCEL TICKET' TO WS-CHOICE
+  2002		      PERFORM 500-MOVE-CHOICE-VAL
+  2003		  END-IF
+  2004            IF SERVICE-PROVIDER = 'Y'
+  2005                IF NOT REQUESTOR = 'Y'
+  2006                    MOVE '- SEARCH TICKET' TO WS-CHOICE
+  2007			  PERFORM 500-MOVE-CHOICE-VAL
+  2008                    MOVE '- UPDATE TICKET' TO WS-CHOICE
+  2009			  PERFORM 500-MOVE-CHOICE-VAL
+  2010		      ELSE
+  2011			  CONTINUE
+  2012		      END-IF
+  2013		  END-IF
+  2014            IF APPROVER = 'Y'
+  2015                IF NOT (REQUESTOR = 'Y' OR SERVICE-PROVIDER = 'Y')
+  2016                    MOVE '- SEARCH TICKET' TO WS-CHOICE
+  2017			  PERFORM 500-MOVE-CHOICE-VAL
+  2018		      ELSE
+  2019                    MOVE '- APPROVE TICKET' TO WS-CHOICE
+  2020			  PERFORM 500-MOVE-CHOICE-VAL
+  2021		      END-IF
+  2022		  END-IF
+  2023            IF ADMINISTRATOR = 'Y'
+  2024                MOVE '- USER MAINTENANCE' TO WS-CHOICE
+  2025		      PERFORM 500-MOVE-CHOICE-VAL
+  2026		  END-IF.
+  2027	      400-EXIT.
+  2028		  EXIT.
+  2029  2030	      500-MOVE-CHOICE-VAL.
+  2031		  EVALUATE TRUE
+  2032		      WHEN OPTCHC1O = LOW-VALUES
+  2033			  MOVE WS-INDEX TO OPTNO1O
+  2034			  MOVE WS-CHOICE TO OPTCHC1O
+  2035			  MOVE WS-CHOICE TO WS-CHC1
+  2036			  ADD 1 TO WS-INDEX
+  2037		      WHEN OPTCHC2O = LOW-VALUES
+  2038			  MOVE WS-INDEX TO OPTNO2O
+  2039			  MOVE WS-CHOICE TO OPTCHC2O
+  2040			  MOVE WS-CHOICE TO WS-CHC2
+  2041			  ADD 1 TO WS-INDEX
+  2042		      WHEN OPTCHC3O = LOW-VALUES
+  2043			  MOVE WS-INDEX TO OPTNO3O
+  2044			  MOVE WS-CHOICE TO OPTCHC3O
+  2045			  MOVE WS-CHOICE TO WS-CHC3
+  2046			  ADD 1 TO WS-INDEX
+  2047		      WHEN OPTCHC4O = LOW-VALUES
+  2048			  MOVE WS-INDEX TO OPTNO4O
+  2049			  MOVE WS-CHOICE TO OPTCHC4O
+  2050			  MOVE WS-CHOICE TO WS-CHC4
+  2051			  ADD 1 TO WS-INDEX
+  2052		      WHEN OPTCHC5O = LOW-VALUES
+  2053			  MOVE WS-INDEX TO OPTNO5O
+  2054			  MOVE WS-CHOICE TO OPTCHC5O
+  2055			  MOVE WS-CHOICE TO WS-CHC5
+  2056			  ADD 1 TO WS-INDEX
+  2057		      WHEN OPTCHC6O = LOW-VALUES
+  2058			  MOVE WS-INDEX TO OPTNO6O
+  2059			  MOVE WS-CHOICE TO OPTCHC6O
+  2060			  MOVE WS-CHOICE TO WS-CHC6
+  2061			  ADD 1 TO WS-INDEX
+  2062		      WHEN OPTCHC7O = LOW-VALUES
+  2063			  MOVE WS-INDEX TO OPTNO7O
+  2064			  MOVE WS-CHOICE TO OPTCHC7O
+  2065			  MOVE WS-CHOICE TO WS-CHC7
+  2066			  ADD 1 TO WS-INDEX
+  2067		  END-EVALUATE.
+  2068	      500-EXIT.
+  2069		  EXIT.
+  2070
+  2071	      600-VALIDATE-TICKET.
+  2073		  EXEC CICS
+  2074                READ FILE('STF00001')
+  2075		      INTO (WS-TIX-REC)
+  2076		      RIDFLD (WS-TICKET-NUM1)
+  2077		      RESP(WS-RESPONSE-CODE)
+  2078		      EQUAL
+  2079		  END-EXEC
+  2118		  IF EIBRESP = DFHRESP(NOTFND)
+  2120		  IF EIBRESP =	       013				       R
+  2121                MOVE 'N' TO WS-VALID-TIX-FLAG
+  2122		  ELSE
+  2123                MOVE 'Y' TO WS-VALID-TIX-FLAG
+  2124		      MOVE 1 TO WS-PROG-STATE
+  2125
+  2126                IF WS-CHC2 = '- ADD TICKET'
+  2127		       IF WS-TICKET-NUM = SPACES
+  2128                  MOVE '0' TO WS-TICKET-NUM
+  2129		       END-IF  2130		      END-IF
+  2131		  END-IF.
+  2132	      600-EXIT.
+  2133		  EXIT.
+  2134
+  2135	      700-TRANSFER-PROG.
+  2136		  IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
+  2137		      MOVE TIXNOI TO WS-TICKET-NUM1
+  2138		      MOVE +0 TO EIBCALEN
+  2139                MOVE '0' TO WS-TICKET-NUM
+  2140		  ELSE
+  2141                MOVE 'N' TO WS-INIT
+  2142		      MOVE TIXNOI TO WS-TICKET-NUM1
+  2143		      PERFORM 600-VALIDATE-TICKET
+  2144		  END-IF.
+  2145	      700-EXIT.
+  2146		  EXIT.
+  2147
+  2148	      800-NEED-TIX.
+  2149            IF WS-VALID-TIX-FLAG = 'N'
+  2150		      MOVE WS-INVALID-TICKET TO ERRMSGO
+  2151		      PERFORM 600-VALIDATE-TICKET
+  2152		      PERFORM 100-SEND-MAP
+  2154		      EXEC CICS RETURN
+  2155                    TRANSID('SM00')
+  2156			  COMMAREA(WS-COMMAREA)
+  2157		      END-EXEC
+  2181		  END-IF.
+  2182	      800-EXIT.
+  2183		  EXIT.
+  2184
+  2185	      900-NO-TIX.
+  2186            IF WS-VALID-TIX-FLAG = 'Y'
+  2187		      MOVE WS-DUP-TICKET TO ERRMSGO
+  2188		      PERFORM 600-VALIDATE-TICKET
+  2189		      PERFORM 100-SEND-MAP
+  2191		      EXEC CICS RETURN
+  2192                    TRANSID('SM00')
+  2193			  COMMAREA(WS-COMMAREA)
+  2194		      END-EXEC
+  2218		  END-IF.
+  2219	      900-EXIT.
+  2220		  EXIT.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm000p.cic     PAGE   20
 
 
 
@@ -1133,9 +1131,9 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
-			Source lines compiled:	    2263
+			Source lines compiled:	    2231
 			Compilation time (mm:ss.ss):  0:00.06
-			Compilation speed (lines/minute): 63000
+			Compilation speed (lines/minute): 31000
 
-			Compilation date (yy/mm/dd): 23/12/01
-			     Time of day (hh:mm:ss): 15:52:43
+			Compilation date (yy/mm/dd): 23/12/04
+			     Time of day (hh:mm:ss): 09:33:39
