@@ -1,9 +1,11 @@
-Record Type: Text, 23/12/04, 12:29:29:97
-Abend Detected in Program:SM001P module:SM001P Line:543
-ABCODE:RCTL EIBRESP:01 EIBRESP2:00
+Record Type: Message, 23/12/04, 15:23:03:30
+CACX0026E: Load of Program SM000P failed. ResultCode:66
 
-Record Type: TCB, 23/12/04, 12:29:29:97
-000000 14 00 01 03 14 00 B4 00 14 00 E7 02 14 00 FC 02 ................
-000016 3C 1A B3 00 00 00 00 00 00 00 00 00 54 44 00 00 <...........TD..
-000032 00 00 00 01 43 42 52 4B FF FF FF FF 00 00 00 00 ....CBRK........
-000048 00 00 00 00 00 00 53 4D 30 30 31 50 20 20 01    ......SM001P  .
+Record Type: Text, 23/12/04, 15:23:03:32
+CACX0004E: 15:23:03 Transaction SM00 failed. ProgID SM000P did not load.
+
+Record Type: Message, 23/12/04, 15:23:05:30
+CACX0026E: Load of Program SM000P failed. ResultCode:66
+
+Record Type: Text, 23/12/04, 15:23:05:32
+CACX0004E: 15:23:05 Transaction SM00 failed. ProgID SM000P did not load.

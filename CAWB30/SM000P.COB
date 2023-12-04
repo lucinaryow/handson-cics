@@ -183,18 +183,11 @@
                    MOVE DFHBMBRY TO OPTIONA
                WHEN OPTIONI = 1
                    IF WS-CHC1 = '- USER MAINTENANCE'
-                       PERFORM 700-TRANSFER-PROG
-                       IF EIBCALEN = +0
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                           END-EXEC
-                       ELSE
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                               COMMAREA(WS-COMMAREA)
-                           END-EXEC
-                       END-IF
-                   END-IF  
+                       MOVE +0 TO EIBCALEN
+                       EXEC CICS XCTL 
+                           PROGRAM('UA001P')
+                       END-EXEC
+                   END-IF
                    IF WS-CHC1 = '- SEARCH TICKET'
                        EXEC CICS XCTL 
                            PROGRAM('SM001P')
@@ -255,18 +248,11 @@
                    END-IF  
                WHEN OPTIONI = 3
                    IF WS-CHC3 = '- USER MAINTENANCE'
-                       PERFORM 700-TRANSFER-PROG
-                       IF EIBCALEN = +0
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                           END-EXEC
-                       ELSE 
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                               COMMAREA(WS-COMMAREA)
-                           END-EXEC
-                       END-IF
-                   END-IF  
+                       MOVE +0 TO EIBCALEN
+                       EXEC CICS XCTL 
+                           PROGRAM('UA001P')
+                       END-EXEC
+                   END-IF
                    IF WS-CHC3 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
                        IF TIXNOL NOT = +0
@@ -306,18 +292,11 @@
                    END-IF
                WHEN OPTIONI = 4 
                    IF WS-CHC4 = '- USER MAINTENANCE'
-                       PERFORM 700-TRANSFER-PROG
-                       IF EIBCALEN = +0
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                           END-EXEC
-                       ELSE
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                               COMMAREA(WS-COMMAREA)
-                           END-EXEC
-                       END-IF
-                   END-IF  
+                       MOVE +0 TO EIBCALEN
+                       EXEC CICS XCTL 
+                           PROGRAM('UA001P')
+                       END-EXEC
+                   END-IF
                    IF WS-CHC4 = '- CLOSE TICKET'
                        PERFORM 700-TRANSFER-PROG
                        IF TIXNOL NOT = +0
@@ -378,36 +357,22 @@
                        END-IF
                    END-IF  
                    IF WS-CHC6 = '- USER MAINTENANCE'
-                       PERFORM 700-TRANSFER-PROG
-                       IF EIBCALEN = +0
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                           END-EXEC
-                       ELSE
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                               COMMAREA(WS-COMMAREA)
-                           END-EXEC
-                       END-IF
-                   END-IF  
+                       MOVE +0 TO EIBCALEN
+                       EXEC CICS XCTL 
+                           PROGRAM('UA001P')
+                       END-EXEC
+                   END-IF
                    IF WS-CHC6 = LOW-VALUES
                        MOVE 'INVALID OPTION' TO ERRMSGO
                        PERFORM 100-SEND-MAP
                    END-IF
                WHEN OPTIONI = 7 
                    IF WS-CHC7 = '- USER MAINTENANCE'
-                       PERFORM 700-TRANSFER-PROG
-                       IF EIBCALEN = +0
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                           END-EXEC
-                       ELSE
-                           EXEC CICS XCTL 
-                               PROGRAM('UA001P')
-                               COMMAREA(WS-COMMAREA)
-                           END-EXEC
-                       END-IF
-                   END-IF  
+                       MOVE +0 TO EIBCALEN
+                       EXEC CICS XCTL 
+                           PROGRAM('UA001P')
+                       END-EXEC
+                   END-IF
                    IF WS-CHC7 = LOW-VALUES
                        MOVE 'INVALID OPTION' TO ERRMSGO
                        PERFORM 100-SEND-MAP
