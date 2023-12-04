@@ -96,6 +96,9 @@
          DFHSNT TYPE=ENTRY,USERID=ISCB132
          DFHSNT TYPE=FINAL                                              
          DFHSNT TYPE=INITIAL
+         DFHSNT TYPE=ENTRY,USERID=ISCB200
+         DFHSNT TYPE=FINAL                                              
+         DFHSNT TYPE=INITIAL
          DFHSNT TYPE=ENTRY,USERID=ISCB150
          DFHSNT TYPE=FINAL                                              CASAMPLE
          DFHSNT TYPE=ENTRY,USERID=XXXX823

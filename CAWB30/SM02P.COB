@@ -197,28 +197,36 @@
            IF EIBAID = DFHENTER
             IF WS-PROG-STATE = '2' 
              
-
               IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
                MOVE 'TITLE AND DESCRIPTION IS REQUIRED' TO ERRMSGO
-               MOVE 3 TO WS-PROG-STATE
+               MOVE 2 TO WS-PROG-STATE
               END-IF
 
               IF TIXTTLI = SPACES AND TIXDESC1I NOT = SPACES
                MOVE 'TITLE IS REQUIRED' TO ERRMSGO
-               MOVE 3 TO WS-PROG-STATE
+               MOVE 2 TO WS-PROG-STATE
               END-IF
 
               IF TIXTTLI NOT = SPACES AND TIXDESC1I = SPACES
                MOVE 'DESCRIPTION IS REQUIRED' TO ERRMSGO
-               MOVE 3 TO WS-PROG-STATE
+               MOVE 2 TO WS-PROG-STATE
               END-IF
               
               IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES
                MOVE 'PRESS PF2 TO ADD TICKET' TO ERRMSGO
-               MOVE 3 TO WS-PROG-STATE
+               MOVE 2 TO WS-PROG-STATE
               END-IF
-
-
+ 
+            ELSE IF WS-PROG-STATE = '3'
+              
+              MOVE 2 TO WS-PROG-STATE
+              MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
+              MOVE SPACES TO TIXTTLI
+              MOVE SPACES TO TIXDESC1I
+              MOVE SPACES TO TIXDESC2I
+              MOVE SPACES TO STATI
+              PERFORM 300-READ-STF1
+              PERFORM 110-NEW-MAP 
 
             ELSE
             
@@ -250,6 +258,7 @@
             END-IF
 
            END-IF 
+           END-IF
            
            IF EIBAID = DFHPF2
             IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
@@ -264,86 +273,121 @@
              MOVE 'INVALID SPACES' TO ERRMSGO
              PERFORM 110-NEW-MAP
             ELSE
-          
-             MOVE DFHDFHI TO UPDREMA
-             MOVE DFHDFHI TO UPDDTA
-             MOVE DFHDFHI TO UPDBY1A
-             MOVE DFHDFHI TO UPDRMKA
-             MOVE DFHDFHI TO UPDRMK1A
-             MOVE DFHDFHI TO DATE1A
-             MOVE DFHDFHI TO TIME1A
-             MOVE DFHDFHI TO UPDBY2A
+             IF WS-PROG-STATE = '2'
+              MOVE DFHDFHI TO UPDREMA
+              MOVE DFHDFHI TO UPDDTA
+              MOVE DFHDFHI TO UPDBY1A
+              MOVE DFHDFHI TO UPDRMKA
+              MOVE DFHDFHI TO UPDRMK1A
+              MOVE DFHDFHI TO DATE1A
+              MOVE DFHDFHI TO TIME1A
+              MOVE DFHDFHI TO UPDBY2A
              
-             MOVE SPACES TO WS-STF01TCKREQ
-             MOVE SPACES TO WS-STF01TCKSTAT
-             MOVE SPACES TO WS-STF01TCKTTL
-             MOVE SPACES TO WS-STF01TCKDESC
-             MOVE SPACES TO WS-STF01LSTUPD
-             MOVE SPACES TO WS-STF01LSTUPDBY
-             MOVE SPACES TO WS-STF01LSTUPDRMK
+              MOVE SPACES TO WS-STF01TCKREQ
+              MOVE SPACES TO WS-STF01TCKSTAT
+              MOVE SPACES TO WS-STF01TCKTTL
+              MOVE SPACES TO WS-STF01TCKDESC
+              MOVE SPACES TO WS-STF01LSTUPD
+              MOVE SPACES TO WS-STF01LSTUPDBY
+              MOVE SPACES TO WS-STF01LSTUPDRMK
 
-             MOVE TIXTTLI TO WS-STF01TCKTTL
-             MOVE TIXDESC1O TO WS-STF01TCKDESC(1:50)
-             MOVE TIXDESC2O TO WS-STF01TCKDESC(51:50)
-             MOVE 'CREATED' TO STATI
-             MOVE STATI TO WS-STF01TCKSTAT
-             MOVE 'TICKET CREATED' TO UPDRMKI
-             MOVE UPDRMKI TO WS-STF01LSTUPDRMK(1:25)
-             MOVE UPDRMK1I TO WS-STF01LSTUPDRMK(26:25)
-             MOVE WS-USERID1 TO UPDBY2I
-             MOVE WS-USERID1 TO WS-STF01TCKREQ
-             MOVE WS-USERID1 TO WS-STF01LSTUPDBY
-             MOVE TIXNUMO TO WS-STF01TCKID
+              MOVE TIXTTLI TO WS-STF01TCKTTL
+              MOVE TIXDESC1O TO WS-STF01TCKDESC(1:50)
+              MOVE TIXDESC2O TO WS-STF01TCKDESC(51:50)
+              MOVE 'CREATED' TO STATI
+              MOVE STATI TO WS-STF01TCKSTAT
+              MOVE 'TICKET CREATED' TO UPDRMKI
+              MOVE UPDRMKI TO WS-STF01LSTUPDRMK(1:25)
+              MOVE UPDRMK1I TO WS-STF01LSTUPDRMK(26:25)
+              MOVE WS-USERID1 TO UPDBY2I
+              MOVE WS-USERID1 TO WS-STF01TCKREQ
+              MOVE WS-USERID1 TO WS-STF01LSTUPDBY
+              MOVE TIXNUMO TO WS-STF01TCKID
              
-             MOVE EIBDATE TO WS-HDATE
-             EXEC CICS ASKTIME
-              ABSTIME (WS-HTIME)
-             END-EXEC
+              MOVE EIBDATE TO WS-HDATE
+              EXEC CICS ASKTIME
+               ABSTIME (WS-HTIME)
+              END-EXEC
 
-             EXEC CICS FORMATTIME
-              ABSTIME (WS-HTIME)
-              DATESEP ('/')
-              MMDDYYYY (WS-HDATE-X)
-              TIME (WS-HTIME)
-              TIMESEP (':')
-             END-EXEC
+              EXEC CICS FORMATTIME
+               ABSTIME (WS-HTIME)
+               DATESEP ('/')
+               MMDDYYYY (WS-HDATE-X)
+               TIME (WS-HTIME)
+               TIMESEP (':')
+              END-EXEC
              
-             MOVE WS-HDATE-X TO WS-STF01LSTUPD(1:10)
-             MOVE WS-HDATE-X TO DATE1O
-             MOVE WS-HTIME-X TO WS-STF01LSTUPD(11:10)
-             MOVE WS-HTIME-X TO TIME1O
+              MOVE WS-HDATE-X TO WS-STF01LSTUPD(1:10)
+              MOVE WS-HDATE-X TO DATE1O
+              MOVE WS-HTIME-X TO WS-STF01LSTUPD(11:10)
+              MOVE WS-HTIME-X TO TIME1O
              
-             EXEC CICS
-              WRITE FILE('STf00001')
-              FROM (WS-FIELD01)
-              RIDFLD (WS-STF01TCKID)
-              RESP(WS-RES-CODE)
-             END-EXEC
-             END-IF
-
-             IF EIBRESP NOT = DFHRESP(NORMAL)
-              MOVE 'TICKET NOT CREATED' TO ERRMSGO
-             ELSE
-              MOVE 'TICKET CREATED, PRESS ENTER TO CREATE NEW TICKET' 
-              TO ERRMSGO
-              PERFORM 400-CREATE-LOG
-              MOVE SPACES TO WS-FIELD01
-              MOVE DFHBMPRO TO TIXTTLA
-              MOVE DFHBMPRO TO TIXDESC1A
-              MOVE DFHBMPRO TO TIXDESC2A
-              MOVE DFHBMPRO TO STATA
-              MOVE DFHBMPRO TO UPDRMKA
-              MOVE DFHBMPRO TO UPDRMK1A
-              MOVE DFHBMPRO TO DATE1A
-              MOVE DFHBMPRO TO TIME1A
-              MOVE DFHBMPRO TO UPDBY2A
-              MOVE 1 TO WS-PROG-STATE
+              EXEC CICS
+               WRITE FILE('STf00001')
+               FROM (WS-FIELD01)
+               RIDFLD (WS-STF01TCKID)
+               RESP(WS-RES-CODE)
+              END-EXEC
               
-             END-IF
-             
-           
-           END-IF.
 
+              IF EIBRESP NOT = DFHRESP(NORMAL)
+               MOVE 'TICKET NOT CREATED' TO ERRMSGO
+              ELSE
+               MOVE 'TICKET CREATED, PRESS ENTER TO CREATE NEW TICKET' 
+               TO ERRMSGO
+               PERFORM 400-CREATE-LOG
+               MOVE SPACES TO WS-FIELD01
+               MOVE DFHBMPRO TO TIXTTLA
+               MOVE DFHBMPRO TO TIXDESC1A
+               MOVE DFHBMPRO TO TIXDESC2A
+               MOVE DFHBMPRO TO STATA
+               MOVE DFHBMPRO TO UPDRMKA
+               MOVE DFHBMPRO TO UPDRMK1A
+               MOVE DFHBMPRO TO DATE1A
+               MOVE DFHBMPRO TO TIME1A
+               MOVE DFHBMPRO TO UPDBY2A
+               MOVE 3 TO WS-PROG-STATE
+              
+              END-IF
+             ELSE
+              IF WS-PROG-STATE = '3'
+               MOVE DFHDFHI TO UPDREMA
+               MOVE DFHDFHI TO UPDDTA
+               MOVE DFHDFHI TO UPDBY1A
+               MOVE DFHDFHI TO UPDRMKA
+               MOVE DFHDFHI TO UPDRMK1A
+               MOVE DFHDFHI TO DATE1A
+               MOVE DFHDFHI TO TIME1A
+               MOVE DFHDFHI TO UPDBY2A
+
+               MOVE DFHBMPRO TO TIXTTLA
+               MOVE DFHBMPRO TO TIXDESC1A
+               MOVE DFHBMPRO TO TIXDESC2A
+
+               MOVE WS-TICKET-NUM TO TIXNUMO
+               MOVE WS-TCKTTL TO TIXTTLO
+               MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+               MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+               MOVE WS-TCKSTAT TO STATO
+               MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+               MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+               MOVE WS-LSTUPD(1:10) TO DATE1O
+               MOVE WS-LSTUPD(11:10) TO TIME1O 
+               MOVE WS-STUPDBY TO UPDBY2O 
+               MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+               PERFORM 110-NEW-MAP
+              ELSE
+               MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+               MOVE WS-TICKET-NUM TO TIXNUMO
+               MOVE WS-TCKTTL TO TIXTTLO
+               MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+               MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+               PERFORM 110-NEW-MAP
+             
+              END-IF
+             END-IF 
+             END-IF
+           END-IF.
 
        
        300-READ-STF1.
@@ -418,7 +462,7 @@
            END-IF
            
            IF EIBAID = DFHPF5 
-            MOVE SPACES TO ERRMSGO
+            MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
             MOVE SPACES TO TIXTTLO
             MOVE SPACES TO TIXDESC1O
             MOVE SPACES TO TIXDESC2O
@@ -431,7 +475,7 @@
            OR EIBAID = DFHPF4 OR EIBAID = DFHPF6 OR EIBAID = DFHPF7
            OR EIBAID = DFHPF8 OR EIBAID = DFHPF9 OR EIBAID = DFHPF10
            OR EIBAID = DFHPF11 OR EIBAID = DFHPF12
-            IF WS-PROG-STATE = '1'
+            IF WS-PROG-STATE = '1' OR '3'
              MOVE DFHDFHI TO UPDREMA
              MOVE DFHDFHI TO UPDDTA
              MOVE DFHDFHI TO UPDBY1A

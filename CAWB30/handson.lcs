@@ -97,6 +97,9 @@
 	 DFHSNT TYPE=ENTRY,USERID=ISCB132
 	 DFHSNT TYPE=FINAL
 	 DFHSNT TYPE=INITIAL
+	 DFHSNT TYPE=ENTRY,USERID=ISCB200
+	 DFHSNT TYPE=FINAL
+	 DFHSNT TYPE=INITIAL
 	 DFHSNT TYPE=ENTRY,USERID=ISCB150
 	 DFHSNT TYPE=FINAL						CASAMPLE
 	 DFHSNT TYPE=ENTRY,USERID=XXXX823
@@ -115,10 +118,10 @@
 	       FILE=NAMEFILE,					       CCASAMPLE
 	       KEY=(4,0),					       CCASAMPLE
 	       RECLEN=00414,					       CCASAMPLE
-	       ACCMETH=KSDS,					       CCASAMPLE
+	       ACCMETH=KSDS,					       CCASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
 	       PROCESS=STANDARD,				       CCASAMPLE
                FILENAME='NAMEFILE.DAT',                                CCASAMPLE
-	       CREATE=NO						CASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
+	       CREATE=NO						CASAMPLE
 *SHORT NAME key to MASTER FILE Alt KEY #1				CASAMPLE
 	 DFHFCT TYPE=FILE,					       CCASAMPLE
 	       FILE=SHORTNAM,					       CCASAMPLE
@@ -175,10 +178,10 @@
 	 DFHXFT TYPE=FILE,					       CCASAMPLE
 	       FILE=UAF00001,					       CCASAMPLE
 	       KEY=(8,0),					       CCASAMPLE
-	       RECLEN=00020,					       CCASAMPLE
+	       RECLEN=00020,					       CCASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
 	       ACCMETH=KSDS,					       CCASAMPLE
 	       PROCESS=STANDARD,				       CCASAMPLE
-               FILENAME='UAF00001.DAT',                                CCASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
+               FILENAME='UAF00001.DAT',                                CCASAMPLE
 	       CREATE=NO						CASAMPLE
 *TICKET File								CASAMPLE
 	 DFHFCT TYPE=FILE,					       CCASAMPLE
@@ -235,18 +238,14 @@
 	       MAPSET=SM006S						CASAMPLE
 	 DFHPPT TYPE=ENTRY,					       CCASAMPLE
 	       MAPSET=SW00S						CASAMPLE
-	 DFHPPT TYPE=ENTRY,					       CCASAMPLE
+	 DFHPPT TYPE=ENTRY,					       CCASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
 	       MAPSET=SM002						CASAMPLE
 	 DFHPPT TYPE=ENTRY,					       CCASAMPLE
-<<<<<<< HEAD
-	       MAPSET=SM003						CASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
+	       MAPSET=SM003						CASAMPLE
 	  DFHPPT TYPE=ENTRY,					       CCASAMPLE
 	       MAPSET=SM004S						CASAMPLE
 	 DFHPPT TYPE=ENTRY,					       CCASAMPLE
 	       MAPSET=UA001S						CASAMPLE
-=======
-	       MAPSET=UA001S						CASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 	 DFHPPT TYPE=ENTRY,					       CCASAMPLE
 	       MAPSET=UA002S						CASAMPLE
 *Sample MENU								CASAMPLE
@@ -299,18 +298,14 @@
 	       GROUP=CASAMPLE						CASAMPLE
 *Printer Terminal							CASAMPLE
 	 DFHTCT TYPE=TERMINAL,					       CCASAMPLE
-	       TRMIDNT=P001,					       CCASAMPLE
+	       TRMIDNT=P001,					       CCASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
 	       TRMTYPE=SCSPRT,					       CCASAMPLE
 	       DEFSCRN=(60,80), 				       CCASAMPLE
-	       PGESIZE=(60,80)						CASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
+	       PGESIZE=(60,80)						CASAMPLE
 *For Sample Application 						CASAMPLE
 	 DFHTCT TYPE=TERMINAL,					       CCASAMPLE
 	       TRMIDNT=T001,					       CCASAMPLE
-<<<<<<< HEAD
 	       TRMTYPE=3270,					       CCASAMPLE
-=======
-	       TRMTYPE=3270,					       CCASAMPLECA-Realia CICS RDT Import Utility Version 6.0.27 C:\handson-cics\CAWB30\handson.rdt
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
 	       DEFSCRN=(24,80), 				       CCASAMPLE
 	       FEATURE=(COLOR,EXTDS,HILIGHT,UCTRAN,AUDALARM)		CASAMPLE
 *Alt1 Sample Application						CASAMPLE

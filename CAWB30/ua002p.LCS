@@ -50,28 +50,29 @@
     47		 05  WS-APP		     PIC X.
     48		 05  WS-SP		     PIC X.
     49		 05  WS-UPBY		     PIC X(08).
-    50	     01  WS-COMMAREA.
-    51			 05 WS-DFHSTATE PIC X(15).
-    52	     01  WS-LITERALS.
-    53		 05  WS-AFTER-ADD.
-    54			 10 FILLER PIC X(21) VALUE
-    55                           'USER ID CREATED,PRESS'.
-    56				 10 FILLER PIC X(32) VALUE
-    57                           ' ENTER TO CREATE ANOTHER USER ID'.
-    58			 05  WS-INVALID-ACCESS PIC X(14) VALUECA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
+    50	     01  WS-ERROR-COUNT 	     PIC 9.
+    51	     01  WS-COMMAREA.
+    52			 05 WS-DFHSTATE PIC X(15).
+    53	     01  WS-LITERALS.
+    54		 05  WS-AFTER-ADD.
+    55			 10 FILLER PIC X(21) VALUE
+    56                           'USER ID CREATED,PRESS'.
+    57				 10 FILLER PIC X(32) VALUE
+    58                           ' ENTER TO CREATE ANOTHER USER ID'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
-    59                       'INVALID ACCESS'.
-    60			 05  WS-DUP-REC PIC X(47) VALUE
-    61                      'DUPLICATE USER FOUND, PLEASE ENTER ANOTHER USER'.
-    62			 05  WS-INITIAL PIC X(32) VALUE
-    63              'ENTER USER DETAILS AND PRESS PF2'.
-    64	     01  WS-SWITCHES.
-    65		     05  WS-EMPTY		 PIC X.
-    66			 05  WS-VALIDF		     PIC X.
-    67	    *
-    68	    PCOPY UA002S.
-    68	    *$PP-START-COPY C:\handson-cics\CAWB30\UA002S.COB
+    59			 05  WS-INVALID-ACCESS PIC X(14) VALUE
+    60                       'INVALID ACCESS'.
+    61			 05  WS-DUP-REC PIC X(47) VALUE
+    62                      'DUPLICATE USER FOUND, PLEASE ENTER ANOTHER USER'.
+    63			 05  WS-INITIAL PIC X(32) VALUE
+    64              'ENTER USER DETAILS AND PRESS PF2'.
+    65	     01  WS-SWITCHES.
+    66		     05  WS-EMPTY		 PIC X.
+    67			 05  WS-VALIDF		     PIC X.
+    68	    *
+    69	    PCOPY UA002S.
+    69	    *$PP-START-COPY C:\handson-cics\CAWB30\UA002S.COB
      1	    * SYMBOLIC MAP of ua002s Created by CACXBMS Version 6.0.27
      2	     01  UA002MI.
      3		 02  FILLER				    PIC X(12).
@@ -117,10 +118,10 @@
     43		 02  ERRMSGI				    PIC X(071).
     44	     01  UA002MO REDEFINES UA002MI.
     45		 02  FILLER				    PIC X(12).
-    46		 02  FILLER				    PIC XX.
-    47		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
+    46		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
+    47		 02  FILLER				    PIC X.
     48		 02  DATEO				    PIC X(010).
     49		 02  FILLER				    PIC XX.
     50		 02  FILLER				    PIC X.
@@ -143,8 +144,7 @@
     67		 02  FILLER				    PIC XX.
     68		 02  FILLER				    PIC X.
     69		 02  ERRMSGO				    PIC X(071).
-    68	    *$PP-END-COPY
-    69
+    69	    *$PP-END-COPY
     70	    *
     71	    PCOPY DFHAID.
     71	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
@@ -208,7 +208,7 @@
     56		 05  DFHNULL		       PIC X VALUE LOW-VALUE.
     71	    *$PP-END-COPY
     72	    *
-    73	    P  COPY DFHBMSCA.
+    73	    PCOPY DFHBMSCA.
     73	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
      1	     01  DFHBMSCA.
      2	    *
@@ -541,246 +541,262 @@
    103		      IF  NOT EIBRESP = DFHRESP(MAPFAIL)CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
-   104			  EVALUATE EIBAID
-   105
-   106					       WHEN DFHENTER
-   107						  PERFORM 200-WHEN-ENTER
-   108					       WHEN DFHPF2
-   109						  PERFORM 210-WHEN-F2
-   110			   WHEN DFHPF3
-   111
-   112			      EXEC CICS RETURN
-   113                                                   TRANSID('UA01')
-   114						  END-EXEC
-   115			   WHEN DFHPF5
-   116			      PERFORM 220-WHEN-F5
-   117			   WHEN OTHER
-   118                        MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
-   119			  END-EVALUATE
-   120		     ELSE
-   121			 PERFORM 100-NEW-MAP
-   122		     END-IF
-   123		 END-IF.
+   104			  EVALUATE WS-DFHSTATE
+   105                                        WHEN 'DATA ENTRY'
+   106					       PERFORM 200-WHEN-DATA-ENTRY
+   107                                        WHEN 'READY TO ADD'
+   108					       PERFORM 710-PROTECT-FIELDS
+   109					       PERFORM 210-WHEN-READY-TO-ADD
+   110                                        WHEN 'AFTER ADD'
+   111					       PERFORM 710-PROTECT-FIELDS
+   112					       PERFORM 220-WHEN-AFTER-ADD
+   113					      END-EVALUATE
+   114		     ELSE
+   115			 PERFORM 100-NEW-MAP
+   116		     END-IF
+   117		 END-IF.
+   118
+   119
+   120	     100-NEW-MAP SECTION.
+   121		 EXEC CICS ASSIGN
+   122		     USERID(WS-USERID)
+   123		 END-EXEC
    124
-   125
-   126	     100-NEW-MAP SECTION.
-   127		 EXEC CICS ASSIGN
-   128		     USERID(WS-USERID)
-   129		 END-EXEC
-   130
-   131		 EXEC CICS ASKTIME
-   132		     ABSTIME  (WS-TIME)
-   133		 END-EXEC
-   134
-   135		 EXEC CICS FORMATTIME
-   136		     ABSTIME  (WS-TIME)
-   137               DATESEP  ('/')
-   138		     DDMMYYYY	(DATEO)
-   139               TIMESEP    (':')
-   140		     TIME	(TIMEO)
-   141		 END-EXEC
-   142
-   143		 EXEC CICS
-   144               SEND MAP ('UA002M')
-   145               MAPSET ('UA002S')
-   146		     FROM (UA002MO)
-   147		     LENGTH(WS-LENGTH)
-   148		     ERASE
-   149		 END-EXEC
-   150
-   151		 EXEC CICS RETURN
-   152               TRANSID('UA02')
-   153		     COMMAREA(WS-COMMAREA)
-   154		 END-EXEC.
-   155
-   156	     110-CHECKUSER SECTION.
-   157		 EXEC CICS ASSIGN
-   158		     USERID(WS-USERID)
-   159		 END-EXEC
-   160			 EXEC CICS
-   161                READ FILE('uaf00001')CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
+   125		 EXEC CICS ASKTIME
+   126		     ABSTIME  (WS-TIME)
+   127		 END-EXEC
+   128
+   129		 EXEC CICS FORMATTIME
+   130		     ABSTIME  (WS-TIME)
+   131               DATESEP  ('/')
+   132		     DDMMYYYY	(DATEO)
+   133               TIMESEP    (':')
+   134		     TIME	(TIMEO)
+   135		 END-EXEC
+   136
+   137		 EXEC CICS
+   138               SEND MAP ('UA002M')
+   139               MAPSET ('UA002S')
+   140		     FROM (UA002MO)
+   141		     LENGTH(WS-LENGTH)
+   142		     ERASE
+   143		 END-EXEC
+   144
+   145		 EXEC CICS RETURN
+   146               TRANSID('UA02')
+   147		     COMMAREA(WS-COMMAREA)
+   148		 END-EXEC.
+   149
+   150	     110-CHECKUSER SECTION.
+   151		 EXEC CICS ASSIGN
+   152		     USERID(WS-USERID)
+   153		 END-EXEC
+   154			 EXEC CICS
+   155                READ FILE('uaf00001')
+   156		      INTO (WS-REC)
+   157		      RIDFLD (WS-USERID)
+   158		      KEYLENGTH (WS-STD-KEY-LEN)
+   159		      EQUAL
+   160		 END-EXEC
+   161CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
-   162		      INTO (WS-REC)
-   163		      RIDFLD (WS-USERID)
-   164		      KEYLENGTH (WS-STD-KEY-LEN)
-   165		      EQUAL
-   166		 END-EXEC
-   167
-   168                   IF WS-ADMN = 'N'
-   169			    EXEC CICS SEND TEXT
-   170			  FROM (WS-INVALID-ACCESS)
-   171			  LENGTH (+15)
-   172			  ERASE
-   173		     END-EXEC
-   174		     EXEC CICS RETURN
-   175		     END-EXEC
-   176			 END-IF.
-   177
-   178	     200-WHEN-ENTER SECTION.
-   179		 EVALUATE WS-DFHSTATE
-   180                   WHEN 'DATA ENTRY'
-   181				PERFORM 700-VALIDATE-FIELD
-   182                          MOVE 'PRESS PF2 TO ADD USER'
-   183				TO ERRMSGO
-   184
-   185				PERFORM 710-PROTECT-FIELDS
-   186
-   187                   WHEN 'READY TO ADD'
-   188		    PERFORM 710-PROTECT-FIELDS
-   189                          MOVE 'PRESS PF2 TO ADD USER'
-   190				TO ERRMSGO
+   162                   IF WS-ADMN = 'N'
+   163			    EXEC CICS SEND TEXT
+   164			  FROM (WS-INVALID-ACCESS)
+   165			  LENGTH (+15)
+   166			  ERASE
+   167		     END-EXEC
+   168		     EXEC CICS RETURN
+   169		     END-EXEC
+   170			 END-IF.
+   171
+   172	     200-WHEN-DATA-ENTRY SECTION.
+   173		 EVALUATE EIBAID
+   174			  WHEN DFHENTER
+   175				PERFORM 700-VALIDATE-FIELD
+   176                          MOVE 'PRESS PF2 TO ADD USER'
+   177				TO ERRMSGO
+   178			  WHEN DFHPF2
+   179				PERFORM 700-VALIDATE-FIELD
+   180                          MOVE 'PRESS PF2 TO CONFIRM ADD'
+   181				TO ERRMSGO
+   182			      WHEN DFHPF3
+   183				EXEC CICS RETURN
+   184                           TRANSID('UA01')
+   185				END-EXEC
+   186			      WHEN DFHPF5
+   187				PERFORM 720-RESET-FIELDS
+   188			      WHEN OTHER
+   189              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+   190		 END-EVALUATE.
    191
-   192           WHEN 'AFTER ADD'
-   193		    PERFORM 720-RESET-FIELDS
-   194		    MOVE WS-INITIAL TO ERRMSGO
-   195			    PERFORM 100-NEW-MAP
-   196
-   197			 END-EVALUATE.
-   198
-   199	     210-WHEN-F2 SECTION.
-   200		     EVALUATE WS-DFHSTATE
-   201                   WHEN 'DATA ENTRY'
-   202				PERFORM 700-VALIDATE-FIELD
-   203                          MOVE 'PRESS PF2 TO CONFIRM ADD'
-   204				TO ERRMSGO
-   205
-   206				PERFORM 710-PROTECT-FIELDS
+   192	     210-WHEN-READY-TO-ADD SECTION.
+   193		 EVALUATE EIBAID
+   194			  WHEN DFHENTER
+   195				PERFORM 700-VALIDATE-FIELD
+   196			  WHEN DFHPF2
+   197				PERFORM 800-WRITE-TOFILE
+   198			      WHEN DFHPF3
+   199				EXEC CICS RETURN
+   200                           TRANSID('UA01')
+   201				END-EXEC
+   202			      WHEN DFHPF5
+   203				PERFORM 720-RESET-FIELDS
+   204			      WHEN OTHER
+   205              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+   206		 END-EVALUATE.
    207
-   208                   WHEN 'READY TO ADD'
-   209
-   210				PERFORM 800-WRITE-TOFILE
-   211
-   212           WHEN 'AFTER ADD'
-   213		    PERFORM 710-PROTECT-FIELDS
-   214
-   215			 WHEN OTHER
-   216			    MOVE WS-DFHSTATE  TO ERRMSGO
-   217			 END-EVALUATE.
-   218
-   219	     220-WHEN-F5 SECTION.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
+   208	     220-WHEN-AFTER-ADD SECTION.
+   209		     EVALUATE EIBAID
+   210			  WHEN DFHENTER
+   211				PERFORM 720-RESET-FIELDS
+   212		    MOVE WS-INITIAL TO ERRMSGO
+   213			    PERFORM 100-NEW-MAP
+   214			      WHEN DFHPF3
+   215				EXEC CICS RETURN
+   216                           TRANSID('UA01')
+   217				END-EXEC
+   218			      WHEN OTHER
+   219              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
-   220		 EVALUATE WS-DFHSTATE
-   221                   WHEN 'AFTER ADD'
-   222			    EXEC CICS ASSIGN
-   223				       USERID(WS-USERID)
-   224				END-EXEC
-   225			 WHEN OTHER
-   226			    PERFORM 720-RESET-FIELDS
-   227				MOVE WS-INITIAL TO ERRMSGO
-   228		     END-EVALUATE.
-   229
-   230	     700-VALIDATE-FIELD SECTION.
-   231
-   232               IF USERI = 'XXXXXXXX'
-   233			     MOVE DFHBMBRY TO USERA
-   234                           MOVE 'USER IS REQUIRED' TO ERRMSGO
-   235				 PERFORM 100-NEW-MAP
-   236			 END-IF
-   237
-   238                   IF REQUESTI = ' ' OR REQUESTI = '_'
-   239			     MOVE DFHBMBRY TO REQUESTA
-   240                           MOVE 'REQUESTOR IS REQUIRED' TO ERRMSGO
-   241				 PERFORM 100-NEW-MAP
-   242			 END-IF
-   243
-   244                   IF REQUESTI NOT = 'N' AND REQUESTI NOT = 'Y'
-   245			     MOVE DFHBMBRY TO REQUESTA
-   246                           MOVE 'REQUESTOR INVALID VALUE' TO ERRMSGO
-   247				 PERFORM 100-NEW-MAP
-   248			 END-IF
-   249
-   250                   IF ADMINI = ' ' OR ADMINI = '_'
-   251			     MOVE DFHBMBRY TO ADMINA
-   252                           MOVE 'ADMIN IS REQUIRED' TO ERRMSGO
-   253				 PERFORM 100-NEW-MAP
-   254			 END-IF
-   255
-   256                   IF ADMINI NOT = 'N' AND ADMINI NOT = 'Y'
-   257			     MOVE DFHBMBRY TO ADMINA
-   258                           MOVE 'ADMIN INVALID VALUE' TO ERRMSGO
-   259				 PERFORM 100-NEW-MAP
+   220		 END-EVALUATE.
+   221
+   222	     700-VALIDATE-FIELD SECTION.
+   223		 MOVE 0 TO WS-ERROR-COUNT
+   224
+   225                   IF SERVICEI = ' ' OR SERVICEI = '_'
+   226			     MOVE DFHBMBRY TO SERVICEA
+   227                           MOVE 'SERVICE PROVIDER IS REQUIRED'
+   228				       TO ERRMSGO
+   229		     ADD 1 TO WS-ERROR-COUNT
+   230				 MOVE -1 TO SERVICEL
+   231			 END-IF
+   232
+   233                   IF SERVICEI NOT = 'N' AND SERVICEI NOT = 'Y'
+   234			     MOVE DFHBMBRY TO SERVICEA
+   235                           MOVE 'SERVICE INVALID VALUE'
+   236				       TO ERRMSGO
+   237		     ADD 1 TO WS-ERROR-COUNT
+   238				 MOVE -1 TO SERVICEL
+   239			 END-IF
+   240
+   241                   IF APPROVEI = ' ' OR APPROVEI = '_'
+   242			     MOVE DFHBMBRY TO APPROVEA
+   243                           MOVE 'APPROVER IS REQUIRED' TO ERRMSGO
+   244		     ADD 1 TO WS-ERROR-COUNT
+   245				 MOVE -1 TO APPROVEL
+   246			 END-IF
+   247
+   248                   IF APPROVEI NOT = 'N' AND APPROVEI NOT = 'Y'
+   249			     MOVE DFHBMBRY TO APPROVEA
+   250                           MOVE 'APPROVER INVALID VALUE' TO ERRMSGO
+   251		     ADD 1 TO WS-ERROR-COUNT
+   252				 MOVE -1 TO APPROVEL
+   253			 END-IF
+   254
+   255                   IF ADMINI = ' ' OR ADMINI = '_'
+   256			     MOVE DFHBMBRY TO ADMINA
+   257                           MOVE 'ADMIN IS REQUIRED' TO ERRMSGO
+   258		     ADD 1 TO WS-ERROR-COUNT
+   259				 MOVE -1 TO ADMINL
    260			 END-IF
    261
-   262                   IF APPROVEI = ' ' OR APPROVEI = '_'
-   263			     MOVE DFHBMBRY TO APPROVEA
-   264                           MOVE 'APPROVER IS REQUIRED' TO ERRMSGO
-   265				 PERFORM 100-NEW-MAP
-   266			 END-IF
-   267
-   268                   IF APPROVEI NOT = 'N' AND APPROVEI NOT = 'Y'
-   269			     MOVE DFHBMBRY TO APPROVEA
-   270                           MOVE 'APPROVER INVALID VALUE' TO ERRMSGO
-   271				 PERFORM 100-NEW-MAP
-   272			 END-IF
-   273
-   274                   IF SERVICEI = ' ' OR SERVICEI = '_'
-   275			     MOVE DFHBMBRY TO SERVICEA
-   276                           MOVE 'SERVICE PROVIDER IS REQUIRED'
-   277				       TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
+   262                   IF ADMINI NOT = 'N' AND ADMINI NOT = 'Y'
+   263			     MOVE DFHBMBRY TO ADMINA
+   264                           MOVE 'ADMIN INVALID VALUE' TO ERRMSGO
+   265		     ADD 1 TO WS-ERROR-COUNT
+   266				 MOVE -1 TO ADMINL
+   267			 END-IF
+   268
+   269                   IF REQUESTI = ' ' OR REQUESTI = '_'
+   270			     MOVE DFHBMBRY TO REQUESTA
+   271                           MOVE 'REQUESTOR IS REQUIRED' TO ERRMSGO
+   272		     ADD 1 TO WS-ERROR-COUNT
+   273				 MOVE -1 TO REQUESTL
+   274			 END-IF
+   275
+   276                   IF REQUESTI NOT = 'N' AND REQUESTI NOT = 'Y'
+   277			     MOVE DFHBMBRY TO REQUESTACA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
-   278				 PERFORM 100-NEW-MAP
-   279			 END-IF
-   280
-   281               IF SERVICEI NOT = 'N' AND SERVICEI NOT = 'Y'
-   282			     MOVE DFHBMBRY TO SERVICEA
-   283                           MOVE 'SERVICE INVALID VALUE'
-   284				       TO ERRMSGO
-   285				 PERFORM 100-NEW-MAP
-   286			 END-IF
-   287
-   288                   MOVE 'READY TO ADD' TO WS-DFHSTATE.
-   289	     710-PROTECT-FIELDS SECTION.
-   290		 MOVE DFHBMPRF TO USERA
-   291		 MOVE DFHBMPRF TO REQUESTA
-   292		 MOVE DFHBMPRF TO ADMINA
-   293		 MOVE DFHBMPRF TO APPROVEA
-   294		 MOVE DFHBMPRF TO SERVICEA.
-   295
-   296	     720-RESET-FIELDS SECTION.
-   297           MOVE 'XXXXXXXX' TO USERO
-   298               MOVE '_' TO REQUESTO
-   299           MOVE '_' TO ADMINO
-   300           MOVE '_' TO APPROVEO
-   301           MOVE '_' TO SERVICEO
-   302
-   303                   MOVE 'DATA ENTRY' TO WS-DFHSTATE.
-   304
-   305	     800-WRITE-TOFILE SECTION.
-   306
-   307* VALIDATE FIRST THEN WRITE INTO FILE
-   308
-   309			 MOVE USERI TO WS-UID
-   310			 MOVE REQUESTI TO WS-REQ
-   311			 MOVE ADMINI TO WS-ADMN
-   312			 MOVE APPROVEI TO WS-APP
-   313			 MOVE SERVICEI TO WS-SP
+   278                           MOVE 'REQUESTOR INVALID VALUE' TO ERRMSGO
+   279		     ADD 1 TO WS-ERROR-COUNT
+   280				 MOVE -1 TO REQUESTL
+   281			 END-IF
+   282
+   283                   IF USERI = 'XXXXXXXX'
+   284			     MOVE DFHBMBRY TO USERA
+   285                           MOVE 'USER IS REQUIRED' TO ERRMSGO
+   286		     ADD 1 TO WS-ERROR-COUNT
+   287			 END-IF
+   288			 EXEC CICS
+   289                READ FILE('uaf00001')
+   290		      INTO (WS-REC)
+   291		      RIDFLD (USERI)
+   292		      KEYLENGTH (WS-STD-KEY-LEN)
+   293		      EQUAL
+   294		 END-EXEC
+   295			 IF EIBRESP NOT = DFHRESP(NOTFND)
+   296			    MOVE WS-DUP-REC TO ERRMSGO
+   297				MOVE DFHBMBRY TO USERA
+   298				ADD 1 TO WS-ERROR-COUNT
+   299			 END-IF
+   300
+   301		 IF WS-ERROR-COUNT = 0
+   302                      MOVE 'READY TO ADD' TO WS-DFHSTATE
+   303				PERFORM 710-PROTECT-FIELDS
+   304			 ELSE
+   305			    PERFORM 100-NEW-MAP
+   306		 END-IF
+   307			 .
+   308	     710-PROTECT-FIELDS SECTION.
+   309		 MOVE DFHBMPRF TO USERA
+   310		 MOVE DFHBMPRF TO REQUESTA
+   311		 MOVE DFHBMPRF TO ADMINA
+   312		 MOVE DFHBMPRF TO APPROVEA
+   313		 MOVE DFHBMPRF TO SERVICEA.
    314
-   315		     EXEC CICS ASSIGN
-   316		     USERID(WS-UPBY)
-   317		 END-EXEC
-   318
-   319			 MOVE WS-REC TO ERRMSGO
-   320
-   321			 EXEC CICS
-   322               WRITE FILE ('UAF00001')
-   323		     FROM (WS-REC)
-   324		     RIDFLD (WS-UID)
-   325		 END-EXEC
-   326			 IF EIBRESP = DFHRESP(DUPREC)
-   327			    MOVE WS-DUP-REC TO ERRMSGO
-   328				PERFORM 720-RESET-FIELDS
-   329			 ELSE
-   330			    PERFORM 710-PROTECT-FIELDS
-   331			    MOVE WS-AFTER-ADD TO ERRMSGO
-   332                          MOVE 'AFTER ADD' TO WS-DFHSTATE
-   333			 END-IF.
+   315	     720-RESET-FIELDS SECTION.
+   316
+   317			 MOVE DFHBMUNP TO USERA
+   318			 MOVE DFHBMUNP TO REQUESTA
+   319			 MOVE DFHBMUNP TO APPROVEA
+   320			 MOVE DFHBMUNP TO ADMINA
+   321			 MOVE DFHBMUNP TO SERVICEA
+   322
+   323                   MOVE 'DATA ENTRY' TO WS-DFHSTATE.
+   324
+   325	     800-WRITE-TOFILE SECTION.
+   326
+   327* VALIDATE FIRST THEN WRITE INTO FILE
+   328
+   329			 MOVE USERI TO WS-UID
+   330			 MOVE REQUESTI TO WS-REQ
+   331			 MOVE ADMINI TO WS-ADMN
+   332			 MOVE APPROVEI TO WS-APP
+   333			 MOVE SERVICEI TO WS-SP
    334
-   335CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
+   335		     EXEC CICS ASSIGNCA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
+   336		     USERID(WS-UPBY)
+   337		 END-EXEC
+   338
+   339			 MOVE WS-REC TO ERRMSGO
+   340
+   341			 EXEC CICS
+   342               WRITE FILE ('UAF00001')
+   343		     FROM (WS-REC)
+   344		     RIDFLD (WS-UID)
+   345		 END-EXEC
+   346
+   347			 MOVE WS-AFTER-ADD TO ERRMSGO
+   348                   MOVE 'AFTER ADD' TO WS-DFHSTATE.
+   349
+   350
+   351
 CA-Realia CACXPREP C:\handson-cics\CAWB30\ua002p.COB
 
 
@@ -798,11 +814,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:     758
-<<<<<<< HEAD
-		Translation Time:	     .02 sec
-		Translation Speed:	  526666 lines per min
-=======
-		Translation Time:	     .05 sec
-		Translation Speed:	  947500 lines per min
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+		Source Lines Translated:     774
+		Translation Time:	     .04 sec
+		Translation Speed:	  290000 lines per min

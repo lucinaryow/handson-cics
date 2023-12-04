@@ -110,6 +110,7 @@
 	   05  WS-APP		       PIC X.
 	   05  WS-SP		       PIC X.
 	   05  WS-UPBY		       PIC X(08).
+       01  WS-ERROR-COUNT	       PIC 9.
        01  WS-COMMAREA.
 		   05 WS-DFHSTATE PIC X(15).
        01  WS-LITERALS.
@@ -200,7 +201,6 @@
 	   02  FILLER				      PIC X.
 	   02  ERRMSGO				      PIC X(071).
       *$PP-END-COPY
-
       *
       PCOPY DFHAID.
       *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
@@ -262,7 +262,7 @@
 	   05  DFHNULL			 PIC X VALUE LOW-VALUE.
       *$PP-END-COPY
       *
-      P  COPY DFHBMSCA.
+      PCOPY DFHBMSCA.
       *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
        01  DFHBMSCA.
       *
@@ -695,41 +695,16 @@
       P 	IF  NOT EIBRESP = DFHRESP(MAPFAIL)
       *$PP-END-INSERT CICS NA						REALCICS
 		IF  NOT EIBRESP =	  036				REALCICS
-		    EVALUATE EIBAID
-
-					 WHEN DFHENTER
-					    PERFORM 200-WHEN-ENTER
-					 WHEN DFHPF2
-					    PERFORM 210-WHEN-F2
-		     WHEN DFHPF3
-
-      *$PP-DEBUG							REALCICS
-      P 		EXEC CICS RETURN
-      P                                            TRANSID('UA01')
-      P 				    END-EXEC
-      *$PP-NOLIST							REALCICS
-           MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 112 TO DFH-SOURCE-LINE-NUM				REALCICS
-	   MOVE 001 TO DFH-FLAG (02)					REALCICS
-           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
-           MOVE '4 ' TO DFH-DATA-CLASS (02)                             REALCICS
-           MOVE 'UA01' TO DFH-DATA4 (02)                                REALCICS
-	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA4 (02)		REALCICS
-	   ADD 0 LENGTH OF DFH-DATA4 (02) GIVING DFH-SIZE (02)		REALCICS
-           MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
-	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
-           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
-           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
-	       CICSICB END-IF						REALCICS
-	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
-	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
-	       END-IF END-IF						REALCICS
-      *$PP-LIST 							REALCICS
-		     WHEN DFHPF5
-			PERFORM 220-WHEN-F5
-		     WHEN OTHER
-                        MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
-		    END-EVALUATE
+		    EVALUATE WS-DFHSTATE
+                                        WHEN 'DATA ENTRY'
+					 PERFORM 200-WHEN-DATA-ENTRY
+                                        WHEN 'READY TO ADD'
+					 PERFORM 710-PROTECT-FIELDS
+					 PERFORM 210-WHEN-READY-TO-ADD
+                                        WHEN 'AFTER ADD'
+					 PERFORM 710-PROTECT-FIELDS
+					 PERFORM 220-WHEN-AFTER-ADD
+					END-EVALUATE
 	       ELSE
 		   PERFORM 100-NEW-MAP
 	       END-IF
@@ -743,7 +718,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 127 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 121 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 080 TO DFH-FLAG (02)					REALCICS
            MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -765,7 +740,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 131 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 125 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE 'T ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -791,7 +766,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 135 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 129 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE 'T ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -839,7 +814,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 143 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 137 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '7 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -886,7 +861,7 @@
       P    END-EXEC.
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 151 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 145 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '4 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -916,7 +891,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 157 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 151 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 080 TO DFH-FLAG (02)					REALCICS
            MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -941,7 +916,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 160 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 154 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -986,7 +961,7 @@
       P        END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 169 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 163 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE ' ' TO DFH-DATA-CLASS (02)                              REALCICS
@@ -1018,7 +993,7 @@
       P        END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 174 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 168 TO DFH-SOURCE-LINE-NUM				REALCICS
            MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
 	   MOVE 000 TO DFH-VARS-COUNT					REALCICS
            CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
@@ -1030,63 +1005,31 @@
       *$PP-LIST 							REALCICS
 		   END-IF.
 
-       200-WHEN-ENTER SECTION.
-	   EVALUATE WS-DFHSTATE
-                   WHEN 'DATA ENTRY'
+       200-WHEN-DATA-ENTRY SECTION.
+	   EVALUATE EIBAID
+		    WHEN DFHENTER
 			  PERFORM 700-VALIDATE-FIELD
                           MOVE 'PRESS PF2 TO ADD USER'
 			  TO ERRMSGO
-
-			  PERFORM 710-PROTECT-FIELDS
-
-                   WHEN 'READY TO ADD'
-	      PERFORM 710-PROTECT-FIELDS
-                          MOVE 'PRESS PF2 TO ADD USER'
-			  TO ERRMSGO
-
-           WHEN 'AFTER ADD'
-	      PERFORM 720-RESET-FIELDS
-	      MOVE WS-INITIAL TO ERRMSGO
-		      PERFORM 100-NEW-MAP
-
-		   END-EVALUATE.
-
-       210-WHEN-F2 SECTION.
-	       EVALUATE WS-DFHSTATE
-                   WHEN 'DATA ENTRY'
+		    WHEN DFHPF2
 			  PERFORM 700-VALIDATE-FIELD
                           MOVE 'PRESS PF2 TO CONFIRM ADD'
 			  TO ERRMSGO
-
-			  PERFORM 710-PROTECT-FIELDS
-
-                   WHEN 'READY TO ADD'
-
-			  PERFORM 800-WRITE-TOFILE
-
-           WHEN 'AFTER ADD'
-	      PERFORM 710-PROTECT-FIELDS
-
-		   WHEN OTHER
-		      MOVE WS-DFHSTATE	TO ERRMSGO
-		   END-EVALUATE.
-
-       220-WHEN-F5 SECTION.
-	   EVALUATE WS-DFHSTATE
-                   WHEN 'AFTER ADD'
+			WHEN DFHPF3
       *$PP-DEBUG							REALCICS
-      P 	      EXEC CICS ASSIGN
-      P 			 USERID(WS-USERID)
+      P 		  EXEC CICS RETURN
+      P                    TRANSID('UA01')
       P 		  END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 222 TO DFH-SOURCE-LINE-NUM				REALCICS
-	   MOVE 080 TO DFH-FLAG (02)					REALCICS
-           MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
-           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
-	   SET DFH-ADDR (02) TO ADDRESS OF WS-USERID			REALCICS
-	   ADD 0 LENGTH OF WS-USERID GIVING DFH-SIZE (02)		REALCICS
-           MOVE X'0208' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 183 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '4 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA01' TO DFH-DATA4 (02)                                REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA4 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA4 (02) GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
 	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
            CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
            IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
@@ -1095,70 +1038,207 @@
 	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
 	       END-IF END-IF						REALCICS
       *$PP-LIST 							REALCICS
-		   WHEN OTHER
-		      PERFORM 720-RESET-FIELDS
-			  MOVE WS-INITIAL TO ERRMSGO
-	       END-EVALUATE.
+			WHEN DFHPF5
+			  PERFORM 720-RESET-FIELDS
+			WHEN OTHER
+              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+	   END-EVALUATE.
+
+       210-WHEN-READY-TO-ADD SECTION.
+	   EVALUATE EIBAID
+		    WHEN DFHENTER
+			  PERFORM 700-VALIDATE-FIELD
+		    WHEN DFHPF2
+			  PERFORM 800-WRITE-TOFILE
+			WHEN DFHPF3
+      *$PP-DEBUG							REALCICS
+      P 		  EXEC CICS RETURN
+      P                    TRANSID('UA01')
+      P 		  END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 199 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '4 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA01' TO DFH-DATA4 (02)                                REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA4 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA4 (02) GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+			WHEN DFHPF5
+			  PERFORM 720-RESET-FIELDS
+			WHEN OTHER
+              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+	   END-EVALUATE.
+
+       220-WHEN-AFTER-ADD SECTION.
+	       EVALUATE EIBAID
+		    WHEN DFHENTER
+			  PERFORM 720-RESET-FIELDS
+	      MOVE WS-INITIAL TO ERRMSGO
+		      PERFORM 100-NEW-MAP
+			WHEN DFHPF3
+      *$PP-DEBUG							REALCICS
+      P 		  EXEC CICS RETURN
+      P                    TRANSID('UA01')
+      P 		  END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 215 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '4 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UA01' TO DFH-DATA4 (02)                                REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA4 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA4 (02) GIVING DFH-SIZE (02)		REALCICS
+           MOVE X'0E08' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 002 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+			WHEN OTHER
+              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+	   END-EVALUATE.
 
        700-VALIDATE-FIELD SECTION.
-
-               IF USERI = 'XXXXXXXX'
-		       MOVE DFHBMBRY TO USERA
-                           MOVE 'USER IS REQUIRED' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
-
-                   IF REQUESTI = ' ' OR REQUESTI = '_'
-		       MOVE DFHBMBRY TO REQUESTA
-                           MOVE 'REQUESTOR IS REQUIRED' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
-
-                   IF REQUESTI NOT = 'N' AND REQUESTI NOT = 'Y'
-		       MOVE DFHBMBRY TO REQUESTA
-                           MOVE 'REQUESTOR INVALID VALUE' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
-
-                   IF ADMINI = ' ' OR ADMINI = '_'
-		       MOVE DFHBMBRY TO ADMINA
-                           MOVE 'ADMIN IS REQUIRED' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
-
-                   IF ADMINI NOT = 'N' AND ADMINI NOT = 'Y'
-		       MOVE DFHBMBRY TO ADMINA
-                           MOVE 'ADMIN INVALID VALUE' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
-
-                   IF APPROVEI = ' ' OR APPROVEI = '_'
-		       MOVE DFHBMBRY TO APPROVEA
-                           MOVE 'APPROVER IS REQUIRED' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
-
-                   IF APPROVEI NOT = 'N' AND APPROVEI NOT = 'Y'
-		       MOVE DFHBMBRY TO APPROVEA
-                           MOVE 'APPROVER INVALID VALUE' TO ERRMSGO
-			   PERFORM 100-NEW-MAP
-		   END-IF
+	   MOVE 0 TO WS-ERROR-COUNT
 
                    IF SERVICEI = ' ' OR SERVICEI = '_'
 		       MOVE DFHBMBRY TO SERVICEA
                            MOVE 'SERVICE PROVIDER IS REQUIRED'
 				 TO ERRMSGO
-			   PERFORM 100-NEW-MAP
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO SERVICEL
 		   END-IF
 
-               IF SERVICEI NOT = 'N' AND SERVICEI NOT = 'Y'
+                   IF SERVICEI NOT = 'N' AND SERVICEI NOT = 'Y'
 		       MOVE DFHBMBRY TO SERVICEA
                            MOVE 'SERVICE INVALID VALUE'
 				 TO ERRMSGO
-			   PERFORM 100-NEW-MAP
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO SERVICEL
 		   END-IF
 
-                   MOVE 'READY TO ADD' TO WS-DFHSTATE.
+                   IF APPROVEI = ' ' OR APPROVEI = '_'
+		       MOVE DFHBMBRY TO APPROVEA
+                           MOVE 'APPROVER IS REQUIRED' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO APPROVEL
+		   END-IF
+
+                   IF APPROVEI NOT = 'N' AND APPROVEI NOT = 'Y'
+		       MOVE DFHBMBRY TO APPROVEA
+                           MOVE 'APPROVER INVALID VALUE' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO APPROVEL
+		   END-IF
+
+                   IF ADMINI = ' ' OR ADMINI = '_'
+		       MOVE DFHBMBRY TO ADMINA
+                           MOVE 'ADMIN IS REQUIRED' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO ADMINL
+		   END-IF
+
+                   IF ADMINI NOT = 'N' AND ADMINI NOT = 'Y'
+		       MOVE DFHBMBRY TO ADMINA
+                           MOVE 'ADMIN INVALID VALUE' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO ADMINL
+		   END-IF
+
+                   IF REQUESTI = ' ' OR REQUESTI = '_'
+		       MOVE DFHBMBRY TO REQUESTA
+                           MOVE 'REQUESTOR IS REQUIRED' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO REQUESTL
+		   END-IF
+
+                   IF REQUESTI NOT = 'N' AND REQUESTI NOT = 'Y'
+		       MOVE DFHBMBRY TO REQUESTA
+                           MOVE 'REQUESTOR INVALID VALUE' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+			   MOVE -1 TO REQUESTL
+		   END-IF
+
+                   IF USERI = 'XXXXXXXX'
+		       MOVE DFHBMBRY TO USERA
+                           MOVE 'USER IS REQUIRED' TO ERRMSGO
+	       ADD 1 TO WS-ERROR-COUNT
+		   END-IF
+      *$PP-DEBUG							REALCICS
+      P 	   EXEC CICS
+      P         READ FILE('uaf00001')
+      P 	INTO (WS-REC)
+      P 	RIDFLD (USERI)
+      P 	KEYLENGTH (WS-STD-KEY-LEN)
+      P 	EQUAL
+      P    END-EXEC
+      *$PP-NOLIST							REALCICS
+           MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
+	   MOVE 288 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 001 TO DFH-FLAG (02)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
+           MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
+           MOVE 'UAF00001' TO DFH-DATA8 (02)                            REALCICS
+	   SET DFH-ADDR (02) TO ADDRESS OF DFH-DATA8 (02)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATA8 (02) GIVING DFH-SIZE (02)		REALCICS
+	   MOVE 001 TO DFH-FLAG (04)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (04)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (04)                              REALCICS
+	   SET DFH-ADDR (04) TO ADDRESS OF WS-REC			REALCICS
+	   ADD 0 LENGTH OF WS-REC GIVING DFH-SIZE (04)			REALCICS
+	   MOVE 001 TO DFH-FLAG (06)					REALCICS
+           MOVE '1' TO DFH-DATA-TYPE (06)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (06)                              REALCICS
+	   SET DFH-ADDR (06) TO ADDRESS OF USERI			REALCICS
+	   ADD 0 LENGTH OF USERI GIVING DFH-SIZE (06)			REALCICS
+	   MOVE 001 TO DFH-FLAG (07)					REALCICS
+           MOVE '8' TO DFH-DATA-TYPE (07)                               REALCICS
+           MOVE 'H ' TO DFH-DATA-CLASS (07)                             REALCICS
+	   ADD 0 WS-STD-KEY-LEN GIVING DFH-DATAH (07)			REALCICS
+	   SET DFH-ADDR (07) TO ADDRESS OF DFH-DATAH (07)		REALCICS
+	   ADD 0 LENGTH OF DFH-DATAH (07) GIVING DFH-SIZE (07)		REALCICS
+	   MOVE 002 TO DFH-FLAG (11)					REALCICS
+           MOVE '0' TO DFH-DATA-TYPE (11)                               REALCICS
+           MOVE ' ' TO DFH-DATA-CLASS (11)                              REALCICS
+           MOVE X'0602' TO DFH-COMMAND EIBFN                            REALCICS
+	   MOVE 011 TO DFH-VARS-COUNT					REALCICS
+           CALL 'CICS_Exec_Std' USING CICSICB GIVING DFH-RETURN-STATUS  REALCICS
+           IF DFH-RETURN-STATUS = -1 CALL 'CICS_Link_Abend' USING       REALCICS
+	       CICSICB END-IF						REALCICS
+	   IF DFH-RETURN-STATUS < 0 STOP RUN				REALCICS
+	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
+	       END-IF END-IF						REALCICS
+      *$PP-LIST 							REALCICS
+      *$PP-START-INSERT CICS NA 					REALCICS
+      P 	   IF EIBRESP NOT = DFHRESP(NOTFND)
+      *$PP-END-INSERT CICS NA						REALCICS
+		   IF EIBRESP NOT =	    013 			REALCICS
+		      MOVE WS-DUP-REC TO ERRMSGO
+			  MOVE DFHBMBRY TO USERA
+			  ADD 1 TO WS-ERROR-COUNT
+		   END-IF
+
+	   IF WS-ERROR-COUNT = 0
+                      MOVE 'READY TO ADD' TO WS-DFHSTATE
+			  PERFORM 710-PROTECT-FIELDS
+		   ELSE
+		      PERFORM 100-NEW-MAP
+	   END-IF
+		   .
        710-PROTECT-FIELDS SECTION.
 	   MOVE DFHBMPRF TO USERA
 	   MOVE DFHBMPRF TO REQUESTA
@@ -1167,11 +1247,12 @@
 	   MOVE DFHBMPRF TO SERVICEA.
 
        720-RESET-FIELDS SECTION.
-           MOVE 'XXXXXXXX' TO USERO
-               MOVE '_' TO REQUESTO
-           MOVE '_' TO ADMINO
-           MOVE '_' TO APPROVEO
-           MOVE '_' TO SERVICEO
+
+		   MOVE DFHBMUNP TO USERA
+		   MOVE DFHBMUNP TO REQUESTA
+		   MOVE DFHBMUNP TO APPROVEA
+		   MOVE DFHBMUNP TO ADMINA
+		   MOVE DFHBMUNP TO SERVICEA
 
                    MOVE 'DATA ENTRY' TO WS-DFHSTATE.
 
@@ -1191,7 +1272,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 315 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 335 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 080 TO DFH-FLAG (02)					REALCICS
            MOVE '1' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -1217,7 +1298,7 @@
       P    END-EXEC
       *$PP-NOLIST							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 321 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 341 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE 001 TO DFH-FLAG (02)					REALCICS
            MOVE '8' TO DFH-DATA-TYPE (02)                               REALCICS
            MOVE '8 ' TO DFH-DATA-CLASS (02)                             REALCICS
@@ -1243,24 +1324,17 @@
 	   ELSE IF DFH-RETURN-STATUS > 0 PERFORM DFH-GOTO-HANDLE	REALCICS
 	       END-IF END-IF						REALCICS
       *$PP-LIST 							REALCICS
-      *$PP-START-INSERT CICS NA 					REALCICS
-      P 	   IF EIBRESP = DFHRESP(DUPREC)
-      *$PP-END-INSERT CICS NA						REALCICS
-		   IF EIBRESP = 	014				REALCICS
-		      MOVE WS-DUP-REC TO ERRMSGO
-			  PERFORM 720-RESET-FIELDS
-		   ELSE
-		      PERFORM 710-PROTECT-FIELDS
-		      MOVE WS-AFTER-ADD TO ERRMSGO
-                          MOVE 'AFTER ADD' TO WS-DFHSTATE
-		   END-IF.
+
+		   MOVE WS-AFTER-ADD TO ERRMSGO
+                   MOVE 'AFTER ADD' TO WS-DFHSTATE.
+
 
 
       *$PP-NOLIST CICS HI						REALCICS
        DFH-END SECTION. 						REALCICS
        DFH-CALL-END.							REALCICS
            MOVE 'UA002P' TO DFH-SOURCE-NAME                             REALCICS
-	   MOVE 336 TO DFH-SOURCE-LINE-NUM				REALCICS
+	   MOVE 352 TO DFH-SOURCE-LINE-NUM				REALCICS
 	   MOVE LOW-VALUE TO DFH-COMMAND				REALCICS
            CALL 'CICS_Module_End' USING CICSICB GIVING                  REALCICS
 	       DFH-RETURN-STATUS					REALCICS

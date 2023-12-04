@@ -87,6 +87,11 @@
            05  WS-LSTUPD                          PIC X(20).
            05  WS-STUPDBY                         PIC X(8).
            05  WS-LSTUPDRMK                       PIC X(50).
+           05  WS-REQUESTOR                       PIC X.
+           05  WS-ADMINISTRATOR                   PIC X.
+           05  WS-APPROVER                        PIC X.
+           05  WS-SERVICE-PROVIDER                PIC X.
+
   
       *
 	   COPY SM000S.
@@ -96,7 +101,7 @@
        COPY DFHBMSCA.
 
        LINKAGE SECTION.
-       01  DFHCOMMAREA                           PIC X(20).
+       01  DFHCOMMAREA                           PIC X(247).
       *
        PROCEDURE DIVISION.
        000-PROCESS-MENU. 
@@ -212,8 +217,8 @@
                WHEN OPTIONI = 2
                    IF WS-CHC2 = '- ADD TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       IF WS-TICKET-NUM1 NOT = SPACES OR 
-                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                       IF WS-TICKET-NUM1 = SPACES OR 
+                           WS-TICKET-NUM1 = LOW-VALUES
                            PERFORM 900-NO-TIX
                        END-IF
                        IF EIBCALEN = +0
@@ -463,6 +468,10 @@
                EXEC CICS RETURN END-EXEC
            ELSE
             MOVE WS-USERID TO WS-USERID1
+            MOVE REQUESTOR TO WS-REQUESTOR
+            MOVE ADMINISTRATOR TO WS-ADMINISTRATOR
+            MOVE APPROVER TO WS-APPROVER
+            MOVE SERVICE-PROVIDER TO WS-SERVICE-PROVIDER
             MOVE 1 TO WS-PROG-STATE
            END-IF
            IF REQUESTOR = 'Y' 
@@ -556,13 +565,15 @@
                MOVE 'N' TO WS-VALID-TIX-FLAG
            ELSE 
                MOVE 'Y' TO WS-VALID-TIX-FLAG
-               MOVE 1 TO WS-PROG-STATE
+               MOVE 2 TO WS-PROG-STATE
+               MOVE TIX-REQUESTOR TO WS-TCKREQ
+               MOVE TIX-STATUS TO WS-TCKSTAT
+               MOVE TIX-TITLE TO WS-TCKTTL
+               MOVE TIX-DESC TO WS-TCKDESC
+               MOVE LAST-UPDATE TO WS-LSTUPD
+               MOVE UPDATED-BY2 TO WS-STUPDBY
+               MOVE LAST-UPDATE-REMW TO WS-LSTUPDRMK
 
-               IF WS-CHC2 = '- ADD TICKET'
-                IF WS-TICKET-NUM = SPACES
-                 MOVE '0' TO WS-TICKET-NUM
-                END-IF 
-               END-IF 
            END-IF.
        600-EXIT.
            EXIT.
@@ -571,7 +582,9 @@
            IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
                MOVE TIXNOI TO WS-TICKET-NUM1
                MOVE +0 TO EIBCALEN
-               MOVE '0' TO WS-TICKET-NUM
+               IF WS-CHC2 = '- ADD TICKET'
+                MOVE '0' TO WS-TICKET-NUM
+               END-IF
            ELSE 
                MOVE 'N' TO WS-INIT
                MOVE TIXNOI TO WS-TICKET-NUM1
