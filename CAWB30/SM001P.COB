@@ -59,7 +59,13 @@
                    15  TIX-DESC2                     PIC X(50).
                10  LAST-UPDATE                       PIC X(20). 
                10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-                   15  LAST-UPDATE-DATE              PIC X(11).
+                   15  LAST-UPDATE-DATE.
+				       20 DD PIC X(02).
+					   20 FILLER PIC X.
+					   20 MM PIC X(02).
+					   20 FILLER PIC X.
+					   20 YYYY PIC X(02).
+					   20 FILLER PIC X.
                    15  LAST-UPDATE-TIME              PIC X(09).
                10  UPDATED-BY2.
                    15  UPDBY2                        PIC X(7).
@@ -83,7 +89,25 @@
        01  WS-INVALID-TICKET			   PIC X(28) VALUE
            'TICKET NUMBER DOES NOT EXIST'.       
        01  WS-INVALID-USER			   PIC X(24) VALUE
-           'INVALID ACCESS TO TICKET'.    
+           'INVALID ACCESS TO TICKET'.
+       01  YYYYMMDD-NUM.
+		   05 YYYY-N PIC 9(04).
+           05 MM-N   PIC 9(02).	
+           05 DD-N   PIC 9(02).
+       01  WS-TEMP-DATE.
+           05 DD-TMP   PIC X(02).
+		   05 MM-TEMP  PIC X(02).
+		   05 YYYY-TMP PIC X(04).
+       01  YYYYMMDD-TO.
+		   05 YYYY-TO PIC 9(04).
+           05 MM-TO   PIC 9(02).	
+           05 DD-TO   PIC 9(02).	
+       01  YYYYMMDD-FR.
+		   05 YYYY-FR PIC 9(04).
+           05 MM-FR   PIC 9(02).	
+           05 DD-FR   PIC 9(02).
+       01 WS-SWITCH.
+           05 DATE-FILTER-SW PIC X.	   
       *
        COPY SM001S.
        01  WS-SM001 REDEFINES SM001MI.
@@ -494,7 +518,31 @@
 
        500-EXIT.
            EXIT.
-
+       510-FILTER-DATE.
+	       MOVE FRDATE TO WS-TEMP-DATE
+		   MOVE YYYY-TMP TO YYYY-FR
+		   MOVE MM-TEMP  TO MM-FR
+		   MOVE DD-TMP   TO DD-FR
+		   
+		   MOVE TODATE TO WS-TEMP-DATE
+		   MOVE YYYY-TMP TO YYYY-TO
+		   MOVE MM-TEMP  TO MM-TO
+		   MOVE DD-TMP   TO DD-TO
+		   
+		   MOVE YYYY TO YYYY-N
+		   MOVE MM   TO MM-D
+		   MOVE DD   TO DD-D
+		   
+		   MOVE 'N' TO DATE-FILTER-SW
+		   
+		   IF YYYYMMDD-NUM >= YYYYMMDD-FR AND  
+		      YYYYMMDD-NUM <= YYYYMMDD-TO
+              MOVE 'Y' TO DATE-FILTER-SW	
+           END-IF			  
+		   
+		   
+	   510-EXIT.
+	       EXIT.
        600-VALIDATE-USER.
            EXEC CICS ASSIGN   
                USERID(WS-USERID) 
