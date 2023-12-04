@@ -12,6 +12,8 @@
        01  WS-DATE                               PIC 9(7).
        01  WS-DATE-X REDEFINES WS-DATE           PIC X(7). 
        01  WS-LENGTH                             PIC S9(4) COMP.
+       01  WS-FILLER                             PIC X(500) VALUE 
+                                                   SPACES.
        01  WS-INDEX                              PIC 9 VALUE 1.  
        01  WS-TIX-ENTRY-STATE                    PIC X.
        01  WS-USERID.
@@ -193,6 +195,11 @@
                    EVALUATE TRUE 
                        WHEN WS-PROG-STATE = 1
                        WHEN WS-PROG-STATE = 2
+                           EXEC CICS SEND TEXT 
+                               FROM (WS-FILLER)
+                               LENGTH(+500)
+                               ERASE 
+                           END-EXEC
                            EXEC CICS XCTL
                                PROGRAM('SM000P')
                            END-EXEC         

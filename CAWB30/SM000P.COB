@@ -15,6 +15,7 @@
        01  WS-LENGTH                             PIC S9(4) COMP.
        01  WS-INDEX                              PIC 9 VALUE 1.
        01  WS-CHOICE                             PIC X(21).
+       01  WS-FILLER                             PIC X(80).
        01  WS-CHOICE-PH.
            05  WS-CHC1                           PIC X(21).  
            05  WS-CHC2                           PIC X(21).  
