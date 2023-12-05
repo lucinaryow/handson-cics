@@ -1,0 +1,28 @@
+Record Type: Text, 23/11/06, 19:39:15:94
+CACX0004E: 19:39:15 Transaction SW00 failed. ProgID SW000 did not load.
+
+Record Type: Message, 23/11/06, 19:39:27:43
+CACX0026E: Load of Program SM000 failed. ResultCode:66
+
+Record Type: Text, 23/11/06, 19:39:27:44
+CACX0004E: 19:39:27 Transaction SM00 failed. ProgID SM000 did not load.
+
+Record Type: Message, 23/11/06, 19:43:27:15
+CACX0026E: Load of Program SM000 failed. ResultCode:66
+
+Record Type: Text, 23/11/06, 19:43:27:16
+CACX0004E: 19:43:27 Transaction SM00 failed. ProgID SM000 did not load.
+
+Record Type: Message, 23/11/06, 19:43:27:85
+CACX0026E: Load of Program SM000 failed. ResultCode:66
+
+Record Type: Text, 23/11/06, 19:43:27:85
+CACX0004E: 19:43:27 Transaction SM00 failed. ProgID SM000 did not load.
+
+Record Type: Message, 23/11/06, 19:43:28:64
+CACX0026E: Load of Program SM000 failed. ResultCode:66
+
+Record Type: Text, 23/11/06, 19:43:28:65
+CACX0004E: 19:43:28 Transaction SM00 failed. ProgID SM000 did not load.
+
+Record Type: Message, 23/11

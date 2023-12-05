@@ -1,0 +1,77 @@
+Revision notes:
+^{File:dbioexit.txt}
+^{Timestamp:Fri Feb 14 10:51:36 1997}
+^{Revision:2.0}
+
+This is a description of DBIO exits that are available in CA-Realia
+CICS runtime.  These exits are made available to meet the specific
+need of DB managers to gain access to CICS at various points in the
+execution of CA-Realia CICS.  Although Computer Associates will
+endevor to maintain the specifications of each exit in future
+releases it reserves the right to change the characteristics of a
+DBIO exit or to remove the exit from the product.
+
+All DBIO exits are defined to CICS by including the correct DB
+type and program name in the Region Initialization file (REALCICS.CSR).
+
+Code one of the following lines:
+
+IMS=NO|YES|programID[,NOWARN[,acbgenname]]
+XDB=NO|YES|programID[,NOWARN]
+DATACOM=NO|YES|programID[,NOWARN]
+IDMS=NO|YES|programID[,NOWARN]
+DB2=NO|YES|programID[,[NO]WARN[,dbname[,username,password]]]
+ODBC=NO|YES|programID[,[NO]WARN[,dbname[,username,password]]]
+
+This value can also be set up as an environmental value. The
+environment value name must be CACX_xxxx instead of just xxxx.
+The environment value has precedence over the value in the CSR. The
+string is paased to the exit during initialization.
+
+Program Interface
+
+All programs must follow these standards:
+
+1) All user exit programs have a standard set of parameters.
+
+2) The interface is CA-Realia CICS Specific and must be written in
+   CA-Realia COBOL 60.
+
+3) The user exit program should be derived from the supplied base
+   program named DBIOEXIT.COB.
+
+4) The program must be linked using the supplied LINKCICS batch file.
+
+5) No EXEC CICS commands are permitted.
+
+6) No file I/O to CICS data files is permitted unless CA supplies
+   specific access routines for this purpose. No routines have been
+   supplied at this time.
+
+7) All CICS data areas passed will be in the ASCII codeset unless
+   specifically noted.
+
+8) The default program names if YES is coded are:
+
+   IMS      | CACXIMS
+   XDB      | CACXXDB
+   DATACOM  | CACXDCOM
+   IDMS     | CACXIDMS
+   DB2      | CACXDB2
+   ODBC     | CACXODBC
+
+There is no internal difference between these modules except for the
+default program name.  All can be included in the same session.  If
+a different DB routine needs to be implimented then simply use one
+of the names listed and provide the correct programID.
+
+There is very little default processing.  If the DBIO program does
+not want to be notified at the end of each LUW then the EXIT-CLASS variable
+must be modified.  The default is to call the routine at start
+and end of each LUW.
+
+CA-Realia CICS supports SYNCHPOINT and ROLLBACK and the session
+continues to operate after a transaction has ABENDED so we recommend
+that the DBIO routines support the same level of operation.
+
+Read DBIOEXIT.COB for specific implimentation notes.

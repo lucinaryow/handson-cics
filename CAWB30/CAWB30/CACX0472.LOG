@@ -1,0 +1,6 @@
+Record Type: Text, 23/11/21, 16:22:11:83
+Abend Detected in Program:UA001P module:UA001P Line:135
+ABCODE:AEIP EIBRESP:16 EIBRESP2:00
+
+Record Type: Text, 23/11/21, 16:22:13:90
+CACX0001E: 16:22:11 Transaction UA01 program UA001P abend AEIP

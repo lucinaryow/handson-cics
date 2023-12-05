@@ -1,0 +1,143 @@
+'****************************************
+' CA-Realia II WorkBench BMS Build Script
+'****************************************
+REALCICS = CA_REAL2DIR
+CICSLINK = CA_REAL2DIR + "\LIB"
+REALCOB  = CA_REAL2DIR
+COBLINK  = CA_REAL2DIR + "\LIB"
+RC_OTHER_ERROR    = "0010VOFNY"
+
+ External "cawbsvcs.dll" Proc WB_IsDirValid    as Integer
+ External "cawbsvcs.dll" Proc WB_MakeDirValid  as Integer
+
+ VarSize = String_Size(CompileDir) + 1
+ VarSize = String_Size(CompileDir, VarSize)
+ VarSize = String_Size(ObjDir) + 1
+ VarSize = String_Size(ObjDir, VarSize)
+ VarSize = String_Size(ExeDir) + 1
+ VarSize = String_Size(ExeDir, VarSize)
+ VarSize = String_Size(LstDir) + 1
+ VarSize = String_Size(LstDir, VarSize)
+
+if  CA_DOC_FN_PATH <> " " Then
+  if  CA_DOC_FN_PATH <> "" Then
+     SetDir(CA_DOC_FN_PATH)
+  End If
+End If
+
+if  SHOW_WIN = "Y" then
+	ShowWindow(_SW_NORMAL)
+End If
+
+ ' ****************************************************************************
+ ' * Set Working Directory
+ ' ****************************************************************************
+if  CompileDir <>  " " Then
+    if  CompileDir <>  "" Then
+ if  (WB_IsDirValid(CompileDir) = 0) Then
+      ButtonPressed =
+      MessageBox("CACV5000E - The Compile Work Directory (" +
+                 CompileDir + ") is not valid!"  +
+                 "\n Please correct and retry compilation." ,
+                 "CA-Realia II Workbench", _MB_OK)
+      return RC_BLD_JOBSTEP_ERR
+ End If
+    End If
+ End If
+ ' *
+ ' * WB_IsDirValid returns a value of 1 if the directory exists!
+ ' *
+ if  (WB_IsDirValid(CompileDir) = 1) Then
+      SetDir(CompileDir)
+     ' *
+     ' * WB_MakeDirValid - Conditionally appends a '\' on to the end
+     ' * of the directory if a trailing backslash is not present!
+     ' *
+      RC_EXT = WB_MakeDirValid(CompileDir)
+ Else
+      CompileDir = CA_DOC_FN_PATH
+      SetDir(CA_DOC_FN_PATH)
+ End If
+
+ ' ****************************************************************************
+ ' * Validate LstDir Directory
+ ' ****************************************************************************
+if  LstDir <>  " " Then
+   if  LstDir <>  "" Then
+ if  (WB_IsDirValid(LstDir) = 0) Then
+      ButtonPressed =
+      MessageBox("CACV5000E - The Listing Output Directory (" +
+                 LstDir + ") is not valid!"  +
+                 "\n Please correct and retry compilation." ,
+                 "CA-Realia II Workbench", _MB_OK)
+
+      return RC_BLD_JOBSTEP_ERR
+ End If
+ End If
+    End If
+ if  (WB_IsDirValid(LstDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(LstDir)
+ Else
+      LstDir = CompileDir
+ End If
+
+ ' ****************************************************************************
+ ' * Validate ObjDir Directory
+ ' ****************************************************************************
+ if  ObjDir <>  " " Then
+   if  ObjDir <>  "" Then
+ if  (WB_IsDirValid(ObjDir) = 0) Then
+      ButtonPressed =
+      MessageBox("CACV5000E - The Object File Output Directory (" +
+                 ObjDir + ") is not valid!"  +
+                 "\n Please correct and retry compilation." ,
+                 "CA-Realia II Workbench", _MB_OK)
+      return RC_BLD_JOBSTEP_ERR
+ End If
+ End If
+    End If
+ if  (WB_IsDirValid(ObjDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(ObjDir)
+ Else
+      ObjDir = CompileDir
+ End If
+
+ ' ****************************************************************************
+ ' * Validate ExeDir Directory
+ ' ****************************************************************************
+ if  ExeDir <>  " " Then
+   if  ExeDir <>  "" Then
+ if  (WB_IsDirValid(ExeDir) = 0) Then
+   ButtonPressed =
+      MessageBox("CACV5000E - The Exe Output Directory (" +
+                 ExeDir + ") is not valid!"  +
+                 "\n Please correct and retry Compile/Link.",
+                 "CA-Realia II Workbench", _MB_OK)
+      return RC_BLD_JOBSTEP_ERR
+ End If
+ End If
+    End If
+ if  (WB_IsDirValid(ExeDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(ExeDir)
+ Else
+      ExeDir = CompileDir
+ End If
+
+
+      RspFile = CA_DOC_FN_PATH + CA_DOC_FN + ".RSP"
+      
+      shell "echo " +  CA_DOC_FN_FULL + " /r" + " > "  + RspFile
+      shell "echo " +  ObjDir                 + " >> " + RspFile
+      shell "echo " +  ExeDir                 + " >> " + RspFile
+      shell "echo " +  LstDir                 + " >> " + RspFile
+
+      shell CA_REAL2DIR + "\cacxbms.exe" + " @" + RspFile
+
+  MY_RC = _RC
+  if _RC <> 0 then
+      return RC_OTHER_ERROR  + CA_DOC_FN_PATH + CA_DOC_FN+".LCS"
+  end if
+
+  Shell "cawbecho 0"
+
+Return MY_RC

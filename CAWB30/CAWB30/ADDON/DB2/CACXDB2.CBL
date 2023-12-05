@@ -1,0 +1,141 @@
+*$ascii
+*$dialect-realia
+*$nodcall
+*$uplow
+*$nomovelink
+*$epdcall
+*** !! do not change these compiler directives !!
+* CA-Realia PAN/LCM keyword standards
+*^{File:cacxdb2.cbl}
+* ^{Mods:********}
+********
+********Wed Mar 19 13:22:26 1997, Rev 3.0, GODCH01(0100)
+********
+********Tue Feb 25 15:54:22 1997, Rev 2.0, GODCH01(0100)
+*
+* Thu Feb 13 14:05:06 1997, Rev 1.0, GODCH01(0100)
+*
+ IDENTIFICATION DIVISION.
+ PROGRAM-ID. 'CACXDB2'.
+ ENVIRONMENT DIVISION.
+ CONFIGURATION SECTION.
+ SPECIAL-NAMES.
+     ALPHABET EBCDIC-DATA IS EBCDIC
+     ALPHABET ASCII-DATA IS STANDARD-1.
+
+ DATA DIVISION.
+ FILE SECTION.
+ WORKING-STORAGE SECTION.
+ EXEC SQL BEGIN DECLARE SECTION END-EXEC.
+ 01  WS-DBNAME				   PIC X(8).
+ 01  WS-USERNAME    VALUE LOW-VALUE	   PIC X(32).
+ 01  WS-FULL-PASSWORD.
+     05  WS-PASSWORD-SIZE  VALUE 0	   PIC S9(9) COMP-5.
+     05  WS-PASSWORD	VALUE LOW-VALUE    PIC X(32).
+ EXEC SQL END DECLARE SECTION END-EXEC.
+ 01  ws-program     VALUE LOW-VALUE	   PIC X(8).
+ 01  ws-action	    VALUE LOW-VALUE	   PIC X(8).
+ LINKAGE SECTION.
+ 01  ENV-STRING 			   PIC X(1024).
+ 01  CICSICB. COPY CICSICB.
+
+     COPY DFHEIBLK.
+
+ 01  EXIT-AREA.
+     COPY EXITPARM.
+*
+*    define cics areas picture to meet specifics of exit
+*
+ 01  EXIT-AREA-01			   PIC X(1024).
+ *> etc....
+
+ PROCEDURE DIVISION USING EXIT-AREA.
+     PERFORM SET-ADDRESS
+     EVALUATE TRUE
+     WHEN EXIT-INIT
+	 PERFORM INIT
+     WHEN EXIT-START-TASK
+	 PERFORM START-TASK
+     WHEN EXIT-END-TASK
+	 PERFORM END-TASK
+     WHEN EXIT-SYNCPOINT
+	 PERFORM SYNCPOINT
+     WHEN EXIT-SYNCPOINT-ROLLBACK
+	 PERFORM SYNCPOINT-ROLLBACK
+     WHEN EXIT-AT-ERROR
+	 PERFORM AT-ERROR
+     WHEN EXIT-SHUTDOWN
+	 PERFORM SHUTDOWN
+     END-EVALUATE
+     GOBACK
+     .
+*
+ INIT.
+*
+*    Add exit specific code
+*    Set the exit level that is needed
+*    for DB routines this should be:
+     SET ADDRESS OF ENV-STRING TO EXIT-MODULE-AREA
+     UNSTRING ENV-STRING
+	 DELIMITED BY ',' OR ALL SPACE OR LOW-VALUE
+	 INTO WS-PROGRAM   *> DUMMY
+	      WS-ACTION    *> DUMMY
+	      WS-DBNAME
+	      WS-USERNAME
+	      WS-PASSWORD
+     IF WS-DBNAME NOT = LOW-VALUE
+	 PERFORM OPENDB2
+     END-IF
+     SET EXIT-MODULE-AREA TO NULL
+     SET EXIT-TASK TO TRUE
+     .
+*
+ OPENDB2.
+     IF WS-DBNAME NOT = SPACE AND LOW-VALUE
+	 EXEC SQL WHENEVER SQLERROR CONTINUE END-EXEC
+	 IF WS-USERNAME = SPACE OR LOW-VALUE
+	     EXEC SQL CONNECT TO :WS-DBNAME
+	     END-EXEC
+	 ELSE
+	     INSPECT WS-PASSWORD TALLYING WS-PASSWORD-SIZE
+		 FOR CHARACTERS BEFORE INITIAL SPACE
+	     EXEC SQL CONNECT TO :WS-DBNAME
+		 USER  :WS-USERNAME
+		 USING :WS-PASSWORD
+	     END-EXEC
+	 END-IF
+     end-if
+     .
+*
+ START-TASK.
+*    add exit specific code
+*
+ END-TASK.
+*    add exit specific code
+*
+ SYNCPOINT.
+     EXEC SQL COMMIT END-EXEC
+     .
+*
+ SYNCPOINT-ROLLBACK.
+     EXEC SQL ROLLBACK END-EXEC
+     .
+*
+ AT-ERROR.
+*    add exit specific code
+*    Should not normally be used for IO Routines
+*
+ SHUTDOWN.
+     IF WS-DBNAME NOT = LOW-VALUE
+	 EXEC SQL CONNECT RESET END-EXEC
+     END-IF
+     .
+*
+ SET-ADDRESS.
+     IF EXIT-IN-TASK
+* these addresses are only valid during a transaction
+* (i.e.) Syncpoint proecssing
+	 SET ADDRESS OF CICSICB TO EXIT-ICB
+	 SET ADDRESS OF EIBLK TO EXIT-EIBLK
+     END-IF
+     .

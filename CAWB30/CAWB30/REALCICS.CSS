@@ -1,0 +1,23 @@
+; Revision Information
+; ^{File:realcics.css}
+; ^{Timestamp:Mon Oct 07 08:42:42 1996}
+; ^{Revision:2.0}
+;
+[CICS Session]
+MONO=No
+PRNIDNT=P001
+NULLTERM=YES
+PRINTNULL=
+TERMID=T001
+REGIONDIR=
+SESSIONDIR=
+;
+; common values with [CICS Region]
+;
+START=
+TRACE=
+;
+; TIMEOUT sets delay before Terminal Control checks for
+; other activity (START or START for Printer Terminal)
+;
+TIMEOUT=5

@@ -1,0 +1,17 @@
+Record Type: Message, 23/11/15, 12:07:34:61
+CACX0026E: Load of Program UA001P failed. ResultCode:66
+
+Record Type: Text, 23/11/15, 12:07:34:81
+CACX0004E: 12:07:34 Transaction UA01 failed. ProgID UA001P did not load.
+
+Record Type: Message, 23/11/15, 12:07:56:92
+CACX0026E: Load of Program UA001P failed. ResultCode:66
+
+Record Type: Text, 23/11/15, 12:07:57:12
+CACX0004E: 12:07:56 Transaction UA01 failed. ProgID UA001P did not load.
+
+Record Type: Message, 23/11/15, 12:08:05:11
+CACX0026E: Load of Program UA001P failed. ResultCode:66
+
+Record Type: Text, 23/11/15, 12:08:05:31
+CACX0004E: 12:08:05 Transaction UA01 failed. ProgID UA001P did not load.

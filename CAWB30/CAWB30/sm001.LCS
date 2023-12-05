@@ -1,0 +1,46 @@
+CA-Realia CACXPREP C:\CAWB30\sm001.COB
+
+
+     1	     IDENTIFICATION DIVISION.
+     2	     PROGRAM-ID. SM001.
+     3
+     4	     ENVIRONMENT DIVISION.
+     5	     CONFIGURATION SECTION.
+     6	     SOURCE-COMPUTER.	 IBM-PC.
+     7	     OBJECT-COMPUTER.	 IBM-PC.
+     8	     DATA DIVISION.
+     9	     WORKING-STORAGE SECTION.
+    10	     01  WS-COMMAREA.
+    11		 05 WS-PROG-STATE		     PIC X(20).
+    12	     LINKAGE SECTION.
+    13	     01  DFHCOMMAREA			     PIC X(20).
+    14	    *
+    15	     PROCEDURE DIVISION 					      REALCICS
+    16	     100-PROC.
+    17           MOVE 'SM001 IS IN CONTROL' TO WS-PROG-STATE
+    18		 EXEC CICS XCTL
+    19               PROGRAM('SM000')
+    20		     COMMAREA(WS-COMMAREA)
+    21		 END-EXEC.
+    22	     100-EXIT.
+    23		 EXIT.
+CA-Realia CACXPREP C:\CAWB30\sm001.COB
+
+
+		Options Summary
+
+		      CICS 4.1
+		      LANGLVL(2)
+		      SPACE(1)
+		      FLAG(I)
+		      SOURCE
+		    NOVBREF
+		      OPTIONS
+		      EBCDIC
+		    DIALECT-OSVS
+		      PPCODE
+		      DCHK
+
+		Source Lines Translated:      27
+		Translation Time:	     .00 sec
+		Translation Speed:		 lines per min

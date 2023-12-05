@@ -3,7 +3,7 @@
 
      1	     CBL XOPTS(COBOL2)
      2	     IDENTIFICATION DIVISION.
-     3	     PROGRAM-ID. UA001P.
+     3	     PROGRAM-ID. UA001.
      4
      5	     ENVIRONMENT DIVISION.
      6	     CONFIGURATION SECTION.
@@ -17,67 +17,93 @@
     14	     01  WS-USERID		     PIC X(8).
     15	     01  WS-PRGNAME		     PIC X(6).
     16	     01  WS-LENGTH		     PIC S9(4) COMP.
-    17	     01  WS-QNAME		     PIC X(8).
-    18	     01  WS-RECB-LENGTH 	     PIC S9(4) COMP VALUE +20.
-    19	     01  WS-KEYB-LENGTH 	     PIC S9(4) COMP VALUE +8.
-    20	     01  WS-KEYB.
-    21		 05 WS-KEYB7		       PIC X(07) VALUE LOW-VALUES.
-    22		 05 FILLER REDEFINES WS-KEYB7.
-    23		    10 FILLER		       PIC X(04).
-    24		    10 WS-KEYB3 	       PIC 9(03).
-    25		 05 WS-KEYB1		       PIC X(01) VALUE HIGH-VALUES.
-    26       01  WS-RECKEY                   VALUE 'ISCB101 '.
-    27		 05 WS-USR2		     PIC X(04).
-    28		 05 WS-KEY-NUM		     PIC 9(03).
-    29		 05 FILLER		     PIC X.
-    30	     01  WS-SEARCH.
-    31           05  WS-ISCB                 PIC X(4)  VALUE 'ISCB'.
-    32		 05  WS-KEY2		     PIC 999.
-    33		 05  FILLER		     PIC X     VALUE SPACES.
-    34	     01  WS-INDX		     PIC 9(2)  VALUE 1.
-    35	     01  WS-REC.
-    36		 05  WS-UID.
-    37		     10 FILLER		     PIC X(04).
-    38		     10 WS-UID2 	     PIC 9(03).
-    39		     10 FILLER		     PIC X.
-    40		 05  WS-UID-REDEF REDEFINES WS-UID.
-    41		     10  WS-USERID7	 PIC X(7).
-    42		     10  FILLER 	 PIC X(1).
-    43		 05  WS-REQ		     PIC X.
-    44		 05  WS-ADMN		     PIC X.
-    45		 05  WS-APP		     PIC X.
-    46		 05  WS-SP		     PIC X.
-    47		 05  WS-UPBY		     PIC X(08).
-    48	     01  WS-LASTPAGE		     PIC X(1).
-    49	     01  WS-FIRSTPAGE		     PIC X(1).
-    50	     01  WS-PAGE-CTR		     PIC 9(02).
-    51	     01  WS-COMMAREA.
-    52		 05  WS-COMMAREA-REC.
-    53		     10  WS-CA-UID	     PIC X(8).
-    54		     10  WS-CA-REC.
-    55			 15  WS-CA-REQ	     PIC X.
-    56			 15  WS-CA-ADMN      PIC X.
-    57			 15  WS-CA-APP	     PIC X.
-    58			 15  WS-CA-SP	     PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+    17	     01  WS-RECB-LENGTH 	     PIC S9(4) COMP VALUE +20.
+    18	     01  WS-KEYB-LENGTH 	     PIC S9(4) COMP VALUE +8.
+    19	     01  WS-KEYB.
+    20		 05 WS-KEYB7		       PIC X(07) VALUE LOW-VALUES.
+    21		 05 FILLER REDEFINES WS-KEYB7.
+    22		    10 FILLER		       PIC X(04).
+    23		    10 WS-KEYB3 	       PIC 9(03).
+    24		 05 WS-KEYB1		       PIC X(01) VALUE HIGH-VALUES.
+    25       01  WS-RECKEY                   VALUE 'ISCB101 '.
+    26		 05 WS-USR2		     PIC X(04).
+    27		 05 WS-KEY-NUM		     PIC 9(03).
+    28		 05 FILLER		     PIC X.
+    29	     01  WS-SEARCH.
+    30           05  WS-ISCB                 PIC X(4)  VALUE 'ISCB'.
+    31		 05  WS-KEY2		     PIC 999.
+    32		 05  FILLER		     PIC X     VALUE SPACES.
+    33	     01  WS-INDX		     PIC 9(2)  VALUE 1.
+    34	     01  WS-REC.
+    35		 05  WS-UID.
+    36		     10 FILLER		     PIC X(04).
+    37		     10 WS-UID2 	     PIC 9(03).
+    38		     10 FILLER		     PIC X.
+    39		 05  WS-UID-REDEF REDEFINES WS-UID.
+    40		     10  WS-USERID7	 PIC X(7).
+    41		     10  FILLER 	 PIC X(1).
+    42			     05  WS-UID-ARR REDEFINES WS-UID.
+    43				 10 WS-UID-CHAR   PIC X(01) OCCURS 8.
+    44		 05  WS-REQ		     PIC X.
+    45		 05  WS-ADMN		     PIC X.
+    46		 05  WS-APP		     PIC X.
+    47		 05  WS-SP		     PIC X.
+    48		 05  WS-UPBY		     PIC X(08).
+    49	     01  WS-LASTPAGE		     PIC X(1).
+    50	     01  WS-FIRSTPAGE		     PIC X(1).
+    51	     01  WS-PAGE-CTR		     PIC 9(02).
+    52	     01  WS-FIELDS.
+    53		 05  WS-STD-KEY-LEN    PIC S9(4) COMP VALUE 8.
+    54	     01  WS-LITERAL.
+    55		       05  WS-INVALID-FIELD   PIC X(35) VALUE
+    56                       'HIGHLIGHT FIELD HAS INVALID VALUE'.
+    57			     05  WS-UPDATED  PIC X(39)	VALUE
+    58                       'UPDATES POSTED, PRESS ENTER TO CONTINUE'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-    59		     10  WS-CA-UPBY	     PIC X(8).
-    60		 05  WS-CA-PRGNAME	     PIC X(06).
-    61		 05  FILLER		     PIC X(19).
-    62		 05  WS-DFHSTATE	     PIC X(15).
-    63		 05  WS-TRANS		     PIC X(04).
-    64		 05  WS-LUSER		     PIC 9(03).
-    65		 05  WS-FUSER		     PIC 9(03).
-    66		 05  WS-PAGE		     PIC 9(02).
-    67		 05  WS-PAGE-END	     PIC 9(01).
-    68		 05  WS-SWITCH		     PIC X.
-    69		 05  WS-QITEM		     PIC S9(4) COMP.
-    70		 05  WS-QITEM-START	     PIC S9(4) COMP.
-    71		 05  WS-QITEM-END	     PIC S9(4) COMP.
-    72		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
-    73	    *
-    74	    PCOPY UA001S.
-    74	    *$PP-START-COPY C:\handson-cics\CAWB30\UA001S.COB
+    59			     05  WS-F-TEMP	    PIC X.
+    60			     05  WS-PAGE-X	    PIC X(2).
+    61			     05  WS-PAGE-NUM REDEFINES WS-PAGE-X PIC 9(2).
+    62			     05  WS-PG.
+    63				 10 WS-PAGE1 PIC X.
+    64		     10 WS-PAGE2 PIC X.
+    65		 05  WS-FILTER-KEY	 PIC X(08).
+    66		 05  WS-FILTER-ID REDEFINES WS-FILTER-KEY.
+    67		     10 WS-FILTER-ARR PIC X(01) OCCURS 8.
+    68	     01  WS-COUNT.
+    69		       05  WS-EDIT-COUNT      PIC 9(2).
+    70			     05  WS-ERROR-COUNT     PIC 9999.
+    71			     05  WS-TEMP-COUNT	    PIC 9(5).
+    72	     01  WS-SWITCH.
+    73			     05  WS-VALID-I-SW		 PIC X.
+    74			     05  WS-NO-CHANGE		 PIC X.
+    75			     05  WS-FILTER-SW		 PIC X.
+    76	     01  WS-COMMAREA.
+    77		 05  WS-COMMAREA-REC.
+    78		     10  WS-CA-UID	     PIC X(8).
+    79		     10  WS-CA-REC.
+    80			 15  WS-CA-REQ	     PIC X.
+    81			 15  WS-CA-ADMN      PIC X.
+    82			 15  WS-CA-APP	     PIC X.
+    83			 15  WS-CA-SP	     PIC X.
+    84		     10  WS-CA-UPBY	     PIC X(8).
+    85		 05  WS-CA-PRGNAME	     PIC X(06).
+    86		 05  FILLER		     PIC X(19).
+    87		 05  WS-DFHSTATE	     PIC X(15).
+    88		 05  WS-TRANS		     PIC X(04).
+    89		 05  WS-LUSER		     PIC 9(03).
+    90		 05  WS-FUSER		     PIC 9(03).
+    91		 05  WS-PAGE		     PIC 9(02).
+    92		 05  WS-PAGE-END	     PIC 9(01).
+    93		 05  WS-SWITCH		     PIC X.
+    94		 05  WS-QITEM		     PIC S9(4) COMP.
+    95		 05  WS-QITEM-START	     PIC S9(4) COMP.
+    96		 05  WS-QITEM-END	     PIC S9(4) COMP.
+    97		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    98		 05  WS-QNAME		     PIC X(8).
+    99	    *
+   100	    PCOPY UA001S.
+   100	    *$PP-START-COPY C:\handson-cics\CAWB30\UA001S.COB
      1	    * SYMBOLIC MAP of ua001s Created by CACXBMS Version 6.0.27
      2	     01  UA001MI.
      3		 02  FILLER				    PIC X(12).
@@ -92,129 +118,131 @@
     12		     03  PAGEA				    PIC X.
     13		 02  PAGEI				    PIC X(002).
     14		 02  TIMEL				    PIC S9(4) COMP.
-    15		 02  TIMEF				    PIC X.
+    15		 02  TIMEF				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
     16		 02  FILLER REDEFINES TIMEF.
     17		     03  TIMEA				    PIC X.
     18		 02  TIMEI				    PIC X(008).
-    19		 02  USERL				    PIC S9(4) COMP.
-    20		 02  USERF				    PIC X.
-    21		 02  FILLER REDEFINES USERF.
-    22		     03  USERA				    PIC X.
-    23		 02  USERI				    PIC X(006).
-    24		 02  OPTN1L				    PIC S9(4) COMP.
-    25		 02  OPTN1F				    PIC X.
-    26		 02  FILLER REDEFINES OPTN1F.
-    27		     03  OPTN1A 			    PIC X.
-    28		 02  OPTN1I				    PIC X(001).
-    29		 02  OPTN2L				    PIC S9(4) COMP.
-    30		 02  OPTN2F				    PIC X.
-    31		 02  FILLER REDEFINES OPTN2F.
-    32		     03  OPTN2A 			    PIC X.
-    33		 02  OPTN2I				    PIC X(001).
-    34		 02  OPTN3L				    PIC S9(4) COMP.
-    35		 02  OPTN3F				    PIC X.
-    36		 02  FILLER REDEFINES OPTN3F.
-    37		     03  OPTN3A 			    PIC X.
-    38		 02  OPTN3I				    PIC X(001).
-    39		 02  OPTN4L				    PIC S9(4) COMP.
-    40		 02  OPTN4F				    PIC X.
-    41		 02  FILLER REDEFINES OPTN4F.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+    19		 02  USERIDL				    PIC S9(4) COMP.
+    20		 02  USERIDF				    PIC X.
+    21		 02  FILLER REDEFINES USERIDF.
+    22		     03  USERIDA			    PIC X.
+    23		 02  USERIDI				    PIC X(008).
+    24		 02  UD1L				    PIC S9(4) COMP.
+    25		 02  UD1F				    PIC X.
+    26		 02  FILLER REDEFINES UD1F.
+    27		     03  UD1A				    PIC X.
+    28		 02  UD1I				    PIC X(001).
+    29		 02  UD2L				    PIC S9(4) COMP.
+    30		 02  UD2F				    PIC X.
+    31		 02  FILLER REDEFINES UD2F.
+    32		     03  UD2A				    PIC X.
+    33		 02  UD2I				    PIC X(001).
+    34		 02  UD3L				    PIC S9(4) COMP.
+    35		 02  UD3F				    PIC X.
+    36		 02  FILLER REDEFINES UD3F.
+    37		     03  UD3A				    PIC X.
+    38		 02  UD3I				    PIC X(001).
+    39		 02  UD4L				    PIC S9(4) COMP.
+    40		 02  UD4F				    PIC X.
+    41		 02  FILLER REDEFINES UD4F.
+    42		     03  UD4A				    PIC X.
+    43		 02  UD4I				    PIC X(001).
+    44		 02  UD5L				    PIC S9(4) COMP.
+    45		 02  UD5F				    PIC X.
+    46		 02  FILLER REDEFINES UD5F.
+    47		     03  UD5A				    PIC X.
+    48		 02  UD5I				    PIC X(001).
+    49		 02  UD6L				    PIC S9(4) COMP.
+    50		 02  UD6F				    PIC X.
+    51		 02  FILLER REDEFINES UD6F.
+    52		     03  UD6A				    PIC X.
+    53		 02  UD6I				    PIC X(001).
+    54		 02  UD7L				    PIC S9(4) COMP.
+    55		 02  UD7F				    PIC X.
+    56		 02  FILLER REDEFINES UD7F.
+    57		     03  UD7A				    PIC X.
+    58		 02  UD7I				    PIC X(001).
+    59		 02  UD8L				    PIC S9(4) COMP.
+    60		 02  UD8F				    PIC X.
+    61		 02  FILLER REDEFINES UD8F.
+    62		     03  UD8A				    PIC X.
+    63		 02  UD8I				    PIC X(001).
+    64		 02  UD9L				    PIC S9(4) COMP.
+    65		 02  UD9F				    PIC X.
+    66		 02  FILLER REDEFINES UD9F.
+    67		     03  UD9A				    PIC X.
+    68		 02  UD9I				    PIC X(001).
+    69		 02  UD10L				    PIC S9(4) COMP.
+    70		 02  UD10F				    PIC X.
+    71		 02  FILLER REDEFINES UD10F.
+    72		     03  UD10A				    PIC X.
+    73		 02  UD10I				    PIC X(001).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-    42		     03  OPTN4A 			    PIC X.
-    43		 02  OPTN4I				    PIC X(001).
-    44		 02  OPTN5L				    PIC S9(4) COMP.
-    45		 02  OPTN5F				    PIC X.
-    46		 02  FILLER REDEFINES OPTN5F.
-    47		     03  OPTN5A 			    PIC X.
-    48		 02  OPTN5I				    PIC X(001).
-    49		 02  OPTN6L				    PIC S9(4) COMP.
-    50		 02  OPTN6F				    PIC X.
-    51		 02  FILLER REDEFINES OPTN6F.
-    52		     03  OPTN6A 			    PIC X.
-    53		 02  OPTN6I				    PIC X(001).
-    54		 02  OPTN7L				    PIC S9(4) COMP.
-    55		 02  OPTN7F				    PIC X.
-    56		 02  FILLER REDEFINES OPTN7F.
-    57		     03  OPTN7A 			    PIC X.
-    58		 02  OPTN7I				    PIC X(001).
-    59		 02  OPTN8L				    PIC S9(4) COMP.
-    60		 02  OPTN8F				    PIC X.
-    61		 02  FILLER REDEFINES OPTN8F.
-    62		     03  OPTN8A 			    PIC X.
-    63		 02  OPTN8I				    PIC X(001).
-    64		 02  OPTN9L				    PIC S9(4) COMP.
-    65		 02  OPTN9F				    PIC X.
-    66		 02  FILLER REDEFINES OPTN9F.
-    67		     03  OPTN9A 			    PIC X.
-    68		 02  OPTN9I				    PIC X(001).
-    69		 02  OPTN10L				    PIC S9(4) COMP.
-    70		 02  OPTN10F				    PIC X.
-    71		 02  FILLER REDEFINES OPTN10F.
-    72		     03  OPTN10A			    PIC X.
-    73		 02  OPTN10I				    PIC X(001).
-    74		 02  OPTN11L				    PIC S9(4) COMP.
-    75		 02  OPTN11F				    PIC X.
-    76		 02  FILLER REDEFINES OPTN11F.
-    77		     03  OPTN11A			    PIC X.
-    78		 02  OPTN11I				    PIC X(001).
-    79		 02  USER1L				    PIC S9(4) COMP.
-    80		 02  USER1F				    PIC X.
-    81		 02  FILLER REDEFINES USER1F.
-    82		     03  USER1A 			    PIC X.
-    83		 02  USER1I				    PIC X(006).
-    84		 02  USER2L				    PIC S9(4) COMP.
-    85		 02  USER2F				    PIC X.
-    86		 02  FILLER REDEFINES USER2F.
-    87		     03  USER2A 			    PIC X.
-    88		 02  USER2I				    PIC X(006).
-    89		 02  USER3L				    PIC S9(4) COMP.
-    90		 02  USER3F				    PIC X.
-    91		 02  FILLER REDEFINES USER3F.
-    92		     03  USER3A 			    PIC X.
-    93		 02  USER3I				    PIC X(006).
-    94		 02  USER4L				    PIC S9(4) COMP.
-    95		 02  USER4F				    PIC X.
-    96		 02  FILLER REDEFINES USER4F.
-    97		     03  USER4A 			    PIC X.
-    98		 02  USER4I				    PIC X(006).
-    99		 02  USER5L				    PIC S9(4) COMP.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+    74		 02  UD11L				    PIC S9(4) COMP.
+    75		 02  UD11F				    PIC X.
+    76		 02  FILLER REDEFINES UD11F.
+    77		     03  UD11A				    PIC X.
+    78		 02  UD11I				    PIC X(001).
+    79		 02  UID1L				    PIC S9(4) COMP.
+    80		 02  UID1F				    PIC X.
+    81		 02  FILLER REDEFINES UID1F.
+    82		     03  UID1A				    PIC X.
+    83		 02  UID1I				    PIC X(008).
+    84		 02  UID2L				    PIC S9(4) COMP.
+    85		 02  UID2F				    PIC X.
+    86		 02  FILLER REDEFINES UID2F.
+    87		     03  UID2A				    PIC X.
+    88		 02  UID2I				    PIC X(008).
+    89		 02  UID3L				    PIC S9(4) COMP.
+    90		 02  UID3F				    PIC X.
+    91		 02  FILLER REDEFINES UID3F.
+    92		     03  UID3A				    PIC X.
+    93		 02  UID3I				    PIC X(008).
+    94		 02  UID4L				    PIC S9(4) COMP.
+    95		 02  UID4F				    PIC X.
+    96		 02  FILLER REDEFINES UID4F.
+    97		     03  UID4A				    PIC X.
+    98		 02  UID4I				    PIC X(008).
+    99		 02  UID5L				    PIC S9(4) COMP.
+   100		 02  UID5F				    PIC X.
+   101		 02  FILLER REDEFINES UID5F.
+   102		     03  UID5A				    PIC X.
+   103		 02  UID5I				    PIC X(008).
+   104		 02  UID6L				    PIC S9(4) COMP.
+   105		 02  UID6F				    PIC X.
+   106		 02  FILLER REDEFINES UID6F.
+   107		     03  UID6A				    PIC X.
+   108		 02  UID6I				    PIC X(008).
+   109		 02  UID7L				    PIC S9(4) COMP.
+   110		 02  UID7F				    PIC X.
+   111		 02  FILLER REDEFINES UID7F.
+   112		     03  UID7A				    PIC X.
+   113		 02  UID7I				    PIC X(008).
+   114		 02  UID8L				    PIC S9(4) COMP.
+   115		 02  UID8F				    PIC X.
+   116		 02  FILLER REDEFINES UID8F.
+   117		     03  UID8A				    PIC X.
+   118		 02  UID8I				    PIC X(008).
+   119		 02  UID9L				    PIC S9(4) COMP.
+   120		 02  UID9F				    PIC X.
+   121		 02  FILLER REDEFINES UID9F.
+   122		     03  UID9A				    PIC X.
+   123		 02  UID9I				    PIC X(008).
+   124		 02  UID10L				    PIC S9(4) COMP.
+   125		 02  UID10F				    PIC X.
+   126		 02  FILLER REDEFINES UID10F.
+   127		     03  UID10A 			    PIC X.
+   128		 02  UID10I				    PIC X(008).
+   129		 02  UID11L				    PIC S9(4) COMP.
+   130		 02  UID11F				    PIC X.
+   131		 02  FILLER REDEFINES UID11F.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   100		 02  USER5F				    PIC X.
-   101		 02  FILLER REDEFINES USER5F.
-   102		     03  USER5A 			    PIC X.
-   103		 02  USER5I				    PIC X(006).
-   104		 02  USER6L				    PIC S9(4) COMP.
-   105		 02  USER6F				    PIC X.
-   106		 02  FILLER REDEFINES USER6F.
-   107		     03  USER6A 			    PIC X.
-   108		 02  USER6I				    PIC X(006).
-   109		 02  USER7L				    PIC S9(4) COMP.
-   110		 02  USER7F				    PIC X.
-   111		 02  FILLER REDEFINES USER7F.
-   112		     03  USER7A 			    PIC X.
-   113		 02  USER7I				    PIC X(006).
-   114		 02  USER8L				    PIC S9(4) COMP.
-   115		 02  USER8F				    PIC X.
-   116		 02  FILLER REDEFINES USER8F.
-   117		     03  USER8A 			    PIC X.
-   118		 02  USER8I				    PIC X(006).
-   119		 02  USER9L				    PIC S9(4) COMP.
-   120		 02  USER9F				    PIC X.
-   121		 02  FILLER REDEFINES USER9F.
-   122		     03  USER9A 			    PIC X.
-   123		 02  USER9I				    PIC X(006).
-   124		 02  USER10L				    PIC S9(4) COMP.
-   125		 02  USER10F				    PIC X.
-   126		 02  FILLER REDEFINES USER10F.
-   127		     03  USER10A			    PIC X.
-   128		 02  USER10I				    PIC X(006).
-   129		 02  USER11L				    PIC S9(4) COMP.
-   130		 02  USER11F				    PIC X.
-   131		 02  FILLER REDEFINES USER11F.
-   132		     03  USER11A			    PIC X.
-   133		 02  USER11I				    PIC X(006).
+   132		     03  UID11A 			    PIC X.
+   133		 02  UID11I				    PIC X(008).
    134		 02  REQ1L				    PIC S9(4) COMP.
    135		 02  REQ1F				    PIC X.
    136		 02  FILLER REDEFINES REQ1F.
@@ -238,9 +266,7 @@
    154		 02  REQ5L				    PIC S9(4) COMP.
    155		 02  REQ5F				    PIC X.
    156		 02  FILLER REDEFINES REQ5F.
-   157		     03  REQ5A				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   157		     03  REQ5A				    PIC X.
    158		 02  REQ5I				    PIC X(001).
    159		 02  REQ6L				    PIC S9(4) COMP.
    160		 02  REQ6F				    PIC X.
@@ -272,455 +298,505 @@
    186		 02  FILLER REDEFINES REQ11F.
    187		     03  REQ11A 			    PIC X.
    188		 02  REQ11I				    PIC X(001).
-   189		 02  ADMIN1L				    PIC S9(4) COMP.
-   190		 02  ADMIN1F				    PIC X.
-   191		 02  FILLER REDEFINES ADMIN1F.
-   192		     03  ADMIN1A			    PIC X.
-   193		 02  ADMIN1I				    PIC X(001).
-   194		 02  ADMIN2L				    PIC S9(4) COMP.
-   195		 02  ADMIN2F				    PIC X.
-   196		 02  FILLER REDEFINES ADMIN2F.
-   197		     03  ADMIN2A			    PIC X.
-   198		 02  ADMIN2I				    PIC X(001).
-   199		 02  ADMIN3L				    PIC S9(4) COMP.
-   200		 02  ADMIN3F				    PIC X.
-   201		 02  FILLER REDEFINES ADMIN3F.
-   202		     03  ADMIN3A			    PIC X.
-   203		 02  ADMIN3I				    PIC X(001).
-   204		 02  ADMIN4L				    PIC S9(4) COMP.
-   205		 02  ADMIN4F				    PIC X.
-   206		 02  FILLER REDEFINES ADMIN4F.
-   207		     03  ADMIN4A			    PIC X.
-   208		 02  ADMIN4I				    PIC X(001).
-   209		 02  ADMIN5L				    PIC S9(4) COMP.
-   210		 02  ADMIN5F				    PIC X.
-   211		 02  FILLER REDEFINES ADMIN5F.
-   212		     03  ADMIN5A			    PIC X.
-   213		 02  ADMIN5I				    PIC X(001).
-   214		 02  ADMIN6L				    PIC S9(4) COMP.
-   215		 02  ADMIN6F				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   189		 02  ADMN1L				    PIC S9(4) COMP.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   216		 02  FILLER REDEFINES ADMIN6F.
-   217		     03  ADMIN6A			    PIC X.
-   218		 02  ADMIN6I				    PIC X(001).
-   219		 02  ADMIN7L				    PIC S9(4) COMP.
-   220		 02  ADMIN7F				    PIC X.
-   221		 02  FILLER REDEFINES ADMIN7F.
-   222		     03  ADMIN7A			    PIC X.
-   223		 02  ADMIN7I				    PIC X(001).
-   224		 02  ADMIN8L				    PIC S9(4) COMP.
-   225		 02  ADMIN8F				    PIC X.
-   226		 02  FILLER REDEFINES ADMIN8F.
-   227		     03  ADMIN8A			    PIC X.
-   228		 02  ADMIN8I				    PIC X(001).
-   229		 02  ADMIN9L				    PIC S9(4) COMP.
-   230		 02  ADMIN9F				    PIC X.
-   231		 02  FILLER REDEFINES ADMIN9F.
-   232		     03  ADMIN9A			    PIC X.
-   233		 02  ADMIN9I				    PIC X(001).
-   234		 02  ADMIN10L				    PIC S9(4) COMP.
-   235		 02  ADMIN10F				    PIC X.
-   236		 02  FILLER REDEFINES ADMIN10F.
-   237		     03  ADMIN10A			    PIC X.
-   238		 02  ADMIN10I				    PIC X(001).
-   239		 02  ADMIN11L				    PIC S9(4) COMP.
-   240		 02  ADMIN11F				    PIC X.
-   241		 02  FILLER REDEFINES ADMIN11F.
-   242		     03  ADMIN11A			    PIC X.
-   243		 02  ADMIN11I				    PIC X(001).
-   244		 02  APROV1L				    PIC S9(4) COMP.
-   245		 02  APROV1F				    PIC X.
-   246		 02  FILLER REDEFINES APROV1F.
-   247		     03  APROV1A			    PIC X.
-   248		 02  APROV1I				    PIC X(001).
-   249		 02  APROV2L				    PIC S9(4) COMP.
-   250		 02  APROV2F				    PIC X.
-   251		 02  FILLER REDEFINES APROV2F.
-   252		     03  APROV2A			    PIC X.
-   253		 02  APROV2I				    PIC X(001).
-   254		 02  APROV3L				    PIC S9(4) COMP.
-   255		 02  APROV3F				    PIC X.
-   256		 02  FILLER REDEFINES APROV3F.
-   257		     03  APROV3A			    PIC X.
-   258		 02  APROV3I				    PIC X(001).
-   259		 02  APROV4L				    PIC S9(4) COMP.
-   260		 02  APROV4F				    PIC X.
-   261		 02  FILLER REDEFINES APROV4F.
-   262		     03  APROV4A			    PIC X.
-   263		 02  APROV4I				    PIC X(001).
-   264		 02  APROV5L				    PIC S9(4) COMP.
-   265		 02  APROV5F				    PIC X.
-   266		 02  FILLER REDEFINES APROV5F.
-   267		     03  APROV5A			    PIC X.
-   268		 02  APROV5I				    PIC X(001).
-   269		 02  APROV6L				    PIC S9(4) COMP.
-   270		 02  APROV6F				    PIC X.
-   271		 02  FILLER REDEFINES APROV6F.
-   272		     03  APROV6A			    PIC X.
-   273		 02  APROV6I				    PIC X(001).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   190		 02  ADMN1F				    PIC X.
+   191		 02  FILLER REDEFINES ADMN1F.
+   192		     03  ADMN1A 			    PIC X.
+   193		 02  ADMN1I				    PIC X(001).
+   194		 02  ADMN2L				    PIC S9(4) COMP.
+   195		 02  ADMN2F				    PIC X.
+   196		 02  FILLER REDEFINES ADMN2F.
+   197		     03  ADMN2A 			    PIC X.
+   198		 02  ADMN2I				    PIC X(001).
+   199		 02  ADMN3L				    PIC S9(4) COMP.
+   200		 02  ADMN3F				    PIC X.
+   201		 02  FILLER REDEFINES ADMN3F.
+   202		     03  ADMN3A 			    PIC X.
+   203		 02  ADMN3I				    PIC X(001).
+   204		 02  ADMN4L				    PIC S9(4) COMP.
+   205		 02  ADMN4F				    PIC X.
+   206		 02  FILLER REDEFINES ADMN4F.
+   207		     03  ADMN4A 			    PIC X.
+   208		 02  ADMN4I				    PIC X(001).
+   209		 02  ADMN5L				    PIC S9(4) COMP.
+   210		 02  ADMN5F				    PIC X.
+   211		 02  FILLER REDEFINES ADMN5F.
+   212		     03  ADMN5A 			    PIC X.
+   213		 02  ADMN5I				    PIC X(001).
+   214		 02  ADMN6L				    PIC S9(4) COMP.
+   215		 02  ADMN6F				    PIC X.
+   216		 02  FILLER REDEFINES ADMN6F.
+   217		     03  ADMN6A 			    PIC X.
+   218		 02  ADMN6I				    PIC X(001).
+   219		 02  ADMN7L				    PIC S9(4) COMP.
+   220		 02  ADMN7F				    PIC X.
+   221		 02  FILLER REDEFINES ADMN7F.
+   222		     03  ADMN7A 			    PIC X.
+   223		 02  ADMN7I				    PIC X(001).
+   224		 02  ADMN8L				    PIC S9(4) COMP.
+   225		 02  ADMN8F				    PIC X.
+   226		 02  FILLER REDEFINES ADMN8F.
+   227		     03  ADMN8A 			    PIC X.
+   228		 02  ADMN8I				    PIC X(001).
+   229		 02  ADMN9L				    PIC S9(4) COMP.
+   230		 02  ADMN9F				    PIC X.
+   231		 02  FILLER REDEFINES ADMN9F.
+   232		     03  ADMN9A 			    PIC X.
+   233		 02  ADMN9I				    PIC X(001).
+   234		 02  ADMN10L				    PIC S9(4) COMP.
+   235		 02  ADMN10F				    PIC X.
+   236		 02  FILLER REDEFINES ADMN10F.
+   237		     03  ADMN10A			    PIC X.
+   238		 02  ADMN10I				    PIC X(001).
+   239		 02  ADMN11L				    PIC S9(4) COMP.
+   240		 02  ADMN11F				    PIC X.
+   241		 02  FILLER REDEFINES ADMN11F.
+   242		     03  ADMN11A			    PIC X.
+   243		 02  ADMN11I				    PIC X(001).
+   244		 02  APP1L				    PIC S9(4) COMP.
+   245		 02  APP1F				    PIC X.
+   246		 02  FILLER REDEFINES APP1F.
+   247		     03  APP1A				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   274		 02  APROV7L				    PIC S9(4) COMP.
-   275		 02  APROV7F				    PIC X.
-   276		 02  FILLER REDEFINES APROV7F.
-   277		     03  APROV7A			    PIC X.
-   278		 02  APROV7I				    PIC X(001).
-   279		 02  APROV8L				    PIC S9(4) COMP.
-   280		 02  APROV8F				    PIC X.
-   281		 02  FILLER REDEFINES APROV8F.
-   282		     03  APROV8A			    PIC X.
-   283		 02  APROV8I				    PIC X(001).
-   284		 02  APROV9L				    PIC S9(4) COMP.
-   285		 02  APROV9F				    PIC X.
-   286		 02  FILLER REDEFINES APROV9F.
-   287		     03  APROV9A			    PIC X.
-   288		 02  APROV9I				    PIC X(001).
-   289		 02  APROV10L				    PIC S9(4) COMP.
-   290		 02  APROV10F				    PIC X.
-   291		 02  FILLER REDEFINES APROV10F.
-   292		     03  APROV10A			    PIC X.
-   293		 02  APROV10I				    PIC X(001).
-   294		 02  APROV11L				    PIC S9(4) COMP.
-   295		 02  APROV11F				    PIC X.
-   296		 02  FILLER REDEFINES APROV11F.
-   297		     03  APROV11A			    PIC X.
-   298		 02  APROV11I				    PIC X(001).
-   299		 02  SERV1L				    PIC S9(4) COMP.
-   300		 02  SERV1F				    PIC X.
-   301		 02  FILLER REDEFINES SERV1F.
-   302		     03  SERV1A 			    PIC X.
-   303		 02  SERV1I				    PIC X(001).
-   304		 02  SERV2L				    PIC S9(4) COMP.
-   305		 02  SERV2F				    PIC X.
-   306		 02  FILLER REDEFINES SERV2F.
-   307		     03  SERV2A 			    PIC X.
-   308		 02  SERV2I				    PIC X(001).
-   309		 02  SERV3L				    PIC S9(4) COMP.
-   310		 02  SERV3F				    PIC X.
-   311		 02  FILLER REDEFINES SERV3F.
-   312		     03  SERV3A 			    PIC X.
-   313		 02  SERV3I				    PIC X(001).
-   314		 02  SERV4L				    PIC S9(4) COMP.
-   315		 02  SERV4F				    PIC X.
-   316		 02  FILLER REDEFINES SERV4F.
-   317		     03  SERV4A 			    PIC X.
-   318		 02  SERV4I				    PIC X(001).
-   319		 02  SERV5L				    PIC S9(4) COMP.
-   320		 02  SERV5F				    PIC X.
-   321		 02  FILLER REDEFINES SERV5F.
-   322		     03  SERV5A 			    PIC X.
-   323		 02  SERV5I				    PIC X(001).
-   324		 02  SERV6L				    PIC S9(4) COMP.
-   325		 02  SERV6F				    PIC X.
-   326		 02  FILLER REDEFINES SERV6F.
-   327		     03  SERV6A 			    PIC X.
-   328		 02  SERV6I				    PIC X(001).
-   329		 02  SERV7L				    PIC S9(4) COMP.
-   330		 02  SERV7F				    PIC X.
-   331		 02  FILLER REDEFINES SERV7F.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   248		 02  APP1I				    PIC X(001).
+   249		 02  APP2L				    PIC S9(4) COMP.
+   250		 02  APP2F				    PIC X.
+   251		 02  FILLER REDEFINES APP2F.
+   252		     03  APP2A				    PIC X.
+   253		 02  APP2I				    PIC X(001).
+   254		 02  APP3L				    PIC S9(4) COMP.
+   255		 02  APP3F				    PIC X.
+   256		 02  FILLER REDEFINES APP3F.
+   257		     03  APP3A				    PIC X.
+   258		 02  APP3I				    PIC X(001).
+   259		 02  APP4L				    PIC S9(4) COMP.
+   260		 02  APP4F				    PIC X.
+   261		 02  FILLER REDEFINES APP4F.
+   262		     03  APP4A				    PIC X.
+   263		 02  APP4I				    PIC X(001).
+   264		 02  APP5L				    PIC S9(4) COMP.
+   265		 02  APP5F				    PIC X.
+   266		 02  FILLER REDEFINES APP5F.
+   267		     03  APP5A				    PIC X.
+   268		 02  APP5I				    PIC X(001).
+   269		 02  APP6L				    PIC S9(4) COMP.
+   270		 02  APP6F				    PIC X.
+   271		 02  FILLER REDEFINES APP6F.
+   272		     03  APP6A				    PIC X.
+   273		 02  APP6I				    PIC X(001).
+   274		 02  APP7L				    PIC S9(4) COMP.
+   275		 02  APP7F				    PIC X.
+   276		 02  FILLER REDEFINES APP7F.
+   277		     03  APP7A				    PIC X.
+   278		 02  APP7I				    PIC X(001).
+   279		 02  APP8L				    PIC S9(4) COMP.
+   280		 02  APP8F				    PIC X.
+   281		 02  FILLER REDEFINES APP8F.
+   282		     03  APP8A				    PIC X.
+   283		 02  APP8I				    PIC X(001).
+   284		 02  APP9L				    PIC S9(4) COMP.
+   285		 02  APP9F				    PIC X.
+   286		 02  FILLER REDEFINES APP9F.
+   287		     03  APP9A				    PIC X.
+   288		 02  APP9I				    PIC X(001).
+   289		 02  APP10L				    PIC S9(4) COMP.
+   290		 02  APP10F				    PIC X.
+   291		 02  FILLER REDEFINES APP10F.
+   292		     03  APP10A 			    PIC X.
+   293		 02  APP10I				    PIC X(001).
+   294		 02  APP11L				    PIC S9(4) COMP.
+   295		 02  APP11F				    PIC X.
+   296		 02  FILLER REDEFINES APP11F.
+   297		     03  APP11A 			    PIC X.
+   298		 02  APP11I				    PIC X(001).
+   299		 02  SP1L				    PIC S9(4) COMP.
+   300		 02  SP1F				    PIC X.
+   301		 02  FILLER REDEFINES SP1F.
+   302		     03  SP1A				    PIC X.
+   303		 02  SP1I				    PIC X(001).
+   304		 02  SP2L				    PIC S9(4) COMP.
+   305		 02  SP2F				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   332		     03  SERV7A 			    PIC X.
-   333		 02  SERV7I				    PIC X(001).
-   334		 02  SERV8L				    PIC S9(4) COMP.
-   335		 02  SERV8F				    PIC X.
-   336		 02  FILLER REDEFINES SERV8F.
-   337		     03  SERV8A 			    PIC X.
-   338		 02  SERV8I				    PIC X(001).
-   339		 02  SERV9L				    PIC S9(4) COMP.
-   340		 02  SERV9F				    PIC X.
-   341		 02  FILLER REDEFINES SERV9F.
-   342		     03  SERV9A 			    PIC X.
-   343		 02  SERV9I				    PIC X(001).
-   344		 02  SERV10L				    PIC S9(4) COMP.
-   345		 02  SERV10F				    PIC X.
-   346		 02  FILLER REDEFINES SERV10F.
-   347		     03  SERV10A			    PIC X.
-   348		 02  SERV10I				    PIC X(001).
-   349		 02  SERV11L				    PIC S9(4) COMP.
-   350		 02  SERV11F				    PIC X.
-   351		 02  FILLER REDEFINES SERV11F.
-   352		     03  SERV11A			    PIC X.
-   353		 02  SERV11I				    PIC X(001).
-   354		 02  ERRMSGL				    PIC S9(4) COMP.
-   355		 02  ERRMSGF				    PIC X.
-   356		 02  FILLER REDEFINES ERRMSGF.
-   357		     03  ERRMSGA			    PIC X.
-   358		 02  ERRMSGI				    PIC X(071).
-   359	     01  UA001MO REDEFINES UA001MI.
-   360		 02  FILLER				    PIC X(12).
-   361		 02  FILLER				    PIC XX.
-   362		 02  FILLER				    PIC X.
-   363		 02  DATEO				    PIC X(010).
-   364		 02  FILLER				    PIC XX.
-   365		 02  FILLER				    PIC X.
-   366		 02  PAGEO				    PIC X(002).
-   367		 02  FILLER				    PIC XX.
-   368		 02  FILLER				    PIC X.
-   369		 02  TIMEO				    PIC X(008).
-   370		 02  FILLER				    PIC XX.
-   371		 02  FILLER				    PIC X.
-   372		 02  USERO				    PIC X(006).
-   373		 02  FILLER				    PIC XX.
-   374		 02  FILLER				    PIC X.
-   375		 02  OPTN1O				    PIC X(001).
-   376		 02  FILLER				    PIC XX.
-   377		 02  FILLER				    PIC X.
-   378		 02  OPTN2O				    PIC X(001).
-   379		 02  FILLER				    PIC XX.
-   380		 02  FILLER				    PIC X.
-   381		 02  OPTN3O				    PIC X(001).
-   382		 02  FILLER				    PIC XX.
-   383		 02  FILLER				    PIC X.
-   384		 02  OPTN4O				    PIC X(001).
-   385		 02  FILLER				    PIC XX.
-   386		 02  FILLER				    PIC X.
-   387		 02  OPTN5O				    PIC X(001).
-   388		 02  FILLER				    PIC XX.
-   389		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   306		 02  FILLER REDEFINES SP2F.
+   307		     03  SP2A				    PIC X.
+   308		 02  SP2I				    PIC X(001).
+   309		 02  SP3L				    PIC S9(4) COMP.
+   310		 02  SP3F				    PIC X.
+   311		 02  FILLER REDEFINES SP3F.
+   312		     03  SP3A				    PIC X.
+   313		 02  SP3I				    PIC X(001).
+   314		 02  SP4L				    PIC S9(4) COMP.
+   315		 02  SP4F				    PIC X.
+   316		 02  FILLER REDEFINES SP4F.
+   317		     03  SP4A				    PIC X.
+   318		 02  SP4I				    PIC X(001).
+   319		 02  SP5L				    PIC S9(4) COMP.
+   320		 02  SP5F				    PIC X.
+   321		 02  FILLER REDEFINES SP5F.
+   322		     03  SP5A				    PIC X.
+   323		 02  SP5I				    PIC X(001).
+   324		 02  SP6L				    PIC S9(4) COMP.
+   325		 02  SP6F				    PIC X.
+   326		 02  FILLER REDEFINES SP6F.
+   327		     03  SP6A				    PIC X.
+   328		 02  SP6I				    PIC X(001).
+   329		 02  SP7L				    PIC S9(4) COMP.
+   330		 02  SP7F				    PIC X.
+   331		 02  FILLER REDEFINES SP7F.
+   332		     03  SP7A				    PIC X.
+   333		 02  SP7I				    PIC X(001).
+   334		 02  SP8L				    PIC S9(4) COMP.
+   335		 02  SP8F				    PIC X.
+   336		 02  FILLER REDEFINES SP8F.
+   337		     03  SP8A				    PIC X.
+   338		 02  SP8I				    PIC X(001).
+   339		 02  SP9L				    PIC S9(4) COMP.
+   340		 02  SP9F				    PIC X.
+   341		 02  FILLER REDEFINES SP9F.
+   342		     03  SP9A				    PIC X.
+   343		 02  SP9I				    PIC X(001).
+   344		 02  SP10L				    PIC S9(4) COMP.
+   345		 02  SP10F				    PIC X.
+   346		 02  FILLER REDEFINES SP10F.
+   347		     03  SP10A				    PIC X.
+   348		 02  SP10I				    PIC X(001).
+   349		 02  SP11L				    PIC S9(4) COMP.
+   350		 02  SP11F				    PIC X.
+   351		 02  FILLER REDEFINES SP11F.
+   352		     03  SP11A				    PIC X.
+   353		 02  SP11I				    PIC X(001).
+   354		 02  MSGL				    PIC S9(4) COMP.
+   355		 02  MSGF				    PIC X.
+   356		 02  FILLER REDEFINES MSGF.
+   357		     03  MSGA				    PIC X.
+   358		 02  MSGI				    PIC X(060).
+   359		 02  ADDL				    PIC S9(4) COMP.
+   360		 02  ADDF				    PIC X.
+   361		 02  FILLER REDEFINES ADDF.
+   362		     03  ADDA				    PIC X.
+   363		 02  ADDI				    PIC X(009).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   390		 02  OPTN6O				    PIC X(001).
+   364		 02  EXITL				    PIC S9(4) COMP.
+   365		 02  EXITF				    PIC X.
+   366		 02  FILLER REDEFINES EXITF.
+   367		     03  EXITA				    PIC X.
+   368		 02  EXITI				    PIC X(010).
+   369		 02  FINDL				    PIC S9(4) COMP.
+   370		 02  FINDF				    PIC X.
+   371		 02  FILLER REDEFINES FINDF.
+   372		     03  FINDA				    PIC X.
+   373		 02  FINDI				    PIC X(010).
+   374		 02  UPL				    PIC S9(4) COMP.
+   375		 02  UPF				    PIC X.
+   376		 02  FILLER REDEFINES UPF.
+   377		     03  UPA				    PIC X.
+   378		 02  UPI				    PIC X(008).
+   379		 02  DOWNL				    PIC S9(4) COMP.
+   380		 02  DOWNF				    PIC X.
+   381		 02  FILLER REDEFINES DOWNF.
+   382		     03  DOWNA				    PIC X.
+   383		 02  DOWNI				    PIC X(010).
+   384		 02  RESETL				    PIC S9(4) COMP.
+   385		 02  RESETF				    PIC X.
+   386		 02  FILLER REDEFINES RESETF.
+   387		     03  RESETA 			    PIC X.
+   388		 02  RESETI				    PIC X(012).
+   389	     01  UA001MO REDEFINES UA001MI.
+   390		 02  FILLER				    PIC X(12).
    391		 02  FILLER				    PIC XX.
    392		 02  FILLER				    PIC X.
-   393		 02  OPTN7O				    PIC X(001).
+   393		 02  DATEO				    PIC X(010).
    394		 02  FILLER				    PIC XX.
    395		 02  FILLER				    PIC X.
-   396		 02  OPTN8O				    PIC X(001).
+   396		 02  PAGEO				    PIC X(002).
    397		 02  FILLER				    PIC XX.
    398		 02  FILLER				    PIC X.
-   399		 02  OPTN9O				    PIC X(001).
+   399		 02  TIMEO				    PIC X(008).
    400		 02  FILLER				    PIC XX.
    401		 02  FILLER				    PIC X.
-   402		 02  OPTN10O				    PIC X(001).
+   402		 02  USERIDO				    PIC X(008).
    403		 02  FILLER				    PIC XX.
    404		 02  FILLER				    PIC X.
-   405		 02  OPTN11O				    PIC X(001).
+   405		 02  UD1O				    PIC X(001).
    406		 02  FILLER				    PIC XX.
    407		 02  FILLER				    PIC X.
-   408		 02  USER1O				    PIC X(006).
+   408		 02  UD2O				    PIC X(001).
    409		 02  FILLER				    PIC XX.
    410		 02  FILLER				    PIC X.
-   411		 02  USER2O				    PIC X(006).
+   411		 02  UD3O				    PIC X(001).
    412		 02  FILLER				    PIC XX.
    413		 02  FILLER				    PIC X.
-   414		 02  USER3O				    PIC X(006).
+   414		 02  UD4O				    PIC X(001).
    415		 02  FILLER				    PIC XX.
    416		 02  FILLER				    PIC X.
-   417		 02  USER4O				    PIC X(006).
+   417		 02  UD5O				    PIC X(001).
    418		 02  FILLER				    PIC XX.
    419		 02  FILLER				    PIC X.
-   420		 02  USER5O				    PIC X(006).
-   421		 02  FILLER				    PIC XX.
+   420		 02  UD6O				    PIC X(001).
+   421		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
    422		 02  FILLER				    PIC X.
-   423		 02  USER6O				    PIC X(006).
+   423		 02  UD7O				    PIC X(001).
    424		 02  FILLER				    PIC XX.
    425		 02  FILLER				    PIC X.
-   426		 02  USER7O				    PIC X(006).
+   426		 02  UD8O				    PIC X(001).
    427		 02  FILLER				    PIC XX.
    428		 02  FILLER				    PIC X.
-   429		 02  USER8O				    PIC X(006).
+   429		 02  UD9O				    PIC X(001).
    430		 02  FILLER				    PIC XX.
    431		 02  FILLER				    PIC X.
-   432		 02  USER9O				    PIC X(006).
+   432		 02  UD10O				    PIC X(001).
    433		 02  FILLER				    PIC XX.
    434		 02  FILLER				    PIC X.
-   435		 02  USER10O				    PIC X(006).
+   435		 02  UD11O				    PIC X(001).
    436		 02  FILLER				    PIC XX.
    437		 02  FILLER				    PIC X.
-   438		 02  USER11O				    PIC X(006).
+   438		 02  UID1O				    PIC X(008).
    439		 02  FILLER				    PIC XX.
    440		 02  FILLER				    PIC X.
-   441		 02  REQ1O				    PIC X(001).
+   441		 02  UID2O				    PIC X(008).
    442		 02  FILLER				    PIC XX.
    443		 02  FILLER				    PIC X.
-   444		 02  REQ2O				    PIC X(001).
+   444		 02  UID3O				    PIC X(008).
    445		 02  FILLER				    PIC XX.
    446		 02  FILLER				    PIC X.
-   447		 02  REQ3O				    PIC X(001).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   447		 02  UID4O				    PIC X(008).
    448		 02  FILLER				    PIC XX.
    449		 02  FILLER				    PIC X.
-   450		 02  REQ4O				    PIC X(001).
+   450		 02  UID5O				    PIC X(008).
    451		 02  FILLER				    PIC XX.
    452		 02  FILLER				    PIC X.
-   453		 02  REQ5O				    PIC X(001).
+   453		 02  UID6O				    PIC X(008).
    454		 02  FILLER				    PIC XX.
    455		 02  FILLER				    PIC X.
-   456		 02  REQ6O				    PIC X(001).
+   456		 02  UID7O				    PIC X(008).
    457		 02  FILLER				    PIC XX.
    458		 02  FILLER				    PIC X.
-   459		 02  REQ7O				    PIC X(001).
+   459		 02  UID8O				    PIC X(008).
    460		 02  FILLER				    PIC XX.
    461		 02  FILLER				    PIC X.
-   462		 02  REQ8O				    PIC X(001).
+   462		 02  UID9O				    PIC X(008).
    463		 02  FILLER				    PIC XX.
    464		 02  FILLER				    PIC X.
-   465		 02  REQ9O				    PIC X(001).
+   465		 02  UID10O				    PIC X(008).
    466		 02  FILLER				    PIC XX.
    467		 02  FILLER				    PIC X.
-   468		 02  REQ10O				    PIC X(001).
+   468		 02  UID11O				    PIC X(008).
    469		 02  FILLER				    PIC XX.
    470		 02  FILLER				    PIC X.
-   471		 02  REQ11O				    PIC X(001).
+   471		 02  REQ1O				    PIC X(001).
    472		 02  FILLER				    PIC XX.
    473		 02  FILLER				    PIC X.
-   474		 02  ADMIN1O				    PIC X(001).
+   474		 02  REQ2O				    PIC X(001).
    475		 02  FILLER				    PIC XX.
    476		 02  FILLER				    PIC X.
-   477		 02  ADMIN2O				    PIC X(001).
+   477		 02  REQ3O				    PIC X(001).
    478		 02  FILLER				    PIC XX.
-   479		 02  FILLER				    PIC X.
-   480		 02  ADMIN3O				    PIC X(001).
+   479		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   480		 02  REQ4O				    PIC X(001).
    481		 02  FILLER				    PIC XX.
    482		 02  FILLER				    PIC X.
-   483		 02  ADMIN4O				    PIC X(001).
+   483		 02  REQ5O				    PIC X(001).
    484		 02  FILLER				    PIC XX.
    485		 02  FILLER				    PIC X.
-   486		 02  ADMIN5O				    PIC X(001).
+   486		 02  REQ6O				    PIC X(001).
    487		 02  FILLER				    PIC XX.
    488		 02  FILLER				    PIC X.
-   489		 02  ADMIN6O				    PIC X(001).
+   489		 02  REQ7O				    PIC X(001).
    490		 02  FILLER				    PIC XX.
    491		 02  FILLER				    PIC X.
-   492		 02  ADMIN7O				    PIC X(001).
+   492		 02  REQ8O				    PIC X(001).
    493		 02  FILLER				    PIC XX.
    494		 02  FILLER				    PIC X.
-   495		 02  ADMIN8O				    PIC X(001).
+   495		 02  REQ9O				    PIC X(001).
    496		 02  FILLER				    PIC XX.
    497		 02  FILLER				    PIC X.
-   498		 02  ADMIN9O				    PIC X(001).
+   498		 02  REQ10O				    PIC X(001).
    499		 02  FILLER				    PIC XX.
    500		 02  FILLER				    PIC X.
-   501		 02  ADMIN10O				    PIC X(001).
+   501		 02  REQ11O				    PIC X(001).
    502		 02  FILLER				    PIC XX.
    503		 02  FILLER				    PIC X.
-   504		 02  ADMIN11O				    PIC X(001).
-   505		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   504		 02  ADMN1O				    PIC X(001).
+   505		 02  FILLER				    PIC XX.
    506		 02  FILLER				    PIC X.
-   507		 02  APROV1O				    PIC X(001).
+   507		 02  ADMN2O				    PIC X(001).
    508		 02  FILLER				    PIC XX.
    509		 02  FILLER				    PIC X.
-   510		 02  APROV2O				    PIC X(001).
+   510		 02  ADMN3O				    PIC X(001).
    511		 02  FILLER				    PIC XX.
    512		 02  FILLER				    PIC X.
-   513		 02  APROV3O				    PIC X(001).
+   513		 02  ADMN4O				    PIC X(001).
    514		 02  FILLER				    PIC XX.
    515		 02  FILLER				    PIC X.
-   516		 02  APROV4O				    PIC X(001).
+   516		 02  ADMN5O				    PIC X(001).
    517		 02  FILLER				    PIC XX.
    518		 02  FILLER				    PIC X.
-   519		 02  APROV5O				    PIC X(001).
+   519		 02  ADMN6O				    PIC X(001).
    520		 02  FILLER				    PIC XX.
    521		 02  FILLER				    PIC X.
-   522		 02  APROV6O				    PIC X(001).
+   522		 02  ADMN7O				    PIC X(001).
    523		 02  FILLER				    PIC XX.
    524		 02  FILLER				    PIC X.
-   525		 02  APROV7O				    PIC X(001).
+   525		 02  ADMN8O				    PIC X(001).
    526		 02  FILLER				    PIC XX.
    527		 02  FILLER				    PIC X.
-   528		 02  APROV8O				    PIC X(001).
+   528		 02  ADMN9O				    PIC X(001).
    529		 02  FILLER				    PIC XX.
    530		 02  FILLER				    PIC X.
-   531		 02  APROV9O				    PIC X(001).
+   531		 02  ADMN10O				    PIC X(001).
    532		 02  FILLER				    PIC XX.
    533		 02  FILLER				    PIC X.
-   534		 02  APROV10O				    PIC X(001).
+   534		 02  ADMN11O				    PIC X(001).
    535		 02  FILLER				    PIC XX.
    536		 02  FILLER				    PIC X.
-   537		 02  APROV11O				    PIC X(001).
+   537		 02  APP1O				    PIC X(001).CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
    538		 02  FILLER				    PIC XX.
    539		 02  FILLER				    PIC X.
-   540		 02  SERV1O				    PIC X(001).
+   540		 02  APP2O				    PIC X(001).
    541		 02  FILLER				    PIC XX.
    542		 02  FILLER				    PIC X.
-   543		 02  SERV2O				    PIC X(001).
+   543		 02  APP3O				    PIC X(001).
    544		 02  FILLER				    PIC XX.
    545		 02  FILLER				    PIC X.
-   546		 02  SERV3O				    PIC X(001).
+   546		 02  APP4O				    PIC X(001).
    547		 02  FILLER				    PIC XX.
    548		 02  FILLER				    PIC X.
-   549		 02  SERV4O				    PIC X(001).
+   549		 02  APP5O				    PIC X(001).
    550		 02  FILLER				    PIC XX.
    551		 02  FILLER				    PIC X.
-   552		 02  SERV5O				    PIC X(001).
+   552		 02  APP6O				    PIC X(001).
    553		 02  FILLER				    PIC XX.
    554		 02  FILLER				    PIC X.
-   555		 02  SERV6O				    PIC X(001).
+   555		 02  APP7O				    PIC X(001).
    556		 02  FILLER				    PIC XX.
    557		 02  FILLER				    PIC X.
-   558		 02  SERV7O				    PIC X(001).
+   558		 02  APP8O				    PIC X(001).
    559		 02  FILLER				    PIC XX.
    560		 02  FILLER				    PIC X.
-   561		 02  SERV8O				    PIC X(001).
+   561		 02  APP9O				    PIC X(001).
    562		 02  FILLER				    PIC XX.
-   563		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
-   564		 02  SERV9O				    PIC X(001).
+   563		 02  FILLER				    PIC X.
+   564		 02  APP10O				    PIC X(001).
    565		 02  FILLER				    PIC XX.
    566		 02  FILLER				    PIC X.
-   567		 02  SERV10O				    PIC X(001).
+   567		 02  APP11O				    PIC X(001).
    568		 02  FILLER				    PIC XX.
    569		 02  FILLER				    PIC X.
-   570		 02  SERV11O				    PIC X(001).
+   570		 02  SP1O				    PIC X(001).
    571		 02  FILLER				    PIC XX.
    572		 02  FILLER				    PIC X.
-   573		 02  ERRMSGO				    PIC X(071).
-    74	    *$PP-END-COPY
-    75	     01  WS-UA001 REDEFINES UA001MI.
-    76		 05  FILLER		     PIC X(52).
-    77		 05  UD  OCCURS 11.
-    78		     10  UDL		     PIC S9(4) COMP.
-    79		     10  UDF		     PIC X.
-    80		     10  FILLER REDEFINES UDF.
-    81			 15  UDA	     PIC X.
-    82		     10  UDI		     PIC X(001).
-    83		 05  UID     OCCURS 11.
-    84		     10  UIDL		     PIC S9(4) COMP.
-    85		     10  UIDF		     PIC X.
-    86		     10  FILLER REDEFINES UIDF.
-    87			 15  UIDA	     PIC X.
-    88		     10  UIDI.
-    89			 15 FILLER	     PIC X(04).
-    90			 15 WS-USERNUM	     PIC 9(03).
-    91			 15 FILLER	     PIC X.
-    92		 05  REQ     OCCURS 11.
-    93		     10  REQL		     PIC S9(4) COMP.
-    94		     10  REQF		     PIC X.
-    95		     10  FILLER REDEFINES REQF.
-    96			 15 REQA	     PIC X.
-    97		     10  REQI		     PIC X(001).
-    98		 05  ADMN      OCCURS 11.
-    99		     10  ADMNL		     PIC S9(4) COMP.
-   100		     10  ADMNF		     PIC X.
-   101		     10  FILLER REDEFINES ADMNF.
-   102			 15  ADMNA	     PIC X.
-   103		     10  ADMNI		     PIC X(001).
-   104		 05  APP     OCCURS 11.
-   105		     10  APPL		     PIC S9(4) COMP.
-   106		     10  APPF		     PIC X.
-   107		     10  FILLER REDEFINES APPF.
-   108			 15  APPA	     PIC X.
-   109		     10  APPI		     PIC X(001).
-   110		 05  SP 	 OCCURS 11.
-   111		     10  SPL		     PIC S9(4) COMP.
-   112		     10  SPF		     PIC X.
-   113		     10  FILLER REDEFINES SPF.
-   114			 15  SPA	     PIC X.
-   115		     10  SPI		     PIC X(001).
-   116
-   117	    *
-   118	    PCOPY DFHAID.
-   118	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
+   573		 02  SP2O				    PIC X(001).
+   574		 02  FILLER				    PIC XX.
+   575		 02  FILLER				    PIC X.
+   576		 02  SP3O				    PIC X(001).
+   577		 02  FILLER				    PIC XX.
+   578		 02  FILLER				    PIC X.
+   579		 02  SP4O				    PIC X(001).
+   580		 02  FILLER				    PIC XX.
+   581		 02  FILLER				    PIC X.
+   582		 02  SP5O				    PIC X(001).
+   583		 02  FILLER				    PIC XX.
+   584		 02  FILLER				    PIC X.
+   585		 02  SP6O				    PIC X(001).
+   586		 02  FILLER				    PIC XX.
+   587		 02  FILLER				    PIC X.
+   588		 02  SP7O				    PIC X(001).
+   589		 02  FILLER				    PIC XX.
+   590		 02  FILLER				    PIC X.
+   591		 02  SP8O				    PIC X(001).
+   592		 02  FILLER				    PIC XX.
+   593		 02  FILLER				    PIC X.
+   594		 02  SP9O				    PIC X(001).
+   595		 02  FILLER				    PIC XX.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   596		 02  FILLER				    PIC X.
+   597		 02  SP10O				    PIC X(001).
+   598		 02  FILLER				    PIC XX.
+   599		 02  FILLER				    PIC X.
+   600		 02  SP11O				    PIC X(001).
+   601		 02  FILLER				    PIC XX.
+   602		 02  FILLER				    PIC X.
+   603		 02  MSGO				    PIC X(060).
+   604		 02  FILLER				    PIC XX.
+   605		 02  FILLER				    PIC X.
+   606		 02  ADDO				    PIC X(009).
+   607		 02  FILLER				    PIC XX.
+   608		 02  FILLER				    PIC X.
+   609		 02  EXITO				    PIC X(010).
+   610		 02  FILLER				    PIC XX.
+   611		 02  FILLER				    PIC X.
+   612		 02  FINDO				    PIC X(010).
+   613		 02  FILLER				    PIC XX.
+   614		 02  FILLER				    PIC X.
+   615		 02  UPO				    PIC X(008).
+   616		 02  FILLER				    PIC XX.
+   617		 02  FILLER				    PIC X.
+   618		 02  DOWNO				    PIC X(010).
+   619		 02  FILLER				    PIC XX.
+   620		 02  FILLER				    PIC X.
+   621		 02  RESETO				    PIC X(012).
+   100	    *$PP-END-COPY
+   101	     01  WS-UA001 REDEFINES UA001MI.
+   102		 05  FILLER		     PIC X(52).
+   103		 05  UD  OCCURS 11.
+   104		     10  UDL		     PIC S9(4) COMP.
+   105		     10  UDF		     PIC X.
+   106		     10  FILLER REDEFINES UDF.
+   107			 15  UDA	     PIC X.
+   108		     10  UDI		     PIC X(001).
+   109		 05  UID     OCCURS 11.
+   110		     10  UIDL		     PIC S9(4) COMP.
+   111		     10  UIDF		     PIC X.
+   112		     10  FILLER REDEFINES UIDF.
+   113			 15  UIDA	     PIC X.
+   114		     10  UIDI.
+   115			 15 FILLER	     PIC X(04).
+   116			 15 WS-USERNUM	     PIC 9(03).
+   117			 15 FILLER	     PIC X.
+   118		 05  REQ     OCCURS 11.
+   119		     10  REQL		     PIC S9(4) COMP.
+   120		     10  REQF		     PIC X.
+   121		     10  FILLER REDEFINES REQF.
+   122			 15 REQA	     PIC X.
+   123		     10  REQI		     PIC X(001).
+   124		 05  ADMN      OCCURS 11.
+   125		     10  ADMNL		     PIC S9(4) COMP.
+   126		     10  ADMNF		     PIC X.
+   127		     10  FILLER REDEFINES ADMNF.
+   128			 15  ADMNA	     PIC X.
+   129		     10  ADMNI		     PIC X(001).
+   130		 05  APP     OCCURS 11.
+   131		     10  APPL		     PIC S9(4) COMP.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   132		     10  APPF		     PIC X.
+   133		     10  FILLER REDEFINES APPF.
+   134			 15  APPA	     PIC X.
+   135		     10  APPI		     PIC X(001).
+   136		 05  SP 	 OCCURS 11.
+   137		     10  SPL		     PIC S9(4) COMP.
+   138		     10  SPF		     PIC X.
+   139		     10  FILLER REDEFINES SPF.
+   140			 15  SPA	     PIC X.
+   141		     10  SPI		     PIC X(001).
+   142
+   143	    *
+   144	    PCOPY DFHAID.
+   144	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
      1	     01  DFHAID.
-     2	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+     2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
      4	    *
      5	    * Revision Information
@@ -762,7 +838,9 @@
     41      *                                  ASCII  Cent sign x'9B'
     42           05  DFHPF23                   PIC X VALUE '.'.
     43           05  DFHPF24                   PIC X VALUE '<'.
-    44           05  DFHOPID                   PIC X VALUE 'W'.
+    44           05  DFHOPID                   PIC X VALUE 'W'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
     45           05  DFHMSRE                   PIC X VALUE 'X'.
     46           05  DFHTRIG                   PIC X VALUE '"'.
     47      *                                        value QUOTE  "
@@ -775,12 +853,10 @@
     54	    *	 It is set by using <Ctrl>+C or <Ctrl>+<Break> Keys
     55           05  DFHQUIT                   PIC X VALUE '!'.
     56		 05  DFHNULL		       PIC X VALUE LOW-VALUE.
-   118	    *$PP-END-COPY
-   119	    *
-   120	    P  COPY DFHBMSCA.
-   120	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COBCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   144	    *$PP-END-COPY
+   145	    *
+   146	    PCOPY DFHBMSCA.
+   146	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
      1	     01  DFHBMSCA.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -822,7 +898,9 @@
     39	    ******************************************************************
     40	    *BMS and Terminal Control - Order & Attributes constants	     *
     41	    ******************************************************************
-    42	    *
+    42	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
     43	    *	 Field Attributes
     44	    *
     45           05  DFHBMASB                          PIC X VALUE '8'.
@@ -838,9 +916,7 @@
     55           05  DFHUNNUM                          PIC X VALUE 'J'.
     56	    *
     57	    *	 partially supported
-    58	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+    58	    *
     59           05  DFHUNNOD                          PIC X VALUE '('.
     60           05  DFHUNIMD                          PIC X VALUE 'I'.
     61           05  DFHUNINT                          PIC X VALUE 'R'.
@@ -882,7 +958,9 @@
     97      *                                          x'80' X'82'
     98		     88  DFHCURSR		       VALUES 002 130.
     99      *                                          x'02' X'82'
-   100		 05  FILLER REDEFINES DFHBMFLG-VAL.
+   100		 05  FILLER REDEFINES DFHBMFLG-VAL.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
    101		     10  FILLER 		       PIC X.
    102		     10  DFHBMFLG		       PIC X.
    103
@@ -898,9 +976,7 @@
    113	    *	 Extended COLOR Attributes
    114	    *
    115           05  DFHDFCOL                          PIC X VALUE '0'.
-   116           05  DFHBLUE                           PIC X VALUE '1'.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   116           05  DFHBLUE                           PIC X VALUE '1'.
    117           05  DFHRED                            PIC X VALUE '2'.
    118           05  DFHPINK                           PIC X VALUE '3'.
    119           05  DFHGREEN                          PIC X VALUE '4'.
@@ -942,7 +1018,9 @@
    155		     88 DFHPT-VAL-EBCDIC	       VALUE 5.
    156		     88 DFHPT-VAL-ASCII 	       VALUE 9.
    157		 05  FILLER REDEFINES DFHPT-VAL.
-   158		     10  FILLER 		       PIC X.
+   158		     10  FILLER 		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
    159		     10  DFHPT			       PIC X.
    160      *                                              EBCDIC X'05'.
    161      *                                              ASCII  X'09'.
@@ -958,9 +1036,7 @@
    171		     88 DFHSFE-VAL-EBCDIC	       VALUE 41.
    172		     88 DFHSFE-VAL-ASCII	       VALUE 31.
    173		 05  FILLER REDEFINES DFHSFE-VAL.
-   174		     10  FILLER 		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   174		     10  FILLER 		       PIC X.
    175		     10  DFHSFE 		       PIC X.
    176      *                                              EBCDIC x'29'
    177      *                                              ASCII  x'1F'
@@ -1002,7 +1078,9 @@
    213           05  DFH3270                           PIC X VALUE '{'.
    214	    *
    215	    *	 supported for SEND TEXT command and printer terminal
-   216	    *
+   216	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
    217		 05  DFHBMPNL-VAL VALUE 021	       PIC S9(4) COMP-4.
    218		     88 DFHBMPNL-VAL-EBCDIC	       VALUE 21.
    219		     88 DFHBMPNL-VAL-ASCII	       VALUE 10.
@@ -1018,9 +1096,7 @@
    229		 05  DFHBMPFF-VAL VALUE 012	       PIC S9(4) COMP-4.
    230		 05  FILLER REDEFINES DFHBMPFF-VAL.
    231		     10  FILLER 		       PIC X.
-   232		     10  DFHBMPFF		       PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
+   232		     10  DFHBMPFF		       PIC X.
    233      *                                              X'0C'.
    234		 05  DFHBMPCR-VAL VALUE 013	       PIC S9(4) COMP-4.
    235		 05  FILLER REDEFINES DFHBMPCR-VAL.
@@ -1062,7 +1138,9 @@
    271      *                                              ASCII  x'84'
    272           05  DFHVAL                            PIC X VALUE 'A'.
    273	    *
-   274		 05  DFHSUB-VAL   VALUE 063	       PIC S9(4) COMP-4.
+   274		 05  DFHSUB-VAL   VALUE 063	       PIC S9(4) COMP-4.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
    275		     88 DFHSUB-VAL-EBCDIC	       VALUE 63.
    276		     88 DFHSUB-VAL-ASCII	       VALUE 26.
    277		 05  FILLER REDEFINES DFHSUB-VAL.
@@ -1077,267 +1155,643 @@
    286		     10  DFHFM			       PIC X.
    287      *                                              EBCDIC X'1E'.
    288		 05  DFHEO VALUE HIGH-VALUE	       PIC X.
-   120	    *$PP-END-COPY
-   121CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   146	    *$PP-END-COPY
+   147
+   148	     LINKAGE SECTION.
+   149	      01  DFHCOMMAREA.
+   150		05  DF-REC.
+   151		    10	DF-USERID	     PIC X(8).
+   152		    10	DF-REC.
+   153			15  DF-REQ	     PIC X.
+   154			15  DF-ADMIN	     PIC X.
+   155			15  DF-APP	     PIC X.
+   156			15  DF-SERVICE	     PIC X.
+   157		    10	DF-UPDATEDBY	     PIC X(8).
+   158		 05  DF-PRGNAME 	     PIC  X(6).
+   159		 05  FILLER		     PIC X(19).
+   160		 05  DFHSTATE		     PIC X(15).
+   161		 05  DF-TRANS		     PIC X(04).
+   162		 05  DF-LUSER		     PIC 9(03).
+   163		 05  DF-FUSER		     PIC 9(03).
+   164		 05  DF-PAGE		     PIC 9(02).
+   165		 05  DF-PAGE-END	     PIC 9(01).
+   166		 05  DF-SWITCH		     PIC X.
+   167		 05  DF-QITEM		     PIC S9(4) COMP.
+   168		 05  DF-QITEM-START	     PIC S9(4) COMP.
+   169		 05  DF-QITEM-END	     PIC S9(4) COMP.
+   170		 05  DF-QITEM-PAGE	     PIC S9(4) COMP.
+   171			     05  DF-SAMPLE		 PIC X(08).
+   172			     05  DF-UA02-STATE		 PIC X(15).
+   173	    *
+   174	     PROCEDURE DIVISION 					      REALCICS
+   175	     100-PROCESS SECTION.
+   176		 MOVE DFHCOMMAREA TO WS-COMMAREA
+   177		 EXEC CICS
+   178		   IGNORE CONDITION ERROR
+   179		 END-EXEC
+   180		 IF EIBCALEN = +0
+   181		     STRING EIBTRMID DELIMITED BY SIZE
+   182			      EIBTRNID DELIMITED BY SIZE
+   183			INTO WS-QNAME
+   184		     MOVE LENGTH OF UA001MI TO WS-LENGTH
+   185		     MOVE 1 TO WS-PAGE
+   186		     MOVE WS-PAGE TO PAGEO
+   187               MOVE 'DATA ENTRY' TO WS-DFHSTATE
+   188				       MOVE SPACES TO WS-FILTER-KEY
+   189		     PERFORM 999-MOVE-FILE-TO-QCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   122	     LINKAGE SECTION.
-   123	      01  DFHCOMMAREA.
-   124		05  DF-REC.
-   125		    10	DF-USERID	     PIC X(8).
-   126		    10	DF-REC.
-   127			15  DF-REQ	     PIC X.
-   128			15  DF-ADMIN	     PIC X.
-   129			15  DF-APP	     PIC X.
-   130			15  DF-SERVICE	     PIC X.
-   131		    10	DF-UPDATEDBY	     PIC X(8).
-   132		 05  DF-PRGNAME 	     PIC  X(6).
-   133		 05  FILLER		     PIC X(19).
-   134		 05  DFHSTATE		     PIC X(15).
-   135		 05  DF-TRANS		     PIC X(04).
-   136		 05  DF-LUSER		     PIC 9(03).
-   137		 05  DF-FUSER		     PIC 9(03).
-   138		 05  DF-PAGE		     PIC 9(02).
-   139		 05  DF-PAGE-END	     PIC 9(01).
-   140		 05  DF-SWITCH		     PIC X.
-   141		 05  DF-QITEM		     PIC S9(4) COMP.
-   142		 05  DF-QITEM-START	     PIC S9(4) COMP.
-   143		 05  DF-QITEM-END	     PIC S9(4) COMP.
-   144		 05  DF-QITEM-PAGE	     PIC S9(4) COMP.
-   145			 05  DF-SAMPLE		     PIC X(08).
-   146			 05  DF-UA02-STATE	     PIC X(15).
-   147	    *
-   148	     PROCEDURE DIVISION 					      REALCICS
-   149	     100-PROCESS SECTION.
-   150		 MOVE DFHCOMMAREA TO WS-COMMAREA
-   151		 STRING EIBTRMID DELIMITED BY SIZE
-   152			EIBTRNID DELIMITED BY SIZE
-   153			INTO WS-QNAME
-   154		 MOVE LENGTH OF UA001MI TO WS-LENGTH
-   155		 EXEC CICS
-   156		   IGNORE CONDITION ERROR
-   157		 END-EXEC
-   158
-   159		 IF EIBCALEN = +0
-   160		     MOVE 1 TO WS-PAGE
-   161		     MOVE WS-PAGE TO PAGEO
-   162               MOVE 'INITIAL' TO WS-DFHSTATE
-   163               MOVE 'N' TO DF-SWITCH
-   164		     PERFORM 999-MOVE-FILE-TO-Q
-   165		     PERFORM 500-MOVE-Q-TO-SCREEN
-   166		     PERFORM 100-NEW-MAP
-   167
-   168		 ELSE
-   169		      EXEC CICS
-   170                     RECEIVE MAP ('UA001M')
-   171                     MAPSET ('UA001S')
-   172			   INTO (UA001MI)
-   173		       END-EXEC
-   174		      IF  NOT EIBRESP = DFHRESP(MAPFAIL)
-   175			  EVALUATE EIBAID
-   176					       WHEN DFHPF2
-   177						  PERFORM 210-WHENF2
-   178			   WHEN DFHPF3
-   179			      EXEC CICSCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   190		     PERFORM 910-MOVE-Q-TO-SCREEN
+   191		     PERFORM 100-NEW-MAP
+   192
+   193		 ELSE
+   194		      EXEC CICS
+   195                     RECEIVE MAP ('UA001M')
+   196                     MAPSET ('UA001S')
+   197			   INTO (UA001MI)
+   198		       END-EXEC
+   199		      IF  NOT EIBRESP = DFHRESP(MAPFAIL)
+   200					      EVALUATE WS-DFHSTATE
+   201                                        WHEN 'DATA ENTRY'
+   202			    PERFORM 210-WHEN-DATA-ENTRY
+   203                    WHEN 'CONFIRM UPDATE'
+   204			    PERFORM 220-WHEN-CONFIRM-U
+   205                    WHEN 'AFTER UPDATE'
+   206			    PERFORM 230-WHEN-AFTER-UPDATE
+   207			  END-EVALUATE
+   208		     ELSE
+   209				     EXEC CICS DELETEQ TS
+   210					      QUEUE(WS-QNAME)
+   211					 END-EXEC
+   212				     PERFORM 999-MOVE-FILE-TO-Q
+   213			 PERFORM 910-MOVE-Q-TO-SCREEN
+   214			 PERFORM 100-NEW-MAP
+   215		     END-IF
+   216		 END-IF.
+   217
+   218
+   219	     100-NEW-MAP SECTION.
+   220		 EXEC CICS ASSIGN
+   221		     USERID(WS-USERID)
+   222		 END-EXEC
+   223
+   224		 EXEC CICS ASKTIME
+   225		     ABSTIME  (WS-TIME)
+   226		 END-EXEC
+   227
+   228		 EXEC CICS FORMATTIME
+   229		     ABSTIME  (WS-TIME)
+   230               DATESEP  ('/')
+   231		     DDMMYYYY	(DATEO)
+   232               TIMESEP    (':')
+   233		     TIME	(TIMEO)
+   234		 END-EXEC
+   235
+   236		 EXEC CICS
+   237               SEND MAP ('UA001M')
+   238               MAPSET ('UA001S')
+   239		     FROM (UA001MO)
+   240		     LENGTH(WS-LENGTH)
+   241		     ERASE
+   242		 END-EXEC
+   243
+   244		 EXEC CICS RETURN
+   245               TRANSID('UA01')
+   246		     COMMAREA(WS-COMMAREA)
+   247		 END-EXEC.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   180				  SEND CONTROL
-   181				  ERASE
-   182			      END-EXEC
-   183			      EXEC CICS DELETEQ TS
-   184				   QUEUE(WS-QNAME)
-   185			      END-EXEC
-   186			      EXEC CICS RETURN
-   187			      END-EXEC
-   188
-   189			  WHEN DFHPF7
-   190			      PERFORM 220-WHENF7
-   191
-   192			  WHEN DFHPF8
-   193			      PERFORM 230-WHENF8
-   194
-   195			  WHEN OTHER
-   196                        MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
-   197			  END-EVALUATE
-   198		     ELSE
-   199			 PERFORM 100-NEW-MAP
-   200		     END-IF
-   201		 END-IF.
-   202
-   203
-   204	     100-NEW-MAP SECTION.
-   205		 EXEC CICS ASSIGN
-   206		     USERID(WS-USERID)
-   207		 END-EXEC
-   208
-   209		 EXEC CICS ASKTIME
-   210		     ABSTIME  (WS-TIME)
-   211		 END-EXEC
-   212
-   213		 EXEC CICS FORMATTIME
-   214		     ABSTIME  (WS-TIME)
-   215               DATESEP  ('/')
-   216		     DDMMYYYY	(DATEO)
-   217               TIMESEP    (':')
-   218		     TIME	(TIMEO)
-   219		 END-EXEC
-   220
-   221		 EXEC CICS
-   222               SEND MAP ('UA001M')
-   223               MAPSET ('UA001S')
-   224		     FROM (UA001MO)
-   225		     LENGTH(WS-LENGTH)
-   226		     ERASE
-   227		 END-EXEC
-   228
-   229		 EXEC CICS RETURN
-   230               TRANSID('UA01')
-   231		     COMMAREA(WS-COMMAREA)
-   232		 END-EXEC.
-   233
-   234	     210-WHENF2 SECTION.
-   235		     EXEC CICS ASSIGN
-   236		     USERID(WS-USERID)
-   237		 END-EXECCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   248	     210-WHEN-DATA-ENTRY SECTION.
+   249		      EVALUATE EIBAID
+   250			      WHEN DFHENTER
+   251
+   252				IF PAGEI NOT = WS-PAGE
+   253				   PERFORM 310-CHANGE-PAGE
+   254		    ELSE
+   255				   PERFORM 300-CHECK-UD-INPUT
+   256                          MOVE 'PRESS ENTER AGAIN TO CONFIRM UPDATE'
+   257				TO MSGO
+   258				END-IF
+   259
+   260			      WHEN DFHPF2
+   261				PERFORM 800-WHENF2
+   262			      WHEN DFHPF3
+   263				EXEC CICS
+   264				  SEND CONTROL
+   265				      ERASE
+   266				END-EXEC
+   267				EXEC CICS DELETEQ TS
+   268				      QUEUE(WS-QNAME)
+   269				END-EXEC
+   270				EXEC CICS RETURN
+   271				END-EXEC
+   272			      WHEN DFHPF5
+   273		    PERFORM 830-WHENF5
+   274			      WHEN DFHPF7
+   275				PERFORM 810-WHENF7
+   276			      WHEN DFHPF8
+   277				PERFORM 820-WHENF8
+   278			      WHEN DFHPF12
+   279				PERFORM 840-WHENF12
+   280			      WHEN OTHER
+   281                          MOVE 'INVALID PFKEY PRESSED' TO MSGO
+   282
+   283			      END-EVALUATE.
+   284	     220-WHEN-CONFIRM-U SECTION.
+   285		     EVALUATE EIBAID
+   286		     WHEN DFHENTER
+   287		    PERFORM 500-UPD-DEL-RECORDS
+   288		    MOVE WS-UPDATED TO MSGO
+   289              MOVE 'AFTER UPDATE' TO WS-DFHSTATE
+   290				PERFORM 850-PROTECT-FIELDS
+   291			      WHEN DFHPF3
+   292				EXEC CICS
+   293				  SEND CONTROL
+   294				      ERASE
+   295				END-EXEC
+   296				EXEC CICS DELETEQ TS
+   297				      QUEUE(WS-QNAME)
+   298				END-EXEC
+   299				EXEC CICS RETURN
+   300				END-EXEC
+   301			      WHEN DFHPF12
+   302				 PERFORM 840-WHENF12
+   303			      WHEN OTHER
+   304                          MOVE 'INVALID PFKEY PRESSED' TO MSGO
+   305				PERFORM 850-PROTECT-FIELDSCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   238               MOVE 'INITIAL' TO DF-UA02-STATE
-   239			 EXEC CICS XCTL
-   240
-   241                PROGRAM('UA002P')
-   242				      COMMAREA(DF-UA02-STATE)
-   243				      LENGTH(15)
-   244		 END-EXEC.
-   245
-   246	     220-WHENF7 SECTION.
-   247
-   248		  SUBTRACT 11 FROM WS-QITEM-PAGE
-   249		  SUBTRACT 1 FROM WS-PAGE
-   250		  IF WS-QITEM-PAGE = WS-QITEM-START OR
-   251		     WS-QITEM-PAGE <  WS-QITEM-START
-   252               MOVE 'THIS IS THE FIRST PAGE' TO ERRMSGO
-   253		     MOVE 1 TO WS-PAGE
-   254		     MOVE WS-QITEM-START TO WS-QITEM-PAGE
-   255		  ELSE
-   256		    SUBTRACT 1 FROM WS-PAGE
-   257		  END-IF
-   258		  MOVE WS-PAGE TO PAGEO
-   259		  PERFORM 500-MOVE-Q-TO-SCREEN
-   260		  PERFORM 100-NEW-MAP.
-   261
-   262	     230-WHENF8 SECTION.
-   263
-   264		  ADD 11 TO WS-QITEM-PAGE
-   265		  IF WS-QITEM-PAGE > WS-QITEM-END
-   266		     SUBTRACT 11 FROM WS-QITEM-PAGE
-   267               MOVE 'THIS IS THE LAST PAGE' TO ERRMSGO
-   268		  ELSE
-   269		     ADD 1 TO WS-PAGE
-   270		     MOVE WS-PAGE TO PAGEO
-   271		     PERFORM 500-MOVE-Q-TO-SCREEN
-   272		  END-IF.
-   273		  PERFORM 100-NEW-MAP.
-   274
-   275	     500-MOVE-Q-TO-SCREEN SECTION.
-   276
-   277		  MOVE WS-QITEM-PAGE TO WS-QITEM
-   278		  EXEC CICS READQ TS
-   279			    QUEUE(WS-QNAME)
-   280			    INTO (WS-REC)
-   281			    LENGTH(WS-RECB-LENGTH)
-   282			    ITEM (WS-QITEM)
-   283		   END-EXEC
-   284
-   285		  MOVE 1 TO WS-INDX
-   286
-   287		  PERFORM UNTIL WS-INDX > 11
-   288		      IF EIBRESP = DFHRESP(NORMAL) AND
-   289			 WS-QITEM <= WS-QITEM-END
-   290			 MOVE WS-UID TO UIDI(WS-INDX)
-   291			 MOVE WS-REQ TO REQI(WS-INDX)
-   292			 MOVE WS-ADMN TO ADMNI(WS-INDX)
-   293			 MOVE WS-APP TO APPI(WS-INDX)
-   294			 MOVE WS-SP TO SPI(WS-INDX)
-   295			 ADD 1 TO WS-INDXCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
-
-
-   296			 ADD 1 TO WS-QITEM
-   297			 EXEC CICS READQ TS
-   298			      QUEUE(WS-QNAME)
-   299			      INTO (WS-REC)
-   300			      ITEM (WS-QITEM)
-   301			END-EXEC
-   302		     ELSE
-   303			MOVE SPACES TO UDI(WS-INDX)
-   304			MOVE SPACES TO UIDI(WS-INDX)
-   305			MOVE SPACES TO REQI(WS-INDX)
-   306			MOVE SPACES TO ADMNI(WS-INDX)
-   307			MOVE SPACES TO APPI(WS-INDX)
-   308			MOVE SPACES TO SPI(WS-INDX)
-   309                  MOVE 'THIS IS THE LAST PAGE'  TO ERRMSGO
-   310                  MOVE '1' TO WS-LASTPAGE
-   311			ADD 1 TO WS-INDX
-   312		     END-IF
-   313		  END-PERFORM
-   314
-   315		 MOVE WS-USERNUM(1) TO WS-FUSER.
-   316
-   317	     500-EXIT.
-   318		 EXIT.
+   306			      END-EVALUATE.
+   307	      230-WHEN-AFTER-UPDATE SECTION.
+   308		     EVALUATE EIBAID
+   309		     WHEN DFHENTER
+   310
+   311
+   312                          MOVE 'DATA ENTRY' TO WS-DFHSTATE
+   313				MOVE SPACES TO WS-FILTER-KEY
+   314		    EXEC CICS DELETEQ TS
+   315				      QUEUE(WS-QNAME)
+   316				END-EXEC
+   317				PERFORM 999-MOVE-FILE-TO-Q
+   318		    PERFORM 310-CHANGE-PAGE
    319
-   320	     999-MOVE-FILE-TO-Q SECTION.
-   321
-   322		  MOVE LOW-VALUES TO WS-KEYB.
-   323		  EXEC CICS
-   324               STARTBR FILE('uaf00001')
-   325		     RIDFLD (WS-KEYB)
-   326		     GTEQ
-   327		  END-EXEC
-   328
-   329		  EXEC CICS
-   330                READNEXT FILE('uaf00001')
-   331		      INTO (WS-REC)
-   332		      RIDFLD (WS-KEYB)
-   333		  END-EXEC
-   334
-   335
-   336		 EXEC CICS WRITEQ TS
-   337			   QUEUE(WS-QNAME)
-   338			   FROM (WS-REC)
-   339			   LENGTH (WS-RECB-LENGTH)
-   340			   ITEM (WS-QITEM)
-   341		 END-EXEC
-   342		 MOVE WS-QITEM TO WS-QITEM-START
-   343		 PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
-   344		     MOVE WS-QITEM TO WS-QITEM-END
-   345		     EXEC CICS
-   346                    READNEXT FILE('uaf00001')
-   347			  INTO (WS-REC)
-   348			  RIDFLD (WS-KEYB)
-   349		     END-EXEC
-   350		     IF EIBRESP = DFHRESP(NORMAL)
-   351			EXEC CICS WRITEQ TS
-   352			     QUEUE(WS-QNAME)
-   353			     FROM (WS-REC)CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+   320                          MOVE 'UPDATE USER ROLES AND PRESS ENTER'
+   321				TO MSGO
+   322			      WHEN DFHPF3
+   323				EXEC CICS
+   324				  SEND CONTROL
+   325				      ERASE
+   326				END-EXEC
+   327				EXEC CICS DELETEQ TS
+   328				      QUEUE(WS-QNAME)
+   329				END-EXEC
+   330				EXEC CICS RETURN
+   331				END-EXEC
+   332
+   333			      WHEN OTHER
+   334				PERFORM 850-PROTECT-FIELDS
+   335                          MOVE 'INVALID PFKEY PRESSED' TO MSGO
+   336
+   337			      END-EVALUATE.
+   338	     300-CHECK-UD-INPUT SECTION.
+   339		     MOVE 1 TO WS-INDX
+   340			 MOVE 0 TO WS-EDIT-COUNT
+   341			 MOVE 0 TO WS-ERROR-COUNT
+   342                   MOVE 'Y' TO WS-VALID-I-SW
+   343           MOVE 'Y' TO WS-NO-CHANGE
+   344			 PERFORM UNTIL WS-INDX > 11
+   345                         IF  UDI(WS-INDX) NOT = ' ' AND
+   346                                UIDI(WS-INDX) NOT = ' '
+   347
+   348				      EVALUATE UDI(WS-INDX)
+   349                                WHEN 'U'
+   350				       PERFORM 400-CHECK-ROLE-CHANGE
+   351				       PERFORM 410-VALIDATE-YN-FIELD
+   352				       ADD 1 TO WS-EDIT-COUNT
+   353                                WHEN 'D'
+   354				       ADD 1 TO WS-EDIT-COUNT
+   355                WHEN '_'
+   356				       PERFORM 401-CHECK-CHANGE-BLANK
+   357				      WHEN OTHER
+   358				       MOVE WS-INVALID-FIELD TO MSGO
+   359				       MOVE DFHUNIMD TO UDA(WS-INDX)
+   360				       ADD 1 TO WS-ERROR-COUNT
+   361				      END-EVALUATE
+   362
+   363			       END-IFCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
-   354			     LENGTH (WS-RECB-LENGTH)
-   355			     ITEM (WS-QITEM)
-   356			END-EXEC
-   357			MOVE WS-USERID7 TO WS-KEYB7
-   358			MOVE HIGH-VALUES TO WS-KEYB1
-   359		     END-IF
-   360		 END-PERFORM
-   361		 EXEC CICS
-   362                ENDBR FILE('uaf00001')
-   363		 END-EXEC
-   364		 MOVE WS-QITEM-START TO WS-QITEM-PAGE.
-   365
-   366	     999-EXIT.
-   367		 EXIT.
-   368
+   364			   ADD 1 TO WS-INDX
+   365			 END-PERFORM
+   366		 IF WS-ERROR-COUNT > 0
+   367			    MOVE WS-INVALID-FIELD TO MSGO
+   368			 END-IF
    369
-   370
+   370			 IF WS-EDIT-COUNT > 0 AND WS-ERROR-COUNT = 0
+   371            IF WS-VALID-I-SW = 'Y'
+   372                      MOVE 'CONFIRM UPDATE' TO WS-DFHSTATE
+   373				PERFORM 850-PROTECT-FIELDS
+   374			      ELSE
+   375				MOVE WS-INVALID-FIELD TO MSGO
+   376				PERFORM 100-NEW-MAP
+   377			      END-IF
+   378			 ELSE
+   379
+   380			  PERFORM 100-NEW-MAP
+   381			 END-IF.
+   382
+   383	     310-CHANGE-PAGE SECTION.
+   384		     MOVE PAGEI TO WS-PG
+   385
+   386			 IF WS-PAGE1 IS NOT NUMERIC
+   387			    MOVE DFHUNIMD TO PAGEA
+   388				MOVE WS-INVALID-FIELD TO MSGO
+   389				PERFORM 100-NEW-MAP
+   390			 END-IF
+   391			 IF WS-PAGE2 IS NOT NUMERIC
+   392			    MOVE DFHUNIMD TO PAGEA
+   393				MOVE WS-INVALID-FIELD TO MSGO
+   394				PERFORM 100-NEW-MAP
+   395			 END-IF
+   396		     MOVE PAGEI TO WS-PAGE-X
+   397
+   398			 SUBTRACT 1 FROM WS-PAGE-NUM
+   399		     MULTIPLY WS-PAGE-NUM BY 11 GIVING WS-TEMP-COUNT
+   400
+   401			 ADD 1 TO WS-PAGE-NUM
+   402
+   403			 ADD WS-TEMP-COUNT TO WS-QITEM-START GIVING
+   404			 WS-QITEM-PAGE
+   405
+   406			 PERFORM UNTIL WS-QITEM-PAGE < WS-QITEM-END
+   407			   SUBTRACT 11 FROM WS-QITEM-PAGE
+   408			       SUBTRACT 1 FROM WS-PAGE-NUM
+   409			 END-PERFORM
+   410
+   411			 IF WS-TEMP-COUNT = 0
+   412                       MOVE 'THIS IS THE FIRST PAGE' TO MSGO
+   413		     MOVE 1 TO WS-PAGE-NUM
+   414				 MOVE WS-QITEM-START TO WS-QITEM-PAGE
+   415			 ELSE
+   416			     ADD 11 TO WS-QITEM-PAGE
+   417				 IF WS-QITEM-PAGE > WS-QITEM-END
+   418                                   MOVE 'THIS IS THE LAST PAGE' TO MSGO
+   419				 END-IF
+   420				 SUBTRACT 11 FROM WS-QITEM-PAGE
+   421		 END-IFCA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   422
+   423			 MOVE WS-PAGE-NUM TO WS-PAGE
+   424			 MOVE WS-PAGE TO PAGEO
+   425			 PERFORM 910-MOVE-Q-TO-SCREEN
+   426		 PERFORM 100-NEW-MAP
+   427			 .
+   428
+   429	     400-CHECK-ROLE-CHANGE SECTION.
+   430		 PERFORM 900-FIND-REC
+   431                   MOVE 'Y' TO WS-NO-CHANGE
+   432		 IF WS-REQ NOT = REQI(WS-INDX)
+   433                          MOVE 'N' TO WS-NO-CHANGE
+   434		 END-IF
+   435
+   436		 IF WS-ADMN NOT = ADMNI(WS-INDX)
+   437              MOVE 'N' TO WS-NO-CHANGE
+   438		 END-IF
+   439
+   440		 IF WS-APP NOT = APPI(WS-INDX)
+   441                          MOVE 'N' TO WS-NO-CHANGE
+   442
+   443		 END-IF
+   444
+   445		 IF WS-SP NOT = SPI(WS-INDX)
+   446                          MOVE 'N' TO WS-NO-CHANGE
+   447		 END-IF
+   448
+   449                   IF WS-NO-CHANGE = 'Y'
+   450			    ADD 1 TO WS-ERROR-COUNT
+   451				MOVE DFHUNIMD TO UDA(WS-INDX)
+   452			 END-IF.
+   453
+   454
+   455	     401-CHECK-CHANGE-BLANK SECTION.
+   456		     PERFORM 900-FIND-REC
+   457
+   458		 IF WS-REQ NOT = REQI(WS-INDX)
+   459				ADD 1 TO WS-ERROR-COUNT
+   460				MOVE DFHUNIMD TO REQA(WS-INDX)
+   461		 END-IF
+   462
+   463		 IF WS-ADMN NOT = ADMNI(WS-INDX)
+   464		    ADD 1 TO WS-ERROR-COUNT
+   465				MOVE DFHUNIMD TO ADMNA(WS-INDX)
+   466		 END-IF
+   467
+   468		 IF WS-APP NOT = APPI(WS-INDX)
+   469				ADD 1 TO WS-ERROR-COUNT
+   470				MOVE DFHUNIMD TO APPA(WS-INDX)
+   471		 END-IF
+   472
+   473		 IF WS-SP NOT = SPI(WS-INDX)
+   474				ADD 1 TO WS-ERROR-COUNT
+   475				      MOVE DFHUNIMD TO SPA(WS-INDX)
+   476		 END-IF.
+   477
+   478
+   479	     410-VALIDATE-YN-FIELD SECTION.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   480
+   481           IF REQI(WS-INDX) NOT = 'Y' AND
+   482                      REQI(WS-INDX) NOT = 'N'
+   483				MOVE DFHUNIMD TO REQA(WS-INDX)
+   484				ADD 1 TO WS-ERROR-COUNT
+   485			 END-IF
+   486                   IF ADMNI(WS-INDX) NOT = 'Y' AND
+   487                      ADMNI(WS-INDX) NOT = 'N'
+   488				MOVE DFHUNIMD TO ADMNA(WS-INDX)
+   489				ADD 1 TO WS-ERROR-COUNT
+   490			 END-IF
+   491                   IF APPI(WS-INDX) NOT = 'Y' AND
+   492                      APPI(WS-INDX) NOT = 'N'
+   493				MOVE DFHUNIMD TO APPA(WS-INDX)
+   494				ADD 1 TO WS-ERROR-COUNT
+   495			 END-IF
+   496                   IF SPI(WS-INDX) NOT = 'Y' AND
+   497                      SPI(WS-INDX) NOT = 'N'
+   498				MOVE DFHUNIMD TO SPA(WS-INDX)
+   499				ADD 1 TO WS-ERROR-COUNT
+   500			 END-IF.
+   501
+   502	     500-UPD-DEL-RECORDS SECTION.
+   503		     MOVE 1 TO WS-INDX
+   504
+   505			 PERFORM UNTIL WS-INDX > 11
+   506			   MOVE UIDI(WS-INDX) TO WS-UID
+   507
+   508			       EVALUATE UDI(WS-INDX)
+   509                         WHEN 'U'
+   510		     PERFORM 510-UPDATE-REC
+   511                         WHEN 'D'
+   512				 PERFORM 520-DELETE-REC
+   513			       END-EVALUATE
+   514			       ADD 1 TO WS-INDX
+   515			 END-PERFORM.
+   516
+   517	     510-UPDATE-REC SECTION.
+   518		 EXEC CICS
+   519                READ FILE('uaf00001')
+   520		      INTO (WS-REC)
+   521		      RIDFLD (WS-UID)
+   522		      KEYLENGTH (WS-STD-KEY-LEN)
+   523				      EQUAL
+   524		      UPDATE
+   525		 END-EXEC
+   526			 MOVE REQI(WS-INDX) TO WS-REQ
+   527			 MOVE ADMNI(WS-INDX) TO WS-ADMN
+   528			 MOVE APPI(WS-INDX) TO WS-APP
+   529			 MOVE SPI(WS-INDX) TO WS-SP
+   530			 EXEC CICS ASSIGN
+   531		      USERID(WS-UPBY)
+   532		 END-EXEC
+   533			 EXEC CICS
+   534                                REWRITE FILE ('UAF00001')
+   535				      FROM (WS-REC)
+   536			 END-EXEC.
+   537	     520-DELETE-REC SECTION.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   538		     EXEC CICS
+   539                READ FILE('UAF00001')
+   540		      INTO (WS-REC)
+   541		      RIDFLD (WS-UID)
+   542		      KEYLENGTH (WS-STD-KEY-LEN)
+   543				      EQUAL
+   544		      UPDATE
+   545		 END-EXEC
+   546		 EXEC CICS
+   547                        DELETE FILE('UAF00001')
+   548		 END-EXEC.
+   549	     600-FILTER-USER SECTION.
+   550		 MOVE 1 TO WS-INDX
+   551           MOVE 'Y' TO WS-FILTER-SW
+   552
+   553                   PERFORM UNTIL WS-FILTER-ARR(WS-INDX) = ' '
+   554				    OR WS-INDX > 8
+   555                                          OR WS-FILTER-SW = 'N'
+   556				IF WS-FILTER-ARR(WS-INDX) NOT =
+   557				   WS-UID-CHAR (WS-INDX)
+   558                                 MOVE 'N' TO WS-FILTER-SW
+   559				END-IF
+   560			    ADD 1 TO WS-INDX
+   561			 END-PERFORM.
+   562
+   563	     800-WHENF2 SECTION.
+   564		     EXEC CICS ASSIGN
+   565		     USERID(WS-USERID)
+   566		 END-EXEC
+   567               MOVE 'INITIAL' TO DF-UA02-STATE
+   568			 EXEC CICS XCTL
+   569                PROGRAM('UA002P')
+   570				      COMMAREA(DF-UA02-STATE)
+   571				      LENGTH(15)
+   572		 END-EXEC.
+   573
+   574	     810-WHENF7 SECTION.
+   575
+   576		  SUBTRACT 11 FROM WS-QITEM-PAGE
+   577		  IF WS-QITEM-PAGE = WS-QITEM-START OR
+   578		     WS-QITEM-PAGE <  WS-QITEM-START
+   579               MOVE 'THIS IS THE FIRST PAGE' TO MSGO
+   580		     MOVE 1 TO WS-PAGE
+   581		     MOVE WS-QITEM-START TO WS-QITEM-PAGE
+   582		  ELSE
+   583		    SUBTRACT 1 FROM WS-PAGE
+   584		  END-IF
+   585		  MOVE WS-PAGE TO PAGEO
+   586		  PERFORM 910-MOVE-Q-TO-SCREEN
+   587		  PERFORM 100-NEW-MAP.
+   588
+   589	     820-WHENF8 SECTION.
+   590
+   591		  ADD 11 TO WS-QITEM-PAGE
+   592		  IF WS-QITEM-PAGE > WS-QITEM-END
+   593		     SUBTRACT 11 FROM WS-QITEM-PAGE
+   594               MOVE 'THIS IS THE LAST PAGE' TO MSGO
+   595		  ELSECA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   596		     ADD 1 TO WS-PAGE
+   597		     MOVE WS-PAGE TO PAGEO
+   598		     PERFORM 910-MOVE-Q-TO-SCREEN
+   599		  END-IF
+   600		  PERFORM 100-NEW-MAP.
+   601	     830-WHENF5 SECTION.
+   602			 IF USERIDI NOT = SPACES
+   603				 MOVE USERIDI TO WS-FILTER-KEY
+   604				 MOVE WS-FILTER-KEY TO MSGO
+   605				 EXEC CICS DELETEQ TS
+   606				      QUEUE(WS-QNAME)
+   607				 END-EXEC
+   608
+   609				 PERFORM 999-MOVE-FILE-TO-Q
+   610				 PERFORM 910-MOVE-Q-TO-SCREEN
+   611				 PERFORM 100-NEW-MAP
+   612			 END-IF.
+   613
+   614	     840-WHENF12 SECTION.
+   615               MOVE 'DATA ENTRY' TO WS-DFHSTATE
+   616			 MOVE WS-QITEM-START TO WS-QITEM-PAGE
+   617			 MOVE 1 TO WS-PAGE
+   618			 MOVE WS-PAGE TO PAGEO
+   619                   MOVE 'UPDATE USER ROLES AND PRESS ENTER'
+   620			 TO MSGO
+   621			 MOVE SPACES TO WS-FILTER-KEY
+   622			 PERFORM 910-MOVE-Q-TO-SCREEN
+   623			 PERFORM 100-NEW-MAP.
+   624
+   625	     850-PROTECT-FIELDS SECTION.
+   626		     MOVE 1 TO WS-INDX
+   627			 MOVE SPACES TO USERIDO
+   628			 MOVE DFHBMPRF TO USERIDA
+   629			 MOVE DFHBMPRF TO PAGEA
+   630		 PERFORM UNTIL WS-INDX > 11
+   631
+   632			   MOVE DFHBMPRF TO UDA(WS-INDX)
+   633		   MOVE DFHBMPRF TO UIDA(WS-INDX)
+   634		   MOVE DFHBMPRF TO REQA(WS-INDX)
+   635		   MOVE DFHBMPRF TO ADMNA(WS-INDX)
+   636		   MOVE DFHBMPRF TO APPA(WS-INDX)
+   637		   MOVE DFHBMPRF TO SPA(WS-INDX)
+   638			       ADD 1 TO WS-INDX
+   639			 END-PERFORM.
+   640	     900-FIND-REC SECTION.
+   641		     MOVE UIDI(WS-INDX) TO WS-USERID
+   642			 EXEC CICS
+   643                READ FILE('uaf00001')
+   644		      INTO (WS-REC)
+   645		      RIDFLD (WS-USERID)
+   646		      KEYLENGTH (WS-STD-KEY-LEN)
+   647		      EQUAL
+   648		 END-EXEC.
+   649	     910-MOVE-Q-TO-SCREEN SECTION.
+   650
+   651		  MOVE WS-QITEM-PAGE TO WS-QITEM
+   652		  EXEC CICS READQ TS
+   653			    QUEUE(WS-QNAME)CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   654			    INTO (WS-REC)
+   655			    LENGTH(WS-RECB-LENGTH)
+   656			    ITEM (WS-QITEM)
+   657		   END-EXEC
+   658
+   659		  MOVE 1 TO WS-INDX
+   660
+   661		  PERFORM UNTIL WS-INDX > 11
+   662		      IF EIBRESP = DFHRESP(NORMAL) AND
+   663			 WS-QITEM <= WS-QITEM-END
+   664                   MOVE '_'     TO UDI(WS-INDX)
+   665			 MOVE WS-UID TO UIDI(WS-INDX)
+   666			 MOVE WS-REQ TO REQI(WS-INDX)
+   667			 MOVE WS-ADMN TO ADMNI(WS-INDX)
+   668			 MOVE WS-APP TO APPI(WS-INDX)
+   669			 MOVE WS-SP TO SPI(WS-INDX)
+   670
+   671			 ADD 1 TO WS-INDX
+   672			 ADD 1 TO WS-QITEM
+   673			 EXEC CICS READQ TS
+   674			      QUEUE(WS-QNAME)
+   675			      INTO (WS-REC)
+   676			      ITEM (WS-QITEM)
+   677			END-EXEC
+   678		     ELSE
+   679			MOVE SPACES TO UDI(WS-INDX)
+   680			MOVE SPACES TO UIDI(WS-INDX)
+   681			MOVE SPACES TO REQI(WS-INDX)
+   682			MOVE SPACES TO ADMNI(WS-INDX)
+   683			MOVE SPACES TO APPI(WS-INDX)
+   684			MOVE SPACES TO SPI(WS-INDX)
+   685
+   686					MOVE DFHBMASK TO UDA(WS-INDX)
+   687			MOVE DFHBMASK TO UIDA(WS-INDX)
+   688			MOVE DFHBMASK TO REQA(WS-INDX)
+   689			MOVE DFHBMASK TO ADMNA(WS-INDX)
+   690			MOVE DFHBMASK TO APPA(WS-INDX)
+   691			MOVE DFHBMASK TO SPA(WS-INDX)
+   692                  MOVE 'THIS IS THE LAST PAGE'  TO MSGO
+   693                  MOVE '1' TO WS-LASTPAGE
+   694			ADD 1 TO WS-INDX
+   695		     END-IF
+   696		  END-PERFORM
+   697
+   698		 MOVE WS-USERNUM(1) TO WS-FUSER.
+   699
+   700	     910-EXIT.
+   701		 EXIT.
+   702	     920-RESET-FIELDS SECTION.
+   703		 MOVE 1 TO WS-INDX
+   704		 PERFORM UNTIL WS-INDX > 11
+   705			   MOVE DFHBMUNP TO UDA(WS-INDX)
+   706			       MOVE DFHBMUNP TO REQA(WS-INDX)
+   707		       MOVE DFHBMUNP TO ADMNA(WS-INDX)
+   708			   MOVE DFHBMUNP TO APPA(WS-INDX)
+   709			       MOVE DFHBMUNP TO SPA(WS-INDX)
+   710			   ADD 1 TO WS-INDX
+   711		 END-PERFORM.CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
+
+
+   712	     999-MOVE-FILE-TO-Q SECTION.
+   713
+   714		  MOVE LOW-VALUES TO WS-KEYB.
+   715		  EXEC CICS
+   716               STARTBR FILE('uaf00001')
+   717		     RIDFLD (WS-KEYB)
+   718		     GTEQ
+   719		  END-EXEC
+   720
+   721		  EXEC CICS
+   722                READNEXT FILE('uaf00001')
+   723		      INTO (WS-REC)
+   724		      RIDFLD (WS-KEYB)
+   725		  END-EXEC
+   726
+   727
+   728		 EXEC CICS WRITEQ TS
+   729			   QUEUE(WS-QNAME)
+   730			   FROM (WS-REC)
+   731			   LENGTH (WS-RECB-LENGTH)
+   732			   ITEM (WS-QITEM)
+   733		 END-EXEC
+   734		 MOVE WS-QITEM TO WS-QITEM-START
+   735		 PERFORM UNTIL EIBRESP NOT = DFHRESP(NORMAL)
+   736		     MOVE WS-QITEM TO WS-QITEM-END
+   737		     EXEC CICS
+   738                    READNEXT FILE('uaf00001')
+   739			  INTO (WS-REC)
+   740			  RIDFLD (WS-KEYB)
+   741		     END-EXEC
+   742				 PERFORM 600-FILTER-USER
+   743                           IF WS-FILTER-SW = 'Y'
+   744		      IF EIBRESP = DFHRESP(NORMAL)
+   745			 EXEC CICS WRITEQ TS
+   746			      QUEUE(WS-QNAME)
+   747			      FROM (WS-REC)
+   748			      LENGTH (WS-RECB-LENGTH)
+   749			      ITEM (WS-QITEM)
+   750			 END-EXEC
+   751			 MOVE WS-USERID7 TO WS-KEYB7
+   752			 MOVE HIGH-VALUES TO WS-KEYB1
+   753		      END-IF
+   754				 END-IF
+   755		 END-PERFORM
+   756		 EXEC CICS
+   757                ENDBR FILE('uaf00001')
+   758		 END-EXEC
+   759		 MOVE WS-QITEM-START TO WS-QITEM-PAGE.
+   760
+   761	     999-EXIT.
+   762		 EXIT.
 CA-Realia CACXPREP C:\handson-cics\CAWB30\ua001p.COB
 
 
@@ -1355,6 +1809,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:    1297
-		Translation Time:	     .03 sec
-		Translation Speed:	  594000 lines per min
+		Source Lines Translated:    1737
+		Translation Time:	     .04 sec
+		Translation Speed:	  895000 lines per min

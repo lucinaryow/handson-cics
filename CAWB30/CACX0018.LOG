@@ -1,28 +1,14 @@
-Record Type: Text, 23/11/06, 19:39:15:94
-CACX0004E: 19:39:15 Transaction SW00 failed. ProgID SW000 did not load.
+Record Type: Message, 23/12/04, 14:23:28:72
+CICS Application program has encountered a Numeric Data error.
 
-Record Type: Message, 23/11/06, 19:39:27:43
-CACX0026E: Load of Program SM000 failed. ResultCode:66
+Record Type: Message, 23/12/04, 14:23:28:72
+CICS Application program runtime error: RCL0050E: Invalid decimal data.
 
-Record Type: Text, 23/11/06, 19:39:27:44
-CACX0004E: 19:39:27 Transaction SM00 failed. ProgID SM000 did not load.
+Record Type: TCB, 23/12/04, 14:23:28:72
+000000 14 00 07 03 14 00 B4 00 14 00 E7 02 14 00 FF 02 ................
+000016 3C 1A B3 00 B4 72 00 03 00 00 00 00 54 44 00 00 <....r......TD..
+000032 00 00 00 01 41 30 35 30 00 00 00 00 00 00 00 32 ....A050.......2
+000048 00 00 00 00 00 00 55 41 30 30 31 50 20 20 01    ......UA001P  .
 
-Record Type: Message, 23/11/06, 19:43:27:15
-CACX0026E: Load of Program SM000 failed. ResultCode:66
-
-Record Type: Text, 23/11/06, 19:43:27:16
-CACX0004E: 19:43:27 Transaction SM00 failed. ProgID SM000 did not load.
-
-Record Type: Message, 23/11/06, 19:43:27:85
-CACX0026E: Load of Program SM000 failed. ResultCode:66
-
-Record Type: Text, 23/11/06, 19:43:27:85
-CACX0004E: 19:43:27 Transaction SM00 failed. ProgID SM000 did not load.
-
-Record Type: Message, 23/11/06, 19:43:28:64
-CACX0026E: Load of Program SM000 failed. ResultCode:66
-
-Record Type: Text, 23/11/06, 19:43:28:65
-CACX0004E: 19:43:28 Transaction SM00 failed. ProgID SM000 did not load.
-
-Record Type: Message, 23/11
+Record Type: Text, 23/12/04, 14:23:29:70
+CACX0001E: 14:23:28 Transaction UA01 program UA001P abend A050

@@ -1,0 +1,92 @@
+[Main]
+SplashScreenTime=5000
+
+[Editor]
+FontInfo=Courier,100,-13,0,0,0,400,0,0,0,0,1,2,1,49
+Extensions=.*,.CBL,.COB,.CPY
+FindCaseSensitive=0
+FindWholeWord=0
+FindColumn1-6=0
+FindColumn72-80=1
+FindComments=1
+FindDebugRecords=0
+NullChar=0x81
+UpperCase=0
+SaveCompressed=0
+AsciiToAnsi=0
+AnsiToAscii=0
+
+[TextView]
+FontInfo=Courier,100,-13,0,0,0,400,0,0,0,0,1,2,1,49
+
+[Printer]
+FontInfo=Courier,100,-13,0,0,0,400,0,0,0,0,2,1,0,49
+ReportFileExt=.RPT
+
+[DOS_Batch_Win]
+Show_DOS_Win=1
+Echo_DOS_Win=0
+
+[FileCache]
+Maximum=10
+
+[.*]
+Format=U
+ViewColumnStart=1
+ViewColumnLast=512
+ColumnOffset=0
+WordWrap=0
+AutoIndent=1
+InsertTabsAsSpaces=1
+SaveTabsAsSpaces=0
+KeywordColor=BLUE
+CommentColor=DARK GREEN
+StringColor=DARK MAGENTA
+TabStop=9 17 ...
+Description=Default
+
+[.CBL]
+Format=R
+ViewColumnStart=1
+ViewColumnLast=66
+ColumnOffset=6
+WordWrap=0
+AutoIndent=1
+InsertTabsAsSpaces=1
+SaveTabsAsSpaces=0
+KeywordColor=BLUE
+CommentColor=DARK GREEN
+StringColor=DARK MAGENTA
+TabStop=9 17 ...
+Description=Default
+
+[.COB]
+Format=S
+ViewColumnStart=1
+ViewColumnLast=72
+ColumnOffset=0
+WordWrap=0
+AutoIndent=1
+InsertTabsAsSpaces=1
+SaveTabsAsSpaces=0
+KeywordColor=BLUE
+CommentColor=DARK GREEN
+StringColor=DARK MAGENTA
+TabStop=9 17 ...
+Description=Default
+
+[.CPY]
+Format=S
+ViewColumnStart=1
+ViewColumnLast=72
+ColumnOffset=0
+WordWrap=0
+AutoIndent=1
+InsertTabsAsSpaces=1
+SaveTabsAsSpaces=0
+KeywordColor=BLUE
+CommentColor=DARK GREEN
+StringColor=DARK MAGENTA
+TabStop=9 17 ...
+Description=Default
+

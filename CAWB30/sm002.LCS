@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     28NOV23 11:35:50 PAGE  1
-=======
-CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     24NOV23 10:08:50 PAGE  1
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     05DEV23 09:44:35 PAGE  1
 
     1    PRINT NOGEN
     2 SM002    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -61,11 +57,7 @@ W **** TERM is ignored by CA-Realia CICS
    54                INITIAL='PF3 - EXIT'
    55          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              C
    56                INITIAL='PF5 - ABORT'
-<<<<<<< HEAD
-   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     28NOV23 11:35:50 PAGE  2
-=======
-   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     24NOV23 10:08:50 PAGE  2
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     05DEV23 09:44:35 PAGE  2
 
    58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
    59 TIXNUM   DFHMDF POS=(05,24),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
@@ -88,11 +80,7 @@ W **** Label should be less than 8 characters long
 W **** Blank records not supported by Mainframe.
    72
 W **** Blank records not supported by Mainframe.
-<<<<<<< HEAD
-There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     28NOV23 11:35:50 PAGE  3
-=======
-There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     24NOV23 10:08:50 PAGE  3
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     05DEV23 09:44:35 PAGE  3
 
       COBOL COPY file generated
 

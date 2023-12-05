@@ -47,93 +47,93 @@
    110		  05  WS-APP		      PIC X.
    111		  05  WS-SP		      PIC X.
    112		  05  WS-UPBY		      PIC X(08).
-   113	      01  WS-COMMAREA.
-   114			  05 WS-DFHSTATE PIC X(15).
-   115	      01  WS-LITERALS.
-   116		  05  WS-AFTER-ADD.
-   117			  10 FILLER PIC X(21) VALUE
-   118                            'USER ID CREATED,PRESS'.
-   119				  10 FILLER PIC X(32) VALUE
-   120                            ' ENTER TO CREATE ANOTHER USER ID'.
-   121			  05  WS-INVALID-ACCESS PIC X(14) VALUE
-   122                        'INVALID ACCESS'.
-   123			  05  WS-DUP-REC PIC X(47) VALUE   124                       'DUPLICATE USER FOUND, PLEASE ENTER ANOTHER USER'.
-   125			  05  WS-INITIAL PIC X(32) VALUE
-   126               'ENTER USER DETAILS AND PRESS PF2'.
-   127	      01  WS-SWITCHES.
-   128		      05  WS-EMPTY		  PIC X.
-   129			  05  WS-VALIDF 	      PIC X.
-   130	     *
-   131	      COPY UA002S.
-   133	     * SYMBOLIC MAP of ua002s Created by CACXBMS Version 6.0.27
-   134	      01  UA002MI.
-   135		  02  FILLER				     PIC X(12).
-   136		  02  DATEL				     PIC S9(4) COMP.
-   137		  02  DATEF				     PIC X.
-   138		  02  FILLER REDEFINES DATEF.
-   139		      03  DATEA 			     PIC X.
-   140		  02  DATEI				     PIC X(010).
-   141		  02  TIMEL				     PIC S9(4) COMP.
-   142		  02  TIMEF				     PIC X.
-   143		  02  FILLER REDEFINES TIMEF.
-   144		      03  TIMEA 			     PIC X.
-   145		  02  TIMEI				     PIC X(008).
-   146		  02  USERL				     PIC S9(4) COMP.
-   147		  02  USERF				     PIC X.
-   148		  02  FILLER REDEFINES USERF.
-   149		      03  USERA 			     PIC X.
-   150		  02  USERI				     PIC X(008).
-   151		  02  REQUESTL				     PIC S9(4) COMP.
-   152		  02  REQUESTF				     PIC X.
-   153		  02  FILLER REDEFINES REQUESTF.
-   154		      03  REQUESTA			     PIC X.
-   155		  02  REQUESTI				     PIC X(001).
-   156		  02  ADMINL				     PIC S9(4) COMP.
-   157		  02  ADMINF				     PIC X.
-   158		  02  FILLER REDEFINES ADMINF.
-   159		      03  ADMINA			     PIC X.
-   160		  02  ADMINI				     PIC X(001).
-   161		  02  APPROVEL				     PIC S9(4) COMP.
-   162		  02  APPROVEF				     PIC X.
-   163		  02  FILLER REDEFINES APPROVEF.
-   164		      03  APPROVEA			     PIC X.
-   165		  02  APPROVEI				     PIC X(001).
-   166		  02  SERVICEL				     PIC S9(4) COMP.
-   167		  02  SERVICEF				     PIC X.
-   168		  02  FILLER REDEFINES SERVICEF.
-   169		      03  SERVICEA			     PIC X.
-   170		  02  SERVICEI				     PIC X(001).
-   171		  02  ERRMSGL				     PIC S9(4) COMP.
-   172		  02  ERRMSGF				     PIC X.
-   173		  02  FILLER REDEFINES ERRMSGF.
-   174		      03  ERRMSGA			     PIC X.
-   175		  02  ERRMSGI				     PIC X(071).
-   176	      01  UA002MO REDEFINES UA002MI.
-   177		  02  FILLER				     PIC X(12).
-   178		  02  FILLER				     PIC XX.
-   179		  02  FILLER				     PIC X.
-   180		  02  DATEO				     PIC X(010).
-   181		  02  FILLER				     PIC XX.
-   182		  02  FILLER				     PIC X.
-   183		  02  TIMEO				     PIC X(008).
-   184		  02  FILLER				     PIC XX.   185		  02  FILLER				     PIC X.
-   186		  02  USERO				     PIC X(008).
-   187		  02  FILLER				     PIC XX.
-   188		  02  FILLER				     PIC X.
-   189		  02  REQUESTO				     PIC X(001).
-   190		  02  FILLER				     PIC XX.
-   191		  02  FILLER				     PIC X.
-   192		  02  ADMINO				     PIC X(001).
-   193		  02  FILLER				     PIC XX.
-   194		  02  FILLER				     PIC X.
-   195		  02  APPROVEO				     PIC X(001).
-   196		  02  FILLER				     PIC XX.
-   197		  02  FILLER				     PIC X.
-   198		  02  SERVICEO				     PIC X(001).
-   199		  02  FILLER				     PIC XX.
-   200		  02  FILLER				     PIC X.
-   201		  02  ERRMSGO				     PIC X(071).
-   203
+   113	      01  WS-ERROR-COUNT	      PIC 9.
+   114	      01  WS-COMMAREA.
+   115			  05 WS-DFHSTATE PIC X(15).
+   116	      01  WS-LITERALS.
+   117		  05  WS-AFTER-ADD.
+   118			  10 FILLER PIC X(21) VALUE
+   119                            'USER ID CREATED,PRESS'.
+   120				  10 FILLER PIC X(32) VALUE
+   121                            ' ENTER TO CREATE ANOTHER USER ID'.
+   122			  05  WS-INVALID-ACCESS PIC X(14) VALUE
+   123                        'INVALID ACCESS'.   124			  05  WS-DUP-REC PIC X(47) VALUE
+   125                       'DUPLICATE USER FOUND, PLEASE ENTER ANOTHER USER'.
+   126			  05  WS-INITIAL PIC X(32) VALUE
+   127               'ENTER USER DETAILS AND PRESS PF2'.
+   128	      01  WS-SWITCHES.
+   129		      05  WS-EMPTY		  PIC X.
+   130			  05  WS-VALIDF 	      PIC X.
+   131	     *
+   132	      COPY UA002S.
+   134	     * SYMBOLIC MAP of ua002s Created by CACXBMS Version 6.0.27
+   135	      01  UA002MI.
+   136		  02  FILLER				     PIC X(12).
+   137		  02  DATEL				     PIC S9(4) COMP.
+   138		  02  DATEF				     PIC X.
+   139		  02  FILLER REDEFINES DATEF.
+   140		      03  DATEA 			     PIC X.
+   141		  02  DATEI				     PIC X(010).
+   142		  02  TIMEL				     PIC S9(4) COMP.
+   143		  02  TIMEF				     PIC X.
+   144		  02  FILLER REDEFINES TIMEF.
+   145		      03  TIMEA 			     PIC X.
+   146		  02  TIMEI				     PIC X(008).
+   147		  02  USERL				     PIC S9(4) COMP.
+   148		  02  USERF				     PIC X.
+   149		  02  FILLER REDEFINES USERF.
+   150		      03  USERA 			     PIC X.
+   151		  02  USERI				     PIC X(008).
+   152		  02  REQUESTL				     PIC S9(4) COMP.
+   153		  02  REQUESTF				     PIC X.
+   154		  02  FILLER REDEFINES REQUESTF.
+   155		      03  REQUESTA			     PIC X.
+   156		  02  REQUESTI				     PIC X(001).
+   157		  02  ADMINL				     PIC S9(4) COMP.
+   158		  02  ADMINF				     PIC X.
+   159		  02  FILLER REDEFINES ADMINF.
+   160		      03  ADMINA			     PIC X.
+   161		  02  ADMINI				     PIC X(001).
+   162		  02  APPROVEL				     PIC S9(4) COMP.
+   163		  02  APPROVEF				     PIC X.
+   164		  02  FILLER REDEFINES APPROVEF.
+   165		      03  APPROVEA			     PIC X.
+   166		  02  APPROVEI				     PIC X(001).
+   167		  02  SERVICEL				     PIC S9(4) COMP.
+   168		  02  SERVICEF				     PIC X.
+   169		  02  FILLER REDEFINES SERVICEF.
+   170		      03  SERVICEA			     PIC X.
+   171		  02  SERVICEI				     PIC X(001).
+   172		  02  ERRMSGL				     PIC S9(4) COMP.
+   173		  02  ERRMSGF				     PIC X.
+   174		  02  FILLER REDEFINES ERRMSGF.
+   175		      03  ERRMSGA			     PIC X.
+   176		  02  ERRMSGI				     PIC X(071).
+   177	      01  UA002MO REDEFINES UA002MI.
+   178		  02  FILLER				     PIC X(12).
+   179		  02  FILLER				     PIC XX.
+   180		  02  FILLER				     PIC X.
+   181		  02  DATEO				     PIC X(010).
+   182		  02  FILLER				     PIC XX.
+   183		  02  FILLER				     PIC X.
+   184		  02  TIMEO				     PIC X(008).   185		  02  FILLER				     PIC XX.
+   186		  02  FILLER				     PIC X.
+   187		  02  USERO				     PIC X(008).
+   188		  02  FILLER				     PIC XX.
+   189		  02  FILLER				     PIC X.
+   190		  02  REQUESTO				     PIC X(001).
+   191		  02  FILLER				     PIC XX.
+   192		  02  FILLER				     PIC X.
+   193		  02  ADMINO				     PIC X(001).
+   194		  02  FILLER				     PIC XX.
+   195		  02  FILLER				     PIC X.
+   196		  02  APPROVEO				     PIC X(001).
+   197		  02  FILLER				     PIC XX.
+   198		  02  FILLER				     PIC X.
+   199		  02  SERVICEO				     PIC X(001).
+   200		  02  FILLER				     PIC XX.
+   201		  02  FILLER				     PIC X.
+   202		  02  ERRMSGO				     PIC X(071).
    204	     *
    205	      COPY DFHAID.
    207	      01  DFHAID.
@@ -192,7 +192,7 @@
    261            05  DFHQUIT                   PIC X VALUE '!'.
    262		  05  DFHNULL			PIC X VALUE LOW-VALUE.
    264	     *
-   265		COPY DFHBMSCA.
+   265	      COPY DFHBMSCA.
    267	      01  DFHBMSCA.
    268	     *
    269	     * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -517,258 +517,286 @@
    596	      PROCEDURE DIVISION					       R
    598		  USING DFHEIBLK DFHCOMMAREA.				       R
    623	      100-PROCESS SECTION.
-   624		  MOVE DFHCOMMAREA TO WS-COMMAREA
+   624
    625
-   626		  STRING EIBTRMID DELIMITED BY SIZE
-   627			 EIBTRNID DELIMITED BY SIZE
-   628			 INTO WS-QNAME
-   629		  MOVE LENGTH OF UA002MI TO WS-LENGTH
-   631		  EXEC CICS
-   632		    IGNORE CONDITION ERROR
-   633		  END-EXEC
-   648
-   649            IF DF-SAMPLE = 'INITIAL'
-   650		      PERFORM 110-CHECKUSER
-   651                MOVE 'DATA ENTRY' TO WS-DFHSTATE   652                            move ' ' to df-sample
-   653		      PERFORM 100-NEW-MAP
-   654
-   655		  ELSE
-   657		       EXEC CICS
-   658                      RECEIVE MAP ('UA002M')
-   659                      MAPSET ('UA002S')
-   660			    INTO (UA002MI)
-   661			END-EXEC
-   695		       IF  NOT EIBRESP = DFHRESP(MAPFAIL)
-   697		       IF  NOT EIBRESP =	 036			       R
-   698			   EVALUATE EIBAID
-   699
-   700						WHEN DFHENTER
-   701						   PERFORM 200-WHEN-ENTER
-   702						WHEN DFHPF2
-   703						   PERFORM 210-WHEN-F2
-   704			    WHEN DFHPF3
-   705
-   707			       EXEC CICS RETURN
-   708                                                    TRANSID('UA01')
-   709						   END-EXEC
-   728			    WHEN DFHPF5
-   729			       PERFORM 220-WHEN-F5
-   730			    WHEN OTHER
-   731                         MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
-   732			   END-EVALUATE
-   733		      ELSE
-   734			  PERFORM 100-NEW-MAP
-   735		      END-IF
-   736		  END-IF.
-   737
-   738
-   739	      100-NEW-MAP SECTION.
-   741		  EXEC CICS ASSIGN
-   742		      USERID(WS-USERID)
-   743		  END-EXEC
-   761
-   763		  EXEC CICS ASKTIME
-   764		      ABSTIME  (WS-TIME)
-   765		  END-EXEC
-   783
-   785		  EXEC CICS FORMATTIME
-   786		      ABSTIME  (WS-TIME)
-   787                DATESEP  ('/')
-   788		      DDMMYYYY	 (DATEO)
-   789                TIMESEP    (':')
-   790		      TIME	 (TIMEO)
-   791		  END-EXEC
-   831
-   833		  EXEC CICS
-   834                SEND MAP ('UA002M')
-   835                MAPSET ('UA002S')
-   836		      FROM (UA002MO)
-   837		      LENGTH(WS-LENGTH)
-   838		      ERASE
-   839		  END-EXEC
-   881
-   883		  EXEC CICS RETURN
-   884                TRANSID('UA02')   885		      COMMAREA(WS-COMMAREA)
-   886		  END-EXEC.
-   911
-   912	      110-CHECKUSER SECTION.
-   914		  EXEC CICS ASSIGN
-   915		      USERID(WS-USERID)
-   916		  END-EXEC
-   935			  EXEC CICS
-   936                 READ FILE('uaf00001')
-   937		       INTO (WS-REC)
-   938		       RIDFLD (WS-USERID)
-   939		       KEYLENGTH (WS-STD-KEY-LEN)
-   940		       EQUAL
-   941		  END-EXEC
-   979
-   980                    IF WS-ADMN = 'N'
-   982			     EXEC CICS SEND TEXT
-   983			   FROM (WS-INVALID-ACCESS)
-   984			   LENGTH (+15)
-   985			   ERASE
-   986		      END-EXEC
-  1017		      EXEC CICS RETURN
-  1018		      END-EXEC
-  1031			  END-IF.
-  1032
-  1033	      200-WHEN-ENTER SECTION.
-  1034		  EVALUATE WS-DFHSTATE
-  1035                    WHEN 'DATA ENTRY'
-  1036				 PERFORM 700-VALIDATE-FIELD
-  1037                           MOVE 'PRESS PF2 TO ADD USER'
-  1038				 TO ERRMSGO
-  1039
-  1040				 PERFORM 710-PROTECT-FIELDS
-  1041
-  1042                    WHEN 'READY TO ADD'
-  1043		     PERFORM 710-PROTECT-FIELDS
-  1044                           MOVE 'PRESS PF2 TO ADD USER'
-  1045				 TO ERRMSGO
-  1046
-  1047            WHEN 'AFTER ADD'
-  1048		     PERFORM 720-RESET-FIELDS
-  1049		     MOVE WS-INITIAL TO ERRMSGO
-  1050			     PERFORM 100-NEW-MAP
+   626
+   627		  MOVE DFHCOMMAREA TO WS-COMMAREA
+   628
+   629		  STRING EIBTRMID DELIMITED BY SIZE
+   630			 EIBTRNID DELIMITED BY SIZE
+   631			 INTO WS-QNAME
+   632		  MOVE LENGTH OF UA002MI TO WS-LENGTH
+   634		  EXEC CICS
+   635		    IGNORE CONDITION ERROR
+   636		  END-EXEC
+   651   652            IF DF-SAMPLE = 'INITIAL'
+   653
+   654		      PERFORM 110-CHECKUSER
+   655                MOVE 'DATA ENTRY' TO WS-DFHSTATE
+   656                            move ' ' to df-sample
+   657		      PERFORM 100-NEW-MAP
+   658
+   659		  ELSE
+   660
+   662		       EXEC CICS
+   663                      RECEIVE MAP ('UA002M')
+   664                      MAPSET ('UA002S')
+   665			    INTO (UA002MI)
+   666			END-EXEC
+   700		       IF  NOT EIBRESP = DFHRESP(MAPFAIL)
+   702		       IF  NOT EIBRESP =	 036			       R
+   703			   EVALUATE WS-DFHSTATE
+   704                                         WHEN 'DATA ENTRY'
+   705						PERFORM 200-WHEN-DATA-ENTRY
+   706                                         WHEN 'READY TO ADD'
+   707						PERFORM 710-PROTECT-FIELDS
+   708						PERFORM 210-WHEN-READY-TO-ADD
+   709                                         WHEN 'AFTER ADD'
+   710						PERFORM 710-PROTECT-FIELDS
+   711						PERFORM 220-WHEN-AFTER-ADD
+   712					       END-EVALUATE
+   713		      ELSE
+   714			  PERFORM 100-NEW-MAP
+   715		      END-IF
+   716		  END-IF.
+   717
+   718
+   719	      100-NEW-MAP SECTION.
+   721		  EXEC CICS ASSIGN
+   722		      USERID(WS-USERID)
+   723		  END-EXEC
+   741
+   743		  EXEC CICS ASKTIME
+   744		      ABSTIME  (WS-TIME)
+   745		  END-EXEC
+   763
+   765		  EXEC CICS FORMATTIME
+   766		      ABSTIME  (WS-TIME)
+   767                DATESEP  ('/')
+   768		      DDMMYYYY	 (DATEO)
+   769                TIMESEP    (':')
+   770		      TIME	 (TIMEO)
+   771		  END-EXEC
+   811
+   813		  EXEC CICS
+   814                SEND MAP ('UA002M')
+   815                MAPSET ('UA002S')
+   816		      FROM (UA002MO)
+   817		      LENGTH(WS-LENGTH)
+   818		      ERASE
+   819		  END-EXEC
+   861
+   863		  EXEC CICS RETURN
+   864                TRANSID('UA02')
+   865		      COMMAREA(WS-COMMAREA)   866		  END-EXEC.
+   891
+   892	      110-CHECKUSER SECTION.
+   894		  EXEC CICS ASSIGN
+   895		      USERID(WS-USERID)
+   896		  END-EXEC
+   915			  EXEC CICS
+   916                 READ FILE('uaf00001')
+   917		       INTO (WS-REC)
+   918		       RIDFLD (WS-USERID)
+   919		       KEYLENGTH (WS-STD-KEY-LEN)
+   920		       EQUAL
+   921		  END-EXEC
+   959
+   960                    IF WS-ADMN = 'N'
+   962			     EXEC CICS SEND TEXT
+   963			   FROM (WS-INVALID-ACCESS)
+   964			   LENGTH (+15)
+   965			   ERASE
+   966		      END-EXEC
+   997		      EXEC CICS RETURN
+   998		      END-EXEC
+  1011			  END-IF.
+  1012
+  1013	      200-WHEN-DATA-ENTRY SECTION.
+  1014		  EVALUATE EIBAID
+  1015			   WHEN DFHENTER
+  1016				 PERFORM 700-VALIDATE-FIELD
+  1017                           MOVE 'PRESS PF2 TO ADD USER'
+  1018				 TO ERRMSGO
+  1019			   WHEN DFHPF2
+  1020				 PERFORM 700-VALIDATE-FIELD
+  1021                           MOVE 'PRESS PF2 TO CONFIRM ADD'
+  1022				 TO ERRMSGO
+  1023			       WHEN DFHPF3
+  1025				 EXEC CICS RETURN
+  1026                            TRANSID('UA01')
+  1027				 END-EXEC
+  1046			       WHEN DFHPF5
+  1047				 PERFORM 720-RESET-FIELDS
+  1048			       WHEN OTHER
+  1049               MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1050		  END-EVALUATE.
   1051
-  1052			  END-EVALUATE.
-  1053
-  1054	      210-WHEN-F2 SECTION.
-  1055		      EVALUATE WS-DFHSTATE
-  1056                    WHEN 'DATA ENTRY'
-  1057				 PERFORM 700-VALIDATE-FIELD
-  1058                           MOVE 'PRESS PF2 TO CONFIRM ADD'
-  1059				 TO ERRMSGO
-  1060
-  1061				 PERFORM 710-PROTECT-FIELDS
-  1062
-  1063                    WHEN 'READY TO ADD'
-  1064
-  1065				 PERFORM 800-WRITE-TOFILE
-  1066
-  1067            WHEN 'AFTER ADD'  1068		     PERFORM 710-PROTECT-FIELDS
-  1069
-  1070			  WHEN OTHER
-  1071			     MOVE WS-DFHSTATE  TO ERRMSGO
-  1072			  END-EVALUATE.
-  1073
-  1074	      220-WHEN-F5 SECTION.
-  1075		  EVALUATE WS-DFHSTATE
-  1076                    WHEN 'AFTER ADD'
-  1078			     EXEC CICS ASSIGN
-  1079					USERID(WS-USERID)
-  1080				 END-EXEC
-  1098			  WHEN OTHER
-  1099			     PERFORM 720-RESET-FIELDS
-  1100				 MOVE WS-INITIAL TO ERRMSGO
-  1101		      END-EVALUATE.
-  1102
-  1103	      700-VALIDATE-FIELD SECTION.
-  1104
-  1105                IF USERI = 'XXXXXXXX'
-  1106			      MOVE DFHBMBRY TO USERA
-  1107                            MOVE 'USER IS REQUIRED' TO ERRMSGO
-  1108				  PERFORM 100-NEW-MAP
-  1109			  END-IF
-  1110
-  1111                    IF REQUESTI = ' ' OR REQUESTI = '_'
-  1112			      MOVE DFHBMBRY TO REQUESTA
-  1113                            MOVE 'REQUESTOR IS REQUIRED' TO ERRMSGO
-  1114				  PERFORM 100-NEW-MAP
-  1115			  END-IF
-  1116
-  1117                    IF REQUESTI NOT = 'N' AND REQUESTI NOT = 'Y'
-  1118			      MOVE DFHBMBRY TO REQUESTA
-  1119                            MOVE 'REQUESTOR INVALID VALUE' TO ERRMSGO
-  1120				  PERFORM 100-NEW-MAP
-  1121			  END-IF
+  1052	      210-WHEN-READY-TO-ADD SECTION.
+  1053		  EVALUATE EIBAID
+  1054			   WHEN DFHENTER
+  1055				 PERFORM 700-VALIDATE-FIELD
+  1056			   WHEN DFHPF2
+  1057				 PERFORM 800-WRITE-TOFILE
+  1058			       WHEN DFHPF3
+  1060				 EXEC CICS RETURN
+  1061                            TRANSID('UA01')
+  1062				 END-EXEC
+  1081			       WHEN DFHPF5
+  1082				 PERFORM 720-RESET-FIELDS
+  1083			       WHEN OTHER
+  1084               MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1085		  END-EVALUATE.
+  1086  1087	      220-WHEN-AFTER-ADD SECTION.
+  1088		      EVALUATE EIBAID
+  1089			   WHEN DFHENTER
+  1090				 PERFORM 720-RESET-FIELDS
+  1091		     MOVE WS-INITIAL TO ERRMSGO
+  1092			     PERFORM 100-NEW-MAP
+  1093			       WHEN DFHPF3
+  1095				 EXEC CICS RETURN
+  1096                            TRANSID('UA01')
+  1097				 END-EXEC
+  1116			       WHEN OTHER
+  1117               MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1118		  END-EVALUATE.
+  1119
+  1120	      700-VALIDATE-FIELD SECTION.
+  1121		  MOVE 0 TO WS-ERROR-COUNT
   1122
-  1123                    IF ADMINI = ' ' OR ADMINI = '_'
-  1124			      MOVE DFHBMBRY TO ADMINA
-  1125                            MOVE 'ADMIN IS REQUIRED' TO ERRMSGO
-  1126				  PERFORM 100-NEW-MAP
-  1127			  END-IF
-  1128
-  1129                    IF ADMINI NOT = 'N' AND ADMINI NOT = 'Y'
-  1130			      MOVE DFHBMBRY TO ADMINA
-  1131                            MOVE 'ADMIN INVALID VALUE' TO ERRMSGO
-  1132				  PERFORM 100-NEW-MAP
-  1133			  END-IF
-  1134
-  1135                    IF APPROVEI = ' ' OR APPROVEI = '_'
-  1136			      MOVE DFHBMBRY TO APPROVEA
-  1137                            MOVE 'APPROVER IS REQUIRED' TO ERRMSGO
-  1138				  PERFORM 100-NEW-MAP
-  1139			  END-IF
-  1140
-  1141                    IF APPROVEI NOT = 'N' AND APPROVEI NOT = 'Y'
-  1142			      MOVE DFHBMBRY TO APPROVEA
-  1143                            MOVE 'APPROVER INVALID VALUE' TO ERRMSGO
-  1144				  PERFORM 100-NEW-MAP
-  1145			  END-IF  1146
-  1147                    IF SERVICEI = ' ' OR SERVICEI = '_'
-  1148			      MOVE DFHBMBRY TO SERVICEA
-  1149                            MOVE 'SERVICE PROVIDER IS REQUIRED'
-  1150					TO ERRMSGO
-  1151				  PERFORM 100-NEW-MAP
-  1152			  END-IF
-  1153
-  1154                IF SERVICEI NOT = 'N' AND SERVICEI NOT = 'Y'
-  1155			      MOVE DFHBMBRY TO SERVICEA
-  1156                            MOVE 'SERVICE INVALID VALUE'
-  1157					TO ERRMSGO
-  1158				  PERFORM 100-NEW-MAP
-  1159			  END-IF
-  1160
-  1161                    MOVE 'READY TO ADD' TO WS-DFHSTATE.
-  1162	      710-PROTECT-FIELDS SECTION.
-  1163		  MOVE DFHBMPRF TO USERA
-  1164		  MOVE DFHBMPRF TO REQUESTA
-  1165		  MOVE DFHBMPRF TO ADMINA
-  1166		  MOVE DFHBMPRF TO APPROVEA
-  1167		  MOVE DFHBMPRF TO SERVICEA.
-  1168
-  1169	      720-RESET-FIELDS SECTION.
-  1170            MOVE 'XXXXXXXX' TO USERO
-  1171                MOVE '_' TO REQUESTO
-  1172            MOVE '_' TO ADMINO
-  1173            MOVE '_' TO APPROVEO
-  1174            MOVE '_' TO SERVICEO
-  1175
-  1176                    MOVE 'DATA ENTRY' TO WS-DFHSTATE.
-  1177
-  1178	      800-WRITE-TOFILE SECTION.
-  1179
-  1180 * VALIDATE FIRST THEN WRITE INTO FILE
-  1181
-  1182			  MOVE USERI TO WS-UID
-  1183			  MOVE REQUESTI TO WS-REQ
-  1184			  MOVE ADMINI TO WS-ADMN
-  1185			  MOVE APPROVEI TO WS-APP
-  1186			  MOVE SERVICEI TO WS-SP
-  1187
-  1189		      EXEC CICS ASSIGN
-  1190		      USERID(WS-UPBY)
-  1191		  END-EXEC
-  1209
-  1210			  MOVE WS-REC TO ERRMSGO
-  1211
-  1213			  EXEC CICS
-  1214                WRITE FILE ('UAF00001')
-  1215		      FROM (WS-REC)
-  1216		      RIDFLD (WS-UID)
-  1217		  END-EXEC
-  1247			  IF EIBRESP = DFHRESP(DUPREC)
-  1249			  IF EIBRESP =	       014			       R
-  1250			     MOVE WS-DUP-REC TO ERRMSGO
-  1251				 PERFORM 720-RESET-FIELDS
-  1252			  ELSE
-  1253			     PERFORM 710-PROTECT-FIELDS
-  1254			     MOVE WS-AFTER-ADD TO ERRMSGO  1255                           MOVE 'AFTER ADD' TO WS-DFHSTATE
-  1256			  END-IF.
-  1257
-  1258CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\ua002p.cic     PAGE   15
+  1123            IF SERVICEI NOT = 'N' AND SERVICEI NOT = 'Y'
+  1124			      MOVE DFHUNIMD TO SERVICEA
+  1125                            MOVE 'SERVICE INVALID VALUE'
+  1126					TO ERRMSGO
+  1127		      ADD 1 TO WS-ERROR-COUNT
+  1128				  MOVE -1 TO SERVICEL
+  1129			  END-IF
+  1130
+  1131                    IF SERVICEI = ' ' OR SERVICEI = '_'
+  1132			      MOVE DFHUNIMD TO SERVICEA
+  1133                            MOVE 'SERVICE PROVIDER IS REQUIRED'
+  1134					TO ERRMSGO
+  1135		      ADD 1 TO WS-ERROR-COUNT
+  1136				  MOVE -1 TO SERVICEL
+  1137			  END-IF
+  1138
+  1139                    IF APPROVEI NOT = 'N' AND APPROVEI NOT = 'Y'
+  1140			      MOVE DFHUNIMD TO APPROVEA
+  1141                            MOVE 'APPROVER INVALID VALUE' TO ERRMSGO
+  1142		      ADD 1 TO WS-ERROR-COUNT
+  1143				  MOVE -1 TO APPROVEL
+  1144			  END-IF
+  1145
+  1146                    IF APPROVEI = ' ' OR APPROVEI = '_'
+  1147			      MOVE DFHUNIMD TO APPROVEA
+  1148                            MOVE 'APPROVER IS REQUIRED' TO ERRMSGO
+  1149		      ADD 1 TO WS-ERROR-COUNT
+  1150				  MOVE -1 TO APPROVEL
+  1151			  END-IF
+  1152
+  1153                    IF ADMINI NOT = 'N' AND ADMINI NOT = 'Y'
+  1154			      MOVE DFHUNIMD TO ADMINA
+  1155                            MOVE 'ADMIN INVALID VALUE' TO ERRMSGO
+  1156		      ADD 1 TO WS-ERROR-COUNT
+  1157				  MOVE -1 TO ADMINL
+  1158			  END-IF
+  1159
+  1160                    IF ADMINI = ' ' OR ADMINI = '_'
+  1161			      MOVE DFHUNIMD TO ADMINA
+  1162                            MOVE 'ADMIN IS REQUIRED' TO ERRMSGO
+  1163		      ADD 1 TO WS-ERROR-COUNT
+  1164				  MOVE -1 TO ADMINL
+  1165			  END-IF  1166
+  1167                    IF REQUESTI NOT = 'N' AND REQUESTI NOT = 'Y'
+  1168			      MOVE DFHUNIMD TO REQUESTA
+  1169                            MOVE 'REQUESTOR INVALID VALUE' TO ERRMSGO
+  1170		      ADD 1 TO WS-ERROR-COUNT
+  1171				  MOVE -1 TO REQUESTL
+  1172			  END-IF
+  1173
+  1174                    IF REQUESTI = ' ' OR REQUESTI = '_'
+  1175			      MOVE DFHUNIMD TO REQUESTA
+  1176                            MOVE 'REQUESTOR IS REQUIRED' TO ERRMSGO
+  1177		      ADD 1 TO WS-ERROR-COUNT
+  1178				  MOVE -1 TO REQUESTL
+  1179			  END-IF
+  1180
+  1181                    IF USERI = 'XXXXXXXX' OR USERI = SPACES
+  1182			      MOVE DFHUNIMD TO USERA
+  1183                            MOVE 'USER IS REQUIRED' TO ERRMSGO
+  1184		      ADD 1 TO WS-ERROR-COUNT
+  1185			  END-IF
+  1187			  EXEC CICS
+  1188                 READ FILE('uaf00001')
+  1189		       INTO (WS-REC)
+  1190		       RIDFLD (USERI)
+  1191		       KEYLENGTH (WS-STD-KEY-LEN)
+  1192		       EQUAL
+  1193		  END-EXEC
+  1232			  IF EIBRESP NOT = DFHRESP(NOTFND)
+  1234			  IF EIBRESP NOT =	   013			       R
+  1235			     MOVE WS-DUP-REC TO ERRMSGO
+  1236				 MOVE DFHUNIMD TO USERA
+  1237				 ADD 1 TO WS-ERROR-COUNT
+  1238			  END-IF
+  1239
+  1240		  IF WS-ERROR-COUNT = 0
+  1241                       MOVE 'READY TO ADD' TO WS-DFHSTATE
+  1242				 PERFORM 710-PROTECT-FIELDS
+  1243			  ELSE
+  1244			     PERFORM 100-NEW-MAP
+  1245		  END-IF
+  1246			  .
+  1247	      710-PROTECT-FIELDS SECTION.
+  1248		  MOVE DFHBMPRF TO USERA
+  1249		  MOVE DFHBMPRF TO REQUESTA
+  1250		  MOVE DFHBMPRF TO ADMINA
+  1251		  MOVE DFHBMPRF TO APPROVEA
+  1252		  MOVE DFHBMPRF TO SERVICEA.
+  1253
+  1254	      720-RESET-FIELDS SECTION.
+  1255
+  1256			  MOVE DFHBMUNP TO USERA
+  1257			  MOVE DFHBMUNP TO REQUESTA
+  1258			  MOVE DFHBMUNP TO APPROVEA
+  1259			  MOVE DFHBMUNP TO ADMINA
+  1260			  MOVE DFHBMUNP TO SERVICEA
+  1261
+  1262			  MOVE DFHBMFSE TO USERA
+  1263			  MOVE DFHBMFSE TO REQUESTA
+  1264			  MOVE DFHBMFSE TO APPROVEA
+  1265			  MOVE DFHBMFSE TO ADMINA  1266			  MOVE DFHBMFSE TO SERVICEA
+  1267
+  1268			  MOVE WS-INITIAL TO ERRMSGO
+  1269                    MOVE 'DATA ENTRY' TO WS-DFHSTATE.
+  1270
+  1271	      800-WRITE-TOFILE SECTION.
+  1272
+  1273 * VALIDATE FIRST THEN WRITE INTO FILE
+  1274
+  1275			  MOVE USERI TO WS-UID
+  1276			  MOVE REQUESTI TO WS-REQ
+  1277			  MOVE ADMINI TO WS-ADMN
+  1278			  MOVE APPROVEI TO WS-APP
+  1279			  MOVE SERVICEI TO WS-SP
+  1280
+  1282		      EXEC CICS ASSIGN
+  1283		      USERID(WS-UPBY)
+  1284		  END-EXEC
+  1302
+  1303			  MOVE WS-REC TO ERRMSGO
+  1304
+  1306			  EXEC CICS
+  1307                WRITE FILE ('UAF00001')
+  1308		      FROM (WS-REC)
+  1309		      RIDFLD (WS-UID)
+  1310		  END-EXEC
+  1339
+  1340			  MOVE WS-AFTER-ADD TO ERRMSGO
+  1341                    MOVE 'AFTER ADD' TO WS-DFHSTATE.
+  1342
+  1343
+  1344CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\ua002p.cic     PAGE   15
 
 
 
@@ -797,17 +825,9 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
-			Source lines compiled:	    1269
-<<<<<<< HEAD
+			Source lines compiled:	    1355
 			Compilation time (mm:ss.ss):  0:00.05
-			Compilation speed (lines/minute): 22800
+			Compilation speed (lines/minute): 26000
 
-			Compilation date (yy/mm/dd): 23/11/28
-			     Time of day (hh:mm:ss): 11:35:51
-=======
-			Compilation time (mm:ss.ss):  0:00.40
-			Compilation speed (lines/minute): 90350
-
-			Compilation date (yy/mm/dd): 23/11/24
-			     Time of day (hh:mm:ss): 10:08:52
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+			Compilation date (yy/mm/dd): 23/12/05
+			     Time of day (hh:mm:ss): 09:44:36

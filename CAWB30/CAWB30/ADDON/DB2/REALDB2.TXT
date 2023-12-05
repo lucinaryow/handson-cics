@@ -1,0 +1,2 @@
+EDBPDB2C.BND is provided so it can be used to BIND the REALDB2.EXE
+to your database.

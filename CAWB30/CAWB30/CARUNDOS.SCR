@@ -1,0 +1,36 @@
+' ******************************************
+' CA-Realia II WorkBench Run Dos Job Script
+' ******************************************
+
+ShowWindow(_SW_MAXIMIZE)
+shell "prompt $p$g$g"
+shell "CLS"
+
+RunDirFlag = 0
+
+  if  RUN_DIR <> " " Then
+     if  RUN_DIR <> "" Then
+       SetDir(RUN_DIR)
+       RunDirFlag = 1
+     End If
+  End If
+
+  if  (RunDirFlag = 0) Then
+     if  RUN_FN_FN_PATH <> "" Then
+	if (Run_FN_FN_Path <> " ") Then
+	    SetDir(Run_Fn_Fn_Path)
+	End If
+     End If
+  End If
+
+shell RUN_FN
+My_RC = _RC
+if _RC = 0 then
+  ShowWindow(_SW_MINIMIZE)
+end if
+
+Shell "cawbecho 0"
+shell "CVSTATUS.EXE 0"
+
+Return My_RC
+

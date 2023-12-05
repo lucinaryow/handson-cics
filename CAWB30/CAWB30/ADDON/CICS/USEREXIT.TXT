@@ -1,0 +1,85 @@
+Revision notes:
+^{File:userexit.txt}
+^{Timestamp:Mon Sep 16 10:29:46 1996}
+^{Revision:2.0}
+
+This is a description of user exits that are available in CA-Realia
+CICS runtime. These exits are made available to meet the specific
+need of users to gain access to CICS resources at various points in
+the execution of CA-Realia CICS. Although Computer Associates will
+endevor to maintain the specifications of each exit in future
+releases it reserves the right to change the characteristics of
+a user exit or to remove the exit from the product.
+
+All User exits are defined to CICS by including the exit number and
+program name in the System Initialization file (CACX.INI).  Code
+the following line:
+
+EXIT_nnn=PROGID
+EXIT_ERROR=PROGID
+
+This value can also be set up as an environmental value.  The
+environment value has precedence over the value in the SIF.
+
+Program Interface
+
+All programs must be follow these standards:
+
+1) All user exit programs have a standard set of parameters.
+
+2) The interface is CA-Realia CICS Specific and must be written in
+   CA-Realia COBOL 5.0.
+
+3) The user exit program should be derived from the supplied base
+   program named USEREXIT.COB.
+
+4) The program must be linked using the supplied LINKCICS batch file.
+
+5) No EXEC CICS commands are permitted.
+
+6) No file I/O to CICS data files is permitted unless CA supplies
+   specific access routines for this purpose. No routines have been
+   supplied at this time.
+
+7) All CICS data areas passed will be in the ASCII codeset unless
+   specifically noted.
+
+Currently suppported Exits
+
+==============
+
+User_Exit_001  TCT DataStream Exit
+
+This exit will be passed the address and size of the datastream
+being used by Terminal Control processing before TCP does any
+processing (CICS-BEFORE-TASK) . This will be the address of the raw
+datastream in ASCII and it's size.  The exit can do what it wants
+with this stream.  The address pointer and size variable can be
+modifed to point to a new stream and the values in DFHEIBLK can be
+revised.
+
+The revised data stream will be used to determine the action for
+Terminal Control Processing.
+
+Sample program is EXIT_001.COB
+
+==============
+Exit_ERROR Error exception processing
+
+This exit will be passed the addresses of EIBLK and CICSICB
+being used by a specific command. It is the responsibility of this
+exit to process the error. Currently this routine is called under
+these conditions:
+
+1) Invalid SYSID:       EIBRESP = SYSIDERR
+2) Unsupported command: EIBRESP = INVREQ EIBRESP2=200
+
+It is the exit program's responsibility to set or reset
+EIBRECODE, EIBRESP, EIBRESP2  and other values in EIBLK.
+The value in EIBRESP after return from the exit will be used
+to process the ERROR Condition.
+
+==============
+File Access exits.
+
+Refer to DBIOEXIT.TXT for description of file management exits.

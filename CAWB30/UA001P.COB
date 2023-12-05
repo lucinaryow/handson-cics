@@ -14,7 +14,6 @@
        01  WS-USERID                   PIC X(8).
        01  WS-PRGNAME                  PIC X(6).     
        01  WS-LENGTH                   PIC S9(4) COMP.
-       01  WS-QNAME                    PIC X(8).
        01  WS-RECB-LENGTH              PIC S9(4) COMP VALUE +20.
        01  WS-KEYB-LENGTH              PIC S9(4) COMP VALUE +8. 
        01  WS-KEYB.                       
@@ -40,8 +39,8 @@
            05  WS-UID-REDEF REDEFINES WS-UID.
                10  WS-USERID7      PIC X(7).
                10  FILLER          PIC X(1).
-		   05  WS-UID-ARR REDEFINES WS-UID.
-		       10 WS-UID-CHAR   PIC X(01) OCCURS 8.
+		       05  WS-UID-ARR REDEFINES WS-UID.
+		           10 WS-UID-CHAR   PIC X(01) OCCURS 8.
            05  WS-REQ                  PIC X.
            05  WS-ADMN                 PIC X.
            05  WS-APP                  PIC X.
@@ -53,27 +52,27 @@
        01  WS-FIELDS. 
            05  WS-STD-KEY-LEN    PIC S9(4) COMP VALUE 8.
        01  WS-LITERAL.
-	       05  WS-INVALID-FIELD   PIC X(35) VALUE 
-		   'HIGHLIGHT FIELD HAS INVALID VALUE'.
-		   05  WS-UPDATED  PIC X(39)  VALUE
-		   'UPDATES POSTED, PRESS ENTER TO CONTINUE'.
-		   05  WS-F-TEMP          PIC X.
-		   05  WS-PAGE-X          PIC X(2).
-		   05  WS-PAGE-NUM REDEFINES WS-PAGE-X PIC 9(2).
-		   05  WS-PG.
-		       10 WS-PAGE1 PIC X.
+	         05  WS-INVALID-FIELD   PIC X(35) VALUE 
+		       'HIGHLIGHT FIELD HAS INVALID VALUE'.
+		       05  WS-UPDATED  PIC X(39)  VALUE
+		       'UPDATES POSTED, PRESS ENTER TO CONTINUE'.
+		       05  WS-F-TEMP          PIC X.
+		       05  WS-PAGE-X          PIC X(2).
+		       05  WS-PAGE-NUM REDEFINES WS-PAGE-X PIC 9(2).
+		       05  WS-PG.
+		           10 WS-PAGE1 PIC X.
                10 WS-PAGE2 PIC X.
            05  WS-FILTER-KEY       PIC X(08).
            05  WS-FILTER-ID REDEFINES WS-FILTER-KEY.
                10 WS-FILTER-ARR PIC X(01) OCCURS 8.		   
        01  WS-COUNT.
-	       05  WS-EDIT-COUNT      PIC 9(2).
-		   05  WS-ERROR-COUNT     PIC 9999.
-		   05  WS-TEMP-COUNT      PIC 9(5).
+	         05  WS-EDIT-COUNT      PIC 9(2).
+		       05  WS-ERROR-COUNT     PIC 9999.
+		       05  WS-TEMP-COUNT      PIC 9(5).
        01  WS-SWITCH.
-		   05  WS-VALID-I-SW           PIC X.
-		   05  WS-NO-CHANGE            PIC X.
-		   05  WS-FILTER-SW            PIC X.
+		       05  WS-VALID-I-SW           PIC X.
+		       05  WS-NO-CHANGE            PIC X.
+		       05  WS-FILTER-SW            PIC X.
        01  WS-COMMAREA.
            05  WS-COMMAREA-REC.
                10  WS-CA-UID           PIC X(8).
@@ -96,6 +95,7 @@
            05  WS-QITEM-START          PIC S9(4) COMP.
            05  WS-QITEM-END            PIC S9(4) COMP.
            05  WS-QITEM-PAGE           PIC S9(4) COMP.
+           05  WS-QNAME                PIC X(8).
       *
        COPY UA001S.
        01  WS-UA001 REDEFINES UA001MI.
@@ -143,7 +143,7 @@
       *
        COPY DFHAID.
       *
-         COPY DFHBMSCA.
+       COPY DFHBMSCA.
 
        LINKAGE SECTION.
         01  DFHCOMMAREA.
@@ -168,25 +168,24 @@
            05  DF-QITEM-START          PIC S9(4) COMP.
            05  DF-QITEM-END            PIC S9(4) COMP.
            05  DF-QITEM-PAGE           PIC S9(4) COMP.
-		   05  DF-SAMPLE               PIC X(08).
-		   05  DF-UA02-STATE           PIC X(15).
+		       05  DF-SAMPLE               PIC X(08).
+		       05  DF-UA02-STATE           PIC X(15).
       *
        PROCEDURE DIVISION.
        100-PROCESS SECTION.
            MOVE DFHCOMMAREA TO WS-COMMAREA
-           STRING EIBTRMID DELIMITED BY SIZE
-	          EIBTRNID DELIMITED BY SIZE
-                  INTO WS-QNAME 
-           MOVE LENGTH OF UA001MI TO WS-LENGTH
            EXEC CICS
              IGNORE CONDITION ERROR
            END-EXEC
-
            IF EIBCALEN = +0 
+               STRING EIBTRMID DELIMITED BY SIZE
+	                EIBTRNID DELIMITED BY SIZE
+                  INTO WS-QNAME 
+               MOVE LENGTH OF UA001MI TO WS-LENGTH
                MOVE 1 TO WS-PAGE
                MOVE WS-PAGE TO PAGEO
                MOVE 'DATA ENTRY' TO WS-DFHSTATE
-			   MOVE SPACES TO WS-FILTER-KEY 
+			         MOVE SPACES TO WS-FILTER-KEY 
                PERFORM 999-MOVE-FILE-TO-Q
                PERFORM 910-MOVE-Q-TO-SCREEN
                PERFORM 100-NEW-MAP

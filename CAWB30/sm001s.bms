@@ -1,0 +1,199 @@
+SM001S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      *
+               CTRL=(FREEKB,FRSET),TIOAPFX=YES,EXTATT=NO,              *
+               MAPATTS=(COLOR,HILIGHT)
+SM001M   DFHMDI SIZE=(24,80)
+         DFHMDF POS=(01,01),LENGTH=05,ATTRB=(ASKIP,NORM),              *
+               INITIAL='SM001'
+         DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              *
+               INITIAL='SERVICE MANAGEMENT'
+DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM),              *
+               INITIAL='DD/MM/YYYY'
+         DFHMDF POS=(02,01),LENGTH=04,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PAGE'
+PAGE     DFHMDF POS=(02,06),LENGTH=02,ATTRB=(UNPROT,NORM),             *
+               INITIAL='01'
+         DFHMDF POS=(02,34),LENGTH=13,ATTRB=(ASKIP,NORM),              *
+               INITIAL='SEARCH TICKET'
+TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM),              *
+               INITIAL='HH:MM:SS'
+         DFHMDF POS=(04,01),LENGTH=06,ATTRB=(ASKIP,NORM),              *
+               INITIAL='TITLE:'
+         DFHMDF POS=(04,45),LENGTH=07,ATTRB=(ASKIP,NORM),              *
+               INITIAL='STATUS:'
+         DFHMDF POS=(05,01),LENGTH=08,ATTRB=(ASKIP,NORM),              *
+               INITIAL='TO DATE:'
+         DFHMDF POS=(05,45),LENGTH=08,ATTRB=(ASKIP,NORM),              *
+               INITIAL='FR DATE:'
+TITLE    DFHMDF POS=(04,08),LENGTH=20,ATTRB=(UNPROT,NORM,IC,FSET),     *
+               INITIAL='        '
+STATUS   DFHMDF POS=(04,53),LENGTH=07,ATTRB=(UNPROT,NORM,IC,FSET),     *
+               INITIAL='       '
+TODATE   DFHMDF POS=(05,09),LENGTH=08,ATTRB=(UNPROT,NORM,IC,FSET),     *
+               INITIAL='       '
+FRDATE   DFHMDF POS=(05,54),LENGTH=08,ATTRB=(UNPROT,NORM,IC,FSET),     *
+               INITIAL='        '
+         DFHMDF POS=(06,01),LENGTH=79,ATTRB=(ASKIP,DRK)
+         DFHMDF POS=(08,01),LENGTH=79,ATTRB=(ASKIP,DRK)
+         DFHMDF POS=(09,01),LENGTH=79,ATTRB=(ASKIP,DRK)
+         DFHMDF POS=(21,01),LENGTH=79,ATTRB=(ASKIP,DRK)
+         DFHMDF POS=(07,01),LENGTH=07,ATTRB=(ASKIP,NORM),              *
+               INITIAL='U/C/A/X'
+         DFHMDF POS=(07,12),LENGTH=06,ATTRB=(ASKIP,NORM),              *
+               INITIAL='NUMBER'
+         DFHMDF POS=(07,26),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+               INITIAL='TICKET TITLE'
+         DFHMDF POS=(07,47),LENGTH=07,ATTRB=(ASKIP,NORM),              *
+               INITIAL='STATUS'
+         DFHMDF POS=(07,60),LENGTH=07,ATTRB=(ASKIP,NORM),              *
+               INITIAL='UPD DTE'
+         DFHMDF POS=(07,72),LENGTH=07,ATTRB=(ASKIP,NORM),              *
+               INITIAL='UPD BY'
+UC1      DFHMDF POS=(10,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC2      DFHMDF POS=(11,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC3      DFHMDF POS=(12,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC4      DFHMDF POS=(13,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC5      DFHMDF POS=(14,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC6      DFHMDF POS=(15,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC7      DFHMDF POS=(16,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC8      DFHMDF POS=(17,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC9      DFHMDF POS=(18,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC10     DFHMDF POS=(19,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+UC11     DFHMDF POS=(20,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
+               INITIAL='_'
+TN1      DFHMDF POS=(10,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN2      DFHMDF POS=(11,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN3      DFHMDF POS=(12,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN4      DFHMDF POS=(13,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN5      DFHMDF POS=(14,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN6      DFHMDF POS=(15,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN7      DFHMDF POS=(16,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN8      DFHMDF POS=(17,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN9      DFHMDF POS=(18,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN10     DFHMDF POS=(19,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TN11     DFHMDF POS=(20,12),LENGTH=06,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT1      DFHMDF POS=(10,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT2      DFHMDF POS=(11,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT3      DFHMDF POS=(12,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT4      DFHMDF POS=(13,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT5      DFHMDF POS=(14,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT6      DFHMDF POS=(15,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT7      DFHMDF POS=(16,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT8      DFHMDF POS=(17,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT9      DFHMDF POS=(18,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT10     DFHMDF POS=(19,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+TT11     DFHMDF POS=(20,26),LENGTH=20,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST1      DFHMDF POS=(10,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST2      DFHMDF POS=(11,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST3      DFHMDF POS=(12,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST4      DFHMDF POS=(13,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST5      DFHMDF POS=(14,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST6      DFHMDF POS=(15,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST7      DFHMDF POS=(16,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST8      DFHMDF POS=(17,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST9      DFHMDF POS=(18,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST10     DFHMDF POS=(19,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+ST11     DFHMDF POS=(20,47),LENGTH=10,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD1      DFHMDF POS=(10,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD2      DFHMDF POS=(11,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD3      DFHMDF POS=(12,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD4      DFHMDF POS=(13,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD5      DFHMDF POS=(14,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD6      DFHMDF POS=(15,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD7      DFHMDF POS=(16,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD8      DFHMDF POS=(17,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD9      DFHMDF POS=(18,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD10     DFHMDF POS=(19,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UD11     DFHMDF POS=(20,60),LENGTH=08,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB1      DFHMDF POS=(10,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB2      DFHMDF POS=(11,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB3      DFHMDF POS=(12,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB4      DFHMDF POS=(13,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB5      DFHMDF POS=(14,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB6      DFHMDF POS=(15,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB7      DFHMDF POS=(16,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB8      DFHMDF POS=(17,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB9      DFHMDF POS=(18,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB10     DFHMDF POS=(19,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+UB11     DFHMDF POS=(20,72),LENGTH=07,ATTRB=(ASKIP,NORM,FSET),         *
+               INITIAL='   '
+MSG      DFHMDF POS=(22,01),LENGTH=60,ATTRB=(ASKIP,NORM),              *
+               INITIAL='SELECT TICKET AND PRESS ENTER'
+         DFHMDF POS=(23,01),LENGTH=01,ATTRB=(ASKIP,DRK)
+ADD      DFHMDF POS=(23,03),LENGTH=09,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PF2 - ADD'
+EXIT     DFHMDF POS=(23,18),LENGTH=10,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PF3 - EXIT'
+FIND     DFHMDF POS=(23,35),LENGTH=10,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PF5 - FIND'
+UP       DFHMDF POS=(23,49),LENGTH=08,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PF7 - UP'
+DOWN     DFHMDF POS=(23,64),LENGTH=10,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PF8 - DOWN'
+RESET    DFHMDF POS=(24,03),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+               INITIAL='PF12 - RESET'
+         DFHMSD TYPE=FINAL
+         END

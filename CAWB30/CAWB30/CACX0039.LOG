@@ -1,0 +1,15 @@
+Record Type: Text, 23/11/07, 09:15:25:98
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:15:27:46
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:15:27:99
+CACX0009E: Transaction ID is required.
+
+Record Type: Text, 23/11/07, 09:16:13:27
+Abend Detected in Program:SM000 module:SM000 Line:103
+ABCODE:AEI9 EIBRESP:36 EIBRESP2:00
+
+Record Type: Text, 23/11/07, 09:16:13:27
+CACX0001E: 09:16:13 Transaction SM00 program SM000 abend AEI9

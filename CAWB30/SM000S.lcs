@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    28NOV23 11:35:49 PAGE  1
-=======
-CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    24NOV23 10:08:49 PAGE  1
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    05DEV23 09:44:35 PAGE  1
 
     1          PRINT NOGEN
     2 SW00S    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -15,41 +11,96 @@
     9                INITIAL='SERVICE MANAGEMENT'
    10          DFHMDF POS=(02,37),LENGTH=09,ATTRB=(ASKIP,NORM),              C
    11                INITIAL='MAIN MENU'
-   12 OPTCHC1  DFHMDF POS=(05,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   13 OPTNO1   DFHMDF POS=(05,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   14 OPTCHC2  DFHMDF POS=(07,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   15 OPTNO2   DFHMDF POS=(07,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   16 OPTCHC3  DFHMDF POS=(09,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   17 OPTNO3   DFHMDF POS=(09,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   18 OPTCHC4  DFHMDF POS=(11,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   19 OPTNO4   DFHMDF POS=(11,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   20 OPTCHC5  DFHMDF POS=(13,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   21 OPTNO5   DFHMDF POS=(13,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   22 OPTCHC6  DFHMDF POS=(15,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   23 OPTNO6   DFHMDF POS=(15,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   24 OPTCHC7  DFHMDF POS=(17,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
-   25 OPTNO7   DFHMDF POS=(17,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
-   26          DFHMDF POS=(19,35),LENGTH=15,ATTRB=(ASKIP,NORM,FSET),         C
-   27                INITIAL='ENTER OPTION : '
-   28          DFHMDF POS=(20,35),LENGTH=15,ATTRB=(ASKIP,NORM),              C
-   29                INITIAL='ENTER TICKET : '
-   30          DFHMDF POS=(24,13),LENGTH=10,ATTRB=(ASKIP,NORM),              C
-   31                INITIAL='PF3 - EXIT'
-   32 OPTION   DFHMDF POS=(19,51),LENGTH=01,ATTRB=(UNPROT,NORM,IC,FSET)
-   33 TIXNO    DFHMDF POS=(20,51),LENGTH=06,ATTRB=(UNPROT,NORM,FSET)
-   34 ERRMSG   DFHMDF POS=(22,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
-   35 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
-   36 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
-   37          DFHMSD TYPE=FINAL
-      sm000s loaded with 1 MAPS, 25 FIELDS and 73 Bytes of Literals
+   12          DFHMDF POS=(1,8),LENGTH=23,ATTRB=(ASKIP,NORM),                C
+   13                INITIAL='     '
+   14          DFHMDF POS=(02,01),LENGTH=35,ATTRB=(ASKIP,NORM),              C
+   15                INITIAL='     '
+   16          DFHMDF POS=(03,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   17                INITIAL='     '
+   18          DFHMDF POS=(04,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   19                INITIAL='     '
+   20          DFHMDF POS=(05,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   21                INITIAL='     '
+   22          DFHMDF POS=(06,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   23                INITIAL='     '
+   24          DFHMDF POS=(07,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   25                INITIAL='     '
+   26          DFHMDF POS=(08,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   27                INITIAL='     '
+   28          DFHMDF POS=(09,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   29                INITIAL='     '
+   30          DFHMDF POS=(10,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   31                INITIAL='     '
+   32          DFHMDF POS=(11,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   33                INITIAL='     '
+   34          DFHMDF POS=(12,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   35                INITIAL='     '
+   36          DFHMDF POS=(13,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   37                INITIAL='     '
+   38          DFHMDF POS=(14,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   39                INITIAL='     '
+   40          DFHMDF POS=(15,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   41                INITIAL='     '
+   42          DFHMDF POS=(16,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   43                INITIAL='     '
+   44          DFHMDF POS=(17,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+   45                INITIAL='     '
+   46          DFHMDF POS=(18,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   47                INITIAL='     '
+   48          DFHMDF POS=(19,01),LENGTH=33,ATTRB=(ASKIP,NORM),              C
+   49                INITIAL='     '
+   50          DFHMDF POS=(20,01),LENGTH=33,ATTRB=(ASKIP,NORM),              C
+   51                INITIAL='     '
+   52          DFHMDF POS=(21,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   53                INITIAL='     '
+   54          DFHMDF POS=(23,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+   55                INITIAL='     '
+   56          DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   57                INITIAL='     '
+   58          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM),              CCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    05DEV23 09:44:35 PAGE  2
 
-<<<<<<< HEAD
-   38          ENDCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    28NOV23 11:35:49 PAGE  2
-=======
-   38          ENDCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    24NOV23 10:08:49 PAGE  2
->>>>>>> b7e5c95e574e6f83082bf71ec161fee858dc99e7
+   59                INITIAL='     '
+   60          DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   61                INITIAL='     '
+   62          DFHMDF POS=(11,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   63                INITIAL='     '
+   64          DFHMDF POS=(13,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   65                INITIAL='     '
+   66          DFHMDF POS=(15,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   67                INITIAL='     '
+   68          DFHMDF POS=(17,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+   69                INITIAL='     '
+   70 OPTCHC1  DFHMDF POS=(05,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   71 OPTNO1   DFHMDF POS=(05,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   72 OPTCHC2  DFHMDF POS=(07,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   73 OPTNO2   DFHMDF POS=(07,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   74 OPTCHC3  DFHMDF POS=(09,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   75 OPTNO3   DFHMDF POS=(09,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   76 OPTCHC4  DFHMDF POS=(11,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   77 OPTNO4   DFHMDF POS=(11,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   78 OPTCHC5  DFHMDF POS=(13,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   79 OPTNO5   DFHMDF POS=(13,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   80 OPTCHC6  DFHMDF POS=(15,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   81 OPTNO6   DFHMDF POS=(15,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   82 OPTCHC7  DFHMDF POS=(17,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
+   83 OPTNO7   DFHMDF POS=(17,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)
+   84          DFHMDF POS=(19,35),LENGTH=15,ATTRB=(ASKIP,NORM,FSET),         C
+   85                INITIAL='ENTER OPTION : '
+   86          DFHMDF POS=(20,35),LENGTH=15,ATTRB=(ASKIP,NORM),              C
+   87                INITIAL='ENTER TICKET : '
+   88          DFHMDF POS=(24,13),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+   89                INITIAL='PF3 - EXIT'
+   90 OPTION   DFHMDF POS=(19,51),LENGTH=01,ATTRB=(UNPROT,NORM,IC,FSET)
+   91 TIXNO    DFHMDF POS=(20,51),LENGTH=06,ATTRB=(UNPROT,NORM,FSET)
+   92 ERRMSG   DFHMDF POS=(22,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
+   93 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+   94 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+   95          DFHMSD TYPE=FINAL
+      sm000s loaded with 1 MAPS, 54 FIELDS and 1,437 Bytes of Literals
+
+   96          ENDCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    05DEV23 09:44:35 PAGE  3
 
       COBOL COPY file generated
 
-      Mapset generated. Object size is 800.
+      Mapset generated. Object size is 2,918.
 

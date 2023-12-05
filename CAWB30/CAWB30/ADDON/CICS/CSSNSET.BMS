@@ -1,0 +1,47 @@
+CSSNSET  DFHMSD TYPE=&SYSPARM,                                         C
+               EXTATT=MAPONLY,                                         C
+               TIOAPFX=YES,                                            C
+               MODE=INOUT,                                             C
+               STORAGE=AUTO
+CSSNSET  DFHMDI SIZE=(24,80)
+         DFHMDF INITIAL='CA-Realia CICS Runtime  - Signon Transaction',C
+               POS=(1,1),                                              C
+               LENGTH=44,                                              C
+               ATTRB=(ASKIP,BRT)
+TRNID    DFHMDF INITIAL='CSSN',                                        C
+               POS=(1,76),                                             C
+               LENGTH=4,                                               C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF INITIAL='Copyright (c) 1992 - 1997 Computer Associates C
+               International, Inc.',                                   C
+               POS=(2,1),                                              C
+               LENGTH=65,                                              C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF INITIAL='PLEASE ENTER PERSONAL DETAILS',               C
+               POS=(5,1),                                              C
+               LENGTH=29,                                              C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF INITIAL='USERID=',                                     C
+               POS=(7,3),                                              C
+               LENGTH=7,                                               C
+               ATTRB=(ASKIP,BRT,FSET)
+USERID   DFHMDF INITIAL='        ',                                    C
+               POS=(7,11),                                             C
+               LENGTH=8,                                               C
+               ATTRB=(UNPROT,IC,FSET)
+         DFHMDF POS=(7,20),                                            C
+               LENGTH=1,                                               C
+               ATTRB=(ASKIP,BRT)
+         DFHMDF INITIAL='PASSWORD=',                                   C
+               POS=(9,1),                                              C
+               LENGTH=9,                                               C
+               ATTRB=(ASKIP,BRT,FSET)
+PASSWRD  DFHMDF INITIAL='        ',                                    C
+               POS=(9,11),                                             C
+               LENGTH=8,                                               C
+               ATTRB=(UNPROT,DRK,FSET)
+         DFHMDF POS=(9,20),                                            C
+               LENGTH=1,                                               C
+               ATTRB=ASKIP
+         DFHMSD TYPE=FINAL
+         END

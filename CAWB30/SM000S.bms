@@ -9,6 +9,64 @@ SW00M    DFHMDI SIZE=(24,80)
                INITIAL='SERVICE MANAGEMENT'
          DFHMDF POS=(02,37),LENGTH=09,ATTRB=(ASKIP,NORM),              C
                INITIAL='MAIN MENU'
+         DFHMDF POS=(1,8),LENGTH=23,ATTRB=(ASKIP,NORM),                C
+               INITIAL='     '
+         DFHMDF POS=(02,01),LENGTH=35,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(03,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(04,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(05,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(06,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(07,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(08,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(09,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(10,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(11,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(12,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(13,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(14,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(15,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(16,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(17,01),LENGTH=30,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(18,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(19,01),LENGTH=33,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(20,01),LENGTH=33,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(21,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(23,01),LENGTH=79,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(11,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(13,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(15,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
+         DFHMDF POS=(17,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
+               INITIAL='     '
 OPTCHC1  DFHMDF POS=(05,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)
 OPTNO1   DFHMDF POS=(05,32),LENGTH=01,ATTRB=(ASKIP,NORM,FSET)              
 OPTCHC2  DFHMDF POS=(07,35),LENGTH=21,ATTRB=(ASKIP,NORM,FSET)

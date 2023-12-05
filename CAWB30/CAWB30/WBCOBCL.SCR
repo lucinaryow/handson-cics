@@ -1,0 +1,380 @@
+' ************************************************************************
+' *
+' * CA-Realia II Workbench 3.0 COBOL WbCobCL.Scr script file.
+' * Copyright (c) 1997 Computer Associates International, Inc.
+' *
+' * Revision Information
+' * ^{File:wbcobcl.scr}
+' * ^{Timestamp:Tue May 27 18:38:36 1997}
+' * ^{Revision:15.0}
+' *
+' * Script: WBCompL.Scr  - Compile And Link Script
+' *
+' * Description: This script calls WBCOMP.BAT to Preprocess and compile
+' * ************ the currently focused COBOL source (CA_DOC_FN...).
+' *
+' *
+' ***
+
+' ************************************************************************
+' * Initialization Logic:
+' * *********************
+' *  1. Set COBDIREC= "" - This effectively NULL's out the COBDIREC
+' *     environmental variable.  This is done to ensure that the compiler
+' *     only looks at compile options set using the Workbench options
+' *     dialogs.
+' *  2. Path=Real2Path etc.  - This logic dynamically sets the Path
+' *     used during this script.  The Real2Path environmental variable
+' *     is concatenated at the beginning of the path.  The Real2Path
+' *     variable may be set outside of the Workbench (eg., autoexec.bat)
+' *     to indicate the path to the Workbench and other directories.
+' *     (Note: if the user does not set Real2Path prior to starting the
+' *     Workbench, the Workbench will set it to the location of the
+' *     Workbench product directory prior to invoking this script.
+' *  3. Set Current Directory
+' *
+' *
+' * Define Callable External Routines
+' *
+ External "cawbsvcs.dll" Proc WB_FileExists    as Integer
+ External "cawbsvcs.dll" Proc WB_IsDirValid    as Integer
+ External "cawbsvcs.dll" Proc WB_MakeDirValid  as Integer
+ RC_EXT = 0
+' ***************************************************************************
+' * Build/Compile/Link Script Return Codes:
+' * ****************************************
+' * All WB*.SCR script files process return codes using
+' * the following convention.  The return code is a variable length string
+' * between 9 and N bytes in length.  Where:
+' *
+' * 1. Error Code - Positions 1 thru 4 - Normalized return code that
+' *     may be displayed in the WB Status bar.  Values are:
+' *       0000 - Success No Errors
+' *       0010 - Precompile Error
+' *       0010 - Also used to indicate error in utility being processed
+' *              Eg. Error in BMS map generation
+' *       0020 - Compile error detected
+' *       0030 - Link Error detected
+' *       0099 - Disastrous Compile Error Detected!
+' *       0999 - Job Step Error  (Build Scripts Only)
+' *
+' * 2. View Code - Positions 5 and 6 - This code is used to request that
+' *                the WB bring up a dialog to query the user if they
+' *                would like an error file to be viewed.  The error file
+' *                name is returned starting in position 10.
+' *       00     - No View Dialog necessary.
+' *                This code is used when no dialog is necessary.  Normally
+' *                no file will be edited. Note: This value should be returned
+' *                for all Build scripts regardless of the success or failure
+' *                of the script.
+' *       VL     - Compile Related Errors
+' *                The text displayed is
+' *                "Precomp, Bind or BuildRCL Errors Detected.\n Would you like
+' *                  to View Errors? "
+' *       VK     - Conditionally View Link Errors
+' *                The text displayed is
+' *                "I - Link Errors Detected.\n Would you like to View Errors?"
+' *       VO     - General Build Errors -
+' *                Use this code for asking users if they would like
+' *                to view error for BMS map Generation, ACB Generation errors
+' *                utility errors etc..
+' *                The text displayed is
+' *                 "Build Errors were detected.\n Would you like to View
+' *                  the Errors?"
+' * 3. NA - Position 7 - Future use. Ignored! (Normally F)
+' * 4. Reload Cvx - Position 8 - This return code instructs the WB to ask the
+' *                 user if they would like to reload the cvx file.  This return
+' *                 code should only be used for Compile and Compile and link
+' *                 scripts - where a new cvx file has been created!
+' * 5. Status Bar Message - position 9 - This code is used to request that
+' *                 the status code in position 1..4 be placed in the WB
+' *                 status bar.  This code should be turned off for build
+' *                 scripts.  The user may use the Edit.. Display application
+' *                 log for the purpose.
+' * 6. Error File Name - Position 10 on.  If you request via the View Code
+' *                 positions 5 & 6 that a file be conditionally edited then
+' *                 the file name should be specified here.
+' * Examples #1 Successful compile
+' *  "000000FNN"  Where position
+' *   1234      => Return Code 0000 - Task successful
+' *       56    => View Code 00 No View Dialog necessary
+' *         7   => Future Use
+' *          8  => N - Do not reload cvx
+' *           9 => N - Do not update status bar.
+' * Example #2 Link Error
+' *  "0030VKFNY"
+' *   1234      => Return Code 0030 - Link Error
+' *       56    => View Code VK - Display Link Error Dialog
+' *         7   => Future Use
+' *          8  => N - Do not reload cvx
+' *           9 => Y - Do update status bar.
+' *
+' *******************************************************************************
+' *
+' * This return code indicates that a Disastrous Compile
+' * error was detected!
+' *
+ RC_COMPILE_DISASTROUS   ="0099VLFNY"
+' *
+' * This return code indicates that the contents of the directory variable
+' * does not point to a valid directory.
+' *
+ RC_DIRECTORY_ERROR      ="999900FNN"
+' *
+' * This return code indicates that a Preprocessor error occurred and the
+' * the user should be prompted to examine the Log File.
+' *
+ RC_PREPROCESSOR_ERROR   ="0010VPFNY"
+' *
+' * This return code indicates that a Compile error occurred and the
+' * the Workbench should Invoke the Find Errors Dialog Box.
+' *
+ RC_COMPILE_ERROR        ="0020VEFNY"
+' *
+' * This return code indicates that a Link error occurred and the
+' * the user should be prompted to examine the Log File
+' *
+ RC_LINK_ERROR           ="0030VKFNY"
+' *
+' * This return code indicates that the Compile was successful,
+' * the CVX file should be conditionally reloaded!
+' *
+ RC_SUCCESS              ="000000FYY"
+
+ RC_COMPILE_WARNING     ="0004VEFYY"
+
+ CA_CREATE_NEW_LOG="N"
+ if  CA_SHOW_WIN = "Y" then
+      ShowWindow(_SW_NORMAL)
+ End If
+ COBDIREC = ""
+ ' *
+ ' * String_Size has two formats:
+ ' *  1. The first format returns the actual length
+ ' *  2. The second format sets the length.  We set the length
+ ' *     to the original length + 1 to ensure enough space is
+ ' *     available to message script variable in a C external
+ ' *     Dll routine.
+ ' *
+ VarSize = String_Size(CompileDir) + 1
+ VarSize = String_Size(CompileDir, VarSize)
+ VarSize = String_Size(CompileTmp) + 1
+ VarSize = String_Size(CompileTmp, VarSize)
+ VarSize = String_Size(ObjDir) + 1
+ VarSize = String_Size(ObjDir, VarSize)
+ VarSize = String_Size(LstDir) + 1
+ VarSize = String_Size(LstDir, VarSize)
+ VarSize = String_Size(ExeDir) + 1
+ VarSize = String_Size(ExeDir, VarSize)
+ VarSize = String_Size(MapDir) + 1
+ VarSize = String_Size(MapDir, VarSize)
+ 
+  if lnk_obj_path <> "" then
+    if lnk_obj_path <> " " then
+       lib = lnk_obj_path + ";" + lib
+    end if
+ end if
+ 
+ if lnk_lib_path <> "" then
+    if lnk_lib_path <> " " then
+       lib = lnk_lib_path + ";" + lib
+    end if
+ end if
+ 
+ if objdir <> "" then
+    if objdir <> " " then
+       lib = objdir + ";" + lib
+       syslib = syslib + ";" + objdir
+    end if
+ end if
+
+
+ ' ****************************************************************************
+ ' * Set Working Directory
+ ' ****************************************************************************
+ if  CompileDir <>  " " Then
+    if  CompileDir <>  "" Then
+      if  (WB_IsDirValid(CompileDir) = 0) Then
+         ButtonPressed =
+            MessageBox("CACV5000E - The Compile Work Directory (" +
+                       CompileDir + ") is not valid!" +
+                       "\n Please correct and retry compilation.",
+                       "CA-Realia II Workbench", _MB_OK)
+            return RC_DIRECTORY_ERROR
+       End If
+    End If
+ End If
+ ' *
+ ' * WB_IsDirValid returns a value of 1 if the directory exists!
+ ' *
+ if  (WB_IsDirValid(CompileDir) = 1) Then
+      SetDir(CompileDir)
+     ' *
+     ' * WB_MakeDirValid - Conditionally appends a '\' on to the end
+     ' * of the directory if a trailing backslash is not present!
+     ' *
+      RC_EXT = WB_MakeDirValid(CompileDir)
+ Else
+      CompileDir = CA_DOC_FN_PATH
+      SetDir(CA_DOC_FN_PATH)
+ End If
+ ' ****************************************************************************
+ ' * Set Up Log_FN (Used by Batch FIles, to log results!
+ ' * Note: The Log_Fn will be written to the current working dir.
+ ' *       No Path is prefixed, otherwise batch file echo command
+ ' *       could exceed DOS 127 char limit.
+ ' ****************************************************************************
+ LOG_FN=CA_DOC_FN+".LOG"
+ LOG_FN_FULL=CompileDir+CA_DOC_FN+".LOG"
+ ' ****************************************************************************
+ ' * Validate Compile Temp Directory
+ ' ****************************************************************************
+if  CompileTmp <>  " " Then
+   if  CompileTmp <>  "" Then
+       if  (WB_IsDirValid(CompileTmp) = 0) Then
+         ButtonPressed =
+            MessageBox("CACV5000E - The Compile Temp Directory (" +
+                       CompileTmp + ") is not valid!"  +
+                       "\n Please correct and retry compilation.",
+                       "CA-Realia II Workbench", _MB_OK)
+            return RC_DIRECTORY_ERROR
+       End If
+    End If
+ End If
+
+ if  (WB_IsDirValid(CompileTmp) = 1) Then
+      RC_EXT = WB_MakeDirValid(CompileTmp)
+ Else
+      CompileTmp = ""
+ End If
+ ' ****************************************************************************
+ ' * Validate ObjDir Directory
+ ' * ************************* If ObjDir defined use it, If not defined
+ ' * then use CompileDir as location of Obj.
+ ' ****************************************************************************
+ if  ObjDir <>  " " Then
+   if  ObjDir <>  "" Then
+       if  (WB_IsDirValid(ObjDir) = 0) Then
+         ButtonPressed =
+            MessageBox("CACV5000E - The Object File Output Directory (" +
+                       ObjDir + ") is not valid!"  +
+                       "\n Please correct and retry compilation.",
+                       "CA-Realia II Workbench", _MB_OK)
+            return RC_DIRECTORY_ERROR
+       End If
+    End If
+ End If
+
+ if  (WB_IsDirValid(ObjDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(ObjDir)
+ Else
+      ObjDir = CompileDir
+ End If
+ ' ****************************************************************************
+ ' * Validate LstDir Directory
+ ' ****************************************************************************
+if  LstDir <>  " " Then
+   if  LstDir <>  "" Then
+       if  (WB_IsDirValid(LstDir) = 0) Then
+         ButtonPressed =
+            MessageBox("CACV5000E - The Listing Output Directory (" +
+                       LstDir + ") is not valid!"  +
+                       "\n Please correct and retry compilation.",
+                       "CA-Realia II Workbench", _MB_OK)
+            return RC_DIRECTORY_ERROR
+       End If
+    End If
+ End If
+
+ if  (WB_IsDirValid(LstDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(LstDir)
+ Else
+      LstDir = CompileDir
+ End If
+ ' ****************************************************************************
+ ' * Validate MapDir Directory
+ ' ****************************************************************************
+if  MapDir <>  " " Then
+   if  MapDir <>  "" Then
+       if  (WB_IsDirValid(MapDir) = 0) Then
+         ButtonPressed =
+            MessageBox("CACV5000E - The Link Map Output Directory (" +
+                       MapDir + ") is not valid!"  +
+                       "\n Please correct and retry Compile/Link.",
+                       "CA-Realia II Workbench", _MB_OK)
+            return RC_DIRECTORY_ERROR
+       End If
+    End If
+ End If
+ if  (WB_IsDirValid(MapDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(MapDir)
+ Else
+      MapDir = CompileDir
+ End If
+
+ ' ****************************************************************************
+ ' * Validate ExeDir Directory
+ ' ****************************************************************************
+if  ExeDir <>  " " Then
+   if  ExeDir <>  "" Then
+       if  (WB_IsDirValid(ExeDir) = 0) Then
+         ButtonPressed =
+            MessageBox("CACV5000E - The Exe Output Directory (" +
+                       ExeDir + ") is not valid!"  +
+                       "\n Please correct and retry Compile/Link.",
+                       "CA-Realia II Workbench", _MB_OK)
+            return RC_DIRECTORY_ERROR
+       End If
+    End If
+ End If
+ if  (WB_IsDirValid(ExeDir) = 1) Then
+      RC_EXT = WB_MakeDirValid(ExeDir)
+ Else
+      ExeDir = CompileDir
+ End If
+
+' **************************************************************************
+' * Precompile and Compile Logic:                                          *
+' * ***************************** The WbComp.Bat command procedure is      *
+' * used to Precompile and Compile the currently focused file name.        *
+' *                                                                        *
+' **************************************************************************
+ shell "WbComp.bat"
+ if  _RC = 1 Then
+     shell "cawbecho 0"
+     return RC_PREPROCESSOR_ERROR + LOG_FN_FULL
+ End If
+
+ if  _RC = 99 Then
+     shell "cawbecho 0"
+     return RC_COMPILE_DISASTROUS  + LOG_FN_FULL
+ End If
+
+
+ if  _RC = 3 Then
+     shell "cawbecho 0"
+     return RC_COMPILE_WARNING + LstDir + CA_DOC_FN+".LST" ' View Errors
+ End If
+
+ if  _RC = 5 Then
+     Shell "cawbecho 0"
+     return RC_COMPILE_ERROR + LstDir + CA_DOC_FN+".LST" ' View Errors
+ End If
+
+
+' **************************************************************************
+' * Link Logic:                                                            *
+' * *********** The WbLink.Bat command procedure is                        *
+' * used to Link the currently focused file name.                          *
+' *                                                                        *
+' **************************************************************************
+ shell "WbLink.bat"
+ if  _RC = 1 Then
+     Shell "cawbecho 0"
+     return RC_LINK_ERROR + LOG_FN_FULL
+ End If
+
+ Shell "cawbecho 0"
+
+ return RC_SUCCESS
+
