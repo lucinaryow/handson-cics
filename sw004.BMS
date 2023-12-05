@@ -1,0 +1,75 @@
+         PRINT NOGEN
+SM004   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,       C
+               CTRL=(FREEKB,FRSET),TIOAPFX=YES,EXTATT=NO,              C
+               MAPATTS=(COLOR,HILIGHT)
+MAP04   DFHMDI SIZE=(24,80)
+         DFHMDF POS=(01,01),LENGTH=06,ATTRB=(ASKIP,NORM),              C
+               INITIAL='SM004M'
+         DFHMDF POS=(01,32),LENGTH=18,ATTRB=(ASKIP,NORM),              C
+               INITIAL='SERVICE MANAGEMENT'
+         DFHMDF POS=(02,33),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+               INITIAL='CLOSE TICKET'
+         DFHMDF POS=(03,01),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+               INITIAL=' '
+         DFHMDF POS=(04,01),LENGTH=12,ATTRB=(ASKIP,NORM),              *
+               INITIAL=' '                                           
+         DFHMDF POS=(05,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='TICKET NUMBER      : '
+         DFHMDF POS=(06,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='REQUESTED BY       : '
+         DFHMDF POS=(07,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='TICKET TITLE       : '
+         DFHMDF POS=(08,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='TICKET DESCRIPTION : '
+         DFHMDF POS=(09,01),LENGTH=21,ATTRB=(ASKIP,NORM),              *
+               INITIAL=' '                 
+         DFHMDF POS=(10,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='STATUS             : '
+         DFHMDF POS=(11,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='UPDATE BY          : '
+         DFHMDF POS=(12,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='UPDATE REMARKS     : '
+         DFHMDF POS=(13,01),LENGTH=21,ATTRB=(ASKIP,NORM),              *
+               INITIAL=' '                 
+         DFHMDF POS=(14,01),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL='UPDATE DATE/TIME   : '
+         DFHMDF POS=(15,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '  
+         DFHMDF POS=(16,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '  
+         DFHMDF POS=(17,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '  
+         DFHMDF POS=(18,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '  
+         DFHMDF POS=(19,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '                 
+         DFHMDF POS=(20,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '   
+         DFHMDF POS=(21,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '   
+         DFHMDF POS=(22,01),LENGTH=63,ATTRB=(ASKIP,NORM),              C
+               INITIAL=' '               
+PF2      DFHMDF POS=(24,01),LENGTH=11,ATTRB=(PROT,NORM),               C
+               INITIAL='PF2 - CLOSE'
+         DFHMDF POS=(24,18),LENGTH=10,ATTRB=(ASKIP,NORM),              C
+               INITIAL='PF3 - EXIT'
+PF5      DFHMDF POS=(24,35),LENGTH=11,ATTRB=(PROT,NORM),               C
+               INITIAL='PF5 - ABORT'
+         DFHMDF POS=(24,50),LENGTH=11,ATTRB=(ASKIP,NORM),              C
+               INITIAL='PF15 - LOGS'
+DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
+TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+TNUM     DFHMDF POS=(05,23),LENGTH=06,ATTRB=(UNPROT,IC,NUM,NORM,FSET)   
+REQBY    DFHMDF POS=(06,23),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)     
+TITLE    DFHMDF POS=(07,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)                         
+DESCL1   DFHMDF POS=(08,23),LENGTH=50,ATTRB=(ASKIP,NORM,FSET)               
+DESCL2   DFHMDF POS=(09,23),LENGTH=50,ATTRB=(ASKIP,NORM,FSET)               
+STATS    DFHMDF POS=(10,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)               
+UPDBY    DFHMDF POS=(11,23),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
+UPDREM1  DFHMDF POS=(12,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET) 
+UPDREM2  DFHMDF POS=(13,23),LENGTH=25,ATTRB=(ASKIP,NORM,FSET)        
+DATE1    DFHMDF POS=(14,23),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)              
+TIME1    DFHMDF POS=(14,34),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)              
+ERRMSG   DFHMDF POS=(23,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)              
+         DFHMSD TYPE=FINAL
+         END
