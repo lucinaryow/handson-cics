@@ -32,6 +32,8 @@
        01  WS-LASTPAGE                 PIC X(1).
        01  WS-FIRSTPAGE                PIC X(1).
        01  WS-PAGE-CTR                 PIC 9(02).
+	   01  WS-TITLE-ARR.
+	       05  WS-TITLE-CHAR           PIC X(01) OCCURS 25.
        01  WS-COMMAREA.
            05  WS-CA-PRGNAME           PIC X(06).
            05  FILLER                  PIC X(19).
@@ -62,13 +64,21 @@
                10  TIX-REQUESTOR                     PIC X(08).
                10  TIX-STATUS                        PIC X(10). 
                10  TIX-TITLE                         PIC X(25).
+			   10  TIX-TITLE-ARRAY REDEFINES TIX-TITLE.
+			       15 TIX-TITLE-CHAR PIC X(01) OCCURS 25.
                10  TIX-DESC                          PIC X(100). 
                10  TIX-DESC-RED REDEFINES TIX-DESC.
                    15  TIX-DESC1                     PIC X(50).
                    15  TIX-DESC2                     PIC X(50).
                10  LAST-UPDATE                       PIC X(20). 
                10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-                   15  LAST-UPDATE-DATE              PIC X(11).
+                   15  LAST-UPDATE-DATE.
+				       20 DD PIC X(02).
+					   20 FILLER PIC X.
+					   20 MM PIC X(02).
+					   20 FILLER PIC X.
+					   20 YYYY PIC X(02).
+					   20 FILLER PIC X.
                    15  LAST-UPDATE-TIME              PIC X(09).
                10  UPDATED-BY2.
                    15  UPDBY2                        PIC X(7).
@@ -92,7 +102,27 @@
        01  WS-INVALID-TICKET			   PIC X(28) VALUE
            'TICKET NUMBER DOES NOT EXIST'.       
        01  WS-INVALID-USER			   PIC X(24) VALUE
-           'INVALID ACCESS TO TICKET'.    
+                           'INVALID ACCESS TO TICKET'.
+       01  YYYYMMDD-NUM.
+		   05 YYYY-N PIC 9(04).
+           05 MM-N   PIC 9(02).	
+           05 DD-N   PIC 9(02).
+       01  WS-TEMP-DATE.
+           05 DD-TMP   PIC X(02).
+		   05 MM-TEMP  PIC X(02).
+		   05 YYYY-TMP PIC X(04).
+       01  YYYYMMDD-TO.
+		   05 YYYY-TO PIC 9(04).
+           05 MM-TO   PIC 9(02).	
+           05 DD-TO   PIC 9(02).	
+       01  YYYYMMDD-FR.
+		   05 YYYY-FR PIC 9(04).
+           05 MM-FR   PIC 9(02).	
+           05 DD-FR   PIC 9(02).
+       01 WS-SWITCH.
+           05 DATE-FILTER-SW PIC X.	 
+           05 TITLE-FILTER-SW PIC X.
+           05 VALID-DATE-FILTER-SW   PIC X.		   
       *
        COPY SM001S.
        01  WS-SM001 REDEFINES SM001MI.
@@ -156,6 +186,9 @@
 	                   EIBTRNID DELIMITED BY SIZE
                        INTO WS-QNAME 
                    MOVE LENGTH OF SM001MI TO WS-LENGTH
+				   MOVE ' ' TO WS-TITLE-ARR
+				   MOVE ' ' TO YYYYMMDD-TO
+				   MOVE ' ' TO YYYYMMDD-FR
                    MOVE 1 TO WS-PAGE
                    MOVE WS-PAGE TO PAGEO
                    PERFORM 999-MOVE-FILE-TO-Q
@@ -179,7 +212,7 @@
                                FROM(WS-FILLER)
                                LENGTH(+500)
                                ERASE
-                            END-EXEC
+                            END-EXEC 
                             EXEC CICS XCTL 
                                PROGRAM('SM000P')
                             END-EXEC
@@ -480,31 +513,35 @@
                            MOVE 'OPTION IS REQUIRED' TO MSGO
                            PERFORM 100-NEW-MAP
                        WHEN OTHER
+                           MOVE '_' TO UCI(WS-COUNTER2)
                            MOVE 'ENTER U, C, A, OR X AND PRESS ENTER' TO
                                  MSGO 
                            PERFORM 100-NEW-MAP
                    END-EVALUATE
                END-IF
            END-IF.
+
        260-WHENF5 SECTION.
-           EXEC CICS ASSIGN   
-               USERID(WS-USERID) 
-           END-EXEC
-           EXEC CICS 
-               READ FILE('UAF00001')
-               INTO (WS-USER-REC)
-               RIDFLD (WS-USERID)
-               RESP(WS-RESPONSE-CODE)
-               GTEQ 
-           END-EXEC
-           IF NOT WS-RESPONSE-CODE = +00 OR REQUESTOR NOT = 'Y'
-               MOVE 'INVALID ACCESS' TO MSGO
-               PERFORM 100-NEW-MAP
-           ELSE 
-               EXEC CICS XCTL  
-                   PROGRAM('SM02P')
-               END-EXEC
-           END-IF.
+			   
+               MOVE TITLEI TO WS-TITLE-ARR
+			   
+			   MOVE FRDATEI TO WS-TEMP-DATE
+			   MOVE YYYY-TMP TO YYYY-FR
+			   MOVE MM-TEMP  TO MM-FR
+			   MOVE DD-TMP   TO DD-FR
+			   
+			   MOVE TODATEI TO WS-TEMP-DATE
+			   MOVE YYYY-TMP TO YYYY-TO
+			   MOVE MM-TEMP  TO MM-TO
+			   MOVE DD-TMP   TO DD-TO
+
+			   EXEC CICS DELETEQ TS
+				QUEUE(WS-QNAME)
+			   END-EXEC
+
+               PERFORM 999-MOVE-FILE-TO-Q
+               PERFORM 500-MOVE-Q-TO-SCREEN   
+               PERFORM 100-NEW-MAP.			   
 
        270-WHENF12 SECTION.
            PERFORM UNTIL WS-QITEM-PAGE < WS-QITEM-START OR
@@ -558,7 +595,38 @@
 
        500-EXIT.
            EXIT.
-
+       510-FILTER-DATE.
+	       		   
+		   MOVE YYYY TO YYYY-N
+		   MOVE MM   TO MM-D
+		   MOVE DD   TO DD-D
+		   
+		   MOVE 'N' TO DATE-FILTER-SW
+		   
+		   IF YYYYMMDD-NUM >= YYYYMMDD-FR AND  
+		      YYYYMMDD-NUM <= YYYYMMDD-TO
+              MOVE 'Y' TO DATE-FILTER-SW	
+           END-IF.			  
+		   
+	      
+	   510-EXIT.
+	       EXIT.
+		   
+	   520-FILTER-TITLE.
+	       MOVE 1 TO WS-INDX
+		   MOVE 'Y' TO TITLE-FILTER-SW
+		   PERFORM UNTIL WS-INDX > 25 OR
+		                 WS-TITLE-CHAR(WS-INDX) = ' ' OR
+						 TITLE-FILTER-SW = 'N'
+		     IF WS-TITLE-CHAR(WS-INDX) NOT = 
+			    TIX-TITLE-CHAR(WS-INDX)
+				MOVE 'N' TO TITLE-FILTER-SW
+		     END-IF
+		     ADD 1 TO WS-INDX
+		   END-PERFORM.
+	   520-EXIT.
+	       EXIT.
+	   
        600-VALIDATE-USER.
            EXEC CICS ASSIGN   
                USERID(WS-USERID) 
@@ -603,13 +671,33 @@
                     INTO (WS-TIX-REC)
                     RIDFLD (TIX-ID)
                END-EXEC
-               IF EIBRESP = DFHRESP(NORMAL)
-                  EXEC CICS WRITEQ TS
-                       QUEUE(WS-QNAME)
-                       FROM (WS-TIX-REC)
-                       ITEM (WS-QITEM)
-                  END-EXEC
-               END-IF
+			   
+			   IF WS-TITLE-ARR = ' '
+			      MOVE 'Y' TO TITLE-FILTER-SW
+			   ELSE
+			      PERFORM 520-FILTER-TITLE
+			   END-IF
+			   
+			   IF YYYYMMDD-TO = ' ' AND 
+			      YYYYMMDD-FR = ' '
+			      MOVE 'Y' TO DATE-FILTER-SW
+			   ELSE
+			      PERFORM 510-FILTER-DATE
+			   END-IF
+			   
+			   IF DATE-FILTER-SW = 'Y' AND 
+			      TITLE-FILTER-SW = 'Y'
+				  
+				  IF EIBRESP = DFHRESP(NORMAL)
+					  EXEC CICS WRITEQ TS
+						   QUEUE(WS-QNAME)
+						   FROM (WS-TIX-REC)
+						   ITEM (WS-QITEM)
+					  END-EXEC
+                  END-IF
+				 				  
+			   END-IF
+               
            END-PERFORM
            EXEC CICS
                 ENDBR FILE('stf00001')
