@@ -598,13 +598,13 @@
                     INTO (WS-TIX-REC)
                     RIDFLD (TIX-ID)
                END-EXEC
-	       IF EIBRESP = DFHRESP(NORMAL)
-	           EXEC CICS WRITEQ TS
-	           	   QUEUE(WS-QNAME)
-	           	   FROM (WS-TIX-REC)
-	           	   ITEM (WS-QITEM)
-	           END-EXEC
-           END-IF
+	           IF EIBRESP = DFHRESP(NORMAL)
+	               EXEC CICS WRITEQ TS
+	               	   QUEUE(WS-QNAME)
+	               	   FROM (WS-TIX-REC)
+	               	   ITEM (WS-QITEM)
+	               END-EXEC
+               END-IF
            END-PERFORM
            EXEC CICS
                 ENDBR FILE('stf00001')
