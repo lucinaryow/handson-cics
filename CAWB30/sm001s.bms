@@ -10,7 +10,7 @@ DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM),              *
                INITIAL='DD/MM/YYYY'
          DFHMDF POS=(02,01),LENGTH=04,ATTRB=(ASKIP,NORM),              *
                INITIAL='PAGE'
-PAGE     DFHMDF POS=(02,06),LENGTH=02,ATTRB=(ASKIP,NORM),              *
+PAGE     DFHMDF POS=(02,06),LENGTH=02,ATTRB=(UNPROT,NORM),             *
                INITIAL='01'
          DFHMDF POS=(02,34),LENGTH=13,ATTRB=(ASKIP,NORM),              *
                INITIAL='SEARCH TICKET'

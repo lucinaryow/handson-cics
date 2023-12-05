@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    04DEV23 16:21:24 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    05DEV23 08:26:31 PAGE  1
 
     1          PRINT NOGEN
     2 SW00S    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -57,7 +57,7 @@
    55                INITIAL='     '
    56          DFHMDF POS=(05,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
    57                INITIAL='     '
-   58          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM),              CCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    04DEV23 16:21:24 PAGE  2
+   58          DFHMDF POS=(07,57),LENGTH=23,ATTRB=(ASKIP,NORM),              CCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    05DEV23 08:26:31 PAGE  2
 
    59                INITIAL='     '
    60          DFHMDF POS=(09,57),LENGTH=23,ATTRB=(ASKIP,NORM),              C
@@ -98,7 +98,7 @@
    95          DFHMSD TYPE=FINAL
       sm000s loaded with 1 MAPS, 54 FIELDS and 1,437 Bytes of Literals
 
-   96          ENDCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    04DEV23 16:21:24 PAGE  3
+   96          ENDCA-Realia CICS Ver:6.0.27  sm000s.bms                                                                    05DEV23 08:26:31 PAGE  3
 
       COBOL COPY file generated
 

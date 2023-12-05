@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     04DEV23 16:21:25 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     05DEV23 08:26:32 PAGE  1
 
     1    PRINT NOGEN
     2 SM002    DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -57,7 +57,7 @@ W **** TERM is ignored by CA-Realia CICS
    54                INITIAL='PF3 - EXIT'
    55          DFHMDF POS=(24,28),LENGTH=11,ATTRB=(ASKIP,NORM),              C
    56                INITIAL='PF5 - ABORT'
-   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     04DEV23 16:21:25 PAGE  2
+   57 DATE     DFHMDF POS=(01,70),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     05DEV23 08:26:32 PAGE  2
 
    58 TIME     DFHMDF POS=(02,70),LENGTH=08,ATTRB=(ASKIP,NORM,FSET)
    59 TIXNUM   DFHMDF POS=(05,24),LENGTH=6,ATTRB=(ASKIP,NORM,FSET)
@@ -80,7 +80,7 @@ W **** Label should be less than 8 characters long
 W **** Blank records not supported by Mainframe.
    72
 W **** Blank records not supported by Mainframe.
-There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     04DEV23 16:21:25 PAGE  3
+There were     5 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm002.bms                                                                     05DEV23 08:26:32 PAGE  3
 
       COBOL COPY file generated
 

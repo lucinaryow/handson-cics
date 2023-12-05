@@ -10,6 +10,15 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01  WS-TIME                     PIC 9(15) COMP-3.
+       01  WS-FILLER                             PIC X(80).
+       01  WS-PG-LIT                   PIC 9(2).
+       01  WS-PG-RED REDEFINES WS-PG-LIT.
+           05   PG-LIT1                PIC 9.
+           05   PG-LIT2                PIC 9.
+       01  WS-TALLY                    PIC 9(3) VALUE 0.
+       01  WS-REM                      PIC 9(3).
+       01  WS-COMP                     PIC 9(4).
+       01  WS-MAX                      PIC 9(3).
        01  WS-RESPONSE-CODE            PIC S9(8) COMP.
        01  WS-COUNTER                  PIC 9(2) VALUE 0.
        01  WS-COUNTER2                 PIC 9(2) VALUE 0.
@@ -19,7 +28,7 @@
        01  WS-LENGTH                   PIC S9(4) COMP.
        01  WS-RECB-LENGTH              PIC S9(4) COMP VALUE +20.
        01  WS-KEYB-LENGTH              PIC S9(4) COMP VALUE +8. 
-       01  WS-INDX                     PIC 9(2)  VALUE 1.
+       01  WS-INDX                     PIC 9(3)  VALUE 1.
        01  WS-LASTPAGE                 PIC X(1).
        01  WS-FIRSTPAGE                PIC X(1).
        01  WS-PAGE-CTR                 PIC 9(02).
@@ -166,6 +175,11 @@
                             EXEC CICS DELETEQ TS
                                  QUEUE(WS-QNAME)
                             END-EXEC 
+                            EXEC CICS SEND TEXT 
+                               FROM(WS-FILLER)
+                               LENGTH(+500)
+                               ERASE
+                            END-EXEC
                             EXEC CICS XCTL 
                                PROGRAM('SM000P')
                             END-EXEC
@@ -277,68 +291,174 @@
            END-IF.
 
        250-WHENENTER SECTION.
-           MOVE 1 TO WS-INDX
-           PERFORM UNTIL WS-INDX > 11
-               MOVE UCI(WS-INDX) TO WS-CHOICE
-               IF NOT WS-CHOICE = '_'
-                   ADD 1 TO WS-COUNTER
-                   MOVE WS-INDX TO WS-COUNTER2
+           IF PAGEI = LOW-VALUES
+               MOVE WS-PAGE TO PAGEI
+           END-IF
+           IF PAGEI NOT = WS-PAGE OR PAGEL = +0
+               MOVE PAGEI TO WS-PG-LIT
+               IF PG-LIT1 IS NUMERIC AND PG-LIT2 IS NUMERIC
+                   IF WS-PG-LIT > WS-PAGE
+                       COMPUTE WS-COMP = WS-QITEM +
+                                       ((WS-PG-LIT - 1) - WS-PAGE) * 11
+                       IF WS-COMP > WS-QITEM-END 
+                           PERFORM VARYING WS-INDX FROM WS-QITEM-START 
+                                   BY 1 UNTIL 
+                                WS-INDX > WS-QITEM-END  
+                               ADD 1 TO WS-TALLY
+                           END-PERFORM
+                           DIVIDE WS-TALLY BY 11 GIVING WS-REM
+                           COMPUTE WS-MAX = WS-REM + 1
+                           MOVE WS-MAX TO WS-PAGE
+                           MOVE WS-PAGE TO PAGEO
+                           COMPUTE WS-QITEM-PAGE = (WS-REM * 11) + 
+                                                   WS-QITEM-START
+                           PERFORM 500-MOVE-Q-TO-SCREEN
+                           MOVE 'THIS IS THE LAST PAGE' TO MSGO
+                           PERFORM 100-NEW-MAP
+                       ELSE     
+                           MOVE WS-COMP TO WS-QITEM-PAGE
+                           MOVE PAGEI TO WS-PAGE
+                           PERFORM 500-MOVE-Q-TO-SCREEN
+                           PERFORM 100-NEW-MAP
+                       END-IF
+                   ELSE 
+                       IF WS-PG-LIT = 1
+                           MOVE PAGEI TO WS-PAGE
+                           MOVE WS-QITEM-START TO WS-QITEM-PAGE 
+                           PERFORM 500-MOVE-Q-TO-SCREEN
+                           MOVE 'THIS IS THE FIRST PAGE' TO MSGO
+                           PERFORM 100-NEW-MAP 
+                       ELSE 
+                           COMPUTE WS-COMP = WS-QITEM-PAGE - 
+                                             (WS-PAGE - WS-PG-LIT) * 11
+                           MOVE WS-COMP TO WS-QITEM-PAGE
+                           MOVE PAGEI TO WS-PAGE
+                           PERFORM 500-MOVE-Q-TO-SCREEN
+                           PERFORM 100-NEW-MAP
+                       END-IF
+                   END-IF
+               ELSE 
+                   MOVE 'ENTER A NUMERIC PAGE NUMBER' TO MSGO
+                   PERFORM 100-NEW-MAP
                END-IF
-               ADD 1 TO WS-INDX
-           END-PERFORM
-           IF WS-COUNTER > 1
+           ELSE 
                MOVE 1 TO WS-INDX
                PERFORM UNTIL WS-INDX > 11
-                   MOVE '_' TO UCI(WS-INDX)
+                   MOVE UCI(WS-INDX) TO WS-CHOICE
+                   IF NOT WS-CHOICE = '_'
+                       ADD 1 TO WS-COUNTER
+                       MOVE WS-INDX TO WS-COUNTER2
+                   END-IF
                    ADD 1 TO WS-INDX
                END-PERFORM
-               MOVE 'ENTER 1 SELECTION ONLY' TO MSGO
-           ELSE
-               EVALUATE UCI(WS-COUNTER2)
-                   WHEN 'U'
-                       IF STI(WS-COUNTER2) = 'APPROVED' OR 'ONGOING'
-                           PERFORM 600-VALIDATE-USER 
-                           EVALUATE TRUE 
-                               WHEN SERVICE-PROVIDER = 'Y' AND 
-                                    REQUESTOR = 'Y'
-                                   EXEC CICS XCTL  
-                                       PROGRAM('SM003P')
-                                   END-EXEC
-                               WHEN SERVICE-PROVIDER = 'Y'
-                                   EXEC CICS XCTL  
-                                       PROGRAM('SM003P')
-                                   END-EXEC
-                               WHEN REQUESTOR = 'Y'
-                                   EXEC CICS
-                                       READ FILE('STF00001')
-                                       INTO (WS-TIX-REC)
-                                       RIDFLD (TNI(WS-COUNTER2))
-                                       RESP(WS-RESPONSE-CODE)
-                                       EQUAL 
-                                   END-EXEC
-                                   IF WS-USERID = TIX-REQUESTOR  
+               IF WS-COUNTER > 1
+                   MOVE 1 TO WS-INDX
+                   PERFORM UNTIL WS-INDX > 11
+                       MOVE '_' TO UCI(WS-INDX)
+                       ADD 1 TO WS-INDX
+                   END-PERFORM
+                   MOVE 'ENTER 1 SELECTION ONLY' TO MSGO
+               ELSE
+                   EVALUATE UCI(WS-COUNTER2)
+                       WHEN 'U'
+                           IF STI(WS-COUNTER2) = 'APPROVED' OR 'ONGOING'
+                               PERFORM 600-VALIDATE-USER 
+                               EVALUATE TRUE 
+                                   WHEN SERVICE-PROVIDER = 'Y' AND 
+                                        REQUESTOR = 'Y'
                                        EXEC CICS XCTL  
                                            PROGRAM('SM003P')
                                        END-EXEC
-                                   ELSE 
+                                   WHEN SERVICE-PROVIDER = 'Y'
+                                       EXEC CICS XCTL  
+                                           PROGRAM('SM003P')
+                                       END-EXEC
+                                   WHEN REQUESTOR = 'Y'
+                                       EXEC CICS
+                                           READ FILE('STF00001')
+                                           INTO (WS-TIX-REC)
+                                           RIDFLD (TNI(WS-COUNTER2))
+                                           RESP(WS-RESPONSE-CODE)
+                                           EQUAL 
+                                       END-EXEC
+                                       IF WS-USERID = TIX-REQUESTOR  
+                                           EXEC CICS XCTL  
+                                               PROGRAM('SM003P')
+                                           END-EXEC
+                                       ELSE 
+                                           MOVE '_' TO UCI(WS-COUNTER2)
+                                           MOVE 'INVALID ACCESS' TO MSGO
+                                           PERFORM 100-NEW-MAP
+                                       END-IF
+                                   WHEN OTHER  
                                        MOVE '_' TO UCI(WS-COUNTER2)
                                        MOVE 'INVALID ACCESS' TO MSGO
                                        PERFORM 100-NEW-MAP
-                                   END-IF
-                               WHEN OTHER  
+                               END-EVALUATE
+                           ELSE 
+                               MOVE '_' TO UCI(WS-COUNTER2)
+                               MOVE 'STATUS MUST BE APPROVED OR ONGOING'
+                                   TO MSGO  
+                               PERFORM 100-NEW-MAP
+                           END-IF
+                       WHEN 'C'
+                           IF STI(WS-COUNTER2) = 'COMPLETED'
+                               PERFORM 600-VALIDATE-USER 
+                               EXEC CICS
+                                   READ FILE('STF00001')
+                                   INTO (WS-TIX-REC)
+                                   RIDFLD (TNI(WS-COUNTER2))
+                                   RESP(WS-RESPONSE-CODE)
+                                   EQUAL 
+                               END-EXEC
+                               IF WS-USERID = TIX-REQUESTOR  
+                                   EXEC CICS XCTL  
+                                       PROGRAM('SM004P')
+                                   END-EXEC
+                               ELSE 
                                    MOVE '_' TO UCI(WS-COUNTER2)
                                    MOVE 'INVALID ACCESS' TO MSGO
                                    PERFORM 100-NEW-MAP
-                           END-EVALUATE
-                       ELSE 
-                           MOVE '_' TO UCI(WS-COUNTER2)
-                           MOVE 'STATUS MUST BE APPROVED OR ONGOING' TO 
-                               MSGO  
-                           PERFORM 100-NEW-MAP
-                       END-IF
-                   WHEN 'C'
-                       IF STI(WS-COUNTER2) = 'COMPLETED'
-                           PERFORM 600-VALIDATE-USER 
+                               END-IF
+                           ELSE 
+                               MOVE '_' TO UCI(WS-COUNTER2)
+                               MOVE 'STATUS MUST BE COMPLETED' TO 
+                                   MSGO  
+                               PERFORM 100-NEW-MAP
+                           END-IF
+                       WHEN 'A'
+                               IF STI(WS-COUNTER2) = 'CREATED'
+                               PERFORM 600-VALIDATE-USER 
+                               EVALUATE TRUE 
+                                   WHEN APPROVER = 'Y'
+                                       EXEC CICS
+                                           READ FILE('STF00001')
+                                           INTO (WS-TIX-REC)
+                                           RIDFLD (TNI(WS-COUNTER2))
+                                           RESP(WS-RESPONSE-CODE)
+                                           EQUAL 
+                                       END-EXEC
+                                       IF WS-USERID = TIX-REQUESTOR  
+                                           EXEC CICS XCTL  
+                                               PROGRAM('SM005P')
+                                           END-EXEC
+                                       ELSE 
+                                           MOVE '_' TO UCI(WS-COUNTER2)
+                                           MOVE 'INVALID ACCESS' TO MSGO
+                                           PERFORM 100-NEW-MAP
+                                       END-IF
+                                   WHEN OTHER  
+                                       MOVE '_' TO UCI(WS-COUNTER2)
+                                       MOVE 'INVALID ACCESS' TO MSGO
+                                       PERFORM 100-NEW-MAP
+                               END-EVALUATE
+                           ELSE 
+                               MOVE '_' TO UCI(WS-COUNTER2)
+                               MOVE 'STATUS MUST BE CREATED' TO 
+                                   MSGO  
+                               PERFORM 100-NEW-MAP
+                           END-IF
+                       WHEN 'X'
                            EXEC CICS
                                READ FILE('STF00001')
                                INTO (WS-TIX-REC)
@@ -348,80 +468,24 @@
                            END-EXEC
                            IF WS-USERID = TIX-REQUESTOR  
                                EXEC CICS XCTL  
-                                   PROGRAM('SM004P')
+                                   PROGRAM('SM006P')
                                END-EXEC
                            ELSE 
                                MOVE '_' TO UCI(WS-COUNTER2)
                                MOVE 'INVALID ACCESS' TO MSGO
                                PERFORM 100-NEW-MAP
                            END-IF
-                       ELSE 
+                       WHEN SPACE 
                            MOVE '_' TO UCI(WS-COUNTER2)
-                           MOVE 'STATUS MUST BE COMPLETED' TO 
-                               MSGO  
+                           MOVE 'OPTION IS REQUIRED' TO MSGO
                            PERFORM 100-NEW-MAP
-                       END-IF
-                   WHEN 'A'
-                           IF STI(WS-COUNTER2) = 'CREATED'
-                           PERFORM 600-VALIDATE-USER 
-                           EVALUATE TRUE 
-                               WHEN APPROVER = 'Y'
-                                   EXEC CICS
-                                       READ FILE('STF00001')
-                                       INTO (WS-TIX-REC)
-                                       RIDFLD (TNI(WS-COUNTER2))
-                                       RESP(WS-RESPONSE-CODE)
-                                       EQUAL 
-                                   END-EXEC
-                                   IF WS-USERID = TIX-REQUESTOR  
-                                       EXEC CICS XCTL  
-                                           PROGRAM('SM005P')
-                                       END-EXEC
-                                   ELSE 
-                                       MOVE '_' TO UCI(WS-COUNTER2)
-                                       MOVE 'INVALID ACCESS' TO MSGO
-                                       PERFORM 100-NEW-MAP
-                                   END-IF
-                               WHEN OTHER  
-                                   MOVE '_' TO UCI(WS-COUNTER2)
-                                   MOVE 'INVALID ACCESS' TO MSGO
-                                   PERFORM 100-NEW-MAP
-                           END-EVALUATE
-                       ELSE 
-                           MOVE '_' TO UCI(WS-COUNTER2)
-                           MOVE 'STATUS MUST BE CREATED' TO 
-                               MSGO  
+                       WHEN OTHER
+                           MOVE 'ENTER U, C, A, OR X AND PRESS ENTER' TO
+                                 MSGO 
                            PERFORM 100-NEW-MAP
-                       END-IF
-                   WHEN 'X'
-                       EXEC CICS
-                           READ FILE('STF00001')
-                           INTO (WS-TIX-REC)
-                           RIDFLD (TNI(WS-COUNTER2))
-                           RESP(WS-RESPONSE-CODE)
-                           EQUAL 
-                       END-EXEC
-                       IF WS-USERID = TIX-REQUESTOR  
-                           EXEC CICS XCTL  
-                               PROGRAM('SM006P')
-                           END-EXEC
-                       ELSE 
-                           MOVE '_' TO UCI(WS-COUNTER2)
-                           MOVE 'INVALID ACCESS' TO MSGO
-                           PERFORM 100-NEW-MAP
-                       END-IF
-                   WHEN SPACE 
-                       MOVE '_' TO UCI(WS-COUNTER2)
-                       MOVE 'OPTION IS REQUIRED' TO MSGO
-                       PERFORM 100-NEW-MAP
-                   WHEN OTHER
-                       MOVE '_' TO UCI(WS-COUNTER2)
-                       MOVE 'ENTER U, C, A, OR X AND PRESS ENTER' TO
-                             MSGO 
-                       PERFORM 100-NEW-MAP
-               END-EVALUATE
+                   END-EVALUATE
+               END-IF
            END-IF.
-
        260-WHENF5 SECTION.
            EXEC CICS ASSIGN   
                USERID(WS-USERID) 
