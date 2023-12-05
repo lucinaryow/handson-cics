@@ -20,12 +20,59 @@
        01  WS-INVALID			                 PIC X(14) VALUE
            'INVALID ACCESS'.       
        01  WS-COMMAREA. 
+           05  WS-CA-PRGNAME           PIC X(06).
+           05  FILLER                  PIC X(19).
+           05  WS-DFHSTATE             PIC X(15). 
+           05  WS-TRANS                PIC X(04).  
+           05  WS-LUSER                PIC 9(03).
+           05  WS-FUSER                PIC 9(03).
+           05  WS-PAGE                 PIC 9(02).
+           05  WS-PAGE-END             PIC 9(01).
+           05  WS-QITEM                PIC S9(4) COMP.
+           05  WS-QITEM-START          PIC S9(4) COMP.
+           05  WS-QITEM-END            PIC S9(4) COMP.
+           05  WS-QITEM-PAGE           PIC S9(4) COMP.
            05  WS-USERID1                         PIC X(7).
+           05  WS-USER-REC.
+               10  USERID.
+                   15  USERID1                       PIC X(7).
+                   15  FILLER                        PIC X.
+               10  REQUESTOR                         PIC X.
+               10  ADMINISTRATOR                     PIC X. 
+               10  APPROVER                          PIC X. 
+               10  SERVICE-PROVIDER                  PIC X. 
+               10  UPDATED-BY1.
+                   15  UPDBY1                        PIC X(7).
+                   15  FILLER                        PIC X.
+           05  WS-TIX-REC.
+               10  TIX-ID                            PIC X(06).
+               10  TIX-REQUESTOR                     PIC X(08).
+               10  TIX-STATUS                        PIC X(10). 
+               10  TIX-TITLE                         PIC X(25).
+               10  TIX-DESC                          PIC X(100). 
+               10  TIX-DESC-RED REDEFINES TIX-DESC.
+                   15  TIX-DESC1                     PIC X(50).
+                   15  TIX-DESC2                     PIC X(50).
+               10  LAST-UPDATE                       PIC X(20). 
+               10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+                   15  LAST-UPDATE-DATE              PIC X(11).
+                   15  LAST-UPDATE-TIME              PIC X(09).
+               10  UPDATED-BY2.
+                   15  UPDBY2                        PIC X(7).
+                   15  FILLER                        PIC X.
+               10  LAST-UPDATE-REM                   PIC X(50).
+               10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+                   15  LAST-UPDATE-REM1              PIC X(25).
+                   15  LAST-UPDATE-REM2              PIC X(25).
+           05  WS-USER                         PIC X(7).
            05  WS-TICKET-NUM.
                10  WS-TICKET-NUM1                 PIC X(6).
                10  FILLER                         PIC X.
            05  WS-PROG-STATE                      PIC 9(1).  
-           05  WS-INIT                            PIC X VALUE 'Y'. 
+           05  WS-INIT                            PIC X VALUE 'Y'.   
+           05  WS-ID                            PIC X(4).
+           05  READ1  PIC X VALUE 'N'.
+           05  WS-TNUM  PIC X(06).
            05  WS-TCKID                           PIC X(6).
            05  WS-TCKREQ                          PIC X(8).
            05  WS-TCKSTAT                         PIC X(10).
@@ -49,39 +96,6 @@
            05 WS-STF01LSTUPD                     PIC X(20).
            05 WS-STF01LSTUPDBY                   PIC X(8).
            05 WS-STF01LSTUPDRMK                  PIC X(50).
-
-       01  WS-TIX-REC.
-           05  TIX-ID                            PIC X(06).
-           05  TIX-REQUESTOR                     PIC X(08).
-           05  TIX-STATUS                        PIC X(10). 
-           05  TIX-TITLE                         PIC X(25).
-           05  TIX-DESC                          PIC X(100). 
-           05  TIX-DESC-RED REDEFINES TIX-DESC.
-               10  TIX-DESC1                     PIC X(50).
-               10  TIX-DESC2                     PIC X(50).
-           05  LAST-UPDATE                       PIC X(20). 
-           05  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-               10  LAST-UPDATE-DATE              PIC X(11).
-               10  LAST-UPDATE-TIME              PIC X(09).
-           05  UPDATED-BY2.
-               10  UPDBY2                        PIC X(7).
-               10  FILLER                        PIC X.
-           05  LAST-UPDATE-REM                   PIC X(50).
-           05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-               10  LAST-UPDATE-REM1              PIC X(25).
-               10  LAST-UPDATE-REM2              PIC X(25).
-       
-        01  WS-USER-REC.
-           05  USERID.
-               10  USERID1                       PIC X(7).
-               10  FILLER                        PIC X.
-           05  REQUESTOR                         PIC X.
-           05  ADMINISTRATOR                     PIC X. 
-           05  APPROVER                          PIC X. 
-           05  SERVICE-PROVIDER                  PIC X. 
-           05  UPDATED-BY1.
-               10  UPDBY1                        PIC X(7).
-               10  FILLER                        PIC X.
 
        01  WS-LOG.
            05  LOG-TIX-ID.
@@ -117,7 +131,7 @@
        COPY DFHBMSCA.
 
        LINKAGE SECTION.
-       01  DFHCOMMAREA                           PIC X(247).
+       01  DFHCOMMAREA                           PIC X(500).
       *
        PROCEDURE DIVISION.
        100-PROCESS.

@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    05DEV23 00:31:41 PAGE  1
+CA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    05DEV23 16:42:37 PAGE  1
 
     1 UA002S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
     2                CTRL=(FREEKB,FRSET),TIOAPFX=YES,EXTATT=NO,              C
@@ -57,7 +57,7 @@
    55                  DFHMDF POS=(13,01),LENGTH=40,ATTRB=(ASKIP,DRK)
    56                  DFHMDF POS=(14,01),LENGTH=40,ATTRB=(ASKIP,DRK)
    57                  DFHMDF POS=(15,01),LENGTH=40,ATTRB=(ASKIP,DRK)
-   58                  DFHMDF POS=(16,01),LENGTH=40,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    05DEV23 00:31:41 PAGE  2
+   58                  DFHMDF POS=(16,01),LENGTH=40,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    05DEV23 16:42:37 PAGE  2
 
    59                  DFHMDF POS=(17,01),LENGTH=40,ATTRB=(ASKIP,DRK)
    60                  DFHMDF POS=(18,01),LENGTH=40,ATTRB=(ASKIP,DRK)
@@ -72,7 +72,7 @@
    69          DFHMSD TYPE=FINAL
       ua002s loaded with 1 MAPS, 45 FIELDS and 286 Bytes of Literals
 
-   70          ENDCA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    05DEV23 00:31:41 PAGE  3
+   70          ENDCA-Realia CICS Ver:6.0.27  ua002s.bms                                                                    05DEV23 16:42:37 PAGE  3
 
       COBOL COPY file generated
 
