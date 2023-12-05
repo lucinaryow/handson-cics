@@ -69,11 +69,11 @@
                10  LAST-UPDATE                       PIC X(20). 
                10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
                    15  LAST-UPDATE-DATE.
-				       20 DD PIC X(02).
+				       20 DD PIC 9(02).
 					   20 FILLER PIC X.
-					   20 MM PIC X(02).
+					   20 MM PIC 9(02).
 					   20 FILLER PIC X.
-					   20 YYYY PIC X(02).
+					   20 YYYY PIC 9(02).
 					   20 FILLER PIC X.
                    15  LAST-UPDATE-TIME              PIC X(09).
                10  UPDATED-BY2.
@@ -296,6 +296,11 @@
                MOVE 'INVALID ACCESS' TO MSGO
                PERFORM 100-NEW-MAP
            ELSE 
+               EXEC CICS SEND TEXT 
+                   FROM(WS-FILLER)
+                   LENGTH(+500)
+                   ERASE
+               END-EXEC
                EXEC CICS XCTL  
                    PROGRAM('SM02P')
                END-EXEC
@@ -613,6 +618,13 @@
          
        999-EXIT.
            EXIT. 
+
+       1000-VALIDATE-DATE.
+           
+
+
+       1000-EXIT.
+           EXIT.
 
 
 
