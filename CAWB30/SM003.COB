@@ -6,6 +6,21 @@
 	   02  FILLER REDEFINES ERRMSGF.
 	       03  ERRMSGA			      PIC X.
 	   02  ERRMSGI				      PIC X(058).
+	   02  PF2L				      PIC S9(4) COMP.
+	   02  PF2F				      PIC X.
+	   02  FILLER REDEFINES PF2F.
+	       03  PF2A 			      PIC X.
+	   02  PF2I				      PIC X(012).
+	   02  PF3L				      PIC S9(4) COMP.
+	   02  PF3F				      PIC X.
+	   02  FILLER REDEFINES PF3F.
+	       03  PF3A 			      PIC X.
+	   02  PF3I				      PIC X(010).
+	   02  PF5L				      PIC S9(4) COMP.
+	   02  PF5F				      PIC X.
+	   02  FILLER REDEFINES PF5F.
+	       03  PF5A 			      PIC X.
+	   02  PF5I				      PIC X(011).
 	   02  DATEL				      PIC S9(4) COMP.
 	   02  DATEF				      PIC X.
 	   02  FILLER REDEFINES DATEF.
@@ -25,7 +40,7 @@
 	   02  REQBYF				      PIC X.
 	   02  FILLER REDEFINES REQBYF.
 	       03  REQBYA			      PIC X.
-	   02  REQBYI				      PIC X(006).
+	   02  REQBYI				      PIC X(007).
 	   02  TIXTTLL				      PIC S9(4) COMP.
 	   02  TIXTTLF				      PIC X.
 	   02  FILLER REDEFINES TIXTTLF.
@@ -45,12 +60,12 @@
 	   02  STATF				      PIC X.
 	   02  FILLER REDEFINES STATF.
 	       03  STATA			      PIC X.
-	   02  STATI				      PIC X(006).
+	   02  STATI				      PIC X(009).
 	   02  UPDBYL				      PIC S9(4) COMP.
 	   02  UPDBYF				      PIC X.
 	   02  FILLER REDEFINES UPDBYF.
 	       03  UPDBYA			      PIC X.
-	   02  UPDBYI				      PIC X(006).
+	   02  UPDBYI				      PIC X(007).
 	   02  UPDRMKL				      PIC S9(4) COMP.
 	   02  UPDRMKF				      PIC X.
 	   02  FILLER REDEFINES UPDRMKF.
@@ -70,12 +85,21 @@
 	   02  TIME1F				      PIC X.
 	   02  FILLER REDEFINES TIME1F.
 	       03  TIME1A			      PIC X.
-	   02  TIME1I				      PIC X(008).
+	   02  TIME1I				      PIC X(009).
        01  SM003MO REDEFINES SM003MI.
 	   02  FILLER				      PIC X(12).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
 	   02  ERRMSGO				      PIC X(058).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  PF2O				      PIC X(012).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  PF3O				      PIC X(010).
+	   02  FILLER				      PIC XX.
+	   02  FILLER				      PIC X.
+	   02  PF5O				      PIC X(011).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
 	   02  DATEO				      PIC X(010).
@@ -87,7 +111,7 @@
 	   02  TIXNUMO				      PIC X(006).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  REQBYO				      PIC X(006).
+	   02  REQBYO				      PIC X(007).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
 	   02  TIXTTLO				      PIC X(025).
@@ -99,10 +123,10 @@
 	   02  TIXDESC2O			      PIC X(040).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  STATO				      PIC X(006).
+	   02  STATO				      PIC X(009).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  UPDBYO				      PIC X(006).
+	   02  UPDBYO				      PIC X(007).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
 	   02  UPDRMKO				      PIC X(025).
@@ -114,4 +138,4 @@
 	   02  DATE1O				      PIC X(010).
 	   02  FILLER				      PIC XX.
 	   02  FILLER				      PIC X.
-	   02  TIME1O				      PIC X(008).
+	   02  TIME1O				      PIC X(009).

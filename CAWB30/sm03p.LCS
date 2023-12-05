@@ -23,77 +23,116 @@
     20	     01  WS-INVALID				       PIC X(14) VALUE
     21           'INVALID ACCESS'.
     22	     01  WS-COMMAREA.
-    23		 05  WS-USERID1 			PIC X(7).
-    24		 05  WS-TICKET-NUM.
-    25		     10  WS-TICKET-NUM1 		PIC X(6).
-    26		     10  FILLER 			PIC X.
-    27		 05  WS-PROG-STATE			PIC 9(1).
-    28           05  WS-INIT                            PIC X VALUE 'Y'.
-    29
-    30	     01  WS-FIELD01.
-    31		 05 WS-STF01TCKID		       PIC X(6).
-    32		 05 WS-STF01TCKIDR REDEFINES WS-STF01TCKID PIC 9(06).
-    33		 05 WS-STF01TCKREQ		       PIC X(8).
-    34		 05 WS-STF01TCKSTAT		       PIC X(10).
-    35		 05 WS-STF01TCKTTL		       PIC X(25).
-    36		 05 WS-STF01TCKDESC		       PIC X(100).
-    37		 05 WS-STF01LSTUPD		       PIC X(20).
-    38		 05 WS-STF01LSTUPDBY		       PIC X(8).
-    39		 05 WS-STF01LSTUPDRMK		       PIC X(50).
-    40
-    41	     01  WS-TIX-REC.
-    42		 05  TIX-ID			       PIC X(06).
-    43		 05  TIX-REQUESTOR		       PIC X(08).
-    44		 05  TIX-STATUS 		       PIC X(10).
-    45		 05  TIX-TITLE			       PIC X(25).
-    46		 05  TIX-DESC			       PIC X(100).
-    47		 05  TIX-DESC-RED REDEFINES TIX-DESC.
-    48		     10  TIX-DESC1		       PIC X(50).
-    49		     10  TIX-DESC2		       PIC X(50).
-    50		 05  LAST-UPDATE		       PIC X(20).
-    51		 05  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-    52		     10  LAST-UPDATE-DATE	       PIC X(11).
-    53		     10  LAST-UPDATE-TIME	       PIC X(09).
-    54		 05  UPDATED-BY2.
-    55		     10  UPDBY2 		       PIC X(7).
-    56		     10  FILLER 		       PIC X.
-    57		 05  LAST-UPDATE-REM		       PIC X(50).
-    58		 05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+    23		 05  WS-CA-PRGNAME	     PIC X(06).
+    24		 05  FILLER		     PIC X(19).
+    25		 05  WS-DFHSTATE	     PIC X(15).
+    26		 05  WS-TRANS		     PIC X(04).
+    27		 05  WS-LUSER		     PIC 9(03).
+    28		 05  WS-FUSER		     PIC 9(03).
+    29		 05  WS-PAGE		     PIC 9(02).
+    30		 05  WS-PAGE-END	     PIC 9(01).
+    31		 05  WS-QITEM		     PIC S9(4) COMP.
+    32		 05  WS-QITEM-START	     PIC S9(4) COMP.
+    33		 05  WS-QITEM-END	     PIC S9(4) COMP.
+    34		 05  WS-QITEM-PAGE	     PIC S9(4) COMP.
+    35		 05  WS-USERID1 			PIC X(7).
+    36		 05  WS-USER-REC.
+    37		     10  USERID.
+    38			 15  USERID1			   PIC X(7).
+    39			 15  FILLER			   PIC X.
+    40		     10  REQUESTOR			   PIC X.
+    41		     10  ADMINISTRATOR			   PIC X.
+    42		     10  APPROVER			   PIC X.
+    43		     10  SERVICE-PROVIDER		   PIC X.
+    44		     10  UPDATED-BY1.
+    45			 15  UPDBY1			   PIC X(7).
+    46			 15  FILLER			   PIC X.
+    47		 05  WS-TIX-REC.
+    48		     10  TIX-ID 			   PIC X(06).
+    49		     10  TIX-REQUESTOR			   PIC X(08).
+    50		     10  TIX-STATUS			   PIC X(10).
+    51		     10  TIX-TITLE			   PIC X(25).
+    52		     10  TIX-DESC			   PIC X(100).
+    53		     10  TIX-DESC-RED REDEFINES TIX-DESC.
+    54			 15  TIX-DESC1			   PIC X(50).
+    55			 15  TIX-DESC2			   PIC X(50).
+    56		     10  LAST-UPDATE			   PIC X(20).
+    57		     10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+    58			 15  LAST-UPDATE-DATE		   PIC X(11).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
-    59		     10  LAST-UPDATE-REM1	       PIC X(25).
-    60		     10  LAST-UPDATE-REM2	       PIC X(25).
-    61
-    62	     01  WS-LOG.
-    63		 05  LOG-TIX-ID.
-    64		     10  LOG-TIX-ID1		       PIC X(6).
-    65		     10  LOG-SEQ-NUM		       PIC 9(3).
-    66		 05  LOG-LAST-UPDATE.
-    67		     10  LOG-LAST-UPDATE-DATE	       PIC X(10).
-    68		     10  LOG-LAST-UPDATE-TIME	       PIC X(10).
-    69		 05  LOG-UPDATED-BY.
-    70		     10  LOG-UPDBY2		       PIC X(7).
-    71		     10  FILLER 		       PIC X.
-    72		 05  LOG-LAST-UPDATE-REM	       PIC X(50).
-    73		 05  FILLER			       PIC X(02).
-    74
-    75	     01  WS-LOG-PH			       PIC X(9).
-    76	     01  WS-LOG-PH2 REDEFINES WS-LOG-PH.
-    77		 05  WS-LOG-ID			       PIC 9(6).
-    78		 05  WS-LOG-SEQ 		       PIC 9(3).
-    79
-    80	     01  WS-HV				       PIC X(20).
-    81	     01  WS-RES-CODE			       PIC S9(8) COMP.
-    82	     01  WS-ENTRCTR			       PIC 9(1) VALUE 0.
-    83	     01  WS-HDATE			       PIC 9(10).
-    84	     01  WS-HDATE-X REDEFINES WS-HDATE	       PIC X(10).
-    85	     01  WS-HTIME			      PIC 9(15).
-    86	     01  WS-HTIME-X REDEFINES WS-HTIME	       PIC X(8).
-    87
+    59			 15  LAST-UPDATE-TIME		   PIC X(09).
+    60		     10  UPDATED-BY2.
+    61			 15  UPDBY2			   PIC X(7).
+    62			 15  FILLER			   PIC X.
+    63		     10  LAST-UPDATE-REM		   PIC X(50).
+    64		     10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+    65			 15  LAST-UPDATE-REM1		   PIC X(25).
+    66			 15  LAST-UPDATE-REM2		   PIC X(25).
+    67		 05  WS-USER			     PIC X(7).
+    68		 05  WS-TICKET-NUM.
+    69		     10  WS-TICKET-NUM1 		PIC X(6).
+    70		     10  FILLER 			PIC X.
+    71		 05  WS-PROG-STATE			PIC 9(1).
+    72           05  WS-INIT                            PIC X VALUE 'Y'.
+    73		 05  WS-ID			      PIC X(4).
+    74           05  READ1  PIC X VALUE 'N'.
+    75		 05  WS-TNUM  PIC X(06).
+    76		 05  WS-TCKID				PIC X(6).
+    77		 05  WS-TCKREQ				PIC X(8).
+    78		 05  WS-TCKSTAT 			PIC X(10).
+    79		 05  WS-TCKTTL				PIC X(25).
+    80		 05  WS-TCKDESC 			PIC X(100).
+    81		 05  WS-LSTUPD				PIC X(20).
+    82		 05  WS-STUPDBY 			PIC X(8).
+    83		 05  WS-LSTUPDRMK			PIC X(50).
+    84		 05  WS-REQUESTOR			PIC X.
+    85		 05  WS-ADMINISTRATOR			PIC X.
+    86		 05  WS-APPROVER			PIC X.
+    87		 05  WS-SERVICE-PROVIDER		PIC X.
     88
-    89	    *
-    90	    P	 COPY SM003.
-    90	    *$PP-START-COPY C:\handson-cics\CAWB30\SM003.COB
+    89	     01  WS-FIELD01.
+    90		 05 WS-STF01TCKID		       PIC X(6).
+    91		 05 WS-STF01TCKIDR REDEFINES WS-STF01TCKID PIC 9(06).
+    92		 05 WS-STF01TCKREQ		       PIC X(8).
+    93		 05 WS-STF01TCKSTAT		       PIC X(10).
+    94		 05 WS-STF01TCKTTL		       PIC X(25).
+    95		 05 WS-STF01TCKDESC		       PIC X(100).
+    96		 05 WS-STF01LSTUPD		       PIC X(20).
+    97		 05 WS-STF01LSTUPDBY		       PIC X(8).
+    98		 05 WS-STF01LSTUPDRMK		       PIC X(50).
+    99
+   100	     01  WS-LOG.
+   101		 05  LOG-TIX-ID.
+   102		     10  LOG-TIX-ID1		       PIC X(6).
+   103		     10  LOG-SEQ-NUM		       PIC 9(3).
+   104		 05  LOG-LAST-UPDATE.
+   105		     10  LOG-LAST-UPDATE-DATE	       PIC X(10).
+   106		     10  LOG-LAST-UPDATE-TIME	       PIC X(10).
+   107		 05  LOG-UPDATED-BY.
+   108		     10  LOG-UPDBY2		       PIC X(7).
+   109		     10  FILLER 		       PIC X.
+   110		 05  LOG-LAST-UPDATE-REM	       PIC X(50).
+   111		 05  FILLER			       PIC X(02).
+   112
+   113	     01  WS-LOG-PH			       PIC X(9).
+   114	     01  WS-LOG-PH2 REDEFINES WS-LOG-PH.
+   115		 05  WS-LOG-ID			       PIC 9(6).
+   116		 05  WS-LOG-SEQ 		       PIC 9(3).CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   117
+   118	     01  WS-HV				       PIC X(20).
+   119	     01  WS-RES-CODE			       PIC S9(8) COMP.
+   120	     01  WS-ENTRCTR			       PIC 9(1) VALUE 0.
+   121	     01  WS-HDATE			       PIC 9(10).
+   122	     01  WS-HDATE-X REDEFINES WS-HDATE	       PIC X(10).
+   123	     01  WS-HTIME			      PIC 9(15).
+   124	     01  WS-HTIME-X REDEFINES WS-HTIME	       PIC X(8).
+   125
+   126	    *
+   127	    P	 COPY SM003.
+   127	    *$PP-START-COPY C:\handson-cics\CAWB30\SM003.COB
      1	    * SYMBOLIC MAP of sm003 Created by CACXBMS Version 6.0.27
      2	     01  SM003MI.
      3		 02  FILLER				    PIC X(12).
@@ -102,123 +141,147 @@
      6		 02  FILLER REDEFINES ERRMSGF.
      7		     03  ERRMSGA			    PIC X.
      8		 02  ERRMSGI				    PIC X(058).
-     9		 02  DATEL				    PIC S9(4) COMP.
-    10		 02  DATEF				    PIC X.
-    11		 02  FILLER REDEFINES DATEF.
-    12		     03  DATEA				    PIC X.
-    13		 02  DATEI				    PIC X(010).
-    14		 02  TIMEL				    PIC S9(4) COMP.
-    15		 02  TIMEF				    PIC X.
-    16		 02  FILLER REDEFINES TIMEF.
-    17		     03  TIMEA				    PIC X.
-    18		 02  TIMEI				    PIC X(008).
-    19		 02  TIXNUML				    PIC S9(4) COMP.
-    20		 02  TIXNUMF				    PIC X.
-    21		 02  FILLER REDEFINES TIXNUMF.
-    22		     03  TIXNUMA			    PIC X.
-    23		 02  TIXNUMI				    PIC X(006).
-    24		 02  REQBYL				    PIC S9(4) COMP.
-    25		 02  REQBYF				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+     9		 02  PF2L				    PIC S9(4) COMP.
+    10		 02  PF2F				    PIC X.
+    11		 02  FILLER REDEFINES PF2F.
+    12		     03  PF2A				    PIC X.
+    13		 02  PF2I				    PIC X(012).
+    14		 02  PF3L				    PIC S9(4) COMP.
+    15		 02  PF3F				    PIC X.
+    16		 02  FILLER REDEFINES PF3F.
+    17		     03  PF3A				    PIC X.
+    18		 02  PF3I				    PIC X(010).
+    19		 02  PF5L				    PIC S9(4) COMP.
+    20		 02  PF5F				    PIC X.
+    21		 02  FILLER REDEFINES PF5F.
+    22		     03  PF5A				    PIC X.
+    23		 02  PF5I				    PIC X(011).
+    24		 02  DATEL				    PIC S9(4) COMP.
+    25		 02  DATEF				    PIC X.
+    26		 02  FILLER REDEFINES DATEF.
+    27		     03  DATEA				    PIC X.
+    28		 02  DATEI				    PIC X(010).
+    29		 02  TIMEL				    PIC S9(4) COMP.
+    30		 02  TIMEF				    PIC X.
+    31		 02  FILLER REDEFINES TIMEF.
+    32		     03  TIMEA				    PIC X.
+    33		 02  TIMEI				    PIC X(008).
+    34		 02  TIXNUML				    PIC S9(4) COMP.
+    35		 02  TIXNUMF				    PIC X.
+    36		 02  FILLER REDEFINES TIXNUMF.
+    37		     03  TIXNUMA			    PIC X.
+    38		 02  TIXNUMI				    PIC X(006).
+    39		 02  REQBYL				    PIC S9(4) COMP.
+    40		 02  REQBYF				    PIC X.
+    41		 02  FILLER REDEFINES REQBYF.
+    42		     03  REQBYA 			    PIC X.
+    43		 02  REQBYI				    PIC X(007).
+    44		 02  TIXTTLL				    PIC S9(4) COMP.
+    45		 02  TIXTTLF				    PIC X.
+    46		 02  FILLER REDEFINES TIXTTLF.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
-    26		 02  FILLER REDEFINES REQBYF.
-    27		     03  REQBYA 			    PIC X.
-    28		 02  REQBYI				    PIC X(006).
-    29		 02  TIXTTLL				    PIC S9(4) COMP.
-    30		 02  TIXTTLF				    PIC X.
-    31		 02  FILLER REDEFINES TIXTTLF.
-    32		     03  TIXTTLA			    PIC X.
-    33		 02  TIXTTLI				    PIC X(025).
-    34		 02  TIXDESC1L				    PIC S9(4) COMP.
-    35		 02  TIXDESC1F				    PIC X.
-    36		 02  FILLER REDEFINES TIXDESC1F.
-    37		     03  TIXDESC1A			    PIC X.
-    38		 02  TIXDESC1I				    PIC X(040).
-    39		 02  TIXDESC2L				    PIC S9(4) COMP.
-    40		 02  TIXDESC2F				    PIC X.
-    41		 02  FILLER REDEFINES TIXDESC2F.
-    42		     03  TIXDESC2A			    PIC X.
-    43		 02  TIXDESC2I				    PIC X(040).
-    44		 02  STATL				    PIC S9(4) COMP.
-    45		 02  STATF				    PIC X.
-    46		 02  FILLER REDEFINES STATF.
-    47		     03  STATA				    PIC X.
-    48		 02  STATI				    PIC X(006).
-    49		 02  UPDBYL				    PIC S9(4) COMP.
-    50		 02  UPDBYF				    PIC X.
-    51		 02  FILLER REDEFINES UPDBYF.
-    52		     03  UPDBYA 			    PIC X.
-    53		 02  UPDBYI				    PIC X(006).
-    54		 02  UPDRMKL				    PIC S9(4) COMP.
-    55		 02  UPDRMKF				    PIC X.
-    56		 02  FILLER REDEFINES UPDRMKF.
-    57		     03  UPDRMKA			    PIC X.
-    58		 02  UPDRMKI				    PIC X(025).
-    59		 02  UPDRMK1L				    PIC S9(4) COMP.
-    60		 02  UPDRMK1F				    PIC X.
-    61		 02  FILLER REDEFINES UPDRMK1F.
-    62		     03  UPDRMK1A			    PIC X.
-    63		 02  UPDRMK1I				    PIC X(025).
-    64		 02  DATE1L				    PIC S9(4) COMP.
-    65		 02  DATE1F				    PIC X.
-    66		 02  FILLER REDEFINES DATE1F.
-    67		     03  DATE1A 			    PIC X.
-    68		 02  DATE1I				    PIC X(010).
-    69		 02  TIME1L				    PIC S9(4) COMP.
-    70		 02  TIME1F				    PIC X.
-    71		 02  FILLER REDEFINES TIME1F.
-    72		     03  TIME1A 			    PIC X.
-    73		 02  TIME1I				    PIC X(008).
-    74	     01  SM003MO REDEFINES SM003MI.
-    75		 02  FILLER				    PIC X(12).
-    76		 02  FILLER				    PIC XX.
-    77		 02  FILLER				    PIC X.
-    78		 02  ERRMSGO				    PIC X(058).
-    79		 02  FILLER				    PIC XX.
-    80		 02  FILLER				    PIC X.
-    81		 02  DATEO				    PIC X(010).
-    82		 02  FILLER				    PIC XX.
-    83		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
-    84		 02  TIMEO				    PIC X(008).
-    85		 02  FILLER				    PIC XX.
-    86		 02  FILLER				    PIC X.
-    87		 02  TIXNUMO				    PIC X(006).
-    88		 02  FILLER				    PIC XX.
-    89		 02  FILLER				    PIC X.
-    90		 02  REQBYO				    PIC X(006).
+    47		     03  TIXTTLA			    PIC X.
+    48		 02  TIXTTLI				    PIC X(025).
+    49		 02  TIXDESC1L				    PIC S9(4) COMP.
+    50		 02  TIXDESC1F				    PIC X.
+    51		 02  FILLER REDEFINES TIXDESC1F.
+    52		     03  TIXDESC1A			    PIC X.
+    53		 02  TIXDESC1I				    PIC X(040).
+    54		 02  TIXDESC2L				    PIC S9(4) COMP.
+    55		 02  TIXDESC2F				    PIC X.
+    56		 02  FILLER REDEFINES TIXDESC2F.
+    57		     03  TIXDESC2A			    PIC X.
+    58		 02  TIXDESC2I				    PIC X(040).
+    59		 02  STATL				    PIC S9(4) COMP.
+    60		 02  STATF				    PIC X.
+    61		 02  FILLER REDEFINES STATF.
+    62		     03  STATA				    PIC X.
+    63		 02  STATI				    PIC X(009).
+    64		 02  UPDBYL				    PIC S9(4) COMP.
+    65		 02  UPDBYF				    PIC X.
+    66		 02  FILLER REDEFINES UPDBYF.
+    67		     03  UPDBYA 			    PIC X.
+    68		 02  UPDBYI				    PIC X(007).
+    69		 02  UPDRMKL				    PIC S9(4) COMP.
+    70		 02  UPDRMKF				    PIC X.
+    71		 02  FILLER REDEFINES UPDRMKF.
+    72		     03  UPDRMKA			    PIC X.
+    73		 02  UPDRMKI				    PIC X(025).
+    74		 02  UPDRMK1L				    PIC S9(4) COMP.
+    75		 02  UPDRMK1F				    PIC X.
+    76		 02  FILLER REDEFINES UPDRMK1F.
+    77		     03  UPDRMK1A			    PIC X.
+    78		 02  UPDRMK1I				    PIC X(025).
+    79		 02  DATE1L				    PIC S9(4) COMP.
+    80		 02  DATE1F				    PIC X.
+    81		 02  FILLER REDEFINES DATE1F.
+    82		     03  DATE1A 			    PIC X.
+    83		 02  DATE1I				    PIC X(010).
+    84		 02  TIME1L				    PIC S9(4) COMP.
+    85		 02  TIME1F				    PIC X.
+    86		 02  FILLER REDEFINES TIME1F.
+    87		     03  TIME1A 			    PIC X.
+    88		 02  TIME1I				    PIC X(009).
+    89	     01  SM003MO REDEFINES SM003MI.
+    90		 02  FILLER				    PIC X(12).
     91		 02  FILLER				    PIC XX.
     92		 02  FILLER				    PIC X.
-    93		 02  TIXTTLO				    PIC X(025).
+    93		 02  ERRMSGO				    PIC X(058).
     94		 02  FILLER				    PIC XX.
     95		 02  FILLER				    PIC X.
-    96		 02  TIXDESC1O				    PIC X(040).
+    96		 02  PF2O				    PIC X(012).
     97		 02  FILLER				    PIC XX.
     98		 02  FILLER				    PIC X.
-    99		 02  TIXDESC2O				    PIC X(040).
+    99		 02  PF3O				    PIC X(010).
    100		 02  FILLER				    PIC XX.
    101		 02  FILLER				    PIC X.
-   102		 02  STATO				    PIC X(006).
+   102		 02  PF5O				    PIC X(011).
    103		 02  FILLER				    PIC XX.
-   104		 02  FILLER				    PIC X.
-   105		 02  UPDBYO				    PIC X(006).
+   104		 02  FILLER				    PIC X.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   105		 02  DATEO				    PIC X(010).
    106		 02  FILLER				    PIC XX.
    107		 02  FILLER				    PIC X.
-   108		 02  UPDRMKO				    PIC X(025).
+   108		 02  TIMEO				    PIC X(008).
    109		 02  FILLER				    PIC XX.
    110		 02  FILLER				    PIC X.
-   111		 02  UPDRMK1O				    PIC X(025).
+   111		 02  TIXNUMO				    PIC X(006).
    112		 02  FILLER				    PIC XX.
    113		 02  FILLER				    PIC X.
-   114		 02  DATE1O				    PIC X(010).
+   114		 02  REQBYO				    PIC X(007).
    115		 02  FILLER				    PIC XX.
    116		 02  FILLER				    PIC X.
-   117		 02  TIME1O				    PIC X(008).
-    90	    *$PP-END-COPY
-    91	    *
-    92	    P	 COPY DFHAID.
-    92	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
+   117		 02  TIXTTLO				    PIC X(025).
+   118		 02  FILLER				    PIC XX.
+   119		 02  FILLER				    PIC X.
+   120		 02  TIXDESC1O				    PIC X(040).
+   121		 02  FILLER				    PIC XX.
+   122		 02  FILLER				    PIC X.
+   123		 02  TIXDESC2O				    PIC X(040).
+   124		 02  FILLER				    PIC XX.
+   125		 02  FILLER				    PIC X.
+   126		 02  STATO				    PIC X(009).
+   127		 02  FILLER				    PIC XX.
+   128		 02  FILLER				    PIC X.
+   129		 02  UPDBYO				    PIC X(007).
+   130		 02  FILLER				    PIC XX.
+   131		 02  FILLER				    PIC X.
+   132		 02  UPDRMKO				    PIC X(025).
+   133		 02  FILLER				    PIC XX.
+   134		 02  FILLER				    PIC X.
+   135		 02  UPDRMK1O				    PIC X(025).
+   136		 02  FILLER				    PIC XX.
+   137		 02  FILLER				    PIC X.
+   138		 02  DATE1O				    PIC X(010).
+   139		 02  FILLER				    PIC XX.
+   140		 02  FILLER				    PIC X.
+   141		 02  TIME1O				    PIC X(009).
+   127	    *$PP-END-COPY
+   128	    *
+   129	    P	 COPY DFHAID.
+   129	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHAID.COB
      1	     01  DFHAID.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -235,12 +298,12 @@
     14           05  DFHCLEAR                  PIC X VALUE '_'.
     15           05  DFHPA1                    PIC X VALUE '%'.
     16           05  DFHPA2                    PIC X VALUE '>'.
-    17           05  DFHPA3                    PIC X VALUE ','.
+    17           05  DFHPA3                    PIC X VALUE ','.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
     18           05  DFHPF1                    PIC X VALUE '1'.
     19           05  DFHPF2                    PIC X VALUE '2'.
-    20           05  DFHPF3                    PIC X VALUE '3'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
+    20           05  DFHPF3                    PIC X VALUE '3'.
     21           05  DFHPF4                    PIC X VALUE '4'.
     22           05  DFHPF5                    PIC X VALUE '5'.
     23           05  DFHPF6                    PIC X VALUE '6'.
@@ -277,10 +340,10 @@
     54	    *	 It is set by using <Ctrl>+C or <Ctrl>+<Break> Keys
     55           05  DFHQUIT                   PIC X VALUE '!'.
     56		 05  DFHNULL		       PIC X VALUE LOW-VALUE.
-    92	    *$PP-END-COPY
-    93	    *
-    94	    PCOPY DFHBMSCA.
-    94	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
+   129	    *$PP-END-COPY
+   130	    *
+   131	    PCOPY DFHBMSCA.
+   131	    *$PP-START-COPY C:\HANDSON-CICS\CAWB30\CICSCOPY\DFHBMSCA.COB
      1	     01  DFHBMSCA.
      2	    *
      3	    * CA-Realia CICS 6.0 Computer Associates International, Inc.
@@ -295,12 +358,12 @@
     12	    *	    programs
     13	    *
     14	    *	    The only exceptions are some 3270 Data Stream Orders
-    15	    *	    They use different Hexadecimal values for ASCII and
+    15	    *	    They use different Hexadecimal values for ASCII andCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
     16	    *	    EBCDIC and they cannot be expressed as quoted literals
     17	    *	    as the values are <Line Feed>, <Tab>, <End of File> etc.
-    18	    *	    characters in ASCIICA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
+    18	    *	    characters in ASCII
     19	    *
     20	    *	    They have their values set up to default to the EBCDIC
     21	    *	    values.
@@ -355,12 +418,12 @@
     70           05  DFHBMS-ASK-DAR-FSET               PIC X VALUE ''''.
     71	    *						     VALUE APOST
     72           05  DFHBMS-PRO-BRY-FSET               PIC X VALUE 'Z'.
-    73           05  DFHBMS-PRO-DAR-FSET               PIC X VALUE '_'.
+    73           05  DFHBMS-PRO-DAR-FSET               PIC X VALUE '_'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
     74           05  DFHBMS-NUM-BRY                    PIC X VALUE 'Q'.
     75           05  DFHBMS-NUM-DAR                    PIC X VALUE '*'.
-    76           05  DFHBMS-NUM-DAR-FSET               PIC X VALUE ')'.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
+    76           05  DFHBMS-NUM-DAR-FSET               PIC X VALUE ')'.
     77	    *
     78	    *	 Field Flag values
     79		 05  DFHBMEOF-VAL VALUE 128	       PIC S9(4) COMP-4.
@@ -415,12 +478,12 @@
    128           05  DFHREVRS                          PIC X VALUE '2'.
    129           05  DFHUNDLN                          PIC X VALUE '4'.
    130	    *
-   131	    ******************************************************************
+   131	    ******************************************************************CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
    132	    *	 supported 327X Data Stream Orders
    133	    *
-   134		 05  DFHSBA-VAL VALUE 017		PIC S9(4) COMP-4.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
+   134		 05  DFHSBA-VAL VALUE 017		PIC S9(4) COMP-4.
    135		 05  FILLER REDEFINES DFHSBA-VAL.
    136		     10  FILLER 		       PIC X.
    137		     10  DFHSBA 		       PIC X.
@@ -475,12 +538,12 @@
    186	    *
    187	    ******************************************************************
    188	    *	 unsupported 327X Data Stream order codes
-   189	    *
+   189	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
    190		 05  DFHSA-VAL VALUE 040	       PIC S9(4) COMP-4.
    191		     88 DFHSA-VAL-EBCDIC	       VALUE 40.
-   192		     88 DFHSA-VAL-ASCII 	       VALUE 21.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
+   192		     88 DFHSA-VAL-ASCII 	       VALUE 21.
    193		 05  FILLER REDEFINES DFHSA-VAL.
    194		     10  FILLER 		       PIC X.
    195		     10  DFHSA			       PIC X.
@@ -535,12 +598,12 @@
    244	    *
    245	    ******************************************************************
    246	    *	 unsupported Miscellaneous attributes and constants
-   247	    *
+   247	    *CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
    248		 05  DFHALL			       PIC X VALUE LOW-VALUES.
    249           05  DFHBASE                           PIC X VALUE '0'.
-   250		 05  DFHBMDET			       PIC X VALUE LOW-VALUES.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
-
-
+   250		 05  DFHBMDET			       PIC X VALUE LOW-VALUES.
    251		 05  DFHBMPSOSI-VAL VALUE 3599	       PIC S9(4) COMP-4.
    252		 05  FILLER REDEFINES DFHBMPSOSI-VAL.
    253		     10  DFHBMPSO		       PIC X.
@@ -579,96 +642,1051 @@
    286		     10  DFHFM			       PIC X.
    287      *                                              EBCDIC X'1E'.
    288		 05  DFHEO VALUE HIGH-VALUE	       PIC X.
-    94	    *$PP-END-COPY
-    95
-    96	     LINKAGE SECTION.
-    97	     01  DFHCOMMAREA			       PIC X(20).
-    98	    *
-    99	     PROCEDURE DIVISION 					      REALCICS
-   100	     100-PROCESS.
-   101
-   102		 EXEC CICS IGNORE CONDITION
-   103			   ERROR
-   104		 END-EXEC
-   105		 MOVE 0 TO WS-ENTRCTR
-   106		 MOVE DFHCOMMAREA TO WS-COMMAREA
-   107           IF EIBTRNID = 'SM00' OR 'SM01'
-   108		     IF EIBCALEN NOT = +0
-   109
-   110                 IF WS-PROG-STATE = '1'
-   111                   MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
-   112			 MOVE 2 TO WS-PROG-STATE
-   113CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+   131	    *$PP-END-COPY
+   132
+   133	     LINKAGE SECTION.
+   134	     01  DFHCOMMAREA			       PIC X(247).
+   135	    *
+   136	     PROCEDURE DIVISION 					      REALCICS
+   137	     100-PROCESS.
+   138
+   139		 EXEC CICS IGNORE CONDITION
+   140			   ERROR
+   141		 END-EXEC
+   142
+   143		 MOVE DFHCOMMAREA TO WS-COMMAREA
+   144		 PERFORM 1000-VALIDATION
+   145           IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM03' OR  'SM012'
+   146		     IF EIBCALEN NOT = +0
+   147CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
-   114			 PERFORM 110-NEW-MAP
-   115		       ELSE
-   116			 PERFORM 200-REC-MAP
-   117		       END-IF
-   118		     ELSE
-   119			 MOVE DFHCOMMAREA TO WS-COMMAREA
-   120                   MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
-   121			 MOVE 1 TO WS-PROG-STATE
-   122			 PERFORM 110-NEW-MAP
-   123
-   124
-   125		     END-IF
-   126		 ELSE
-   127		     EXEC CICS SEND TEXT
-   128			  FROM (WS-INVALID)
-   129			  LENGTH (+15)
-   130			  ERASE
-   131		     END-EXEC
-   132		     EXEC CICS RETURN
-   133		     END-EXEC
-   134		 END-IF.
-   135
-   136
-   137
-   138	     110-NEW-MAP.
-   139
-   140		     MOVE EIBDATE TO WS-DATE.
-   141		 MOVE WS-DATE-X TO DATEO.
-   142		 EXEC CICS ASKTIME
-   143		  ABSTIME (WS-TIME)
-   144		 END-EXEC
-   145
-   146		 EXEC CICS FORMATTIME
-   147		  ABSTIME (WS-TIME)
-   148            DATESEP ('-')
-   149		  MMDDYY (DATEO)
-   150		  TIME (TIMEO)
-   151            TIMESEP (':')
-   152		 END-EXEC
-   153
-   154		 MOVE DFHBMASB TO TIMEA
-   155		 MOVE DFHBMASB TO DATEA
-   156
-   157		 EXEC CICS
-   158            SEND MAP('SM003M')
-   159            MAPSET('SM003')
-   160		  FROM(SM003MO)
+   148
+   149                 IF WS-PROG-STATE = '1'
+   150                   MOVE 'ENTER TICKET NUMBER AND PRESS ENTER' TO ERRMSGO
+   151			 MOVE WS-TICKET-NUM TO TIXNUMO
+   152			 MOVE WS-TCKREQ TO REQBYO
+   153			 MOVE WS-TCKSTAT TO STATO
+   154			 MOVE WS-TCKTTL TO TIXTTLO
+   155			 MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   156			 MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   157			 MOVE WS-LSTUPD(1:10) TO DATE1O
+   158			 MOVE WS-LSTUPD(11:10) TO TIME1O
+   159			 MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   160			 MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
    161
-   162		  ERASE
-   163		 END-EXEC
-   164
-   165		 EXEC CICS RETURN
-   166            TRANSID('SM03')
-   167		  COMMAREA(WS-COMMAREA)
-   168		 END-EXEC.
-   169
-   170	     200-REC-MAP.
-   171		 EXEC CICSCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+   162                   IF WS-TICKET-NUM = '0'
+   163			  MOVE SPACES TO TIXNUMO
+   164			 END-IF
+   165
+   166			 MOVE 2 TO WS-PROG-STATE
+   167			 PERFORM 110-NEW-MAP
+   168		       ELSE
+   169			 MOVE WS-TICKET-NUM TO TIXNUMO
+   170			 PERFORM 200-REC-MAP
+   171		       END-IF
+   172		     END-IF
+   173		 ELSE
+   174		     EXEC CICS SEND TEXT
+   175			  FROM (WS-INVALID)
+   176			  LENGTH (+15)
+   177			  ERASE
+   178		     END-EXEC
+   179		     EXEC CICS RETURN
+   180		     END-EXEC
+   181		 END-IF.
+   182
+   183
+   184
+   185	     110-NEW-MAP.
+   186           IF WS-PROG-STATE = '3'
+   187		  PERFORM 700-READ-FILE
+   188
+   189		  IF TIXTTLI = LOW-VALUES
+   190		   MOVE TIX-TITLE TO TIXTTLI
+   191		  END-IF
+   192
+   193		  IF REQBYI = LOW-VALUES
+   194		   MOVE TIX-REQUESTOR TO REQBYI
+   195		  END-IF
+   196
+   197		  IF TIXDESC1I = LOW-VALUES
+   198		   MOVE TIX-DESC1 TO TIXDESC1I
+   199		  END-IF
+   200
+   201		  IF TIXDESC2I = LOW-VALUES
+   202		   MOVE TIX-DESC2 TO TIXDESC2I
+   203		  END-IF
+   204
+   205		  IF STATI = LOW-VALUESCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
-   172               RECEIVE MAP('SM003M')
-   173               MAPSET('SM003')
-   174		     INTO (SM003MI)
-   175		 END-EXEC
-   176
-   177		 IF EIBAID = DFHENTER
-   178            MOVE 'ENTER PRESSED' TO ERRMSGO
-   179		 END-IF.
+   206		   MOVE TIX-STATUS TO STATI
+   207		  END-IF
+   208
+   209		  IF UPDRMKI = LOW-VALUES
+   210		   MOVE LAST-UPDATE-REM1 TO UPDRMKI
+   211		  END-IF
+   212
+   213		  IF UPDRMK1I = LOW-VALUES
+   214		   MOVE LAST-UPDATE-REM2 TO UPDRMK1I
+   215		  END-IF
+   216
+   217		   MOVE WS-TICKET-NUM1 TO TIXNUMI
+   218		 END-IF
+   219
+   220
+   221		     MOVE EIBDATE TO WS-DATE.
+   222		 MOVE WS-DATE-X TO DATEO.
+   223		 EXEC CICS ASKTIME
+   224		  ABSTIME (WS-TIME)
+   225		 END-EXEC
+   226
+   227		 EXEC CICS FORMATTIME
+   228		  ABSTIME (WS-TIME)
+   229            DATESEP ('-')
+   230		  MMDDYY (DATEO)
+   231		  TIME (TIMEO)
+   232            TIMESEP (':')
+   233		 END-EXEC
+   234
+   235		 MOVE DFHBMASB TO TIMEA
+   236		 MOVE DFHBMASB TO DATEA
+   237
+   238		 EXEC CICS
+   239            SEND MAP('SM003M')
+   240            MAPSET('SM003')
+   241		  FROM(SM003MO)
+   242
+   243		  ERASE
+   244		 END-EXEC
+   245
+   246		 EXEC CICS RETURN
+   247            TRANSID('SM03')
+   248		  COMMAREA(WS-COMMAREA)
+   249		 END-EXEC.
+   250
+   251	     200-REC-MAP.
+   252		 EXEC CICS
+   253               RECEIVE MAP('SM003M')
+   254               MAPSET('SM003')
+   255		     INTO (SM003MI)
+   256		 END-EXEC
+   257
+   258		 IF EIBAID = DFHENTER
+   259		  IF TIXNUMO = SPACES
+   260             MOVE 'INVALID SPACES IN TIX NO' TO ERRMSGO
+   261		  ELSE
+   262              IF WS-PROG-STATE = '2'
+   263CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   264		     MOVE TIXNUMO TO WS-TICKET-NUM1
+   265		     PERFORM 300-VALIDATE-TICKET
+   266
+   267              ELSE IF WS-PROG-STATE = '3'
+   268
+   269		     PERFORM 600-VALIDATE-ENTRY
+   270
+   271		    ELSE
+   272		     MOVE SPACES TO WS-TICKET-NUM
+   273		     MOVE SPACES TO WS-TCKID
+   274		     MOVE SPACES TO WS-TCKREQ
+   275		     MOVE SPACES TO WS-TCKSTAT
+   276		     MOVE SPACES TO WS-TCKTTL
+   277		     MOVE SPACES TO WS-TCKDESC
+   278		     MOVE SPACES TO WS-LSTUPD
+   279		     MOVE SPACES TO WS-STUPDBY
+   280		     MOVE SPACES TO WS-LSTUPDRMK
+   281
+   282		     MOVE SPACES TO TIXNUMO
+   283		     MOVE SPACES TO REQBYO
+   284		     MOVE SPACES TO STATO
+   285		     MOVE SPACES TO TIXTTLO
+   286		     MOVE SPACES TO TIXDESC1O
+   287		     MOVE SPACES TO TIXDESC2O
+   288		     MOVE SPACES TO DATE1O
+   289		     MOVE SPACES TO TIME1O
+   290		     MOVE SPACES TO UPDRMKO
+   291		     MOVE SPACES TO UPDRMK1O
+   292		     MOVE SPACES TO UPDBYO
+   293
+   294		     MOVE DFHBMUNP TO TIXNUMA
+   295		     MOVE DFHBMPRO TO REQBYA
+   296		     MOVE DFHBMPRO TO STATA
+   297		     MOVE DFHBMPRO TO TIXTTLA
+   298		     MOVE DFHBMPRO TO TIXDESC1A
+   299		     MOVE DFHBMPRO TO TIXDESC2A
+   300		     MOVE DFHBMPRO TO DATE1A
+   301		     MOVE DFHBMPRO TO TIME1A
+   302		     MOVE DFHBMPRO TO UPDRMKA
+   303		     MOVE DFHBMPRO TO UPDRMK1A
+   304
+   305		     MOVE 2 TO WS-PROG-STATE
+   306               MOVE 'ENTER TICKET NUMBER AND PRESS ENTER' TO ERRMSGO
+   307
+   308		     PERFORM 110-NEW-MAP
+   309
+   310		    END-IF
+   311
+   312		  END-IF
+   313		 END-IF
+   314		 END-IF
+   315
+   316		 IF EIBAID = DFHPF2
+   317		  IF TIXNUMI = SPACES
+   318             MOVE 'INVALID KEY PRESSED' TO ERRMSGO
+   319		  ELSE
+   320             IF WS-PROG-STATE = '3'
+   321CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   322		    PERFORM 700-READ-FILE
+   323
+   324		    IF STATO = LOW-VALUES
+   325		     MOVE WS-TCKSTAT TO STATO
+   326		    END-IF
+   327
+   328		    IF TIXTTLO = LOW-VALUES AND TIXDESC1O = LOW-VALUES
+   329		    AND TIXDESC2O = LOW-VALUES AND UPDRMKO = LOW-VALUES
+   330		    AND UPDRMK1O = LOW-VALUES AND STATO = TIX-STATUS
+   331
+   332               MOVE 'NO CHANGES' TO ERRMSGO
+   333		    MOVE DFHBMUNP TO TIXTTLA
+   334		    MOVE DFHBMUNP TO TIXDESC1A
+   335		    MOVE DFHBMUNP TO TIXDESC2A
+   336		    MOVE DFHBMUNP TO UPDRMKA
+   337		    MOVE DFHBMUNP TO UPDRMK1A
+   338		    MOVE DFHBMUNP TO STATA
+   339		    MOVE WS-TCKTTL TO TIXTTLO
+   340		    MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   341		    MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   342		    MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   343		    MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+   344		    MOVE WS-TCKSTAT TO STATO
+   345
+   346		    ELSE
+   347               IF STATO NOT = 'APPROVED'
+   348               AND STATO NOT = 'ONGOING'
+   349               AND STATO NOT = 'COMPLETED'
+   350
+   351		     MOVE DFHBMUNP TO TIXTTLA
+   352		     MOVE DFHBMUNP TO TIXDESC1A
+   353		     MOVE DFHBMUNP TO TIXDESC2A
+   354		     MOVE DFHBMUNP TO UPDRMKA
+   355		     MOVE DFHBMUNP TO UPDRMK1A
+   356		     MOVE DFHBMUNP TO STATA
+   357
+   358		     MOVE TIXTTLO TO WS-TCKTTL
+   359		     MOVE TIXDESC1O TO WS-TCKDESC(1:50)
+   360		     MOVE TIXDESC2O TO WS-TCKDESC(51:50)
+   361		     MOVE UPDRMKO TO WS-LSTUPDRMK(1:25)
+   362		     MOVE UPDRMK1O TO WS-LSTUPDRMK(26:25)
+   363		     MOVE STATO TO WS-TCKSTAT
+   364
+   365		     MOVE WS-TCKTTL TO TIXTTLO
+   366		     MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   367		     MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   368		     MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   369		     MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+   370		     MOVE WS-TCKSTAT TO STATO
+   371               MOVE 'STATUS SHOULD BE ONGOING OR COMPLETED' TO ERRMSGO
+   372
+   373
+   374		     ELSE
+   375		      MOVE EIBDATE TO WS-HDATE
+   376		      EXEC CICS ASKTIME
+   377		       ABSTIME (WS-HTIME)
+   378		      END-EXEC
+   379CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   380		      EXEC CICS FORMATTIME
+   381		       ABSTIME (WS-HTIME)
+   382                 DATESEP ('/')
+   383		       MMDDYYYY (WS-HDATE-X)
+   384		       TIME (WS-HTIME)
+   385                 TIMESEP (':')
+   386		      END-EXEC
+   387
+   388		      MOVE WS-HDATE-X TO LAST-UPDATE-DATE
+   389		      MOVE WS-HDATE-X TO DATE1O
+   390		      MOVE WS-HTIME-X TO LAST-UPDATE-TIME
+   391		      MOVE WS-HTIME-X TO TIME1O
+   392
+   393		     PERFORM 800-CREATE-LOG
+   394
+   395		     EXEC CICS
+   396                READ FILE('STF00001')
+   397		      INTO (WS-TIX-REC)
+   398		      RIDFLD (WS-TICKET-NUM1)
+   399		      RESP(WS-RES-CODE)
+   400		      EQUAL
+   401		      UPDATE
+   402		     END-EXEC
+   403		      IF TIXTTLI NOT = LOW-VALUES
+   404		       MOVE TIXTTLI TO TIX-TITLE
+   405		      END-IF
+   406
+   407		      IF TIXDESC1I NOT = LOW-VALUES
+   408		       MOVE TIXDESC1I TO TIX-DESC1
+   409		      END-IF
+   410
+   411		      IF TIXDESC2I NOT = LOW-VALUES
+   412		       MOVE TIXDESC2I TO TIX-DESC2
+   413		      END-IF
+   414
+   415		      IF STATO NOT = LOW-VALUES
+   416		       MOVE STATO TO TIX-STATUS
+   417		      END-IF
+   418
+   419		      IF UPDRMKI NOT = LOW-VALUES
+   420		       MOVE UPDRMKI TO LAST-UPDATE-REM1
+   421		      END-IF
+   422
+   423		      IF UPDRMK1I NOT = LOW-VALUES
+   424		       MOVE UPDRMK1I TO LAST-UPDATE-REM2
+   425		      END-IF
+   426
+   427		      IF DATE1I NOT = LOW-VALUES
+   428		       MOVE DATE1I TO LAST-UPDATE-DATE
+   429		      END-IF
+   430
+   431		      IF TIME1I NOT = LOW-VALUES
+   432		       MOVE TIME1I TO LAST-UPDATE-TIME
+   433		      END-IF
+   434
+   435		      PERFORM 900-CREATE-LOG-2
+   436
+   437		      EXEC CICSCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   438                REWRITE FILE('STF00001')
+   439		       FROM(WS-TIX-REC)
+   440		       RESP(WS-RES-CODE)
+   441		      END-EXEC
+   442
+   443		       IF EIBRESP = DFHRESP(NORMAL)
+   444             MOVE 'TICKET UPDATED, PRESS ENTER TO UPDATE ANOTHER TICKET'
+   445		   TO ERRMSGO
+   446			MOVE 4 TO WS-PROG-STATE
+   447
+   448		       ELSE
+   449                  MOVE 'ERROR UPDATE' TO ERRMSGO
+   450		       END-IF
+   451
+   452
+   453		   ELSE
+   454
+   455              MOVE 'INVALID KEY PRESSED' TO ERRMSGO
+   456
+   457		   END-IF
+   458
+   459		  END-IF
+   460		 END-IF.
+   461
+   462	     300-VALIDATE-TICKET.
+   463		 EXEC CICS
+   464               READ FILE('STF00001')
+   465		     INTO (WS-TIX-REC)
+   466		     RIDFLD (WS-TICKET-NUM1)
+   467		     RESP(WS-RES-CODE)
+   468		     EQUAL
+   469		 END-EXEC
+   470		 IF EIBRESP = DFHRESP(NOTFND)
+   471
+   472               MOVE 'TICKET NUMBER DOES NOT EXIST' TO ERRMSGO
+   473		 ELSE
+   474             IF TIX-STATUS = 'APPROVED' OR TIX-STATUS = 'ONGOING'
+   475              IF WS-REQUESTOR = 'Y' OR WS-SERVICE-PROVIDER = 'Y'
+   476               IF WS-REQUESTOR = 'Y' AND (WS-SERVICE-PROVIDER = 'N'
+   477               AND WS-APPROVER = 'N' AND WS-ADMINISTRATOR = 'N')
+   478
+   479		      IF WS-USERID1 = WS-TCKREQ
+   480		       PERFORM 500-TICKET-REC
+   481
+   482		      ELSE
+   483                 MOVE 'INVALID ACCESS TO THE TICKET' TO ERRMSGO
+   484		      END-IF
+   485               ELSE IF WS-SERVICE-PROVIDER = 'Y'
+   486		       PERFORM 500-TICKET-REC
+   487
+   488		     END-IF
+   489		    ELSE
+   490
+   491               MOVE 'INVALID ACCESS TO THE TICKET' TO ERRMSGO
+   492
+   493		    END-IF
+   494		   ELSE
+   495               MOVE 'INVALID TICKET STATUS' TO ERRMSGOCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   496		   END-IF
+   497
+   498		 END-IF.
+   499
+   500	     400-SEARCH-USER.
+   501
+   502		 EXEC CICS ASSIGN
+   503		     USERID(WS-USERID1)
+   504		 END-EXEC
+   505		 EXEC CICS
+   506               READ FILE('UAF00001')
+   507		     INTO (WS-USER-REC)
+   508		     RIDFLD (WS-USERID1)
+   509		     RESP(WS-RES-CODE)
+   510		     GTEQ
+   511		 END-EXEC
+   512           IF WS-RES-CODE NOT = +00 OR (REQUESTOR = 'N'
+   513           AND SERVICE-PROVIDER = 'N' AND APPROVER = 'N'
+   514           AND ADMINISTRATOR = 'N')
+   515		     EXEC CICS SEND TEXT
+   516			 FROM (WS-INVALID)
+   517			 LENGTH (+25)
+   518			 ERASE
+   519		     END-EXEC
+   520		     EXEC CICS RETURN END-EXEC
+   521		 ELSE
+   522            MOVE 'UPDATED BY THE USER' TO ERRMSGO
+   523
+   524		  MOVE 1 TO WS-PROG-STATE
+   525		 END-IF.
+   526
+   527	     500-TICKET-REC.
+   528
+   529		 MOVE 3 TO WS-PROG-STATE
+   530		 MOVE TIX-REQUESTOR TO WS-TCKREQ
+   531		 MOVE TIX-STATUS TO WS-TCKSTAT
+   532		 MOVE TIX-TITLE TO WS-TCKTTL
+   533		 MOVE TIX-DESC TO WS-TCKDESC
+   534		 MOVE LAST-UPDATE TO WS-LSTUPD
+   535		 MOVE UPDATED-BY2 TO WS-STUPDBY
+   536		 MOVE LAST-UPDATE-REMW TO WS-LSTUPDRMK
+   537
+   538		 MOVE WS-TICKET-NUM1 TO TIXNUMO
+   539		 MOVE WS-TCKREQ TO REQBYO
+   540		 MOVE WS-TCKSTAT TO STATO
+   541		 MOVE WS-TCKTTL TO TIXTTLO
+   542		 MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   543		 MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   544		 MOVE WS-LSTUPD(1:10) TO DATE1O
+   545		 MOVE WS-LSTUPD(11:10) TO TIME1O
+   546		 MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   547		 MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+   548		 MOVE WS-STUPDBY TO UPDBYO
+   549
+   550		 MOVE DFHBMPRO TO TIXNUMA
+   551		 MOVE DFHBMUNP TO TIXTTLA
+   552		 MOVE DFHBMUNP TO TIXDESC1A
+   553		 MOVE DFHBMUNP TO TIXDESC2ACA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   554		 MOVE DFHBMUNP TO STATA
+   555		 MOVE DFHBMUNP TO UPDRMKA
+   556		 MOVE DFHBMUNP TO UPDRMK1A
+   557
+   558           MOVE 'ENTER UPDATES' TO ERRMSGO.
+   559
+   560	     600-VALIDATE-ENTRY.
+   561
+   562		 IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
+   563		 AND TIXDESC2I = SPACES
+   564            MOVE 'REQUIRED FIELDS' TO ERRMSGO
+   565		 ELSE
+   566
+   567		  IF TIXTTLO = LOW-VALUES
+   568		   MOVE WS-TCKTTL TO TIXTTLO
+   569		  ELSE
+   570		   MOVE TIXTTLO TO WS-TCKTTL
+   571		  END-IF
+   572
+   573		  IF TIXDESC1O = LOW-VALUES
+   574		   MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   575		  ELSE
+   576		   MOVE TIXDESC1O TO WS-TCKDESC(1:50)
+   577		  END-IF
+   578
+   579		  IF TIXDESC2O = LOW-VALUES
+   580		   MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   581		  ELSE
+   582		   MOVE TIXDESC2O TO WS-TCKDESC(51:50)
+   583		  END-IF
+   584
+   585		  IF STATO = LOW-VALUES
+   586		   MOVE WS-TCKSTAT TO STATO
+   587		  ELSE
+   588		   MOVE STATO TO WS-TCKSTAT
+   589		  END-IF
+   590
+   591		  IF UPDRMKO = LOW-VALUES
+   592		   MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   593		  ELSE
+   594		   MOVE UPDRMKO TO WS-LSTUPDRMK(1:25)
+   595		  END-IF
+   596
+   597		  IF UPDRMK1O = LOW-VALUES
+   598		   MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+   599		  ELSE
+   600		   MOVE UPDRMK1O To WS-LSTUPDRMK(26:25)
+   601		  END-IF
+   602
+   603
+   604            IF STATO NOT = 'APPROVED'
+   605            AND STATO NOT = 'ONGOING'
+   606            AND STATO NOT = 'COMPLETED'
+   607
+   608		    MOVE DFHBMUNP TO TIXTTLA
+   609		    MOVE DFHBMUNP TO TIXDESC1A
+   610		    MOVE DFHBMUNP TO TIXDESC2A
+   611		    MOVE DFHBMUNP TO UPDRMKACA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   612		    MOVE DFHBMUNP TO UPDRMK1A
+   613		    MOVE DFHBMUNP TO STATA
+   614
+   615		    MOVE TIXTTLO TO WS-TCKTTL
+   616		    MOVE TIXDESC1O TO WS-TCKDESC(1:50)
+   617		    MOVE TIXDESC2O TO WS-TCKDESC(51:50)
+   618		    MOVE UPDRMKO TO WS-LSTUPDRMK(1:25)
+   619		    MOVE UPDRMK1O TO WS-LSTUPDRMK(26:25)
+   620		    MOVE STATO TO WS-TCKSTAT
+   621
+   622		    MOVE WS-TCKTTL TO TIXTTLO
+   623		    MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   624		    MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   625		    MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   626		    MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+   627		    MOVE WS-TCKSTAT TO STATO
+   628              MOVE 'STATUS SHOULD BE ONGOING OR COMPLETED' TO ERRMSGO
+   629
+   630
+   631		  ELSE
+   632		     IF (TIXTTLO = SPACES OR TIXTTLO = LOW-VALUES)
+   633		     AND (TIXDESC1O = SPACES OR TIXDESC1O = LOW-VALUES)
+   634		     AND (TIXDESC2O = SPACES OR TIXDESC2O = LOW-VALUES OR
+   635		     UPDRMK1O = SPACES OR UPDRMK1O = LOW-VALUES)
+   636
+   637		     MOVE
+   638               'TITLE AND DESCRIPTION ARE REQUIRED'
+   639		     TO ERRMSGO
+   640		     MOVE DFHBMUNP TO TIXTTLA
+   641		     MOVE DFHBMUNP TO TIXDESC1A
+   642		     MOVE DFHBMUNP TO TIXDESC2A
+   643		     MOVE DFHBMUNP TO UPDRMKA
+   644		     MOVE DFHBMUNP TO UPDRMK1A
+   645		     MOVE DFHBMUNP TO STATA
+   646
+   647		     ELSE IF (TIXTTLO = SPACES OR TIXTTLO = LOW-VALUES)
+   648		     AND (TIXDESC1O = SPACES OR TIXDESC1O = LOW-VALUES)
+   649
+   650		     MOVE
+   651               'TITLE AND DESCRIPTION ARE REQUIRED' TO ERRMSGO
+   652
+   653		     MOVE DFHBMUNP TO TIXTTLA
+   654		     MOVE DFHBMUNP TO TIXDESC1A
+   655		     MOVE DFHBMUNP TO TIXDESC2A
+   656		     MOVE DFHBMUNP TO UPDRMKA
+   657		     MOVE DFHBMUNP TO UPDRMK1A
+   658		     MOVE DFHBMUNP TO STATA
+   659
+   660		     ELSE IF (TIXTTLO = SPACES OR TIXTTLO = LOW-VALUES)
+   661		     AND (UPDRMKO = SPACES OR UPDRMKO = LOW-VALUES)
+   662		     AND (TIXDESC2O = SPACES OR TIXDESC2O = LOW-VALUES OR
+   663		     UPDRMK1O = SPACES OR UPDRMK1O = LOW-VALUES)
+   664
+   665		     MOVE
+   666               'TITLE AND DESCRIPTION 2 OR RMK 2 ARE REQUIRED'
+   667		     TO ERRMSGO
+   668
+   669		     MOVE DFHBMUNP TO TIXTTLACA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   670		     MOVE DFHBMUNP TO TIXDESC1A
+   671		     MOVE DFHBMUNP TO TIXDESC2A
+   672		     MOVE DFHBMUNP TO UPDRMKA
+   673		     MOVE DFHBMUNP TO UPDRMK1A
+   674		     MOVE DFHBMUNP TO STATA
+   675
+   676		     ELSE IF (TIXTTLO = SPACES OR TIXTTLO = LOW-VALUES)
+   677		     AND (TIXDESC1O = SPACES OR TIXDESC1O = LOW-VALUES)
+   678		     AND (UPDRMKO = SPACES OR UPDRMKO = LOW-VALUES)
+   679
+   680		     MOVE
+   681               'TITLE, DESCRIPTION AND REMARKS ARE REQUIRED'
+   682		     TO ERRMSGO
+   683
+   684		     MOVE DFHBMUNP TO TIXTTLA
+   685		     MOVE DFHBMUNP TO TIXDESC1A
+   686		     MOVE DFHBMUNP TO TIXDESC2A
+   687		     MOVE DFHBMUNP TO UPDRMKA
+   688		     MOVE DFHBMUNP TO UPDRMK1A
+   689		     MOVE DFHBMUNP TO STATA
+   690
+   691		     ELSE IF TIXTTLO = SPACES OR TIXTTLO = LOW-VALUES
+   692
+   693               MOVE 'TITLE IS REQUIRED' TO ERRMSGO
+   694
+   695		     MOVE DFHBMUNP TO TIXTTLA
+   696		     MOVE DFHBMUNP TO TIXDESC1A
+   697		     MOVE DFHBMUNP TO TIXDESC2A
+   698		     MOVE DFHBMUNP TO UPDRMKA
+   699		     MOVE DFHBMUNP TO UPDRMK1A
+   700		     MOVE DFHBMUNP TO STATA
+   701
+   702		     ELSE IF TIXDESC1O = SPACES OR TIXDESC1O = LOW-VALUES
+   703
+   704               MOVE 'DESCRIPTION IS REQUIRED' TO ERRMSGO
+   705
+   706		     MOVE DFHBMUNP TO TIXTTLA
+   707		     MOVE DFHBMUNP TO TIXDESC1A
+   708		     MOVE DFHBMUNP TO TIXDESC2A
+   709		     MOVE DFHBMUNP TO UPDRMKA
+   710		     MOVE DFHBMUNP TO UPDRMK1A
+   711		     MOVE DFHBMUNP TO STATA
+   712
+   713		     ELSE IF UPDRMKO = SPACES OR UPDRMKO = LOW-VALUES
+   714
+   715               MOVE 'UPDATE REMARK IS REQUIRED' TO ERRMSGO
+   716
+   717		     MOVE DFHBMUNP TO TIXTTLA
+   718		     MOVE DFHBMUNP TO TIXDESC1A
+   719		     MOVE DFHBMUNP TO TIXDESC2A
+   720		     MOVE DFHBMUNP TO UPDRMKA
+   721		     MOVE DFHBMUNP TO UPDRMK1A
+   722		     MOVE DFHBMUNP TO STATA
+   723
+   724		   ELSE
+   725		    PERFORM 700-READ-FILE
+   726		    IF TIXTTLO = TIX-TITLE AND TIXDESC1O = TIX-DESC1
+   727		    AND TIXDESC2O = TIX-DESC2 AND UPDRMKO = LAST-UPDATE-REM1CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   728		    AND UPDRMK1O = LAST-UPDATE-REM2 AND STATO = TIX-STATUS
+   729
+   730              MOVE 'NO CHANGES' TO ERRMSGO
+   731		    MOVE DFHBMUNP TO TIXTTLA
+   732		    MOVE DFHBMUNP TO TIXDESC1A
+   733		    MOVE DFHBMUNP TO TIXDESC2A
+   734		    MOVE DFHBMUNP TO UPDRMKA
+   735		    MOVE DFHBMUNP TO UPDRMK1A
+   736		    MOVE DFHBMUNP TO STATA
+   737		    MOVE WS-TCKTTL TO TIXTTLO
+   738		    MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   739		    MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   740		    MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+   741		    MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+   742		    MOVE WS-TCKSTAT TO STATO
+   743
+   744
+   745		    ELSE
+   746               MOVE 'PRESS PF2 TO UPDATE TICKET' TO ERRMSGO
+   747		     MOVE DFHBMUNP TO TIXTTLA
+   748		     MOVE DFHBMUNP TO TIXDESC1A
+   749		     MOVE DFHBMUNP TO TIXDESC2A
+   750		     MOVE DFHBMUNP TO UPDRMKA
+   751		     MOVE DFHBMUNP TO UPDRMK1A
+   752		     MOVE DFHBMUNP TO STATA
+   753
+   754               MOVE 'X' TO WS-INIT
+   755		    END-IF
+   756
+   757		   END-IF
+   758		  END-IF
+   759		 END-IF.
+   760
+   761	     700-READ-FILE.
+   762
+   763		 EXEC CICS
+   764               READ FILE('STF00001')
+   765		     INTO (WS-TIX-REC)
+   766		     RIDFLD (WS-TICKET-NUM1)
+   767		     RESP(WS-RES-CODE)
+   768		     EQUAL
+   769		 END-EXEC.
+   770
+   771	     800-CREATE-LOG.
+   772
+   773		 MOVE WS-TICKET-NUM TO LOG-TIX-ID1
+   774		 MOVE 1 TO LOG-SEQ-NUM
+   775		 MOVE LOG-TIX-ID TO WS-LOG-PH
+   776           EXEC CICS STARTBR FILE('stf00002')
+   777		      RIDFLD (LOG-TIX-ID)
+   778		      KEYLENGTH(+9)
+   779		      RESP(WS-RES-CODE)
+   780		      GTEQ
+   781		 END-EXEC
+   782		 PERFORM UNTIL LOG-TIX-ID1 NOT = WS-LOG-PH(1:6)
+   783		     EXEC CICS READPREV
+   784                         FILE('stf00002')
+   785			       INTO (WS-LOG)CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   786			       RIDFLD (LOG-TIX-ID)
+   787			       RESP(WS-RES-CODE)
+   788		     END-EXEC
+   789		     IF WS-LOG-PH(1:6) NOT = LOG-TIX-ID1
+   790			 CONTINUE
+   791		     ELSE
+   792			 MOVE LOG-TIX-ID TO WS-LOG-PH
+   793		     END-IF
+   794		     ADD 1 TO LOG-SEQ-NUM
+   795		 END-PERFORM
+   796		 EXEC CICS ENDBR
+   797                FILE('stF00002')
+   798		 END-EXEC
+   799
+   800		 MOVE WS-TICKET-NUM1 TO TIXNUMO
+   801
+   802		 IF TIXTTLO = LOW-VALUES
+   803		  MOVE WS-TCKTTL TO TIXTTLO
+   804		 END-IF
+   805
+   806		 IF TIXDESC1O = LOW-VALUES
+   807		  MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+   808		 END-IF
+   809
+   810		 IF TIXDESC2O = LOW-VALUES
+   811		  MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+   812		 END-IF
+   813
+   814		 IF (TIXTTLO NOT = TIX-TITLE
+   815		 AND TIXDESC1O NOT = TIX-DESC1)
+   816		 OR (TIXTTLO NOT = TIX-TITLE
+   817		 AND TIXDESC2O NOT = TIX-DESC2)
+   818           AND (STATO = 'COMPLETED')
+   819
+   820		  ADD 1 TO WS-LOG-SEQ
+   821		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   822		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   823		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+   824		  MOVE WS-USERID1 TO LOG-UPDBY2
+   825            MOVE 'COMPLETED. TITLE/DESCRIPTION UPDATED'
+   826		  TO LOG-LAST-UPDATE-REM
+   827
+   828		   EXEC CICS
+   829               WRITE FILE('stf00002')
+   830		     FROM(WS-LOG)
+   831		     RIDFLD(LOG-TIX-ID)
+   832		     RESP(WS-RES-CODE)
+   833		  END-EXEC
+   834
+   835		 ELSE IF (TIXTTLO NOT = TIX-TITLE
+   836		 AND TIXDESC1O NOT = TIX-DESC1)
+   837		 OR (TIXTTLO NOT = TIX-TITLE
+   838		 AND TIXDESC2O NOT = TIX-DESC2)
+   839
+   840		  ADD 1 TO WS-LOG-SEQ
+   841		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   842		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   843		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIMECA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   844		  MOVE WS-USERID1 TO LOG-UPDBY2
+   845            MOVE 'TITLE/DESCRIPTION UPDATED'
+   846		  TO LOG-LAST-UPDATE-REM
+   847
+   848		   EXEC CICS
+   849               WRITE FILE('stf00002')
+   850		     FROM(WS-LOG)
+   851		     RIDFLD(LOG-TIX-ID)
+   852		     RESP(WS-RES-CODE)
+   853		  END-EXEC
+   854
+   855		 ELSE IF (TIXTTLO NOT = TIX-TITLE
+   856		 AND TIXDESC1O = TIX-DESC1)
+   857		 OR (TIXTTLO NOT = TIX-TITLE
+   858		 AND TIXDESC2O = TIX-DESC2)
+   859           AND (STATO = 'COMPLETED')
+   860
+   861		  ADD 1 TO WS-LOG-SEQ
+   862		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   863		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   864		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+   865		  MOVE WS-USERID1 TO LOG-UPDBY2
+   866            MOVE 'COMPLETED. TICKET TITLE UPDATED'
+   867		  TO LOG-LAST-UPDATE-REM
+   868
+   869		   EXEC CICS
+   870               WRITE FILE('stf00002')
+   871		     FROM(WS-LOG)
+   872		     RIDFLD(LOG-TIX-ID)
+   873		     RESP(WS-RES-CODE)
+   874		  END-EXEC
+   875
+   876
+   877		 ELSE IF (TIXTTLO NOT = TIX-TITLE
+   878		 AND TIXDESC1O = TIX-DESC1)
+   879		 OR (TIXTTLO NOT = TIX-TITLE
+   880		 AND TIXDESC2O = TIX-DESC2)
+   881
+   882		  ADD 1 TO WS-LOG-SEQ
+   883		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   884		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   885		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+   886		  MOVE WS-USERID1 TO LOG-UPDBY2
+   887            MOVE 'TICKET TITLE UPDATED'
+   888		  TO LOG-LAST-UPDATE-REM
+   889
+   890		 EXEC CICS
+   891               WRITE FILE('stf00002')
+   892		     FROM(WS-LOG)
+   893		     RIDFLD(LOG-TIX-ID)
+   894		     RESP(WS-RES-CODE)
+   895		 END-EXEC
+   896
+   897		 ELSE IF (TIXTTLO = TIX-TITLE
+   898		 AND TIXDESC1O NOT = TIX-DESC1)
+   899		 OR (TIXTTLO = TIX-TITLE
+   900		 AND TIXDESC2O NOT = TIX-DESC2)
+   901           AND (STATO = 'COMPLETED')CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   902
+   903		  ADD 1 TO WS-LOG-SEQ
+   904		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   905		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   906		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+   907		  MOVE WS-USERID1 TO LOG-UPDBY2
+   908            MOVE 'COMPLETED. TICKET DESCRIPTION UPDATED'
+   909		  TO LOG-LAST-UPDATE-REM
+   910
+   911		 EXEC CICS
+   912               WRITE FILE('stf00002')
+   913		     FROM(WS-LOG)
+   914		     RIDFLD(LOG-TIX-ID)
+   915		     RESP(WS-RES-CODE)
+   916		 END-EXEC
+   917
+   918		 ELSE IF (TIXTTLO = TIX-TITLE
+   919		 AND TIXDESC1O NOT = TIX-DESC1)
+   920		 OR (TIXTTLO = TIX-TITLE
+   921		 AND TIXDESC2O NOT = TIX-DESC2)
+   922
+   923		  ADD 1 TO WS-LOG-SEQ
+   924		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   925		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   926		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+   927		  MOVE WS-USERID1 TO LOG-UPDBY2
+   928            MOVE 'TICKET DESCRIPTION UPDATED'
+   929		  TO LOG-LAST-UPDATE-REM
+   930
+   931		  EXEC CICS
+   932               WRITE FILE('stf00002')
+   933		     FROM(WS-LOG)
+   934		     RIDFLD(LOG-TIX-ID)
+   935		     RESP(WS-RES-CODE)
+   936		 END-EXEC
+   937
+   938		 ELSE IF (TIXTTLO = TIX-TITLE
+   939		 AND TIXDESC1O = TIX-DESC1)
+   940		 OR (TIXTTLO = TIX-TITLE
+   941		 AND TIXDESC2O = TIX-DESC2)
+   942           AND (STATO = 'COMPLETED')
+   943
+   944		  ADD 1 TO WS-LOG-SEQ
+   945		  MOVE WS-LOG-PH TO LOG-TIX-ID
+   946		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+   947		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+   948		  MOVE WS-USERID1 TO LOG-UPDBY2
+   949            MOVE 'COMPLETED. TICKET STATUS UPDATED'
+   950		  TO LOG-LAST-UPDATE-REM
+   951
+   952		 EXEC CICS
+   953               WRITE FILE('stf00002')
+   954		     FROM(WS-LOG)
+   955		     RIDFLD(LOG-TIX-ID)
+   956		     RESP(WS-RES-CODE)
+   957		 END-EXEC
+   958
+   959		 END-IF.CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+   960
+   961
+   962	     900-CREATE-LOG-2.
+   963
+   964		 MOVE WS-TICKET-NUM TO LOG-TIX-ID1
+   965		 MOVE 1 TO LOG-SEQ-NUM
+   966		 MOVE LOG-TIX-ID TO WS-LOG-PH
+   967           EXEC CICS STARTBR FILE('stf00002')
+   968		      RIDFLD (LOG-TIX-ID)
+   969		      KEYLENGTH(+9)
+   970		      RESP(WS-RES-CODE)
+   971		      GTEQ
+   972		 END-EXEC
+   973		 PERFORM UNTIL LOG-TIX-ID1 NOT = WS-LOG-PH(1:6)
+   974		     EXEC CICS READPREV
+   975                         FILE('stf00002')
+   976			       INTO (WS-LOG)
+   977			       RIDFLD (LOG-TIX-ID)
+   978			       RESP(WS-RES-CODE)
+   979		     END-EXEC
+   980		     IF WS-LOG-PH(1:6) NOT = LOG-TIX-ID1
+   981			 CONTINUE
+   982		     ELSE
+   983			 MOVE LOG-TIX-ID TO WS-LOG-PH
+   984		     END-IF
+   985		     ADD 1 TO LOG-SEQ-NUM
+   986		 END-PERFORM
+   987		 EXEC CICS ENDBR
+   988                FILE('stF00002')
+   989		 END-EXEC
+   990
+   991
+   992		 MOVE WS-TICKET-NUM1 TO TIXNUMO
+   993
+   994		 IF TIXTTLO = LOW-VALUES
+   995		  MOVE WS-TCKTTL TO TIXTTLO
+   996		 END-IF
+   997
+   998		 IF TIXDESC1O = LOW-VALUES
+   999		  MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+  1000		 END-IF
+  1001
+  1002		 IF TIXDESC2O = LOW-VALUES
+  1003		  MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+  1004		 END-IF
+  1005
+  1006		  ADD 1 TO WS-LOG-SEQ
+  1007		  MOVE WS-LOG-PH TO LOG-TIX-ID
+  1008		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+  1009		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+  1010		  MOVE WS-USERID1 TO LOG-UPDBY2
+  1011		  MOVE LAST-UPDATE-REM1 TO LOG-LAST-UPDATE-REM(1:25)
+  1012		  MOVE LAST-UPDATE-REM2 TO LOG-LAST-UPDATE-REM(26:25)
+  1013
+  1014		 EXEC CICS
+  1015               WRITE FILE('stf00002')
+  1016		     FROM(WS-LOG)
+  1017		     RIDFLD(LOG-TIX-ID)CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+  1018		     RESP(WS-RES-CODE)
+  1019		 END-EXEC.
+  1020
+  1021
+  1022	     1000-VALIDATION.
+  1023
+  1024		 IF EIBAID = DFHPF3
+  1025
+  1026		   EXEC CICS XCTL
+  1027              PROGRAM('SM000')
+  1028		   END-EXEC
+  1029
+  1030		 END-IF
+  1031
+  1032
+  1033		 IF EIBAID = DFHPF5
+  1034		    PERFORM 700-READ-FILE
+  1035              IF WS-INIT = 'X'
+  1036              MOVE 'UPDATE ABORTED' TO ERRMSGO
+  1037		    MOVE DFHBMUNP TO TIXTTLA
+  1038		    MOVE DFHBMUNP TO TIXDESC1A
+  1039		    MOVE DFHBMUNP TO TIXDESC2A
+  1040		    MOVE DFHBMUNP TO UPDRMKA
+  1041		    MOVE DFHBMUNP TO UPDRMK1A
+  1042		    MOVE DFHBMUNP TO STATA
+  1043		    MOVE TIX-TITLE TO TIXTTLO
+  1044		    MOVE TIX-DESC1 TO TIXDESC1O
+  1045		    MOVE TIX-DESC2 TO TIXDESC2O
+  1046		    MOVE LAST-UPDATE-REM1 TO UPDRMKO
+  1047		    MOVE LAST-UPDATE-REM2 TO UPDRMK1O
+  1048		    MOVE TIX-STATUS TO STATO
+  1049		    MOVE TIX-REQUESTOR TO REQBYO
+  1050		    MOVE UPDATED-BY2 TO UPDBYO
+  1051		    MOVE LAST-UPDATE-DATE TO DATE1O
+  1052		    MOVE LAST-UPDATE-TIME TO TIME1O
+  1053              MOVE 'Y' TO WS-INIT
+  1054		    PERFORM 110-NEW-MAP
+  1055		    ELSE
+  1056
+  1057              MOVE 'UPDATE ABORTED' TO ERRMSGO
+  1058		    MOVE SPACES TO WS-TICKET-NUM
+  1059		    MOVE DFHBMUNP TO TIXNUMA
+  1060		    MOVE SPACES TO TIXNUMO
+  1061		    MOVE SPACES TO TIXTTLO
+  1062		    MOVE SPACES TO TIXDESC1O
+  1063		    MOVE SPACES TO TIXDESC2O
+  1064		    MOVE SPACES TO UPDRMKO
+  1065		    MOVE SPACES TO UPDRMK1O
+  1066		    MOVE SPACES TO STATO
+  1067		    MOVE SPACES TO REQBYO
+  1068		    MOVE SPACES TO UPDBYO
+  1069		    MOVE SPACES TO DATE1O
+  1070		    MOVE SPACES TO TIME1O
+  1071
+  1072		    MOVE DFHBMPRO TO REQBYA
+  1073		    MOVE DFHBMPRO TO STATA
+  1074		    MOVE DFHBMPRO TO TIXTTLA
+  1075		    MOVE DFHBMPRO TO TIXDESC1ACA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+  1076		    MOVE DFHBMPRO TO TIXDESC2A
+  1077		    MOVE DFHBMPRO TO DATE1A
+  1078		    MOVE DFHBMPRO TO TIME1A
+  1079		    MOVE DFHBMPRO TO UPDRMKA
+  1080		    MOVE DFHBMPRO TO UPDRMK1A
+  1081		    MOVE 2 TO WS-PROG-STATE
+  1082		    PERFORM 110-NEW-MAP
+  1083		    END-IF
+  1084
+  1085
+  1086		 END-IF
+  1087
+  1088		 IF EIBAID = DFHCLEAR OR EIBAID = DFHPF1
+  1089		 OR EIBAID = DFHPF4 OR EIBAID = DFHPF6 OR EIBAID = DFHPF7
+  1090		 OR EIBAID = DFHPF8 OR EIBAID = DFHPF9 OR EIBAID = DFHPF10
+  1091		 OR EIBAID = DFHPF12
+  1092		  PERFORM 700-READ-FILE
+  1093             IF WS-INIT = 'X'
+  1094		    MOVE DFHBMUNP TO TIXTTLA
+  1095		    MOVE DFHBMUNP TO TIXDESC1A
+  1096		    MOVE DFHBMUNP TO TIXDESC2A
+  1097		    MOVE DFHBMUNP TO UPDRMKA
+  1098		    MOVE DFHBMUNP TO UPDRMK1A
+  1099		    MOVE DFHBMUNP TO STATA
+  1100		    MOVE DFHBMPRO TO REQBYA
+  1101
+  1102		   MOVE WS-TICKET-NUM TO TIXNUMO
+  1103		   MOVE WS-TCKREQ TO REQBYO
+  1104		   MOVE WS-TCKTTL TO TIXTTLO
+  1105		   MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+  1106		   MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+  1107		   MOVE WS-TCKSTAT TO STATO
+  1108		   MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+  1109		   MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+  1110		   MOVE WS-LSTUPD(1:10) TO DATE1O
+  1111		   MOVE WS-LSTUPD(11:10) TO TIME1O
+  1112		   MOVE WS-STUPDBY TO UPDBYO
+  1113             MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1114
+  1115		   PERFORM 110-NEW-MAP
+  1116		  ELSE
+  1117		     MOVE DFHBMUNP TO TIXTTLA
+  1118		    MOVE DFHBMUNP TO TIXDESC1A
+  1119		    MOVE DFHBMUNP TO TIXDESC2A
+  1120		    MOVE DFHBMUNP TO UPDRMKA
+  1121		    MOVE DFHBMUNP TO UPDRMK1A
+  1122		    MOVE DFHBMUNP TO STATA
+  1123		    MOVE DFHBMPRO TO REQBYA
+  1124
+  1125		   MOVE WS-TICKET-NUM TO TIXNUMO
+  1126		   MOVE TIX-REQUESTOR TO REQBYO
+  1127		   MOVE TIX-TITLE TO TIXTTLO
+  1128		   MOVE TIX-DESC1 TO TIXDESC1O
+  1129		   MOVE TIX-DESC2 TO TIXDESC2O
+  1130		   MOVE TIX-STATUS TO STATO
+  1131		   MOVE LAST-UPDATE-REM1 TO UPDRMKO
+  1132		   MOVE LAST-UPDATE-REM2 TO UPDRMK1O
+  1133		   MOVE LAST-UPDATE-DATE TO DATE1OCA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
+
+
+  1134		   MOVE LAST-UPDATE-TIME TO TIME1O
+  1135		   MOVE UPDATED-BY2 TO UPDBYO
+  1136             MOVE 'INVALID PFKEY PRESSED WS3' TO ERRMSGO
+  1137		   PERFORM 110-NEW-MAP
+  1138		 END-IF.
+  1139
 CA-Realia CACXPREP C:\handson-cics\CAWB30\sm03p.COB
 
 
@@ -686,6 +1704,6 @@
 		      PPCODE
 		      DCHK
 
-		Source Lines Translated:     650
-		Translation Time:	     .02 sec
-		Translation Speed:	  166666 lines per min
+		Source Lines Translated:    1634
+		Translation Time:	     .08 sec
+		Translation Speed:	  256923 lines per min

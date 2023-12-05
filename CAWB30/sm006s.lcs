@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    23NOV23 03:45:29 PAGE  1
+CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    05DEV23 16:42:38 PAGE  1
 
     1          PRINT NOGEN
     2 SM006S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      C
@@ -57,12 +57,12 @@ W **** This field overlaps previously defined field
 W **** This field overlaps previously defined field
    48 TIME2    DFHMDF POS=(14,35),LENGTH=10,ATTRB=(ASKIP,NORM,FSET)
    49 ERRMSG   DFHMDF POS=(23,01),LENGTH=71,ATTRB=(ASKIP,NORM,FSET)
-   50          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    23NOV23 03:45:29 PAGE  2
+   50          DFHMSD TYPE=FINALCA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    05DEV23 16:42:38 PAGE  2
 
       sm006s loaded with 1 MAPS, 29 FIELDS and 249 Bytes of Literals
 
    51          END
-There were     8 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    23NOV23 03:45:29 PAGE  3
+There were     8 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  sm006s.bms                                                                    05DEV23 16:42:38 PAGE  3
 
       COBOL COPY file generated
 

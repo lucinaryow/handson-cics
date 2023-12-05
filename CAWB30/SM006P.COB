@@ -111,7 +111,17 @@
                        PERFORM 100-SEND-MAP
                        MOVE 'Y' TO WS-INIT
                    ELSE 
-                       PERFORM 200-REC-MAP
+                       IF EIBAID = DFHPF3 OR DFHPF2 OR DFHPF5 OR
+                                       DFHENTER OR DFHPF11 OR DFHPF12
+                           PERFORM 200-REC-MAP
+                       ELSE
+                           IF WS-TICKET-NUM NOT = LOW-VALUES
+                               MOVE DFHBMPRO TO TIXNOA
+                               PERFORM 400-VALIDATE-TICKET
+                           END-IF
+                           MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+                           PERFORM 100-SEND-MAP
+                       END-IF
                    END-IF
                 ELSE
                    MOVE DFHBMDAR TO PF2A
@@ -121,11 +131,6 @@
                    PERFORM 100-SEND-MAP
                 END-IF
            ELSE    
-               EXEC CICS SEND TEXT
-                    FROM (WS-INVALID)
-                    LENGTH (+15)
-                    ERASE
-               END-EXEC
                EXEC CICS RETURN
                END-EXEC
            END-IF.    
@@ -176,12 +181,9 @@
                    EVALUATE TRUE 
                        WHEN WS-PROG-STATE = 1
                        WHEN WS-PROG-STATE = 2
-                           EXEC CICS SEND TEXT
-                               FROM (WS-END)
-                               LENGTH (15)
-                               ERASE
-                           END-EXEC 
-                           EXEC CICS RETURN END-EXEC         
+                           EXEC CICS XCTL
+                               PROGRAM('SM000P')
+                           END-EXEC         
                        WHEN WS-PROG-STATE = 3
                            MOVE 1 TO WS-PROG-STATE
                            EXEC CICS RETURN END-EXEC
@@ -261,10 +263,15 @@
            EXEC CICS 
                READ FILE('STF00001')
                INTO (WS-TIX-REC)
-               RIDFLD (WS-TICKET-NUM)
+               RIDFLD (WS-TICKET-NUM1)
                RESP(WS-RESPONSE-CODE)
-               EQUAL 
+               GTEQ 
            END-EXEC
+           IF TIX-STATUS = 'CANCELED'
+               MOVE 1 TO WS-PROG-STATE
+               MOVE WS-INVALID-TICKET TO ERRMSGO
+               PERFORM 100-SEND-MAP
+           END-IF 
            IF EIBRESP = DFHRESP(NOTFND)
                MOVE 1 TO WS-PROG-STATE
                MOVE WS-INVALID-TICKET TO ERRMSGO

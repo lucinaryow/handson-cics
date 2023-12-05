@@ -11,6 +11,7 @@
        01  WS-TIME			   PIC 9(15) COMP-3.
        01  WS-DATE                               PIC 9(7).
        01  WS-DATE-X REDEFINES WS-DATE           PIC X(7). 
+       01  WS-VALID-TIX-FLAG                     PIC X VALUE 'Y'.
        01  WS-LENGTH                             PIC S9(4) COMP.
        01  WS-INDEX                              PIC 9 VALUE 1.
        01  WS-CHOICE                             PIC X(21).
@@ -28,37 +29,7 @@
        01  WS-LOGID.
            05  LOGID2                            PIC X(6).
            05  FILLER                            PIC X.
-       01  WS-USER-REC.
-           05  USERID.
-               10  USERID1                       PIC X(7).
-               10  FILLER                        PIC X.
-           05  REQUESTOR                         PIC X.
-           05  SERVICE-PROVIDER                  PIC X. 
-           05  APPROVER                          PIC X. 
-           05  ADMINISTRATOR                     PIC X. 
-           05  UPDATED-BY1.
-               10  UPDBY1                        PIC X(7).
-               10  FILLER                        PIC X.
-       01  WS-TIX-REC.
-           05  TIX-ID                            PIC X(06).
-           05  TIX-REQUESTOR                     PIC X(08).
-           05  TIX-STATUS                        PIC X(10). 
-           05  TIX-TITLE                         PIC X(25).
-           05  TIX-DESC                          PIC X(100). 
-           05  TIX-DESC-RED REDEFINES TIX-DESC.
-               10  TIX-DESC1                     PIC X(50).
-               10  TIX-DESC2                     PIC X(50).
-           05  LAST-UPDATE                       PIC X(20). 
-           05  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-               10  LAST-UPDATE-DATE              PIC X(11).
-               10  LAST-UPDATE-TIME              PIC X(09).
-           05  UPDATED-BY2.
-               10  UPDBY2                        PIC X(7).
-               10  FILLER                        PIC X.
-           05  LAST-UPDATE-REM                   PIC X(50).
-           05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-               10  LAST-UPDATE-REM1              PIC X(25).
-               10  LAST-UPDATE-REM2              PIC X(25).
+     
        01  WS-END                                PIC X(15) VALUE
            'END PROCESSING'.
        01  WS-INVKEY                             PIC X(21) VALUE
@@ -67,15 +38,76 @@
            'INVALID ACCESS'.       
        01  WS-INVALID-TICKET			   PIC X(28) VALUE
            'TICKET NUMBER DOES NOT EXIST'.       
+       01  WS-DUP-TICKET			   PIC X(28) VALUE
+           'DUPLICATE TICKET NUMBER'.       
        01  WS-INVALID-USER			   PIC X(24) VALUE
            'INVALID ACCESS TO TICKET'.        
        01  WS-COMMAREA. 
+           05  WS-CA-PRGNAME           PIC X(06).
+           05  FILLER                  PIC X(19).
+           05  WS-DFHSTATE             PIC X(15). 
+           05  WS-TRANS                PIC X(04).  
+           05  WS-LUSER                PIC 9(03).
+           05  WS-FUSER                PIC 9(03).
+           05  WS-PAGE                 PIC 9(02).
+           05  WS-PAGE-END             PIC 9(01).
+           05  WS-QITEM                PIC S9(4) COMP.
+           05  WS-QITEM-START          PIC S9(4) COMP.
+           05  WS-QITEM-END            PIC S9(4) COMP.
+           05  WS-QITEM-PAGE           PIC S9(4) COMP.
            05  WS-USERID1                         PIC X(7).
+           05  WS-USER-REC.
+               10  USERID.
+                   15  USERID1                       PIC X(7).
+                   15  FILLER                        PIC X.
+               10  REQUESTOR                         PIC X.
+               10  ADMINISTRATOR                     PIC X. 
+               10  APPROVER                          PIC X. 
+               10  SERVICE-PROVIDER                  PIC X. 
+               10  UPDATED-BY1.
+                   15  UPDBY1                        PIC X(7).
+                   15  FILLER                        PIC X.
+           05  WS-TIX-REC.
+               10  TIX-ID                            PIC X(06).
+               10  TIX-REQUESTOR                     PIC X(08).
+               10  TIX-STATUS                        PIC X(10). 
+               10  TIX-TITLE                         PIC X(25).
+               10  TIX-DESC                          PIC X(100). 
+               10  TIX-DESC-RED REDEFINES TIX-DESC.
+                   15  TIX-DESC1                     PIC X(50).
+                   15  TIX-DESC2                     PIC X(50).
+               10  LAST-UPDATE                       PIC X(20). 
+               10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+                   15  LAST-UPDATE-DATE              PIC X(11).
+                   15  LAST-UPDATE-TIME              PIC X(09).
+               10  UPDATED-BY2.
+                   15  UPDBY2                        PIC X(7).
+                   15  FILLER                        PIC X.
+               10  LAST-UPDATE-REM                   PIC X(50).
+               10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+                   15  LAST-UPDATE-REM1              PIC X(25).
+                   15  LAST-UPDATE-REM2              PIC X(25).
+           05  WS-USER                         PIC X(7).
            05  WS-TICKET-NUM.
                10  WS-TICKET-NUM1                 PIC X(6).
                10  FILLER                         PIC X.
            05  WS-PROG-STATE                      PIC 9(1).  
-           05  WS-INIT                            PIC X VALUE 'Y'. 
+           05  WS-INIT                            PIC X VALUE 'Y'.   
+           05  WS-ID                            PIC X(4).
+           05  READ1  PIC X VALUE 'N'.
+           05  WS-TNUM  PIC X(06).
+           05  WS-TCKID                           PIC X(6).
+           05  WS-TCKREQ                          PIC X(8).
+           05  WS-TCKSTAT                         PIC X(10).
+           05  WS-TCKTTL                          PIC X(25).
+           05  WS-TCKDESC                         PIC X(100).
+           05  WS-LSTUPD                          PIC X(20).
+           05  WS-STUPDBY                         PIC X(8).
+           05  WS-LSTUPDRMK                       PIC X(50).
+           05  WS-REQUESTOR                       PIC X.
+           05  WS-ADMINISTRATOR                   PIC X.
+           05  WS-APPROVER                        PIC X.
+           05  WS-SERVICE-PROVIDER                PIC X.
   
       *
 	   COPY SM000S.
@@ -85,7 +117,7 @@
        COPY DFHBMSCA.
 
        LINKAGE SECTION.
-       01  DFHCOMMAREA                           PIC X(20).
+       01  DFHCOMMAREA                           PIC X(500).
       *
        PROCEDURE DIVISION.
        000-PROCESS-MENU. 
@@ -113,6 +145,7 @@
                        LENGTH (15)
                        ERASE
                    END-EXEC 
+                   EXEC CICS RETURN END-EXEC
                WHEN EIBAID = DFHENTER
                    PERFORM 300-PROCESS-TRAN
                WHEN OTHER
@@ -162,8 +195,6 @@
                       MAPSET('SW00S')
                       INTO (SW00MI)
            END-EXEC
-           MOVE 1 TO WS-INDEX
-           PERFORM 400-SEARCH-USER
            EVALUATE TRUE
                WHEN OPTIONL = 0 OR OPTIONI = SPACE
                    MOVE 'OPTION IS REQUIRED' TO ERRMSGO
@@ -184,6 +215,10 @@
                    END-IF  
                    IF WS-CHC1 = '- SEARCH TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM001')
@@ -198,6 +233,10 @@
                WHEN OPTIONI = 2
                    IF WS-CHC2 = '- ADD TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 = SPACES OR 
+                           WS-TICKET-NUM1 = LOW-VALUES
+                           PERFORM 900-NO-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            
                            EXEC CICS XCTL 
@@ -213,6 +252,10 @@
                    END-IF  
                    IF WS-CHC2 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 900-NO-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM03P')
@@ -225,7 +268,11 @@
                        END-IF
                    END-IF  
                    IF WS-CHC2 = '- APPROVE TICKET'
-                       PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 700-TRANSFER-PROG
+                       END-IF
+                       PERFORM 800-NEED-TIX
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM005')
@@ -257,6 +304,10 @@
                    END-IF  
                    IF WS-CHC3 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM005')
@@ -270,6 +321,10 @@
                    END-IF  
                    IF WS-CHC3 = '- UPDATE TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM03P')
@@ -302,7 +357,10 @@
                    END-IF  
                    IF WS-CHC4 = '- CLOSE TICKET'
                        PERFORM 700-TRANSFER-PROG
-                       
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM004')
@@ -322,6 +380,10 @@
                WHEN OPTIONI = 5 
                    IF WS-CHC5 = '- CANCEL TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM006P')
@@ -340,6 +402,10 @@
                WHEN OPTIONI = 6 
                    IF WS-CHC6 = '- APPROVE TICKET'
                        PERFORM 700-TRANSFER-PROG
+                       IF WS-TICKET-NUM1 NOT = SPACES OR 
+                           WS-TICKET-NUM1 NOT = LOW-VALUES
+                           PERFORM 800-NEED-TIX
+                       END-IF
                        IF EIBCALEN = +0
                            EXEC CICS XCTL 
                                PROGRAM('SM005')
@@ -418,6 +484,10 @@
                EXEC CICS RETURN END-EXEC
            ELSE
             MOVE WS-USERID TO WS-USERID1
+            MOVE REQUESTOR TO WS-REQUESTOR
+            MOVE ADMINISTRATOR TO WS-ADMINISTRATOR
+            MOVE APPROVER TO WS-APPROVER
+            MOVE SERVICE-PROVIDER TO WS-SERVICE-PROVIDER
             MOVE 1 TO WS-PROG-STATE
            END-IF
            IF REQUESTOR = 'Y' 
@@ -503,52 +573,64 @@
            EXEC CICS 
                READ FILE('STF00001')
                INTO (WS-TIX-REC)
-               RIDFLD (WS-TICKET-NUM)
+               RIDFLD (WS-TICKET-NUM1)
                RESP(WS-RESPONSE-CODE)
-               GTEQ 
+               EQUAL 
            END-EXEC
            IF EIBRESP = DFHRESP(NOTFND)
-               MOVE WS-INVALID-TICKET TO ERRMSGO
-               MOVE EIBDATE TO WS-DATE
-               MOVE WS-DATE-X TO DATEO
-               EXEC CICS ASKTIME
-	               ABSTIME	(WS-TIME)
-	           END-EXEC
-	           EXEC CICS FORMATTIME
-	               ABSTIME	(WS-TIME)
-	               DATESEP	('-')
-	               MMDDYY   (DATEO)
-                   TIME     (TIMEO)
-                   TIMESEP  (':')    
-               END-EXEC
-               MOVE DFHBMASB TO TIMEA
-               MOVE DFHBMASB TO DATEA
-               MOVE DFHUNIMD TO OPTIONA
-               EXEC CICS 
-                   SEND MAP('SW00M')
-                        MAPSET('SW00S')
-                        FROM(SW00MO)
-                        ERASE
-               END-EXEC
-               EXEC CICS RETURN 
-                   TRANSID('SM00')
-                   COMMAREA(WS-COMMAREA)
-               END-EXEC
+               MOVE 'N' TO WS-VALID-TIX-FLAG
            ELSE 
-               MOVE 1 TO WS-PROG-STATE
-               MOVE '0' TO WS-TICKET-NUM
+               MOVE 'Y' TO WS-VALID-TIX-FLAG
+               MOVE 2 TO WS-PROG-STATE
+               MOVE TIX-REQUESTOR TO WS-TCKREQ
+               MOVE TIX-STATUS TO WS-TCKSTAT
+               MOVE TIX-TITLE TO WS-TCKTTL
+               MOVE TIX-DESC TO WS-TCKDESC
+               MOVE LAST-UPDATE TO WS-LSTUPD
+               MOVE UPDATED-BY2 TO WS-STUPDBY
+               MOVE LAST-UPDATE-REMW TO WS-LSTUPDRMK
+
            END-IF.
        600-EXIT.
            EXIT.
 
        700-TRANSFER-PROG.
-           IF TIXNOI = SPACES OR TIXNOL = ZERO 
+           IF TIXNOI = SPACES OR TIXNOL = ZERO OR TIXNOI = LOW-VALUES
+               MOVE TIXNOI TO WS-TICKET-NUM1
                MOVE +0 TO EIBCALEN
-               MOVE '0' TO WS-TICKET-NUM
+               IF WS-CHC2 = '- ADD TICKET'
+                MOVE '0' TO WS-TICKET-NUM
+               END-IF
            ELSE 
                MOVE 'N' TO WS-INIT
-               MOVE TIXNOI TO WS-TICKET-NUM
+               MOVE TIXNOI TO WS-TICKET-NUM1
                PERFORM 600-VALIDATE-TICKET
            END-IF.
        700-EXIT.
+           EXIT.
+
+       800-NEED-TIX.
+           IF WS-VALID-TIX-FLAG = 'N'
+               MOVE WS-INVALID-TICKET TO ERRMSGO
+               PERFORM 600-VALIDATE-TICKET
+               PERFORM 100-SEND-MAP
+               EXEC CICS RETURN 
+                   TRANSID('SM00')
+                   COMMAREA(WS-COMMAREA)
+               END-EXEC
+           END-IF.
+       800-EXIT.
+           EXIT.
+
+       900-NO-TIX.
+           IF WS-VALID-TIX-FLAG = 'Y'
+               MOVE WS-DUP-TICKET TO ERRMSGO
+               PERFORM 600-VALIDATE-TICKET
+               PERFORM 100-SEND-MAP
+               EXEC CICS RETURN 
+                   TRANSID('SM00')
+                   COMMAREA(WS-COMMAREA)
+               END-EXEC
+           END-IF.
+       900-EXIT.
            EXIT.

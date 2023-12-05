@@ -19,12 +19,16 @@ HEADER   DFHMDF POS=(02,35),LENGTH=13,ATTRB=(ASKIP,NORM),              C
                INITIAL='TICKET TITLE       : '
          DFHMDF POS=(07,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
                INITIAL='TICKET DESCRIPTION : '
+         DFHMDF POS=(08,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL=''      
          DFHMDF POS=(09,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
                INITIAL='STATUS             : '
          DFHMDF POS=(09,33),LENGTH=31,ATTRB=(ASKIP,NORM),              C
                INITIAL=''
 UPDREM   DFHMDF POS=(10,02),LENGTH=21,ATTRB=(ASKIP,DRK),               C
                INITIAL='UPDATE REMARKS     : '
+         DFHMDF POS=(11,02),LENGTH=21,ATTRB=(ASKIP,NORM),              C
+               INITIAL=''            
 UPDDT    DFHMDF POS=(12,02),LENGTH=21,ATTRB=(ASKIP,DRK),               C
                INITIAL='UPDATE DATE/TIME   : '
 UPDBY1   DFHMDF POS=(13,02),LENGTH=21,ATTRB=(ASKIP,DRK),               C

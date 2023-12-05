@@ -20,881 +20,1060 @@
     83	      01  WS-INVALID					PIC X(14) VALUE
     84            'INVALID ACCESS'.
     85	      01  WS-COMMAREA.
-    86		  05  WS-USERID1			 PIC X(7).
-    87		  05  WS-TICKET-NUM.
-    88		      10  WS-TICKET-NUM1		 PIC X(6).
-    89		      10  FILLER			 PIC X.
-    90		  05  WS-PROG-STATE			 PIC 9(1).
-    91            05  WS-INIT                            PIC X VALUE 'Y'.
-    92
-    93	      01  WS-FIELD01.
-    94		  05 WS-STF01TCKID			PIC X(6).
-    95		  05 WS-STF01TCKIDR REDEFINES WS-STF01TCKID PIC 9(06).
-    96		  05 WS-STF01TCKREQ			PIC X(8).
-    97		  05 WS-STF01TCKSTAT			PIC X(10).
-    98		  05 WS-STF01TCKTTL			PIC X(25).
-    99		  05 WS-STF01TCKDESC			PIC X(100).
-   100		  05 WS-STF01LSTUPD			PIC X(20).
-   101		  05 WS-STF01LSTUPDBY			PIC X(8).
-   102		  05 WS-STF01LSTUPDRMK			PIC X(50).
-   103
-   104	      01  WS-TIX-REC.
-   105		  05  TIX-ID				PIC X(06).
-   106		  05  TIX-REQUESTOR			PIC X(08).
-   107		  05  TIX-STATUS			PIC X(10).
-   108		  05  TIX-TITLE 			PIC X(25).
-   109		  05  TIX-DESC				PIC X(100).
-   110		  05  TIX-DESC-RED REDEFINES TIX-DESC.
-   111		      10  TIX-DESC1			PIC X(50).
-   112		      10  TIX-DESC2			PIC X(50).
-   113		  05  LAST-UPDATE			PIC X(20).
-   114		  05  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
-   115		      10  LAST-UPDATE-DATE		PIC X(11).
-   116		      10  LAST-UPDATE-TIME		PIC X(09).
-   117		  05  UPDATED-BY2.
-   118		      10  UPDBY2			PIC X(7).
-   119		      10  FILLER			PIC X.
-   120		  05  LAST-UPDATE-REM			PIC X(50).
-   121		  05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
-   122		      10  LAST-UPDATE-REM1		PIC X(25).
-   123		      10  LAST-UPDATE-REM2		PIC X(25).   124
-   125	      01  WS-LOG.
-   126		  05  LOG-TIX-ID.
-   127		      10  LOG-TIX-ID1			PIC X(6).
-   128		      10  LOG-SEQ-NUM			PIC 9(3).
-   129		  05  LOG-LAST-UPDATE.
-   130		      10  LOG-LAST-UPDATE-DATE		PIC X(10).
-   131		      10  LOG-LAST-UPDATE-TIME		PIC X(10).
-   132		  05  LOG-UPDATED-BY.
-   133		      10  LOG-UPDBY2			PIC X(7).
-   134		      10  FILLER			PIC X.
-   135		  05  LOG-LAST-UPDATE-REM		PIC X(50).
-   136		  05  FILLER				PIC X(02).
-   137
-   138	      01  WS-LOG-PH				PIC X(9).
-   139	      01  WS-LOG-PH2 REDEFINES WS-LOG-PH.
-   140		  05  WS-LOG-ID 			PIC 9(6).
-   141		  05  WS-LOG-SEQ			PIC 9(3).
-   142
-   143	      01  WS-HV 				PIC X(20).
-   144
-   145	      01  WS-ENTRCTR				PIC 9(1).
-   146	      01  WS-HDATE				PIC 9(10).
-   147	      01  WS-HDATE-X REDEFINES WS-HDATE 	PIC X(10).
-   148	      01  WS-HTIME			       PIC 9(15).
-   149	      01  WS-HTIME-X REDEFINES WS-HTIME 	PIC X(8).
-   150	      01  WS-RES-CODE				PIC S9(8) COMP.
+    86		  05  WS-CA-PRGNAME	      PIC X(06).
+    87		  05  FILLER		      PIC X(19).
+    88		  05  WS-DFHSTATE	      PIC X(15).
+    89		  05  WS-TRANS		      PIC X(04).
+    90		  05  WS-LUSER		      PIC 9(03).
+    91		  05  WS-FUSER		      PIC 9(03).
+    92		  05  WS-PAGE		      PIC 9(02).
+    93		  05  WS-PAGE-END	      PIC 9(01).
+    94		  05  WS-QITEM		      PIC S9(4) COMP.
+    95		  05  WS-QITEM-START	      PIC S9(4) COMP.
+    96		  05  WS-QITEM-END	      PIC S9(4) COMP.
+    97		  05  WS-QITEM-PAGE	      PIC S9(4) COMP.
+    98		  05  WS-USERID1			 PIC X(7).
+    99		  05  WS-USER-REC.
+   100		      10  USERID.
+   101			  15  USERID1			    PIC X(7).
+   102			  15  FILLER			    PIC X.
+   103		      10  REQUESTOR			    PIC X.
+   104		      10  ADMINISTRATOR 		    PIC X.
+   105		      10  APPROVER			    PIC X.
+   106		      10  SERVICE-PROVIDER		    PIC X.
+   107		      10  UPDATED-BY1.
+   108			  15  UPDBY1			    PIC X(7).
+   109			  15  FILLER			    PIC X.
+   110		  05  WS-TIX-REC.
+   111		      10  TIX-ID			    PIC X(06).
+   112		      10  TIX-REQUESTOR 		    PIC X(08).
+   113		      10  TIX-STATUS			    PIC X(10).
+   114		      10  TIX-TITLE			    PIC X(25).
+   115		      10  TIX-DESC			    PIC X(100).
+   116		      10  TIX-DESC-RED REDEFINES TIX-DESC.
+   117			  15  TIX-DESC1 		    PIC X(50).
+   118			  15  TIX-DESC2 		    PIC X(50).
+   119		      10  LAST-UPDATE			    PIC X(20).
+   120		      10  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+   121			  15  LAST-UPDATE-DATE		    PIC X(11).
+   122			  15  LAST-UPDATE-TIME		    PIC X(09).
+   123		      10  UPDATED-BY2.   124			  15  UPDBY2			    PIC X(7).
+   125			  15  FILLER			    PIC X.
+   126		      10  LAST-UPDATE-REM		    PIC X(50).
+   127		      10  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+   128			  15  LAST-UPDATE-REM1		    PIC X(25).
+   129			  15  LAST-UPDATE-REM2		    PIC X(25).
+   130		  05  WS-USER			      PIC X(7).
+   131		  05  WS-TICKET-NUM.
+   132		      10  WS-TICKET-NUM1		 PIC X(6).
+   133		      10  FILLER			 PIC X.
+   134		  05  WS-PROG-STATE			 PIC 9(1).
+   135            05  WS-INIT                            PIC X VALUE 'Y'.
+   136		  05  WS-ID			       PIC X(4).
+   137            05  READ1  PIC X VALUE 'N'.
+   138		  05  WS-TNUM  PIC X(06).
+   139		  05  WS-TCKID				 PIC X(6).
+   140		  05  WS-TCKREQ 			 PIC X(8).
+   141		  05  WS-TCKSTAT			 PIC X(10).
+   142		  05  WS-TCKTTL 			 PIC X(25).
+   143		  05  WS-TCKDESC			 PIC X(100).
+   144		  05  WS-LSTUPD 			 PIC X(20).
+   145		  05  WS-STUPDBY			 PIC X(8).
+   146		  05  WS-LSTUPDRMK			 PIC X(50).
+   147		  05  WS-REQUESTOR			 PIC X.
+   148		  05  WS-ADMINISTRATOR			 PIC X.
+   149		  05  WS-APPROVER			 PIC X.
+   150		  05  WS-SERVICE-PROVIDER		 PIC X.
    151
-   152
-   153	     *
-   154		  COPY SM002.
-   156	     * SYMBOLIC MAP of sm002 Created by CACXBMS Version 6.0.27
-   157	      01  SM002MI.
-   158		  02  FILLER				     PIC X(12).
-   159		  02  HEADERL				     PIC S9(4) COMP.
-   160		  02  HEADERF				     PIC X.
-   161		  02  FILLER REDEFINES HEADERF.
-   162		      03  HEADERA			     PIC X.
-   163		  02  HEADERI				     PIC X(013).
-   164		  02  UPDREML				     PIC S9(4) COMP.
-   165		  02  UPDREMF				     PIC X.
-   166		  02  FILLER REDEFINES UPDREMF.
-   167		      03  UPDREMA			     PIC X.
-   168		  02  UPDREMI				     PIC X(021).
-   169		  02  UPDDTL				     PIC S9(4) COMP.
-   170		  02  UPDDTF				     PIC X.
-   171		  02  FILLER REDEFINES UPDDTF.
-   172		      03  UPDDTA			     PIC X.
-   173		  02  UPDDTI				     PIC X(021).
-   174		  02  UPDBY1L				     PIC S9(4) COMP.
-   175		  02  UPDBY1F				     PIC X.
-   176		  02  FILLER REDEFINES UPDBY1F.
-   177		      03  UPDBY1A			     PIC X.
-   178		  02  UPDBY1I				     PIC X(021).
-   179		  02  ERRMSGL				     PIC S9(4) COMP.
-   180		  02  ERRMSGF				     PIC X.
-   181		  02  FILLER REDEFINES ERRMSGF.
-   182		      03  ERRMSGA			     PIC X.
-   183		  02  ERRMSGI				     PIC X(058).
-   184		  02  DATEL				     PIC S9(4) COMP.   185		  02  DATEF				     PIC X.
-   186		  02  FILLER REDEFINES DATEF.
-   187		      03  DATEA 			     PIC X.
-   188		  02  DATEI				     PIC X(010).
-   189		  02  TIMEL				     PIC S9(4) COMP.
-   190		  02  TIMEF				     PIC X.
-   191		  02  FILLER REDEFINES TIMEF.
-   192		      03  TIMEA 			     PIC X.
-   193		  02  TIMEI				     PIC X(008).
-   194		  02  TIXNUML				     PIC S9(4) COMP.
-   195		  02  TIXNUMF				     PIC X.
-   196		  02  FILLER REDEFINES TIXNUMF.
-   197		      03  TIXNUMA			     PIC X.
-   198		  02  TIXNUMI				     PIC X(006).
-   199		  02  TIXTTLL				     PIC S9(4) COMP.
-   200		  02  TIXTTLF				     PIC X.
-   201		  02  FILLER REDEFINES TIXTTLF.
-   202		      03  TIXTTLA			     PIC X.
-   203		  02  TIXTTLI				     PIC X(025).
-   204		  02  TIXDESC1L 			     PIC S9(4) COMP.
-   205		  02  TIXDESC1F 			     PIC X.
-   206		  02  FILLER REDEFINES TIXDESC1F.
-   207		      03  TIXDESC1A			     PIC X.
-   208		  02  TIXDESC1I 			     PIC X(040).
-   209		  02  TIXDESC2L 			     PIC S9(4) COMP.
-   210		  02  TIXDESC2F 			     PIC X.
-   211		  02  FILLER REDEFINES TIXDESC2F.
-   212		      03  TIXDESC2A			     PIC X.
-   213		  02  TIXDESC2I 			     PIC X(040).
-   214		  02  STATL				     PIC S9(4) COMP.
-   215		  02  STATF				     PIC X.
-   216		  02  FILLER REDEFINES STATF.
-   217		      03  STATA 			     PIC X.
-   218		  02  STATI				     PIC X(008).
-   219		  02  UPDRMKL				     PIC S9(4) COMP.
-   220		  02  UPDRMKF				     PIC X.
-   221		  02  FILLER REDEFINES UPDRMKF.
-   222		      03  UPDRMKA			     PIC X.
-   223		  02  UPDRMKI				     PIC X(025).
-   224		  02  UPDRMK1L				     PIC S9(4) COMP.
-   225		  02  UPDRMK1F				     PIC X.
-   226		  02  FILLER REDEFINES UPDRMK1F.
-   227		      03  UPDRMK1A			     PIC X.
-   228		  02  UPDRMK1I				     PIC X(025).
-   229		  02  DATE1L				     PIC S9(4) COMP.
-   230		  02  DATE1F				     PIC X.
-   231		  02  FILLER REDEFINES DATE1F.
-   232		      03  DATE1A			     PIC X.
-   233		  02  DATE1I				     PIC X(011).
-   234		  02  TIME1L				     PIC S9(4) COMP.
-   235		  02  TIME1F				     PIC X.
-   236		  02  FILLER REDEFINES TIME1F.
-   237		      03  TIME1A			     PIC X.
-   238		  02  TIME1I				     PIC X(010).
-   239		  02  UPDBY2L				     PIC S9(4) COMP.
-   240		  02  UPDBY2F				     PIC X.
-   241		  02  FILLER REDEFINES UPDBY2F.
-   242		      03  UPDBY2A			     PIC X.
-   243		  02  UPDBY2I				     PIC X(007).
-   244	      01  SM002MO REDEFINES SM002MI.   245		  02  FILLER				     PIC X(12).
-   246		  02  FILLER				     PIC XX.
-   247		  02  FILLER				     PIC X.
-   248		  02  HEADERO				     PIC X(013).
-   249		  02  FILLER				     PIC XX.
-   250		  02  FILLER				     PIC X.
-   251		  02  UPDREMO				     PIC X(021).
-   252		  02  FILLER				     PIC XX.
-   253		  02  FILLER				     PIC X.
-   254		  02  UPDDTO				     PIC X(021).
-   255		  02  FILLER				     PIC XX.
-   256		  02  FILLER				     PIC X.
-   257		  02  UPDBY1O				     PIC X(021).
-   258		  02  FILLER				     PIC XX.
-   259		  02  FILLER				     PIC X.
-   260		  02  ERRMSGO				     PIC X(058).
-   261		  02  FILLER				     PIC XX.
-   262		  02  FILLER				     PIC X.
-   263		  02  DATEO				     PIC X(010).
-   264		  02  FILLER				     PIC XX.
-   265		  02  FILLER				     PIC X.
-   266		  02  TIMEO				     PIC X(008).
-   267		  02  FILLER				     PIC XX.
-   268		  02  FILLER				     PIC X.
-   269		  02  TIXNUMO				     PIC X(006).
-   270		  02  FILLER				     PIC XX.
-   271		  02  FILLER				     PIC X.
-   272		  02  TIXTTLO				     PIC X(025).
-   273		  02  FILLER				     PIC XX.
-   274		  02  FILLER				     PIC X.
-   275		  02  TIXDESC1O 			     PIC X(040).
-   276		  02  FILLER				     PIC XX.
-   277		  02  FILLER				     PIC X.
-   278		  02  TIXDESC2O 			     PIC X(040).
-   279		  02  FILLER				     PIC XX.
-   280		  02  FILLER				     PIC X.
-   281		  02  STATO				     PIC X(008).
-   282		  02  FILLER				     PIC XX.
-   283		  02  FILLER				     PIC X.
-   284		  02  UPDRMKO				     PIC X(025).
-   285		  02  FILLER				     PIC XX.
-   286		  02  FILLER				     PIC X.
-   287		  02  UPDRMK1O				     PIC X(025).
-   288		  02  FILLER				     PIC XX.
-   289		  02  FILLER				     PIC X.
-   290		  02  DATE1O				     PIC X(011).
-   291		  02  FILLER				     PIC XX.
-   292		  02  FILLER				     PIC X.
-   293		  02  TIME1O				     PIC X(010).
-   294		  02  FILLER				     PIC XX.
-   295		  02  FILLER				     PIC X.
-   296		  02  UPDBY2O				     PIC X(007).
-   298	     *
-   299		  COPY DFHAID.
-   301	      01  DFHAID.
-   302	     *
-   303	     * CA-Realia CICS 6.0 Computer Associates International, Inc.
-   304	     *
-   305	     * Revision Information
-   306	     * ^{File:dfhaid.cob  }   307	     * ^{Timestamp:Thu May 15 14:02:52 1997}
-   308	     * ^{Revision:2.0}
-   309	     *
-   310	     *This is the AID constants copy file
-   311	     *
-   312            05  DFHENTER                  PIC X VALUE ''''.
-   313	     *					value APOST
-   314            05  DFHCLEAR                  PIC X VALUE '_'.
-   315            05  DFHPA1                    PIC X VALUE '%'.
-   316            05  DFHPA2                    PIC X VALUE '>'.
-   317            05  DFHPA3                    PIC X VALUE ','.
-   318            05  DFHPF1                    PIC X VALUE '1'.
-   319            05  DFHPF2                    PIC X VALUE '2'.
-   320            05  DFHPF3                    PIC X VALUE '3'.
-   321            05  DFHPF4                    PIC X VALUE '4'.
-   322            05  DFHPF5                    PIC X VALUE '5'.
-   323            05  DFHPF6                    PIC X VALUE '6'.
-   324            05  DFHPF7                    PIC X VALUE '7'.
-   325            05  DFHPF8                    PIC X VALUE '8'.
-   326            05  DFHPF9                    PIC X VALUE '9'.
-   327            05  DFHPF10                   PIC X VALUE ':'.
-   328            05  DFHPF11                   PIC X VALUE '#'.
-   329            05  DFHPF12                   PIC X VALUE '@'.
-   330            05  DFHPF13                   PIC X VALUE 'A'.
-   331            05  DFHPF14                   PIC X VALUE 'B'.
-   332            05  DFHPF15                   PIC X VALUE 'C'.
-   333            05  DFHPF16                   PIC X VALUE 'D'.
-   334            05  DFHPF17                   PIC X VALUE 'E'.
-   335            05  DFHPF18                   PIC X VALUE 'F'.
-   336            05  DFHPF19                   PIC X VALUE 'G'.
-   337            05  DFHPF20                   PIC X VALUE 'H'.
-   338            05  DFHPF21                   PIC X VALUE 'I'.
-   339            05  DFHPF22                   PIC X VALUE '›'.
-   340       *                                  EBCDIC Cent sign x'4A'
-   341       *                                  ASCII  Cent sign x'9B'
-   342            05  DFHPF23                   PIC X VALUE '.'.
-   343            05  DFHPF24                   PIC X VALUE '<'.
-   344            05  DFHOPID                   PIC X VALUE 'W'.
-   345            05  DFHMSRE                   PIC X VALUE 'X'.
-   346            05  DFHTRIG                   PIC X VALUE '"'.
-   347       *                                        value QUOTE  "
-   348            05  DFHPEN                    PIC X VALUE '='.
-   349            05  DFHCLRP                   PIC X VALUE 'Ý'.
-   350       *                                  EBCDIC x'6A'
-   351       *                                  ASCII  x'DD'
-   352            05  DFHSTRF                   PIC X VALUE 'h'.
-   353	     *	  DFHQUIT is a CA-Realia CICS Extension
-   354	     *	  It is set by using <Ctrl>+C or <Ctrl>+<Break> Keys
-   355            05  DFHQUIT                   PIC X VALUE '!'.
-   356		  05  DFHNULL			PIC X VALUE LOW-VALUE.
-   358	     *
-   359	      COPY DFHBMSCA.
-   361	      01  DFHBMSCA.
-   362	     *
-   363	     * CA-Realia CICS 6.0 Computer Associates International, Inc.
-   364	     *
-   365	     * Revision Information
-   366	     * ^{File:dfhbmsca.cob}
-   367	     * ^{Timestamp:Tue Oct 08 15:34:54 1996}
-   368	     * ^{Revision:2.0}   369	     *
-   370	     *	Note:This FILE is provided with most values as quoted literals
-   371	     *	     so that the file can be used for both ASCII and EBCDIC
-   372	     *	     programs
-   373	     *
-   374	     *	     The only exceptions are some 3270 Data Stream Orders
-   375	     *	     They use different Hexadecimal values for ASCII and
-   376	     *	     EBCDIC and they cannot be expressed as quoted literals
-   377	     *	     as the values are <Line Feed>, <Tab>, <End of File> etc.
-   378	     *	     characters in ASCII
-   379	     *
-   380	     *	     They have their values set up to default to the EBCDIC
-   381	     *	     values.
-   382	     *
-   383	     *	     3270 orders are only needed for EXEC CICS SEND and RECEIVE
-   384	     *	     and SEND TEXT with imbedded format orders.
-   385	     *	     If you use these values in ASCII programs the values
-   386	     *	     must be changed.
-   387	     *
-   388	     *	     An alternative is to use REPLACING to change the values.
-   389	     *
-   390	     *	  i.e. COPY DFHBMSCA replacing
-   391	     *			    ==005== BY ==009==	*> DFHPT
-   392	     *			    ==021== BY ==010==	*> DFHNL
-   393	     *			    ==040== BY ==021==	*> DFHSA
-   394	     *			    ==041== BY ==031==	*> DFHSFE
-   395	     *			    ==044== BY ==023==	*> DFHMF
-   396	     *			    ==060== BY ==020==	*> DFHRA
-   397	     *			    ==063== BY ==026==. *> DFHSUB
-   398	     *
-   399	     ******************************************************************
-   400	     *BMS and Terminal Control - Order & Attributes constants	      *
-   401	     ******************************************************************
-   402	     *
-   403	     *	  Field Attributes
-   404	     *
-   405            05  DFHBMASB                          PIC X VALUE '8'.
-   406            05  DFHBMASF                          PIC X VALUE '1'.
-   407            05  DFHBMASK                          PIC X VALUE '0'.
-   408            05  DFHBMBRY                          PIC X VALUE 'H'.
-   409            05  DFHBMDAR                          PIC X VALUE '<'.
-   410            05  DFHBMFSE                          PIC X VALUE 'A'.
-   411            05  DFHBMPRF                          PIC X VALUE '/'.
-   412            05  DFHBMPRO                          PIC X VALUE '-'.
-   413            05  DFHBMUNN                          PIC X VALUE '&'.
-   414            05  DFHBMUNP                          PIC X VALUE ' '.
-   415            05  DFHUNNUM                          PIC X VALUE 'J'.
-   416	     *
-   417	     *	  partially supported
-   418	     *
-   419            05  DFHUNNOD                          PIC X VALUE '('.
-   420            05  DFHUNIMD                          PIC X VALUE 'I'.
-   421            05  DFHUNINT                          PIC X VALUE 'R'.
-   422            05  DFHUNNON                          PIC X VALUE '('.
-   423            05  DFHPROTI                          PIC X VALUE 'Y'.
-   424            05  DFHPROTN                          PIC X VALUE '%'.
-   425	     *
-   426	     *	  These values are additions to mainframe constants
-   427	     *
-   428            05  DFHBMS-ASK-DARK                   PIC X VALUE '@'.   429            05  DFHBMS-ASK-BRY-FSET               PIC X VALUE '9'.
-   430            05  DFHBMS-ASK-DAR-FSET               PIC X VALUE ''''.
-   431	     *						      VALUE APOST
-   432            05  DFHBMS-PRO-BRY-FSET               PIC X VALUE 'Z'.
-   433            05  DFHBMS-PRO-DAR-FSET               PIC X VALUE '_'.
-   434            05  DFHBMS-NUM-BRY                    PIC X VALUE 'Q'.
-   435            05  DFHBMS-NUM-DAR                    PIC X VALUE '*'.
-   436            05  DFHBMS-NUM-DAR-FSET               PIC X VALUE ')'.
-   437	     *
-   438	     *	  Field Flag values
-   439		  05  DFHBMEOF-VAL VALUE 128		PIC S9(4) COMP-4.
-   440		  05  FILLER REDEFINES DFHBMEOF-VAL.
-   441		      10  FILLER			PIC X.
-   442		      10  DFHBMEOF			PIC X.
-   443       *                                          x'80'.
-   444		  05  DFHBMCUR-VAL VALUE 002		PIC S9(4) COMP-4.
-   445		  05  FILLER REDEFINES DFHBMCUR-VAL.
-   446		      10  FILLER			PIC X.
-   447		      10  DFHBMCUR			PIC X.
-   448       *                                          x'02'.
-   449		  05  DFHBMMEC-VAL VALUE 130		PIC S9(4) COMP-4.
-   450		  05  FILLER REDEFINES DFHBMMEC-VAL.
-   451		      10  FILLER			PIC X.
-   452		      10  DFHBMMEC			PIC X.
-   453       *                                          x'82'.
-   454       *                                          x'02'.
-   455		  05  DFHBMFLG-VAL  VALUE 0		PIC S9(4) COMP-4.
-   456		      88  DFHERASE			VALUES 128 130.
-   457       *                                          x'80' X'82'
-   458		      88  DFHCURSR			VALUES 002 130.
-   459       *                                          x'02' X'82'
-   460		  05  FILLER REDEFINES DFHBMFLG-VAL.
-   461		      10  FILLER			PIC X.
-   462		      10  DFHBMFLG			PIC X.
-   463
-   464		  05  DFHBMDUP-VAL VALUE 028		PIC S9(4) COMP-4.
-   465		  05  FILLER REDEFINES DFHBMDUP-VAL.
-   466		      10  FILLER			PIC X.
-   467		      10  DFHBMDUP			PIC X.
-   468       *                                              x'1C'
-   469	     *
-   470	     ******************************************************************
-   471	     *	  supported 327X Extended Attributes
-   472	     *
-   473	     *	  Extended COLOR Attributes
-   474	     *
-   475            05  DFHDFCOL                          PIC X VALUE '0'.
-   476            05  DFHBLUE                           PIC X VALUE '1'.
-   477            05  DFHRED                            PIC X VALUE '2'.
-   478            05  DFHPINK                           PIC X VALUE '3'.
-   479            05  DFHGREEN                          PIC X VALUE '4'.
-   480            05  DFHTURQ                           PIC X VALUE '5'.
-   481            05  DFHYELLO                          PIC X VALUE '6'.
-   482            05  DFHNEUTR                          PIC X VALUE '7'.
-   483	     *
-   484	     *	  Extended HILIGHT Attributes
-   485	     *
-   486            05  DFHDFHI                           PIC X VALUE '0'.
-   487            05  DFHBLINK                          PIC X VALUE '1'.
-   488            05  DFHREVRS                          PIC X VALUE '2'.   489            05  DFHUNDLN                          PIC X VALUE '4'.
-   490	     *
-   491	     ******************************************************************
-   492	     *	  supported 327X Data Stream Orders
-   493	     *
-   494		  05  DFHSBA-VAL VALUE 017		 PIC S9(4) COMP-4.
-   495		  05  FILLER REDEFINES DFHSBA-VAL.
-   496		      10  FILLER			PIC X.
-   497		      10  DFHSBA			PIC X.
-   498       *                                              x'11'
-   499		  05  DFHEUA-VAL VALUE 018		PIC S9(4) COMP-4.
-   500		  05  FILLER REDEFINES DFHEUA-VAL.
-   501		      10  FILLER			PIC X.
-   502		      10  DFHEUA			PIC X.
-   503       *                                              x'12'
-   504		  05  DFHIC-VAL VALUE 019		PIC S9(4) COMP-4.
-   505		  05  FILLER REDEFINES DFHIC-VAL.
-   506		      10  FILLER			PIC X.
-   507		      10  DFHIC 			PIC X.
-   508       *                                              X'13'.
-   509		  05  DFHSF-VAL VALUE 029		PIC S9(4) COMP-4.
-   510		  05  FILLER REDEFINES DFHSF-VAL.
-   511		      10  FILLER			PIC X.
-   512		      10  DFHSF 			PIC X.
-   513       *                                              X'1D'.
-   514		  05  DFHPT-VAL VALUE 005		PIC S9(4) COMP-4.
-   515		      88 DFHPT-VAL-EBCDIC		VALUE 5.
-   516		      88 DFHPT-VAL-ASCII		VALUE 9.
-   517		  05  FILLER REDEFINES DFHPT-VAL.
-   518		      10  FILLER			PIC X.
-   519		      10  DFHPT 			PIC X.
-   520       *                                              EBCDIC X'05'.
-   521       *                                              ASCII  X'09'.
-   522		  05  DFHRA-VAL VALUE 060		PIC S9(4) COMP-4.
-   523		      88 DFHRA-VAL-EBCDIC		VALUE 60.
-   524		      88 DFHRA-VAL-ASCII		VALUE 20.
-   525		  05  FILLER REDEFINES DFHRA-VAL.
-   526		      10  FILLER			PIC X.
-   527		      10  DFHRA 			PIC X.
-   528       *                                              EBCDIC x'3C'
-   529       *                                              ASCII  x'14'
-   530		  05  DFHSFE-VAL VALUE 041		PIC S9(4) COMP-4.
-   531		      88 DFHSFE-VAL-EBCDIC		VALUE 41.
-   532		      88 DFHSFE-VAL-ASCII		VALUE 31.
-   533		  05  FILLER REDEFINES DFHSFE-VAL.
-   534		      10  FILLER			PIC X.
-   535		      10  DFHSFE			PIC X.
-   536       *                                              EBCDIC x'29'
-   537       *                                              ASCII  x'1F'
-   538		  05  DFHMF-VAL VALUE 044		PIC S9(4) COMP-4.
-   539		      88 DFHMF-VAL-EBCDIC		VALUE 44.
-   540		      88 DFHMF-VAL-ASCII		VALUE 23.
-   541		  05  FILLER REDEFINES DFHMF-VAL.
-   542		      10  FILLER			PIC X.
-   543		      10  DFHMF 			PIC X.
-   544       *                                              EBCDIC x'2C'
-   545       *                                              ASCII  x'17'
-   546	     *
-   547	     ******************************************************************
-   548	     *	  unsupported 327X Data Stream order codes   549	     *
-   550		  05  DFHSA-VAL VALUE 040		PIC S9(4) COMP-4.
-   551		      88 DFHSA-VAL-EBCDIC		VALUE 40.
-   552		      88 DFHSA-VAL-ASCII		VALUE 21.
-   553		  05  FILLER REDEFINES DFHSA-VAL.
-   554		      10  FILLER			PIC X.
-   555		      10  DFHSA 			PIC X.
-   556       *                                              EBCDIC x'28'
-   557       *                                              ASCII  x'15'
-   558		  05  DFHGE-VAL VALUE 008		PIC S9(4) COMP-4.
-   559		  05  FILLER REDEFINES DFHGE-VAL.
+   152	      01  WS-FIELD01.
+   153		  05 WS-STF01TCKID			PIC X(6).
+   154		  05 WS-STF01TCKIDR REDEFINES WS-STF01TCKID PIC 9(06).
+   155		  05 WS-STF01TCKREQ			PIC X(8).
+   156		  05 WS-STF01TCKSTAT			PIC X(10).
+   157		  05 WS-STF01TCKTTL			PIC X(25).
+   158		  05 WS-STF01TCKDESC			PIC X(100).
+   159		  05 WS-STF01LSTUPD			PIC X(20).
+   160		  05 WS-STF01LSTUPDBY			PIC X(8).
+   161		  05 WS-STF01LSTUPDRMK			PIC X(50).
+   162
+   163	      01  WS-TIX-REC.
+   164		  05  TIX-ID				PIC X(06).
+   165		  05  TIX-REQUESTOR			PIC X(08).
+   166		  05  TIX-STATUS			PIC X(10).
+   167		  05  TIX-TITLE 			PIC X(25).
+   168		  05  TIX-DESC				PIC X(100).
+   169		  05  TIX-DESC-RED REDEFINES TIX-DESC.
+   170		      10  TIX-DESC1			PIC X(50).
+   171		      10  TIX-DESC2			PIC X(50).
+   172		  05  LAST-UPDATE			PIC X(20).
+   173		  05  LAST-UPDATE-RED REDEFINES LAST-UPDATE.
+   174		      10  LAST-UPDATE-DATE		PIC X(11).
+   175		      10  LAST-UPDATE-TIME		PIC X(09).
+   176		  05  UPDATED-BY2.
+   177		      10  UPDBY2			PIC X(7).
+   178		      10  FILLER			PIC X.
+   179		  05  LAST-UPDATE-REM			PIC X(50).
+   180		  05  LAST-UPDATE-REMW REDEFINES LAST-UPDATE-REM.
+   181		      10  LAST-UPDATE-REM1		PIC X(25).
+   182		      10  LAST-UPDATE-REM2		PIC X(25).
+   183   184	      01  WS-LOG.
+   185		  05  LOG-TIX-ID.
+   186		      10  LOG-TIX-ID1			PIC X(6).
+   187		      10  LOG-SEQ-NUM			PIC 9(3).
+   188		  05  LOG-LAST-UPDATE.
+   189		      10  LOG-LAST-UPDATE-DATE		PIC X(10).
+   190		      10  LOG-LAST-UPDATE-TIME		PIC X(10).
+   191		  05  LOG-UPDATED-BY.
+   192		      10  LOG-UPDBY2			PIC X(7).
+   193		      10  FILLER			PIC X.
+   194		  05  LOG-LAST-UPDATE-REM		PIC X(50).
+   195		  05  FILLER				PIC X(02).
+   196
+   197	      01  WS-LOG-PH				PIC X(9).
+   198	      01  WS-LOG-PH2 REDEFINES WS-LOG-PH.
+   199		  05  WS-LOG-ID 			PIC 9(6).
+   200		  05  WS-LOG-SEQ			PIC 9(3).
+   201
+   202	      01  WS-HV 				PIC X(20).
+   203
+   204	      01  WS-ENTRCTR				PIC 9(1).
+   205	      01  WS-HDATE				PIC 9(10).
+   206	      01  WS-HDATE-X REDEFINES WS-HDATE 	PIC X(10).
+   207	      01  WS-HTIME			       PIC 9(15).
+   208	      01  WS-HTIME-X REDEFINES WS-HTIME 	PIC X(8).
+   209	      01  WS-RES-CODE				PIC S9(8) COMP.
+   210
+   211
+   212	     *
+   213		  COPY SM002.
+   215	     * SYMBOLIC MAP of sm002 Created by CACXBMS Version 6.0.27
+   216	      01  SM002MI.
+   217		  02  FILLER				     PIC X(12).
+   218		  02  HEADERL				     PIC S9(4) COMP.
+   219		  02  HEADERF				     PIC X.
+   220		  02  FILLER REDEFINES HEADERF.
+   221		      03  HEADERA			     PIC X.
+   222		  02  HEADERI				     PIC X(013).
+   223		  02  UPDREML				     PIC S9(4) COMP.
+   224		  02  UPDREMF				     PIC X.
+   225		  02  FILLER REDEFINES UPDREMF.
+   226		      03  UPDREMA			     PIC X.
+   227		  02  UPDREMI				     PIC X(021).
+   228		  02  UPDDTL				     PIC S9(4) COMP.
+   229		  02  UPDDTF				     PIC X.
+   230		  02  FILLER REDEFINES UPDDTF.
+   231		      03  UPDDTA			     PIC X.
+   232		  02  UPDDTI				     PIC X(021).
+   233		  02  UPDBY1L				     PIC S9(4) COMP.
+   234		  02  UPDBY1F				     PIC X.
+   235		  02  FILLER REDEFINES UPDBY1F.
+   236		      03  UPDBY1A			     PIC X.
+   237		  02  UPDBY1I				     PIC X(021).
+   238		  02  ERRMSGL				     PIC S9(4) COMP.
+   239		  02  ERRMSGF				     PIC X.
+   240		  02  FILLER REDEFINES ERRMSGF.
+   241		      03  ERRMSGA			     PIC X.
+   242		  02  ERRMSGI				     PIC X(058).
+   243		  02  DATEL				     PIC S9(4) COMP.
+   244		  02  DATEF				     PIC X.   245		  02  FILLER REDEFINES DATEF.
+   246		      03  DATEA 			     PIC X.
+   247		  02  DATEI				     PIC X(010).
+   248		  02  TIMEL				     PIC S9(4) COMP.
+   249		  02  TIMEF				     PIC X.
+   250		  02  FILLER REDEFINES TIMEF.
+   251		      03  TIMEA 			     PIC X.
+   252		  02  TIMEI				     PIC X(008).
+   253		  02  TIXNUML				     PIC S9(4) COMP.
+   254		  02  TIXNUMF				     PIC X.
+   255		  02  FILLER REDEFINES TIXNUMF.
+   256		      03  TIXNUMA			     PIC X.
+   257		  02  TIXNUMI				     PIC X(006).
+   258		  02  TIXTTLL				     PIC S9(4) COMP.
+   259		  02  TIXTTLF				     PIC X.
+   260		  02  FILLER REDEFINES TIXTTLF.
+   261		      03  TIXTTLA			     PIC X.
+   262		  02  TIXTTLI				     PIC X(025).
+   263		  02  TIXDESC1L 			     PIC S9(4) COMP.
+   264		  02  TIXDESC1F 			     PIC X.
+   265		  02  FILLER REDEFINES TIXDESC1F.
+   266		      03  TIXDESC1A			     PIC X.
+   267		  02  TIXDESC1I 			     PIC X(040).
+   268		  02  TIXDESC2L 			     PIC S9(4) COMP.
+   269		  02  TIXDESC2F 			     PIC X.
+   270		  02  FILLER REDEFINES TIXDESC2F.
+   271		      03  TIXDESC2A			     PIC X.
+   272		  02  TIXDESC2I 			     PIC X(040).
+   273		  02  STATL				     PIC S9(4) COMP.
+   274		  02  STATF				     PIC X.
+   275		  02  FILLER REDEFINES STATF.
+   276		      03  STATA 			     PIC X.
+   277		  02  STATI				     PIC X(008).
+   278		  02  UPDRMKL				     PIC S9(4) COMP.
+   279		  02  UPDRMKF				     PIC X.
+   280		  02  FILLER REDEFINES UPDRMKF.
+   281		      03  UPDRMKA			     PIC X.
+   282		  02  UPDRMKI				     PIC X(025).
+   283		  02  UPDRMK1L				     PIC S9(4) COMP.
+   284		  02  UPDRMK1F				     PIC X.
+   285		  02  FILLER REDEFINES UPDRMK1F.
+   286		      03  UPDRMK1A			     PIC X.
+   287		  02  UPDRMK1I				     PIC X(025).
+   288		  02  DATE1L				     PIC S9(4) COMP.
+   289		  02  DATE1F				     PIC X.
+   290		  02  FILLER REDEFINES DATE1F.
+   291		      03  DATE1A			     PIC X.
+   292		  02  DATE1I				     PIC X(011).
+   293		  02  TIME1L				     PIC S9(4) COMP.
+   294		  02  TIME1F				     PIC X.
+   295		  02  FILLER REDEFINES TIME1F.
+   296		      03  TIME1A			     PIC X.
+   297		  02  TIME1I				     PIC X(010).
+   298		  02  UPDBY2L				     PIC S9(4) COMP.
+   299		  02  UPDBY2F				     PIC X.
+   300		  02  FILLER REDEFINES UPDBY2F.
+   301		      03  UPDBY2A			     PIC X.
+   302		  02  UPDBY2I				     PIC X(007).
+   303	      01  SM002MO REDEFINES SM002MI.
+   304		  02  FILLER				     PIC X(12).   305		  02  FILLER				     PIC XX.
+   306		  02  FILLER				     PIC X.
+   307		  02  HEADERO				     PIC X(013).
+   308		  02  FILLER				     PIC XX.
+   309		  02  FILLER				     PIC X.
+   310		  02  UPDREMO				     PIC X(021).
+   311		  02  FILLER				     PIC XX.
+   312		  02  FILLER				     PIC X.
+   313		  02  UPDDTO				     PIC X(021).
+   314		  02  FILLER				     PIC XX.
+   315		  02  FILLER				     PIC X.
+   316		  02  UPDBY1O				     PIC X(021).
+   317		  02  FILLER				     PIC XX.
+   318		  02  FILLER				     PIC X.
+   319		  02  ERRMSGO				     PIC X(058).
+   320		  02  FILLER				     PIC XX.
+   321		  02  FILLER				     PIC X.
+   322		  02  DATEO				     PIC X(010).
+   323		  02  FILLER				     PIC XX.
+   324		  02  FILLER				     PIC X.
+   325		  02  TIMEO				     PIC X(008).
+   326		  02  FILLER				     PIC XX.
+   327		  02  FILLER				     PIC X.
+   328		  02  TIXNUMO				     PIC X(006).
+   329		  02  FILLER				     PIC XX.
+   330		  02  FILLER				     PIC X.
+   331		  02  TIXTTLO				     PIC X(025).
+   332		  02  FILLER				     PIC XX.
+   333		  02  FILLER				     PIC X.
+   334		  02  TIXDESC1O 			     PIC X(040).
+   335		  02  FILLER				     PIC XX.
+   336		  02  FILLER				     PIC X.
+   337		  02  TIXDESC2O 			     PIC X(040).
+   338		  02  FILLER				     PIC XX.
+   339		  02  FILLER				     PIC X.
+   340		  02  STATO				     PIC X(008).
+   341		  02  FILLER				     PIC XX.
+   342		  02  FILLER				     PIC X.
+   343		  02  UPDRMKO				     PIC X(025).
+   344		  02  FILLER				     PIC XX.
+   345		  02  FILLER				     PIC X.
+   346		  02  UPDRMK1O				     PIC X(025).
+   347		  02  FILLER				     PIC XX.
+   348		  02  FILLER				     PIC X.
+   349		  02  DATE1O				     PIC X(011).
+   350		  02  FILLER				     PIC XX.
+   351		  02  FILLER				     PIC X.
+   352		  02  TIME1O				     PIC X(010).
+   353		  02  FILLER				     PIC XX.
+   354		  02  FILLER				     PIC X.
+   355		  02  UPDBY2O				     PIC X(007).
+   357	     *
+   358		  COPY DFHAID.
+   360	      01  DFHAID.
+   361	     *
+   362	     * CA-Realia CICS 6.0 Computer Associates International, Inc.
+   363	     *
+   364	     * Revision Information
+   365	     * ^{File:dfhaid.cob  }
+   366	     * ^{Timestamp:Thu May 15 14:02:52 1997}   367	     * ^{Revision:2.0}
+   368	     *
+   369	     *This is the AID constants copy file
+   370	     *
+   371            05  DFHENTER                  PIC X VALUE ''''.
+   372	     *					value APOST
+   373            05  DFHCLEAR                  PIC X VALUE '_'.
+   374            05  DFHPA1                    PIC X VALUE '%'.
+   375            05  DFHPA2                    PIC X VALUE '>'.
+   376            05  DFHPA3                    PIC X VALUE ','.
+   377            05  DFHPF1                    PIC X VALUE '1'.
+   378            05  DFHPF2                    PIC X VALUE '2'.
+   379            05  DFHPF3                    PIC X VALUE '3'.
+   380            05  DFHPF4                    PIC X VALUE '4'.
+   381            05  DFHPF5                    PIC X VALUE '5'.
+   382            05  DFHPF6                    PIC X VALUE '6'.
+   383            05  DFHPF7                    PIC X VALUE '7'.
+   384            05  DFHPF8                    PIC X VALUE '8'.
+   385            05  DFHPF9                    PIC X VALUE '9'.
+   386            05  DFHPF10                   PIC X VALUE ':'.
+   387            05  DFHPF11                   PIC X VALUE '#'.
+   388            05  DFHPF12                   PIC X VALUE '@'.
+   389            05  DFHPF13                   PIC X VALUE 'A'.
+   390            05  DFHPF14                   PIC X VALUE 'B'.
+   391            05  DFHPF15                   PIC X VALUE 'C'.
+   392            05  DFHPF16                   PIC X VALUE 'D'.
+   393            05  DFHPF17                   PIC X VALUE 'E'.
+   394            05  DFHPF18                   PIC X VALUE 'F'.
+   395            05  DFHPF19                   PIC X VALUE 'G'.
+   396            05  DFHPF20                   PIC X VALUE 'H'.
+   397            05  DFHPF21                   PIC X VALUE 'I'.
+   398            05  DFHPF22                   PIC X VALUE '›'.
+   399       *                                  EBCDIC Cent sign x'4A'
+   400       *                                  ASCII  Cent sign x'9B'
+   401            05  DFHPF23                   PIC X VALUE '.'.
+   402            05  DFHPF24                   PIC X VALUE '<'.
+   403            05  DFHOPID                   PIC X VALUE 'W'.
+   404            05  DFHMSRE                   PIC X VALUE 'X'.
+   405            05  DFHTRIG                   PIC X VALUE '"'.
+   406       *                                        value QUOTE  "
+   407            05  DFHPEN                    PIC X VALUE '='.
+   408            05  DFHCLRP                   PIC X VALUE 'Ý'.
+   409       *                                  EBCDIC x'6A'
+   410       *                                  ASCII  x'DD'
+   411            05  DFHSTRF                   PIC X VALUE 'h'.
+   412	     *	  DFHQUIT is a CA-Realia CICS Extension
+   413	     *	  It is set by using <Ctrl>+C or <Ctrl>+<Break> Keys
+   414            05  DFHQUIT                   PIC X VALUE '!'.
+   415		  05  DFHNULL			PIC X VALUE LOW-VALUE.
+   417	     *
+   418	      COPY DFHBMSCA.
+   420	      01  DFHBMSCA.
+   421	     *
+   422	     * CA-Realia CICS 6.0 Computer Associates International, Inc.
+   423	     *
+   424	     * Revision Information
+   425	     * ^{File:dfhbmsca.cob}
+   426	     * ^{Timestamp:Tue Oct 08 15:34:54 1996}
+   427	     * ^{Revision:2.0}
+   428	     *   429	     *	Note:This FILE is provided with most values as quoted literals
+   430	     *	     so that the file can be used for both ASCII and EBCDIC
+   431	     *	     programs
+   432	     *
+   433	     *	     The only exceptions are some 3270 Data Stream Orders
+   434	     *	     They use different Hexadecimal values for ASCII and
+   435	     *	     EBCDIC and they cannot be expressed as quoted literals
+   436	     *	     as the values are <Line Feed>, <Tab>, <End of File> etc.
+   437	     *	     characters in ASCII
+   438	     *
+   439	     *	     They have their values set up to default to the EBCDIC
+   440	     *	     values.
+   441	     *
+   442	     *	     3270 orders are only needed for EXEC CICS SEND and RECEIVE
+   443	     *	     and SEND TEXT with imbedded format orders.
+   444	     *	     If you use these values in ASCII programs the values
+   445	     *	     must be changed.
+   446	     *
+   447	     *	     An alternative is to use REPLACING to change the values.
+   448	     *
+   449	     *	  i.e. COPY DFHBMSCA replacing
+   450	     *			    ==005== BY ==009==	*> DFHPT
+   451	     *			    ==021== BY ==010==	*> DFHNL
+   452	     *			    ==040== BY ==021==	*> DFHSA
+   453	     *			    ==041== BY ==031==	*> DFHSFE
+   454	     *			    ==044== BY ==023==	*> DFHMF
+   455	     *			    ==060== BY ==020==	*> DFHRA
+   456	     *			    ==063== BY ==026==. *> DFHSUB
+   457	     *
+   458	     ******************************************************************
+   459	     *BMS and Terminal Control - Order & Attributes constants	      *
+   460	     ******************************************************************
+   461	     *
+   462	     *	  Field Attributes
+   463	     *
+   464            05  DFHBMASB                          PIC X VALUE '8'.
+   465            05  DFHBMASF                          PIC X VALUE '1'.
+   466            05  DFHBMASK                          PIC X VALUE '0'.
+   467            05  DFHBMBRY                          PIC X VALUE 'H'.
+   468            05  DFHBMDAR                          PIC X VALUE '<'.
+   469            05  DFHBMFSE                          PIC X VALUE 'A'.
+   470            05  DFHBMPRF                          PIC X VALUE '/'.
+   471            05  DFHBMPRO                          PIC X VALUE '-'.
+   472            05  DFHBMUNN                          PIC X VALUE '&'.
+   473            05  DFHBMUNP                          PIC X VALUE ' '.
+   474            05  DFHUNNUM                          PIC X VALUE 'J'.
+   475	     *
+   476	     *	  partially supported
+   477	     *
+   478            05  DFHUNNOD                          PIC X VALUE '('.
+   479            05  DFHUNIMD                          PIC X VALUE 'I'.
+   480            05  DFHUNINT                          PIC X VALUE 'R'.
+   481            05  DFHUNNON                          PIC X VALUE '('.
+   482            05  DFHPROTI                          PIC X VALUE 'Y'.
+   483            05  DFHPROTN                          PIC X VALUE '%'.
+   484	     *
+   485	     *	  These values are additions to mainframe constants
+   486	     *
+   487            05  DFHBMS-ASK-DARK                   PIC X VALUE '@'.
+   488            05  DFHBMS-ASK-BRY-FSET               PIC X VALUE '9'.   489            05  DFHBMS-ASK-DAR-FSET               PIC X VALUE ''''.
+   490	     *						      VALUE APOST
+   491            05  DFHBMS-PRO-BRY-FSET               PIC X VALUE 'Z'.
+   492            05  DFHBMS-PRO-DAR-FSET               PIC X VALUE '_'.
+   493            05  DFHBMS-NUM-BRY                    PIC X VALUE 'Q'.
+   494            05  DFHBMS-NUM-DAR                    PIC X VALUE '*'.
+   495            05  DFHBMS-NUM-DAR-FSET               PIC X VALUE ')'.
+   496	     *
+   497	     *	  Field Flag values
+   498		  05  DFHBMEOF-VAL VALUE 128		PIC S9(4) COMP-4.
+   499		  05  FILLER REDEFINES DFHBMEOF-VAL.
+   500		      10  FILLER			PIC X.
+   501		      10  DFHBMEOF			PIC X.
+   502       *                                          x'80'.
+   503		  05  DFHBMCUR-VAL VALUE 002		PIC S9(4) COMP-4.
+   504		  05  FILLER REDEFINES DFHBMCUR-VAL.
+   505		      10  FILLER			PIC X.
+   506		      10  DFHBMCUR			PIC X.
+   507       *                                          x'02'.
+   508		  05  DFHBMMEC-VAL VALUE 130		PIC S9(4) COMP-4.
+   509		  05  FILLER REDEFINES DFHBMMEC-VAL.
+   510		      10  FILLER			PIC X.
+   511		      10  DFHBMMEC			PIC X.
+   512       *                                          x'82'.
+   513       *                                          x'02'.
+   514		  05  DFHBMFLG-VAL  VALUE 0		PIC S9(4) COMP-4.
+   515		      88  DFHERASE			VALUES 128 130.
+   516       *                                          x'80' X'82'
+   517		      88  DFHCURSR			VALUES 002 130.
+   518       *                                          x'02' X'82'
+   519		  05  FILLER REDEFINES DFHBMFLG-VAL.
+   520		      10  FILLER			PIC X.
+   521		      10  DFHBMFLG			PIC X.
+   522
+   523		  05  DFHBMDUP-VAL VALUE 028		PIC S9(4) COMP-4.
+   524		  05  FILLER REDEFINES DFHBMDUP-VAL.
+   525		      10  FILLER			PIC X.
+   526		      10  DFHBMDUP			PIC X.
+   527       *                                              x'1C'
+   528	     *
+   529	     ******************************************************************
+   530	     *	  supported 327X Extended Attributes
+   531	     *
+   532	     *	  Extended COLOR Attributes
+   533	     *
+   534            05  DFHDFCOL                          PIC X VALUE '0'.
+   535            05  DFHBLUE                           PIC X VALUE '1'.
+   536            05  DFHRED                            PIC X VALUE '2'.
+   537            05  DFHPINK                           PIC X VALUE '3'.
+   538            05  DFHGREEN                          PIC X VALUE '4'.
+   539            05  DFHTURQ                           PIC X VALUE '5'.
+   540            05  DFHYELLO                          PIC X VALUE '6'.
+   541            05  DFHNEUTR                          PIC X VALUE '7'.
+   542	     *
+   543	     *	  Extended HILIGHT Attributes
+   544	     *
+   545            05  DFHDFHI                           PIC X VALUE '0'.
+   546            05  DFHBLINK                          PIC X VALUE '1'.
+   547            05  DFHREVRS                          PIC X VALUE '2'.
+   548            05  DFHUNDLN                          PIC X VALUE '4'.   549	     *
+   550	     ******************************************************************
+   551	     *	  supported 327X Data Stream Orders
+   552	     *
+   553		  05  DFHSBA-VAL VALUE 017		 PIC S9(4) COMP-4.
+   554		  05  FILLER REDEFINES DFHSBA-VAL.
+   555		      10  FILLER			PIC X.
+   556		      10  DFHSBA			PIC X.
+   557       *                                              x'11'
+   558		  05  DFHEUA-VAL VALUE 018		PIC S9(4) COMP-4.
+   559		  05  FILLER REDEFINES DFHEUA-VAL.
    560		      10  FILLER			PIC X.
-   561		      10  DFHGE 			PIC X.
-   562       *                                              X'08'.
-   563	     *
-   564	     ******************************************************************
-   565	     *	  SFE and MF supported attribute types
-   566	     *
-   567            05  DFHCOLOR                          PIC X VALUE 'ƒ'.
-   568       *                                              EBCDIC x'42'
-   569       *                                              ASCII  x'83'
-   570            05  DFHHLT                            PIC X VALUE 'Ö'.
-   571       *                                              EBCDIC x'41'
-   572       *                                              ASCII  x'D6'
-   573            05  DFH3270                           PIC X VALUE '{'.
-   574	     *
-   575	     *	  supported for SEND TEXT command and printer terminal
-   576	     *
-   577		  05  DFHBMPNL-VAL VALUE 021		PIC S9(4) COMP-4.
-   578		      88 DFHBMPNL-VAL-EBCDIC		VALUE 21.
-   579		      88 DFHBMPNL-VAL-ASCII		VALUE 10.
-   580		  05  FILLER REDEFINES DFHBMPNL-VAL.
-   581		      10  FILLER			PIC X.
-   582		      10  DFHBMPNL			PIC X.
-   583       *                                              EBCDIC X'15'.
-   584       *                                              ASCII  X'0A'.
-   585	     *
-   586	     ******************************************************************
-   587	     *	  Printer terminal data stream only
-   588	     *
-   589		  05  DFHBMPFF-VAL VALUE 012		PIC S9(4) COMP-4.
-   590		  05  FILLER REDEFINES DFHBMPFF-VAL.
-   591		      10  FILLER			PIC X.
-   592		      10  DFHBMPFF			PIC X.
-   593       *                                              X'0C'.
-   594		  05  DFHBMPCR-VAL VALUE 013		PIC S9(4) COMP-4.
-   595		  05  FILLER REDEFINES DFHBMPCR-VAL.
-   596		      10  FILLER			PIC X.
-   597		      10  DFHBMPCR			PIC X.
-   598       *                                              X'0D'.
-   599		  05  DFHBMPEM-VAL VALUE 025		PIC S9(4) COMP-4.
-   600		  05  FILLER REDEFINES DFHBMPEM-VAL.
+   561		      10  DFHEUA			PIC X.
+   562       *                                              x'12'
+   563		  05  DFHIC-VAL VALUE 019		PIC S9(4) COMP-4.
+   564		  05  FILLER REDEFINES DFHIC-VAL.
+   565		      10  FILLER			PIC X.
+   566		      10  DFHIC 			PIC X.
+   567       *                                              X'13'.
+   568		  05  DFHSF-VAL VALUE 029		PIC S9(4) COMP-4.
+   569		  05  FILLER REDEFINES DFHSF-VAL.
+   570		      10  FILLER			PIC X.
+   571		      10  DFHSF 			PIC X.
+   572       *                                              X'1D'.
+   573		  05  DFHPT-VAL VALUE 005		PIC S9(4) COMP-4.
+   574		      88 DFHPT-VAL-EBCDIC		VALUE 5.
+   575		      88 DFHPT-VAL-ASCII		VALUE 9.
+   576		  05  FILLER REDEFINES DFHPT-VAL.
+   577		      10  FILLER			PIC X.
+   578		      10  DFHPT 			PIC X.
+   579       *                                              EBCDIC X'05'.
+   580       *                                              ASCII  X'09'.
+   581		  05  DFHRA-VAL VALUE 060		PIC S9(4) COMP-4.
+   582		      88 DFHRA-VAL-EBCDIC		VALUE 60.
+   583		      88 DFHRA-VAL-ASCII		VALUE 20.
+   584		  05  FILLER REDEFINES DFHRA-VAL.
+   585		      10  FILLER			PIC X.
+   586		      10  DFHRA 			PIC X.
+   587       *                                              EBCDIC x'3C'
+   588       *                                              ASCII  x'14'
+   589		  05  DFHSFE-VAL VALUE 041		PIC S9(4) COMP-4.
+   590		      88 DFHSFE-VAL-EBCDIC		VALUE 41.
+   591		      88 DFHSFE-VAL-ASCII		VALUE 31.
+   592		  05  FILLER REDEFINES DFHSFE-VAL.
+   593		      10  FILLER			PIC X.
+   594		      10  DFHSFE			PIC X.
+   595       *                                              EBCDIC x'29'
+   596       *                                              ASCII  x'1F'
+   597		  05  DFHMF-VAL VALUE 044		PIC S9(4) COMP-4.
+   598		      88 DFHMF-VAL-EBCDIC		VALUE 44.
+   599		      88 DFHMF-VAL-ASCII		VALUE 23.
+   600		  05  FILLER REDEFINES DFHMF-VAL.
    601		      10  FILLER			PIC X.
-   602		      10  DFHBMPEM			PIC X.
-   603       *                                              X'19'.
-   604	     *
-   605	     ******************************************************************
-   606	     *	  unsupported Miscellaneous attributes and constants
-   607	     *
-   608		  05  DFHALL				PIC X VALUE LOW-VALUES.   609            05  DFHBASE                           PIC X VALUE '0'.
-   610		  05  DFHBMDET				PIC X VALUE LOW-VALUES.
-   611		  05  DFHBMPSOSI-VAL VALUE 3599 	PIC S9(4) COMP-4.
-   612		  05  FILLER REDEFINES DFHBMPSOSI-VAL.
-   613		      10  DFHBMPSO			PIC X.
-   614       *                                              X'0E'.
-   615		      10  DFHBMPSI			PIC X.
-   616       *                                              X'0F'.
-   617		  05  DFHDFT VALUE HIGH-VALUES		PIC X.
-   618            05  DFHERROR                          PIC X VALUE '¶'.
-   619       *                                              EBCDIC X'1A'.
-   620       *                                              ASCII  X'B6'.
-   621            05  DFHFIL                            PIC X VALUE '4'.
-   622            05  DFHMENT                           PIC X VALUE '2'.
-   623            05  DFHMET                            PIC X VALUE '3'.
-   624            05  DFHMFE                            PIC X VALUE '6'.
-   625            05  DFHMFET                           PIC X VALUE '7'.
-   626            05  DFHMFT                            PIC X VALUE '5'.
-   627            05  DFHMT                             PIC X VALUE '1'.
-   628            05  DFHOUTLN                          PIC X VALUE 'B'.
-   629            05  DFHPS                             PIC X VALUE '„'.
-   630       *                                              EBCDIC x'43'
-   631       *                                              ASCII  x'84'
-   632            05  DFHVAL                            PIC X VALUE 'A'.
+   602		      10  DFHMF 			PIC X.
+   603       *                                              EBCDIC x'2C'
+   604       *                                              ASCII  x'17'
+   605	     *
+   606	     ******************************************************************
+   607	     *	  unsupported 327X Data Stream order codes
+   608	     *   609		  05  DFHSA-VAL VALUE 040		PIC S9(4) COMP-4.
+   610		      88 DFHSA-VAL-EBCDIC		VALUE 40.
+   611		      88 DFHSA-VAL-ASCII		VALUE 21.
+   612		  05  FILLER REDEFINES DFHSA-VAL.
+   613		      10  FILLER			PIC X.
+   614		      10  DFHSA 			PIC X.
+   615       *                                              EBCDIC x'28'
+   616       *                                              ASCII  x'15'
+   617		  05  DFHGE-VAL VALUE 008		PIC S9(4) COMP-4.
+   618		  05  FILLER REDEFINES DFHGE-VAL.
+   619		      10  FILLER			PIC X.
+   620		      10  DFHGE 			PIC X.
+   621       *                                              X'08'.
+   622	     *
+   623	     ******************************************************************
+   624	     *	  SFE and MF supported attribute types
+   625	     *
+   626            05  DFHCOLOR                          PIC X VALUE 'ƒ'.
+   627       *                                              EBCDIC x'42'
+   628       *                                              ASCII  x'83'
+   629            05  DFHHLT                            PIC X VALUE 'Ö'.
+   630       *                                              EBCDIC x'41'
+   631       *                                              ASCII  x'D6'
+   632            05  DFH3270                           PIC X VALUE '{'.
    633	     *
-   634		  05  DFHSUB-VAL   VALUE 063		PIC S9(4) COMP-4.
-   635		      88 DFHSUB-VAL-EBCDIC		VALUE 63.
-   636		      88 DFHSUB-VAL-ASCII		VALUE 26.
-   637		  05  FILLER REDEFINES DFHSUB-VAL.
-   638		      10  FILLER			PIC X.
-   639		      10  DFHSUB			PIC X.
-   640       *                                              EBCDIC X'3F'.
-   641       *                                              ASCII  X'1A'.
-   642	     *
-   643		  05  DFHFM-VAL    VALUE 030		PIC S9(4) COMP-4.
-   644		  05  FILLER REDEFINES DFHFM-VAL.
-   645		      10  FILLER			PIC X.
-   646		      10  DFHFM 			PIC X.
-   647       *                                              EBCDIC X'1E'.
-   648		  05  DFHEO VALUE HIGH-VALUE		PIC X.
-   650
-   651	      LINKAGE SECTION.
-   653	      01  DFHEIBLK.						       R
-   654		  05 EIBTIME  PIC S9(7) COMP-3. 			       R
-   655		  05 EIBDATE  PIC S9(7) COMP-3. 			       R
-   656		  05 EIBTRNID PIC X(4). 				       R
-   657		  05 EIBTASKN PIC S9(7) COMP-3. 			       R
-   658		  05 EIBTRMID PIC X(4). 				       R
-   659		  05 DFHEIGDI PIC S9(4) COMP-4. 			       R
-   660		  05 EIBCPOSN PIC S9(4) COMP-4. 			       R
-   661		  05 EIBCALEN PIC S9(4) COMP-4. 			       R
-   662		  05 EIBAID   PIC X.					       R
-   663		  05 EIBFN    PIC X(2). 				       R
-   664		  05 EIBRCODE PIC X(6). 				       R
-   665		  05 EIBDS    PIC X(8). 				       R
-   666		  05 EIBREQID PIC X(8). 				       R
-   667		  05 EIBRSRCE PIC X(8). 				       R
-   668		  05 EIBSYNC  PIC X.					       R
-   669		  05 EIBFREE  PIC X.					       R
-   670		  05 EIBRECV  PIC X.					       R   671		  05 EIBSEND  PIC X.					       R
-   672		  05 EIBATT   PIC X.					       R
-   673		  05 EIBEOC   PIC X.					       R
-   674		  05 EIBFMH   PIC X.					       R
-   675		  05 EIBCOMPL PIC X.					       R
-   676		  05 EIBSIG   PIC X.					       R
-   677		  05 EIBCONF  PIC X.					       R
-   678		  05 EIBERR   PIC X.					       R
-   679		  05 EIBERRCD PIC X(4). 				       R
-   680		  05 EIBSYNRB PIC X.					       R
-   681		  05 EIBNODAT PIC X.					       R
-   682		  05 EIBRESP  PIC S9(8) COMP-4. 			       R
-   683		  05 EIBRESP2 PIC S9(8) COMP-4. 			       R
-   684		  05 EIBRLDBK PIC X.					       R
-   685		  05 EIBCARESERVED PIC X(32).				       R
-   687	      01  DFHCOMMAREA				PIC X(20).
-   688	     *
-   689	      PROCEDURE DIVISION					       R
-   691		  USING DFHEIBLK DFHCOMMAREA.				       R
-   716	      100-PROCESS.
-   717
-   718		  MOVE DFHCOMMAREA TO WS-COMMAREA
-   719            IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM02'
-   720		      IF EIBCALEN NOT = +0
-   721
-   722                  IF WS-PROG-STATE = '1'
-   723                    MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
-   724			  MOVE SPACES TO TIXTTLI
-   725			  MOVE SPACES TO TIXDESC1I
-   726			  MOVE 2 TO WS-PROG-STATE
-   727
-   728			  PERFORM 110-NEW-MAP
-   729			ELSE
-   730			  PERFORM 200-REC-MAP
-   731			END-IF
-   732		      ELSE
-   733			  MOVE DFHCOMMAREA TO WS-COMMAREA
-   734                    MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
-   735			  MOVE 1 TO WS-PROG-STATE
-   736			  PERFORM 110-NEW-MAP
-   737
-   738
-   739		      END-IF
-   740		  ELSE
-   742		      EXEC CICS SEND TEXT
-   743			   FROM (WS-INVALID)
-   744			   LENGTH (+15)
-   745			   ERASE
-   746		      END-EXEC
-   777		      EXEC CICS RETURN
-   778		      END-EXEC
-   791		  END-IF.
-   792
-   793
-   794
-   795	      110-NEW-MAP.
-   796
-   797		      MOVE EIBDATE TO WS-DATE.
-   798		  MOVE WS-DATE-X TO DATEO.
-   800		  EXEC CICS ASKTIME   801		   ABSTIME (WS-TIME)
-   802		  END-EXEC
-   820
-   822		  EXEC CICS FORMATTIME
-   823		   ABSTIME (WS-TIME)
-   824             DATESEP ('-')
-   825		   MMDDYY (DATEO)
-   826		   TIME (TIMEO)
-   827             TIMESEP (':')
-   828		  END-EXEC
-   868
-   869		  MOVE DFHBMASB TO TIMEA
-   870		  MOVE DFHBMASB TO DATEA
-   871
-   873		  EXEC CICS
-   874             SEND MAP('SM002M')
-   875             MAPSET('SM002')
-   876		   FROM(SM002MO)
-   877
-   878		   ERASE
-   879		  END-EXEC
-   915
-   917		  EXEC CICS RETURN
-   918             TRANSID('SM02')
-   919		   COMMAREA(WS-COMMAREA)
-   920		  END-EXEC.
-   945
-   946	      200-REC-MAP.
-   948		  EXEC CICS
-   949                RECEIVE MAP('SM002M')
-   950                MAPSET('SM002')
-   951		      INTO (SM002MI)
-   952		  END-EXEC
+   634	     *	  supported for SEND TEXT command and printer terminal
+   635	     *
+   636		  05  DFHBMPNL-VAL VALUE 021		PIC S9(4) COMP-4.
+   637		      88 DFHBMPNL-VAL-EBCDIC		VALUE 21.
+   638		      88 DFHBMPNL-VAL-ASCII		VALUE 10.
+   639		  05  FILLER REDEFINES DFHBMPNL-VAL.
+   640		      10  FILLER			PIC X.
+   641		      10  DFHBMPNL			PIC X.
+   642       *                                              EBCDIC X'15'.
+   643       *                                              ASCII  X'0A'.
+   644	     *
+   645	     ******************************************************************
+   646	     *	  Printer terminal data stream only
+   647	     *
+   648		  05  DFHBMPFF-VAL VALUE 012		PIC S9(4) COMP-4.
+   649		  05  FILLER REDEFINES DFHBMPFF-VAL.
+   650		      10  FILLER			PIC X.
+   651		      10  DFHBMPFF			PIC X.
+   652       *                                              X'0C'.
+   653		  05  DFHBMPCR-VAL VALUE 013		PIC S9(4) COMP-4.
+   654		  05  FILLER REDEFINES DFHBMPCR-VAL.
+   655		      10  FILLER			PIC X.
+   656		      10  DFHBMPCR			PIC X.
+   657       *                                              X'0D'.
+   658		  05  DFHBMPEM-VAL VALUE 025		PIC S9(4) COMP-4.
+   659		  05  FILLER REDEFINES DFHBMPEM-VAL.
+   660		      10  FILLER			PIC X.
+   661		      10  DFHBMPEM			PIC X.
+   662       *                                              X'19'.
+   663	     *
+   664	     ******************************************************************
+   665	     *	  unsupported Miscellaneous attributes and constants
+   666	     *
+   667		  05  DFHALL				PIC X VALUE LOW-VALUES.
+   668            05  DFHBASE                           PIC X VALUE '0'.   669		  05  DFHBMDET				PIC X VALUE LOW-VALUES.
+   670		  05  DFHBMPSOSI-VAL VALUE 3599 	PIC S9(4) COMP-4.
+   671		  05  FILLER REDEFINES DFHBMPSOSI-VAL.
+   672		      10  DFHBMPSO			PIC X.
+   673       *                                              X'0E'.
+   674		      10  DFHBMPSI			PIC X.
+   675       *                                              X'0F'.
+   676		  05  DFHDFT VALUE HIGH-VALUES		PIC X.
+   677            05  DFHERROR                          PIC X VALUE '¶'.
+   678       *                                              EBCDIC X'1A'.
+   679       *                                              ASCII  X'B6'.
+   680            05  DFHFIL                            PIC X VALUE '4'.
+   681            05  DFHMENT                           PIC X VALUE '2'.
+   682            05  DFHMET                            PIC X VALUE '3'.
+   683            05  DFHMFE                            PIC X VALUE '6'.
+   684            05  DFHMFET                           PIC X VALUE '7'.
+   685            05  DFHMFT                            PIC X VALUE '5'.
+   686            05  DFHMT                             PIC X VALUE '1'.
+   687            05  DFHOUTLN                          PIC X VALUE 'B'.
+   688            05  DFHPS                             PIC X VALUE '„'.
+   689       *                                              EBCDIC x'43'
+   690       *                                              ASCII  x'84'
+   691            05  DFHVAL                            PIC X VALUE 'A'.
+   692	     *
+   693		  05  DFHSUB-VAL   VALUE 063		PIC S9(4) COMP-4.
+   694		      88 DFHSUB-VAL-EBCDIC		VALUE 63.
+   695		      88 DFHSUB-VAL-ASCII		VALUE 26.
+   696		  05  FILLER REDEFINES DFHSUB-VAL.
+   697		      10  FILLER			PIC X.
+   698		      10  DFHSUB			PIC X.
+   699       *                                              EBCDIC X'3F'.
+   700       *                                              ASCII  X'1A'.
+   701	     *
+   702		  05  DFHFM-VAL    VALUE 030		PIC S9(4) COMP-4.
+   703		  05  FILLER REDEFINES DFHFM-VAL.
+   704		      10  FILLER			PIC X.
+   705		      10  DFHFM 			PIC X.
+   706       *                                              EBCDIC X'1E'.
+   707		  05  DFHEO VALUE HIGH-VALUE		PIC X.
+   709
+   710	      LINKAGE SECTION.
+   712	      01  DFHEIBLK.						       R
+   713		  05 EIBTIME  PIC S9(7) COMP-3. 			       R
+   714		  05 EIBDATE  PIC S9(7) COMP-3. 			       R
+   715		  05 EIBTRNID PIC X(4). 				       R
+   716		  05 EIBTASKN PIC S9(7) COMP-3. 			       R
+   717		  05 EIBTRMID PIC X(4). 				       R
+   718		  05 DFHEIGDI PIC S9(4) COMP-4. 			       R
+   719		  05 EIBCPOSN PIC S9(4) COMP-4. 			       R
+   720		  05 EIBCALEN PIC S9(4) COMP-4. 			       R
+   721		  05 EIBAID   PIC X.					       R
+   722		  05 EIBFN    PIC X(2). 				       R
+   723		  05 EIBRCODE PIC X(6). 				       R
+   724		  05 EIBDS    PIC X(8). 				       R
+   725		  05 EIBREQID PIC X(8). 				       R
+   726		  05 EIBRSRCE PIC X(8). 				       R
+   727		  05 EIBSYNC  PIC X.					       R
+   728		  05 EIBFREE  PIC X.					       R
+   729		  05 EIBRECV  PIC X.					       R
+   730		  05 EIBSEND  PIC X.					       R   731		  05 EIBATT   PIC X.					       R
+   732		  05 EIBEOC   PIC X.					       R
+   733		  05 EIBFMH   PIC X.					       R
+   734		  05 EIBCOMPL PIC X.					       R
+   735		  05 EIBSIG   PIC X.					       R
+   736		  05 EIBCONF  PIC X.					       R
+   737		  05 EIBERR   PIC X.					       R
+   738		  05 EIBERRCD PIC X(4). 				       R
+   739		  05 EIBSYNRB PIC X.					       R
+   740		  05 EIBNODAT PIC X.					       R
+   741		  05 EIBRESP  PIC S9(8) COMP-4. 			       R
+   742		  05 EIBRESP2 PIC S9(8) COMP-4. 			       R
+   743		  05 EIBRLDBK PIC X.					       R
+   744		  05 EIBCARESERVED PIC X(32).				       R
+   746	      01  DFHCOMMAREA				PIC X(241).
+   747	     *
+   748	      PROCEDURE DIVISION					       R
+   750		  USING DFHEIBLK DFHCOMMAREA.				       R
+   775	      100-PROCESS.
+   776		  MOVE DFHCOMMAREA TO WS-COMMAREA
+   777		  PERFORM 500-VALIDATION
+   778
+   779            IF EIBTRNID = 'SM00' OR 'SM01' OR 'SM02'
+   780		      IF EIBCALEN NOT = +0
+   781
+   782                  IF WS-PROG-STATE = '1'
+   783
+   784                    MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
+   785
+   786			  MOVE 2 TO WS-PROG-STATE
+   787
+   788                    IF WS-PROG-STATE = '2'
+   789			   MOVE SPACES TO TIXTTLI
+   790			   MOVE SPACES TO TIXDESC1I
+   791			   MOVE SPACES TO TIXDESC2I
+   792			   PERFORM 300-READ-STF1
+   793			  END-IF
+   794			  PERFORM 110-NEW-MAP
+   795
+   796			ELSE
+   797			  PERFORM 200-REC-MAP
+   798			END-IF
+   799		      END-IF
+   800		  ELSE
+   802		      EXEC CICS SEND TEXT
+   803			   FROM (WS-INVALID)
+   804			   LENGTH (+15)
+   805			   ERASE
+   806		      END-EXEC
+   837		      EXEC CICS RETURN
+   838		      END-EXEC
+   851		  END-IF.
+   852
+   853
+   854
+   855	      110-NEW-MAP.
+   856		  MOVE TIXTTLO TO WS-TCKTTL
+   857		  MOVE TIXDESC1O TO WS-TCKDESC(1:50)
+   858		  MOVE TIXDESC2O TO WS-TCKDESC(51:50)
+   859		  MOVE WS-USERID1 TO WS-TCKREQ   860		  MOVE STATO TO WS-TCKSTAT
+   861		  MOVE UPDRMKO TO WS-LSTUPDRMK(1:25)
+   862		  MOVE UPDRMK1O TO WS-LSTUPDRMK(26:25)
+   863		  MOVE DATE1O TO WS-LSTUPD(1:10)
+   864		  MOVE TIME1O TO WS-LSTUPD(11:10)
+   865		  MOVE UPDBY2O TO WS-STUPDBY
+   866
+   867		      MOVE EIBDATE TO WS-DATE.
+   868		  MOVE WS-DATE-X TO DATEO.
+   870		  EXEC CICS ASKTIME
+   871		   ABSTIME (WS-TIME)
+   872		  END-EXEC
+   890
+   892		  EXEC CICS FORMATTIME
+   893		   ABSTIME (WS-TIME)
+   894             DATESEP ('-')
+   895		   MMDDYY (DATEO)
+   896		   TIME (TIMEO)
+   897             TIMESEP (':')
+   898		  END-EXEC
+   938
+   939		  MOVE DFHBMASB TO TIMEA
+   940		  MOVE DFHBMASB TO DATEA
+   941
+   943		  EXEC CICS
+   944             SEND MAP('SM002M')
+   945             MAPSET('SM002')
+   946		   FROM(SM002MO)
+   947
+   948		   ERASE
+   949		  END-EXEC
    985
-   986		  IF EIBAID = DFHENTER
-   987             IF WS-PROG-STATE = '2'
-   988
-   989		    MOVE SPACES TO TIXTTLI
-   990		    MOVE SPACES TO TIXDESC1I
-   991		    MOVE SPACES TO TIXDESC2I
-   992		    MOVE SPACES TO STATI
-   993		    MOVE HIGH-VALUES TO WS-STF01TCKID
-   994		    MOVE 3 TO WS-PROG-STATE
-   995
-   996		   PERFORM 300-READ-STF1
-   997
-   998		   ELSE
-   999
-  1000		    IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES
-  1001
-  1002               MOVE 'PRESS PF2 TO ADD TICKET' TO ERRMSGO
-  1003		     CONTINUE
-  1004		    ELSE
-  1005
-  1006		     IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
-  1007                MOVE 'TITLE AND DESCRIPTION IS REQUIRED' TO ERRMSGO
-  1008		     END-IF
-  1009
-  1010		     IF TIXTTLI = SPACES AND TIXDESC1I NOT = SPACES
-  1011                MOVE 'TITLE IS REQUIRED' TO ERRMSGO  1012		     END-IF
-  1013
-  1014		     IF TIXTTLI NOT = SPACES AND TIXDESC1I = SPACES
-  1015                MOVE 'DESCRIPTION IS REQUIRED' TO ERRMSGO
-  1016		     END-IF
-  1017
-  1018		    END-IF
-  1019
-  1020		   END-IF
-  1021
-  1022		  END-IF
-  1023
-  1024		  IF EIBAID = DFHPF2
-  1025		   IF TIXNUML = ZERO OR TIXTTLI = SPACES OR TIXDESC1I = SPACES
-  1026              MOVE 'INVALID SPACES' TO ERRMSGO
-  1027		    PERFORM 110-NEW-MAP
-  1028		   ELSE
-  1029		    MOVE 0 TO WS-ENTRCTR
-  1030		    MOVE DFHDFHI TO UPDREMA
-  1031		    MOVE DFHDFHI TO UPDDTA
-  1032		    MOVE DFHDFHI TO UPDBY1A
-  1033		    MOVE DFHDFHI TO UPDRMKA
-  1034		    MOVE DFHDFHI TO UPDRMK1A
-  1035		    MOVE DFHDFHI TO DATE1A
-  1036		    MOVE DFHDFHI TO TIME1A
-  1037		    MOVE DFHDFHI TO UPDBY2A
-  1038
-  1039		    MOVE SPACES TO WS-STF01TCKREQ
-  1040		    MOVE SPACES TO WS-STF01TCKSTAT
-  1041		    MOVE SPACES TO WS-STF01TCKTTL
-  1042		    MOVE SPACES TO WS-STF01TCKDESC
-  1043		    MOVE SPACES TO WS-STF01LSTUPD
-  1044		    MOVE SPACES TO WS-STF01LSTUPDBY
-  1045		    MOVE SPACES TO WS-STF01LSTUPDRMK
-  1046
-  1047		    MOVE TIXTTLI TO WS-STF01TCKTTL
-  1048		    MOVE TIXDESC1O TO WS-STF01TCKDESC(1:50)
-  1049		    MOVE TIXDESC2O TO WS-STF01TCKDESC(51:50)
-  1050              MOVE 'CREATED' TO STATI
-  1051		    MOVE STATI TO WS-STF01TCKSTAT
-  1052              MOVE 'TICKET CREATED' TO UPDRMKI
-  1053		    MOVE UPDRMKI TO WS-STF01LSTUPDRMK(1:25)
-  1054		    MOVE UPDRMK1I TO WS-STF01LSTUPDRMK(26:25)
-  1055		    MOVE WS-USERID1 TO UPDBY2I
-  1056		    MOVE WS-USERID1 TO WS-STF01TCKREQ
-  1057		    MOVE WS-USERID1 TO WS-STF01LSTUPDBY
-  1058		    MOVE TIXNUMO TO WS-STF01TCKID
+   986
+   988		  EXEC CICS RETURN
+   989             TRANSID('SM02')
+   990		   COMMAREA(WS-COMMAREA)
+   991		  END-EXEC.
+  1016
+  1017	      200-REC-MAP.
+  1019		  EXEC CICS
+  1020                RECEIVE MAP('SM002M')
+  1021                MAPSET('SM002')
+  1022		      INTO (SM002MI)
+  1023		  END-EXEC
+  1056
+  1057		  IF EIBAID = DFHENTER
+  1058             IF WS-PROG-STATE = '2'
   1059
-  1060		    MOVE EIBDATE TO WS-HDATE
-  1062		    EXEC CICS ASKTIME
-  1063		     ABSTIME (WS-HTIME)
-  1064		    END-EXEC
-  1082
-  1084		    EXEC CICS FORMATTIME
-  1085		     ABSTIME (WS-HTIME)
-  1086               DATESEP ('/')
-  1087		     MMDDYYYY (WS-HDATE-X)
-  1088		     TIME (WS-HTIME)
-  1089               TIMESEP (':')
-  1090		    END-EXEC  1130
-  1131		    MOVE WS-HDATE-X TO WS-STF01LSTUPD(1:10)
-  1132		    MOVE WS-HDATE-X TO DATE1O
-  1133		    MOVE WS-HTIME-X TO WS-STF01LSTUPD(11:10)
-  1134		    MOVE WS-HTIME-X TO TIME1O
-  1135
-  1137		    EXEC CICS
-  1138               WRITE FILE('STf00001')
-  1139		     FROM (WS-FIELD01)
-  1140		     RIDFLD (WS-STF01TCKID)
-  1141		     RESP(WS-RES-CODE)
-  1142		    END-EXEC
-  1177		    END-IF
-  1178
-  1180		    IF EIBRESP NOT = DFHRESP(NORMAL)
-  1182		    IF EIBRESP NOT =	     000			       R
-  1183               MOVE 'TICKET NOT CREATED' TO ERRMSGO
-  1184		    ELSE
-  1185               MOVE 'TICKET CREATED, PRESS ENTER TO CREATE NEW TICKET'
-  1186		     TO ERRMSGO
-  1187		     PERFORM 400-CREATE-LOG
-  1188		     MOVE SPACES TO WS-FIELD01
-  1189		     MOVE DFHBMPRO TO TIXTTLA
-  1190		     MOVE DFHBMPRO TO TIXDESC1A
-  1191		     MOVE DFHBMPRO TO TIXDESC2A
-  1192		     MOVE DFHBMPRO TO STATA
-  1193		     MOVE DFHBMPRO TO UPDRMKA
-  1194		     MOVE DFHBMPRO TO UPDRMK1A
-  1195		     MOVE DFHBMPRO TO DATE1A
-  1196		     MOVE DFHBMPRO TO TIME1A
-  1197		     MOVE DFHBMPRO TO UPDBY2A
-  1198
-  1199		    END-IF
-  1200
-  1201
-  1202		  END-IF
-  1203
-  1204
-  1205		  IF EIBAID = DFHPF3
-  1206             IF WS-PROG-STATE = '1'
-  1208		    EXEC CICS SEND TEXT
-  1209		     FROM (WS-END)
-  1210		     LENGTH (15)
-  1211		     ERASE
-  1212		    END-EXEC
-  1243		    EXEC CICS RETURN END-EXEC
-  1256		   ELSE
-  1258		    EXEC CICS XCTL
-  1259               PROGRAM('SM000')
-  1260		    END-EXEC
-  1279		   END-IF
-  1280		  END-IF
-  1281
-  1282		  IF EIBAID = DFHPF5
-  1283		   MOVE SPACES TO ERRMSGO
-  1284		   MOVE SPACES TO TIXNUMO
-  1285		   MOVE SPACES TO TIXTTLO
-  1286		   MOVE SPACES TO TIXDESC1O
-  1287		   MOVE SPACES TO TIXDESC2O
-  1288		   MOVE 2 TO WS-PROG-STATE  1289		   PERFORM 110-NEW-MAP
-  1290		  END-IF.
-  1291
-  1292	      300-READ-STF1.
-  1293
-  1295		  EXEC CICS STARTBR
-  1296             FILE('STf00001')
-  1297		   RIDFLD (WS-STF01TCKID)
-  1298		   RESP(WS-RES-CODE)
-  1299		   GTEQ
-  1300		  END-EXEC
-  1333
-  1335		  EXEC CICS READNEXT
-  1336             FILE('STf00001')
-  1337		   INTO (WS-FIELD01)
-  1338		   RIDFLD (WS-STF01TCKID)
-  1339		   RESP(WS-RES-CODE)
-  1340		  END-EXEC
-  1375
-  1377		  IF EIBRESP = DFHRESP(NORMAL)
-  1379		  IF EIBRESP =	       000				       R
-  1380		   COMPUTE WS-STF01TCKIDR = WS-STF01TCKIDR + 1
-  1381		   MOVE WS-STF01TCKIDR TO TIXNUMO
-  1382		   MOVE WS-STF01TCKID TO WS-TICKET-NUM
-  1383		   MOVE 1 TO WS-ENTRCTR
-  1384		  END-IF.
-  1385
-  1386	      400-CREATE-LOG.
-  1387		  MOVE WS-TICKET-NUM TO LOG-TIX-ID1
-  1388		  MOVE 1 TO LOG-SEQ-NUM
-  1389		  MOVE LOG-TIX-ID TO WS-LOG-PH
-  1391            EXEC CICS STARTBR FILE('STf00002')
-  1392		       RIDFLD (LOG-TIX-ID)
-  1393		       KEYLENGTH(+9)
-  1394		       RESP(WS-RES-CODE)
-  1395		       GTEQ
-  1396		  END-EXEC
-  1436		  PERFORM UNTIL EIBRESP = DFHRESP(NOTFND)
-  1438		  PERFORM UNTIL EIBRESP =	  013			       R
-  1440		      EXEC CICS READPREV
-  1441                          FILE('STf00002')
-  1442				INTO (WS-LOG)
-  1443				RIDFLD (LOG-TIX-ID)
-  1444				RESP(WS-RES-CODE)
-  1445		      END-EXEC
-  1480		      IF WS-LOG-PH(1:6) NOT = LOG-TIX-ID1
-  1481			  CONTINUE
-  1482		      ELSE
-  1483			  MOVE LOG-TIX-ID TO WS-LOG-PH
-  1484		      END-IF
-  1485		      ADD 1 TO LOG-SEQ-NUM
-  1486		  END-PERFORM
-  1487
-  1488		  MOVE WS-LOG-PH TO LOG-TIX-ID
-  1489		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
-  1490		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
-  1491		  MOVE WS-USERID1 TO LOG-UPDBY2
-  1492		  MOVE UPDRMKI TO LOG-LAST-UPDATE-REM(1:25)
-  1493		  MOVE UPDRMK1I TO LOG-LAST-UPDATE-REM(26:25)
-  1495		  EXEC CICS  1496                WRITE FILE('STF00002')
-  1497		      FROM(WS-LOG)
-  1498		      RIDFLD(LOG-TIX-ID)
-  1499		      RESP(WS-RES-CODE)
-  1500		  END-EXEC.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   17
+  1060		     IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
+  1061                MOVE 'TITLE AND DESCRIPTION IS REQUIRED' TO ERRMSGO
+  1062		      MOVE 2 TO WS-PROG-STATE
+  1063		     END-IF
+  1064
+  1065		     IF TIXTTLI = SPACES AND TIXDESC1I NOT = SPACES
+  1066                MOVE 'TITLE IS REQUIRED' TO ERRMSGO
+  1067		      MOVE 2 TO WS-PROG-STATE
+  1068		     END-IF
+  1069
+  1070		     IF TIXTTLI NOT = SPACES AND TIXDESC1I = SPACES
+  1071                MOVE 'DESCRIPTION IS REQUIRED' TO ERRMSGO  1072		      MOVE 2 TO WS-PROG-STATE
+  1073		     END-IF
+  1074
+  1075		     IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES
+  1076                MOVE 'PRESS PF2 TO ADD TICKET' TO ERRMSGO
+  1077		      MOVE 2 TO WS-PROG-STATE
+  1078		     END-IF
+  1079
+  1080             ELSE IF WS-PROG-STATE = '3'
+  1081
+  1082		     MOVE 2 TO WS-PROG-STATE
+  1083               MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
+  1084		     MOVE SPACES TO TIXTTLI
+  1085		     MOVE SPACES TO TIXDESC1I
+  1086		     MOVE SPACES TO TIXDESC2I
+  1087		     MOVE SPACES TO STATI
+  1088		     PERFORM 300-READ-STF1
+  1089		     PERFORM 110-NEW-MAP
+  1090
+  1091		   ELSE
+  1092
+  1093		    IF TIXTTLI NOT = SPACES AND TIXDESC1I NOT = SPACES
+  1094		    OR TIXDESC2I NOT = SPACES
+  1095
+  1096               MOVE 'PRESS PF2 TO ADD TICKET' TO ERRMSGO
+  1097		     MOVE 2 TO WS-PROG-STATE
+  1098		     CONTINUE
+  1099		    ELSE
+  1100
+  1101		     IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
+  1102                MOVE 'TITLE AND DESCRIPTION IS REQUIRED' TO ERRMSGO
+  1103		      MOVE 2 TO WS-PROG-STATE
+  1104		     END-IF
+  1105
+  1106		     IF TIXTTLI = SPACES AND TIXDESC1I NOT = SPACES
+  1107                MOVE 'TITLE IS REQUIRED' TO ERRMSGO
+  1108		      MOVE 2 TO WS-PROG-STATE
+  1109		     END-IF
+  1110
+  1111		     IF TIXTTLI NOT = SPACES AND TIXDESC1I = SPACES
+  1112                MOVE 'DESCRIPTION IS REQUIRED' TO ERRMSGO
+  1113		      MOVE 2 TO WS-PROG-STATE
+  1114		     END-IF
+  1115
+  1116		    END-IF
+  1117
+  1118		   END-IF
+  1119
+  1120		  END-IF
+  1121		  END-IF
+  1122
+  1123		  IF EIBAID = DFHPF2
+  1124		   IF TIXTTLI = SPACES AND TIXDESC1I = SPACES
+  1125
+  1126              MOVE 'INVALID SPACES' TO ERRMSGO
+  1127		    PERFORM 110-NEW-MAP
+  1128		   ELSE IF TIXTTLI = SPACES AND TIXDESC2I = SPACES
+  1129              MOVE 'INVALID SPACES' TO ERRMSGO
+  1130		    PERFORM 110-NEW-MAP
+  1131		   ELSE IF TIXTTLI NOT = SPACES AND TIXDESC1I = SPACES  1132		   AND TIXDESC2I = SPACES
+  1133              MOVE 'INVALID SPACES' TO ERRMSGO
+  1134		    PERFORM 110-NEW-MAP
+  1135		   ELSE
+  1136              IF WS-PROG-STATE = '2'
+  1137		     MOVE DFHDFHI TO UPDREMA
+  1138		     MOVE DFHDFHI TO UPDDTA
+  1139		     MOVE DFHDFHI TO UPDBY1A
+  1140		     MOVE DFHDFHI TO UPDRMKA
+  1141		     MOVE DFHDFHI TO UPDRMK1A
+  1142		     MOVE DFHDFHI TO DATE1A
+  1143		     MOVE DFHDFHI TO TIME1A
+  1144		     MOVE DFHDFHI TO UPDBY2A
+  1145
+  1146		     MOVE SPACES TO WS-STF01TCKREQ
+  1147		     MOVE SPACES TO WS-STF01TCKSTAT
+  1148		     MOVE SPACES TO WS-STF01TCKTTL
+  1149		     MOVE SPACES TO WS-STF01TCKDESC
+  1150		     MOVE SPACES TO WS-STF01LSTUPD
+  1151		     MOVE SPACES TO WS-STF01LSTUPDBY
+  1152		     MOVE SPACES TO WS-STF01LSTUPDRMK
+  1153
+  1154		     MOVE TIXTTLI TO WS-STF01TCKTTL
+  1155		     MOVE TIXDESC1O TO WS-STF01TCKDESC(1:50)
+  1156		     MOVE TIXDESC2O TO WS-STF01TCKDESC(51:50)
+  1157               MOVE 'CREATED' TO STATI
+  1158		     MOVE STATI TO WS-STF01TCKSTAT
+  1159               MOVE 'TICKET CREATED' TO UPDRMKI
+  1160		     MOVE UPDRMKI TO WS-STF01LSTUPDRMK(1:25)
+  1161		     MOVE UPDRMK1I TO WS-STF01LSTUPDRMK(26:25)
+  1162		     MOVE WS-USERID1 TO UPDBY2I
+  1163		     MOVE WS-USERID1 TO WS-STF01TCKREQ
+  1164		     MOVE WS-USERID1 TO WS-STF01LSTUPDBY
+  1165		     MOVE TIXNUMO TO WS-STF01TCKID
+  1166
+  1167		     MOVE EIBDATE TO WS-HDATE
+  1169		     EXEC CICS ASKTIME
+  1170		      ABSTIME (WS-HTIME)
+  1171		     END-EXEC
+  1189
+  1191		     EXEC CICS FORMATTIME
+  1192		      ABSTIME (WS-HTIME)
+  1193                DATESEP ('/')
+  1194		      MMDDYYYY (WS-HDATE-X)
+  1195		      TIME (WS-HTIME)
+  1196                TIMESEP (':')
+  1197		     END-EXEC
+  1237
+  1238		     MOVE WS-HDATE-X TO WS-STF01LSTUPD(1:10)
+  1239		     MOVE WS-HDATE-X TO DATE1O
+  1240		     MOVE WS-HTIME-X TO WS-STF01LSTUPD(11:10)
+  1241		     MOVE WS-HTIME-X TO TIME1O
+  1242
+  1244		     EXEC CICS
+  1245                WRITE FILE('STf00001')
+  1246		      FROM (WS-FIELD01)
+  1247		      RIDFLD (WS-STF01TCKID)
+  1248		      RESP(WS-RES-CODE)
+  1249		     END-EXEC
+  1284  1285
+  1287		     IF EIBRESP NOT = DFHRESP(NORMAL)
+  1289		     IF EIBRESP NOT =	      000			       R
+  1290                MOVE 'TICKET NOT CREATED' TO ERRMSGO
+  1291		     ELSE
+  1292                MOVE 'TICKET CREATED, PRESS ENTER TO CREATE NEW TICKET'
+  1293		      TO ERRMSGO
+  1294		      PERFORM 400-CREATE-LOG
+  1295		      MOVE SPACES TO WS-FIELD01
+  1296		      MOVE DFHBMPRO TO TIXTTLA
+  1297		      MOVE DFHBMPRO TO TIXDESC1A
+  1298		      MOVE DFHBMPRO TO TIXDESC2A
+  1299		      MOVE DFHBMPRO TO STATA
+  1300		      MOVE DFHBMPRO TO UPDRMKA
+  1301		      MOVE DFHBMPRO TO UPDRMK1A
+  1302		      MOVE DFHBMPRO TO DATE1A
+  1303		      MOVE DFHBMPRO TO TIME1A
+  1304		      MOVE DFHBMPRO TO UPDBY2A
+  1305		      MOVE 3 TO WS-PROG-STATE
+  1306
+  1307		     END-IF
+  1308		    ELSE
+  1309               IF WS-PROG-STATE = '3'
+  1310		      MOVE DFHDFHI TO UPDREMA
+  1311		      MOVE DFHDFHI TO UPDDTA
+  1312		      MOVE DFHDFHI TO UPDBY1A
+  1313		      MOVE DFHDFHI TO UPDRMKA
+  1314		      MOVE DFHDFHI TO UPDRMK1A
+  1315		      MOVE DFHDFHI TO DATE1A
+  1316		      MOVE DFHDFHI TO TIME1A
+  1317		      MOVE DFHDFHI TO UPDBY2A
+  1318
+  1319		      MOVE DFHBMPRO TO TIXTTLA
+  1320		      MOVE DFHBMPRO TO TIXDESC1A
+  1321		      MOVE DFHBMPRO TO TIXDESC2A
+  1322
+  1323		      MOVE WS-TICKET-NUM TO TIXNUMO
+  1324		      MOVE WS-TCKTTL TO TIXTTLO
+  1325		      MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+  1326		      MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+  1327		      MOVE WS-TCKSTAT TO STATO
+  1328		      MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+  1329		      MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+  1330		      MOVE WS-LSTUPD(1:10) TO DATE1O
+  1331		      MOVE WS-LSTUPD(11:10) TO TIME1O
+  1332		      MOVE WS-STUPDBY TO UPDBY2O
+  1333                MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1334		      PERFORM 110-NEW-MAP
+  1335		     ELSE
+  1336                MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1337		      MOVE WS-TICKET-NUM TO TIXNUMO
+  1338		      MOVE WS-TCKTTL TO TIXTTLO
+  1339		      MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+  1340		      MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+  1341		      PERFORM 110-NEW-MAP
+  1342
+  1343		     END-IF
+  1344		    END-IF
+  1345		    END-IF
+  1346		  END-IF.  1347
+  1348
+  1349	      300-READ-STF1.
+  1350		  MOVE HIGH-VALUES TO WS-STF01TCKID
+  1352		  EXEC CICS STARTBR
+  1353             FILE('STf00001')
+  1354		   RIDFLD (WS-STF01TCKID)
+  1355		   RESP(WS-RES-CODE)
+  1356		   GTEQ
+  1357		  END-EXEC
+  1390
+  1392		  EXEC CICS READNEXT
+  1393             FILE('STf00001')
+  1394		   INTO (WS-FIELD01)
+  1395		   RIDFLD (WS-STF01TCKID)
+  1396		   RESP(WS-RES-CODE)
+  1397		  END-EXEC
+  1432
+  1434		  IF EIBRESP = DFHRESP(NORMAL)
+  1436		  IF EIBRESP =	       000				       R
+  1437		   COMPUTE WS-STF01TCKIDR = WS-STF01TCKIDR + 1
+  1438		   MOVE WS-STF01TCKIDR TO TIXNUMO
+  1439		   MOVE WS-STF01TCKID TO WS-TICKET-NUM
+  1440
+  1441		  END-IF.
+  1442
+  1443	      400-CREATE-LOG.
+  1444		  MOVE WS-TICKET-NUM TO LOG-TIX-ID1
+  1445		  MOVE 1 TO LOG-SEQ-NUM
+  1446		  MOVE LOG-TIX-ID TO WS-LOG-PH
+  1448            EXEC CICS STARTBR FILE('STf00002')
+  1449		       RIDFLD (LOG-TIX-ID)
+  1450		       KEYLENGTH(+9)
+  1451		       RESP(WS-RES-CODE)
+  1452		       GTEQ
+  1453		  END-EXEC
+  1493		  PERFORM UNTIL EIBRESP = DFHRESP(NOTFND)
+  1495		  PERFORM UNTIL EIBRESP =	  013			       R
+  1497		      EXEC CICS READPREV
+  1498                          FILE('STf00002')
+  1499				INTO (WS-LOG)
+  1500				RIDFLD (LOG-TIX-ID)
+  1501				RESP(WS-RES-CODE)
+  1502		      END-EXEC
+  1537		      IF WS-LOG-PH(1:6) NOT = LOG-TIX-ID1
+  1538			  CONTINUE
+  1539		      ELSE
+  1540			  MOVE LOG-TIX-ID TO WS-LOG-PH
+  1541		      END-IF
+  1542		      ADD 1 TO LOG-SEQ-NUM
+  1543		  END-PERFORM
+  1544
+  1545		  MOVE WS-LOG-PH TO LOG-TIX-ID
+  1546		  MOVE WS-HTIME-X TO LOG-LAST-UPDATE-TIME
+  1547		  MOVE WS-HDATE-X TO LOG-LAST-UPDATE-DATE
+  1548		  MOVE WS-USERID1 TO LOG-UPDBY2
+  1549		  MOVE UPDRMKI TO LOG-LAST-UPDATE-REM(1:25)
+  1550		  MOVE UPDRMK1I TO LOG-LAST-UPDATE-REM(26:25)
+  1552		  EXEC CICS
+  1553                WRITE FILE('STF00002')  1554		      FROM(WS-LOG)
+  1555		      RIDFLD(LOG-TIX-ID)
+  1556		      RESP(WS-RES-CODE)
+  1557		  END-EXEC.
+  1593
+  1594	      500-VALIDATION.
+  1595
+  1596		  IF EIBAID = DFHPF3
+  1597
+  1599		    EXEC CICS XCTL
+  1600               PROGRAM('SM000')
+  1601		    END-EXEC
+  1620
+  1621		  END-IF
+  1622
+  1623		  IF EIBAID = DFHPF5
+  1624             MOVE 'ENTER TICKET DETAILS AND PRESS PF2' TO ERRMSGO
+  1625		   MOVE SPACES TO TIXTTLO
+  1626		   MOVE SPACES TO TIXDESC1O
+  1627		   MOVE SPACES TO TIXDESC2O
+  1628		   MOVE 2 TO WS-PROG-STATE
+  1629		   PERFORM 300-READ-STF1
+  1630		   PERFORM 110-NEW-MAP
+  1631		  END-IF
+  1632
+  1633		  IF EIBAID = DFHCLEAR OR EIBAID = DFHPF1
+  1634		  OR EIBAID = DFHPF4 OR EIBAID = DFHPF6 OR EIBAID = DFHPF7
+  1635		  OR EIBAID = DFHPF8 OR EIBAID = DFHPF9 OR EIBAID = DFHPF10
+  1636		  OR EIBAID = DFHPF11 OR EIBAID = DFHPF12
+  1637             IF WS-PROG-STATE = '1' OR '3'
+  1638		    MOVE DFHDFHI TO UPDREMA
+  1639		    MOVE DFHDFHI TO UPDDTA
+  1640		    MOVE DFHDFHI TO UPDBY1A
+  1641		    MOVE DFHDFHI TO UPDRMKA
+  1642		    MOVE DFHDFHI TO UPDRMK1A
+  1643		    MOVE DFHDFHI TO DATE1A
+  1644		    MOVE DFHDFHI TO TIME1A
+  1645		    MOVE DFHDFHI TO UPDBY2A
+  1646
+  1647		    MOVE DFHBMPRO TO TIXTTLA
+  1648		    MOVE DFHBMPRO TO TIXDESC1A
+  1649		    MOVE DFHBMPRO TO TIXDESC2A
+  1650
+  1651		    MOVE WS-TICKET-NUM TO TIXNUMO
+  1652		    MOVE WS-TCKTTL TO TIXTTLO
+  1653		    MOVE WS-TCKDESC(1:50) TO TIXDESC1O
+  1654		    MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+  1655		    MOVE WS-TCKSTAT TO STATO
+  1656		    MOVE WS-LSTUPDRMK(1:25) TO UPDRMKO
+  1657		    MOVE WS-LSTUPDRMK(26:25) TO UPDRMK1O
+  1658		    MOVE WS-LSTUPD(1:10) TO DATE1O
+  1659		    MOVE WS-LSTUPD(11:10) TO TIME1O
+  1660		    MOVE WS-STUPDBY TO UPDBY2O
+  1661              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1662		    PERFORM 110-NEW-MAP
+  1663		   ELSE
+  1664              MOVE 'INVALID PFKEY PRESSED' TO ERRMSGO
+  1665		    MOVE WS-TICKET-NUM TO TIXNUMO
+  1666		    MOVE WS-TCKTTL TO TIXTTLO
+  1667		    MOVE WS-TCKDESC(1:50) TO TIXDESC1O  1668		    MOVE WS-TCKDESC(51:50) TO TIXDESC2O
+  1669		    PERFORM 110-NEW-MAP
+  1670
+  1671		  END-IF
+  1672
+  1673
+  1674		  END-IF.CA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   20
 
 LINE (REL)  ERR# LVL			ERROR TEXT
 
   75 (  12)  0348 W Trailing dash discarded from 'COMP'
   76 (  13)  0132 W Period assumed before 'WS-DATE'
 
-sm02p has    2 Warning messagesCA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   18
+sm02p has    2 Warning messagesCA-Realia COBOL Version 6.0.45	 C:\handson-cics\CAWB30\sm02p.cic      PAGE   21
 
 
 
@@ -923,9 +1102,9 @@ DEBUGXREF	  DIALECT-VS2
 
 			Error level limit: W
 
-			Source lines compiled:	    1546
-			Compilation time (mm:ss.ss):  0:00.67
-			Compilation speed (lines/minute): 38447
+			Source lines compiled:	    1685
+			Compilation time (mm:ss.ss):  0:00.72
+			Compilation speed (lines/minute): 40416
 
-			Compilation date (yy/mm/dd): 23/11/23
-			     Time of day (hh:mm:ss): 03:45:24
+			Compilation date (yy/mm/dd): 23/12/05
+			     Time of day (hh:mm:ss): 16:42:34
