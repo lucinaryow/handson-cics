@@ -1,4 +1,4 @@
-CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 08:26:32 PAGE  1
+CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 09:19:19 PAGE  1
 
     1 UA001S   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,STORAGE=AUTO,      *
     2                CTRL=(FREEKB,FRSET),TERM=3270,TIOAPFX=YES,EXTATT=NO,    *
@@ -57,7 +57,7 @@ W **** TERM is ignored by CA-Realia CICS
    54 UD9      DFHMDF POS=(18,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
    55                INITIAL='_'
    56 UD10     DFHMDF POS=(19,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
-   57                INITIAL='_'CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 08:26:32 PAGE  2
+   57                INITIAL='_'CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 09:19:19 PAGE  2
 
    58 UD11     DFHMDF POS=(20,04),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
    59                INITIAL='_'
@@ -116,7 +116,7 @@ W **** TERM is ignored by CA-Realia CICS
   112 ADMN5    DFHMDF POS=(14,42),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
   113                INITIAL=' '
   114 ADMN6    DFHMDF POS=(15,42),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
-  115                INITIAL=' 'CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 08:26:32 PAGE  3
+  115                INITIAL=' 'CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 09:19:19 PAGE  3
 
   116 ADMN7    DFHMDF POS=(16,42),LENGTH=01,ATTRB=(UNPROT,NORM,FSET),        *
   117                INITIAL=' '
@@ -175,7 +175,7 @@ W **** TERM is ignored by CA-Realia CICS
   170                  DFHMDF POS=(02,09),LENGTH=26,ATTRB=(ASKIP,DRK)
   171          DFHMDF POS=(07,01),LENGTH=12,ATTRB=(ASKIP,DRK)
   172          DFHMDF POS=(09,01),LENGTH=78,ATTRB=(ASKIP,DRK)
-  173                  DFHMDF POS=(10,01),LENGTH=02,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 08:26:32 PAGE  4
+  173                  DFHMDF POS=(10,01),LENGTH=02,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 09:19:19 PAGE  4
 
   174          DFHMDF POS=(10,06),LENGTH=06,ATTRB=(ASKIP,DRK)
   175          DFHMDF POS=(10,31),LENGTH=10,ATTRB=(ASKIP,DRK)
@@ -234,7 +234,7 @@ W **** TERM is ignored by CA-Realia CICS
   228          DFHMDF POS=(19,06),LENGTH=06,ATTRB=(ASKIP,DRK)
   229          DFHMDF POS=(19,31),LENGTH=10,ATTRB=(ASKIP,DRK)
   230          DFHMDF POS=(19,44),LENGTH=10,ATTRB=(ASKIP,DRK)
-  231          DFHMDF POS=(19,57),LENGTH=09,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 08:26:32 PAGE  5
+  231          DFHMDF POS=(19,57),LENGTH=09,ATTRB=(ASKIP,DRK)CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 09:19:19 PAGE  5
 
   232          DFHMDF POS=(19,69),LENGTH=11,ATTRB=(ASKIP,DRK)
   233          DFHMDF POS=(20,01),LENGTH=02,ATTRB=(ASKIP,DRK)
@@ -263,7 +263,7 @@ W **** TERM is ignored by CA-Realia CICS
       ua001s loaded with 1 MAPS, 163 FIELDS and 378 Bytes of Literals
 
   256          END
-There were     1 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 08:26:32 PAGE  6
+There were     1 (W) warning(s). Proceed with caution.CA-Realia CICS Ver:6.0.27  ua001s.bms                                                                    05DEV23 09:19:19 PAGE  6
 
       COBOL COPY file generated
 
