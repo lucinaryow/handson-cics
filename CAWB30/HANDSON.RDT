@@ -239,6 +239,10 @@
          DFHPPT TYPE=ENTRY,                                            CCASAMPLE
                MAPSET=SM002                                             CASAMPLE
          DFHPPT TYPE=ENTRY,                                            CCASAMPLE
+               MAPSET=SM003                                             CASAMPLE      
+          DFHPPT TYPE=ENTRY,                                           CCASAMPLE
+               MAPSET=SM004S                                            CASAMPLE
+         DFHPPT TYPE=ENTRY,                                            CCASAMPLE
                MAPSET=UA001S                                            CASAMPLE
          DFHPPT TYPE=ENTRY,                                            CCASAMPLE
                MAPSET=UA002S                                            CASAMPLE
